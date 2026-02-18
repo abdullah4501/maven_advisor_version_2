@@ -8,6 +8,8 @@ import Faqs from "@/components/Faqs";
 import TeamSection from "@/components/TeamSection";
 import WorkProcess from "@/components/WorkProcess";
 import ContactSection from "@/components/ContactSection";
+import Blog from "@/components/Blog";
+import Footer from "@/components/Footer";
 
 
 const Home = () => {
@@ -23,6 +25,8 @@ const Home = () => {
       <TeamSection />
       <WorkProcess/>
       <ContactSection/>
+      <Blog />
+      <Footer />
     </>
   );
 };
