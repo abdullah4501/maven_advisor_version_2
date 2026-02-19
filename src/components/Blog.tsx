@@ -90,11 +90,11 @@ export default function Blog() {
                             >
                                 <Link to={'/blog/why-financial-forecasting-is-critical-for-sustainable-growth'}>
                                     {/* Image */}
-                                    <div className="relative h-[420px] shadow-[0px_20px_60px_0px_rgba(0,0,0,0.20)] rounded-[10px]">
+                                    <div className="team-img relative h-[420px] overflow-hidden shadow-[0px_20px_60px_0px_rgba(0,0,0,0.20)] rounded-[10px]">
                                         <img
                                             src={post.image}
                                             alt={post.title}
-                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04] rounded-[10px]"
+                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04] rounded-[10px] "
                                         />
 
                                         {/* Category badge (TOP RIGHT) */}
@@ -132,7 +132,7 @@ export default function Blog() {
                             >
                                 <Link to={'/blog/why-financial-forecasting-is-critical-for-sustainable-growth'} className="flex items-start gap-5">
                                     {/* Thumbnail */}
-                                    <div className="relative min-w-[150px] w-[150px] h-[115px] rounded-lg overflow-hidden flex-shrink-0 ">
+                                    <div className="team-img relative min-w-[150px] w-[150px] h-[115px] rounded-lg overflow-hidden flex-shrink-0 ">
                                         <img
                                             src={post.image}
                                             alt={post.title}

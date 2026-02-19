@@ -113,7 +113,7 @@ export default function Testimonial() {
                                     </p>
                                 </div>
                                 <div>
-                                    <button className="mt-10  flex items-center gap-3 rounded-[14px] bg-[#7DEC94] px-8 py-4 text-[15px] font-semibold">
+                                    <button className="mt-10  flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
                                         Contact Us
                                         <ArrowRight />
                                     </button>

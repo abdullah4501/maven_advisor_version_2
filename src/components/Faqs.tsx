@@ -5,7 +5,8 @@ import { Phone, Mail, MapPin } from "lucide-react";
 const FAQS = [
   {
     question: "What services do you offer?",
-    answer: "Euismod quam justo lectus commodo augue arcu dignissim. Senectus netus suscipit auctor curabitur facilisi cubilia curae."
+    answer: "Euismod quam justo lectus commodo augue arcu dignissim. Senectus netus suscipit auctor curabitur facilisi cubilia curae.",
+    active: true
   },
   {
     question: "How long does a typical project take?",
@@ -17,12 +18,13 @@ const FAQS = [
   },
   {
     question: "Do you provide ongoing support?",
-    answer: "Et tempore ipsam non voluptatum molestiae et beatae incidunt. Vel maxime voluptatem aut molestias quia sit praesentium."
+    answer: "Et tempore ipsam non voluptatum molestiae et beatae incidunt. Vel maxime voluptatem aut molestias quia sit praesentium.",
+    
   },
 ]
 
 export default function FAQSection() {
-  const [active, setActive] = useState<number | null>(null)
+  const [active, setActive] = useState<number | null>(0)
 
   return (
     <section className="bg-[#f6f7f4] w-full">
@@ -52,13 +54,14 @@ export default function FAQSection() {
                   return (
                     <div
                       key={index}
-                      className={`rounded-[20px] lg:p-[40px] p-[30px] mb-5 transition-all duration-300 ease-in-out
+                      onClick={() => setActive(isActive ? null : index)}
+                      className={`rounded-[20px] lg:p-[40px] p-[30px] mb-5 cursor-pointer transition-all duration-300 ease-in-out
                         ${isActive ? "bg-primary-gradient faq-item-active" : "bg-[#3f3f3f]"}
                       `}
                     >
                       {/* Header */}
-                      <button
-                        onClick={() => setActive(isActive ? null : index)}
+                      <div
+                        
                         className="w-full flex items-center justify-between text-left"
                       >
                         <h3
@@ -81,9 +84,8 @@ export default function FAQSection() {
                             <path d="M6.77,10.47a1.32,1.32,0,0,0,2.07,0l6.5-8.35A1.31,1.31,0,0,0,14.3,0h-13a1.31,1.31,0,0,0-1,2.12Z" />
                           </svg>
                         </span>
-                      </button>
+                      </div>
 
-                      {/* Content with smooth height transition */}
                       <div
                         className={`grid transition-all duration-300 ease-in-out ${isActive ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0 mt-0"
                           }`}
@@ -113,7 +115,7 @@ export default function FAQSection() {
                     <p className="text-[20px]  font-normal">Nec metus bibendum egestas iaculis massa nisl malesuada. Semper vel class aptent taciti sociosqu ad litora.</p>
                   </div>
                   <div>
-                    <button className=" flex items-center gap-3 rounded-[14px] bg-white px-8 py-4 text-[15px] font-semibold">
+                    <button className=" relative flex items-center gap-3 rounded-[14px] bg-white px-8 py-4 text-[15px] font-semibold hover:bg-[#000] hover:text-white transition duration-300">
                       Contact Us
                       <ArrowRight />
                     </button>

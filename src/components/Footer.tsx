@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { ArrowRight,  ArrowUp } from "lucide-react";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { ArrowRight, ArrowUp, Send, Share } from "lucide-react";
 import logo from "@/assets/light-logo.svg";
 import { Link } from "react-router-dom";
-
 
 export default function Footer() {
     const [email, setEmail] = useState("");
@@ -13,245 +11,172 @@ export default function Footer() {
         window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
-
     return (
         <section className="bg-[#f6f7f4] w-full">
-            <div className="relative w-full rounded-t-[80px] bg-[url('https://wdtbullish.wpengine.com/wp-content/uploads/2025/05/footer_img.webp')] bg-cover bg-center">
-                <div className="absolute inset-0 rounded-[80px] bg-[#1616166e]" />
-                <div className="container relative py-[80px]">
-                    <div className="flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-20">
-                        {/* Logo & Description */}
-                        <div className="max-w-[380px]">
-                            <div className="mb-6">
-                                <img
-                                    src={logo}
-                                    alt="Bullish Logo"
-                                    width={240}
-                                    height={60}
-                                    className="h-[60px] w-auto"
-                                />
-                            </div>
-                            <p className="text-white text-[15px] leading-relaxed">
-                                Sed quaerat cupiditate ut aspernatur pariatur quo facere dolores
-                                et natus quisqua.
-                            </p>
-                        </div>
-
-                        {/* Newsletter Section */}
-                        <div className="flex-1 max-w-[640px]">
-                            <h2 className="text-white text-[32px] font-bold leading-tight mb-8">
-                                Register For Our
-                                <br />
-                                Updates!
-                            </h2>
-
-                            {/* Email Input */}
-                            <div className="relative flex items-center bg-[#ffffff14] border border-[#ffffff1a] rounded-full overflow-hidden h-[64px]">
-                                <input
-                                    type="email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    placeholder="Enter your email address"
-                                    className="flex-1 bg-transparent text-white placeholder:text-[#ffffff66] text-[15px] px-8 h-full outline-none"
-                                />
-                                <button className="flex items-center justify-center bg-primary-gradient hover:bg-[#95e944] transition-colors rounded-full w-[54px] h-[54px] mr-[5px] shrink-0">
-                                    <ArrowRight className="w-5 h-5 text-[#161616]" />
-                                </button>
-                            </div>
-
-                            {/* Checkbox */}
-                            <label className="flex items-center gap-3 mt-5 cursor-pointer">
-                                <div
-                                    onClick={() => setAgreed(!agreed)}
-                                    className={`w-[18px] h-[18px] rounded-[3px] border-2 flex items-center justify-center transition-colors ${agreed
-                                        ? "bg-primary-gradient border-primary"
-                                        : "border-[#ffffff4d] bg-transparent"
-                                        }`}
-                                >
-                                    {agreed && (
-                                        <svg
-                                            width="10"
-                                            height="8"
-                                            viewBox="0 0 10 8"
-                                            fill="none"
-                                        >
-                                            <path
-                                                d="M1 4L3.5 6.5L9 1"
-                                                stroke="#161616"
-                                                strokeWidth="2"
-                                                strokeLinecap="round"
-                                                strokeLinejoin="round"
-                                            />
-                                        </svg>
-                                    )}
+            <div
+                className="relative w-full rounded-t-[80px] bg-cover bg-center"
+                style={{ backgroundImage: "url('https://wdtbullish.wpengine.com/wp-content/uploads/2025/05/footer_img.webp')" }}
+            >
+                <div className="absolute inset-0 rounded-t-[80px] bg-[#1616166e]" />
+                <div className="container relative pt-[100px] pb-[60px]">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-[30px]">
+                        <div className="w-full col-span-1 flex flex-col gap-8 pr-[60px]">
+                            <div className="w-full">
+                                <div className="mb-6">
+                                    <img
+                                        src={logo}
+                                        alt="Bullish Logo"
+                                        className="h-[60px] w-auto"
+                                    />
                                 </div>
-                                <span className="text-[#ffffffcc] text-[14px]">
-                                    I acknowledge all the Terms & Conditions
-                                </span>
-                            </label>
-                        </div>
-                    </div>
-
-                    {/* Divider */}
-                    <div className="w-full h-px bg-[#ffffff1a] mt-16 mb-14" />
-
-                    {/* Bottom Links Section */}
-                    <div className="flex flex-col lg:flex-row gap-12 lg:gap-0">
-                        {/* Stay Tuned + Social Icons */}
-                        <div className="lg:w-[30%]">
-                            <h3 className="text-white text-[22px] font-bold mb-7">
-                                Stay Tuned
-                            </h3>
-                            <div className="flex items-center gap-4">
-                                {/* X (Twitter) */}
-                                <Link
-                                    to={'/'}
-                                    className="w-[50px] h-[50px] rounded-full border border-[#a5f94e66] flex items-center justify-center text-primary-gradient hover:bg-primary-gradient hover:text-[#161616] transition-all"
-                                    aria-label="Twitter"
-                                >
-                                    <svg
-                                        width="18"
-                                        height="18"
-                                        viewBox="0 0 24 24"
-                                        fill="currentColor"
-                                    >
-                                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                                    </svg>
-                                </Link>
-                                {/* YouTube */}
-                                <Link
-                                    to={'/'}
-                                    className="w-[50px] h-[50px] rounded-full border border-[#a5f94e66] flex items-center justify-center text-primary-gradient hover:bg-primary-gradient hover:text-[#161616] transition-all"
-                                    aria-label="YouTube"
-                                >
-                                    <svg
-                                        width="20"
-                                        height="20"
-                                        viewBox="0 0 24 24"
-                                        fill="currentColor"
-                                    >
-                                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                                    </svg>
-                                </Link>
-                                {/* Instagram */}
-                                <Link
-                                    to={'/'}
-                                    className="w-[50px] h-[50px] rounded-full border border-[#a5f94e66] flex items-center justify-center text-primary-gradient hover:bg-primary-gradient hover:text-[#161616] transition-all"
-                                    aria-label="Instagram"
-                                >
-                                    <svg
-                                        width="18"
-                                        height="18"
-                                        viewBox="0 0 24 24"
-                                        fill="currentColor"
-                                    >
-                                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
-                                    </svg>
-                                </Link>
-                                {/* Globe / Website */}
-                                <Link
-                                    to={'/'}
-                                    className="w-[50px] h-[50px] rounded-full border border-[#a5f94e66] flex items-center justify-center text-primary-gradient hover:bg-primary-gradient hover:text-[#161616] transition-all"
-                                    aria-label="Website"
-                                >
-                                    <svg
-                                        width="20"
-                                        height="20"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    >
-                                        <circle cx="12" cy="12" r="10" />
-                                        <path d="M2 12h20" />
-                                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                                    </svg>
-                                </Link>
+                                <p className="text-white/80 text-[18px] font-medium leading-relaxed">
+                                    Sed quaerat cupiditate ut aspernatur pariatur quo facere dolores
+                                    et natus quisqua.
+                                </p>
+                            </div>
+                            <div className="w-full">
+                                <h3 className="text-white text-[22px] font-bold mb-7">
+                                    Stay Tuned
+                                </h3>
+                                <div className="flex items-center gap-4">
+                                    {[
+                                        {
+                                            label: "Twitter",
+                                            icon: (
+                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                                </svg>
+                                            ),
+                                        },
+                                        {
+                                            label: "YouTube",
+                                            icon: (
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                                                </svg>
+                                            ),
+                                        },
+                                        {
+                                            label: "Instagram",
+                                            icon: (
+                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
+                                                </svg>
+                                            ),
+                                        },
+                                        {
+                                            label: "Website",
+                                            icon: (
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                                    <circle cx="12" cy="12" r="10" />
+                                                    <path d="M2 12h20" />
+                                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                                                </svg>
+                                            ),
+                                        },
+                                    ].map((social) => (
+                                        <Link
+                                            key={social.label}
+                                            to="/"
+                                            className="w-[50px] h-[50px] rounded-full border border-[#a5f94e66] flex items-center justify-center text-[#a5f94e] hover:bg-primary-gradient hover:text-[#161616] transition-all"
+                                            aria-label={social.label}
+                                        >
+                                            {social.icon}
+                                        </Link>
+                                    ))}
+                                </div>
                             </div>
                         </div>
+                        <div className="w-full col-span-2 ">
+                            <div className="flex flex-col md:flex-row gap-[30px]">
+                                <h2 className="w-full text-white text-[32px] font-bold leading-tight">
+                                    Register For Our
+                                    <br />
+                                    Updates!
+                                </h2>
+                                <div className="w-full">
+                                    <div className="relative flex items-center bg-white border  rounded-[10px] overflow-hidden h-[56px]">
+                                        <input
+                                            type="email"
+                                            value={email}
+                                            onChange={(e) => setEmail(e.target.value)}
+                                            placeholder="Enter your email address"
+                                            className="flex-1 bg-transparent text-black/90 placeholder:text-black/40 text-[16px] px-7 h-full outline-none"
+                                        />
+                                        <button className="flex items-center justify-center bg-primary-gradient  transition-colors rounded-[10px] w-[60px] h-full shrink-0">
+                                            <Send className="w-5 h-5 text-[#000] font-bold rotate-[40deg]" />
+                                        </button>
+                                    </div>
 
-                        {/* Support Pages */}
-                        <div className="lg:w-[23%]">
-                            <h3 className="text-white text-[22px] font-bold mb-7">
-                                Support Pages
-                            </h3>
-                            <ul className="flex flex-col gap-[14px]">
-                                {[
-                                    "About",
-                                    "Live Chat",
-                                    "Trading Guide",
-                                    "Terms & Conditions",
-                                    "Privacy Policy",
-                                    "Risk Disclosure",
-                                ].map((item) => (
-                                    <li key={item}>
-                                        <Link
-                                            to={'/'}
-                                            className="text-white text-[15px] hover:text-primary-gradient transition-colors"
+                                    <label className="flex items-center gap-3 mt-4 cursor-pointer">
+                                        <div
+                                            onClick={() => setAgreed(!agreed)}
+                                            className={`w-[16px] h-[16px] rounded-[3px] border-2 flex items-center justify-center transition-colors ${agreed
+                                                ? "bg-primary-gradient border-[#a5f94e]"
+                                                : "border-[#ffffff4d] bg-transparent"
+                                                }`}
                                         >
-                                            {item}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                                            {agreed && (
+                                                <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                                                    <path d="M1 4L3.5 6.5L9 1" stroke="#161616" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                                </svg>
+                                            )}
+                                        </div>
+                                        <span className="text-white text-[16px]">
+                                            I acknowledge all the Terms & Conditions
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div className="w-full h-px bg-white/20 mt-14 mb-12" />
+                            <div className="flex flex-wrap gap-y-12 gap-0">
 
-                        {/* About */}
-                        <div className="lg:w-[23%]">
-                            <h3 className="text-white text-[22px] font-bold mb-7">About</h3>
-                            <ul className="flex flex-col gap-[14px]">
-                                {[
-                                    "Our Story",
-                                    "Our Team",
-                                    "Portfolio",
-                                    "Career",
-                                    "Client Testimonials",
-                                    "Security Promise",
-                                ].map((item) => (
-                                    <li key={item}>
-                                        <Link
-                                            to={'/'}
-                                            className="text-white text-[15px] hover:text-primary-gradient transition-colors"
-                                        >
-                                            {item}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                                {/* Support Pages */}
+                                <div className=" lg:w-[33.33%] w-[50%]">
+                                    <h3 className="text-white text-[22px] font-bold mb-7">Support Pages</h3>
+                                    <ul className="flex flex-col gap-[14px]">
+                                        {["About", "Live Chat", "Trading Guide", "Terms & Conditions", "Privacy Policy", "Risk Disclosure"].map((item) => (
+                                            <li key={item}>
+                                                <Link to="/" className="text-white text-[15px] hover:text-[#a5f94e] transition-colors">
+                                                    {item}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
 
-                        {/* Quick Links */}
-                        <div className="lg:w-[24%]">
-                            <h3 className="text-white text-[22px] font-bold mb-7">
-                                Quick Links
-                            </h3>
-                            <ul className="flex flex-col gap-[14px]">
-                                {[
-                                    "FAQ",
-                                    "Pricing Plan",
-                                    "Contact",
-                                    "Market Overview",
-                                    "Deposit & Withdrawals",
-                                    "Account Login",
-                                ].map((item) => (
-                                    <li key={item}>
-                                        <Link
-                                            to={'/'}
-                                            className="text-white text-[15px] hover:text-primary-gradient transition-colors"
-                                        >
-                                            {item}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
+                                {/* About */}
+                                <div className=" lg:w-[33.33%] w-[50%]">
+                                    <h3 className="text-white text-[22px] font-bold mb-7">About</h3>
+                                    <ul className="flex flex-col gap-[14px]">
+                                        {["Our Story", "Our Team", "Portfolio", "Career", "Client Testimonials", "Security Promise"].map((item) => (
+                                            <li key={item}>
+                                                <Link to="/" className="text-white text-[15px] hover:text-[#a5f94e] transition-colors">
+                                                    {item}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+
+                                {/* Quick Links */}
+                                <div className=" lg:w-[33.33%] w-[50%]">
+                                    <h3 className="text-white text-[22px] font-bold mb-7">Quick Links</h3>
+                                    <ul className="flex flex-col gap-[14px]">
+                                        {["FAQ", "Pricing Plan", "Contact", "Market Overview", "Deposit & Withdrawals", "Account Login"].map((item) => (
+                                            <li key={item}>
+                                                <Link to="/" className="text-white text-[15px] hover:text-[#a5f94e] transition-colors">
+                                                    {item}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    {/* Bottom Divider */}
-                    <div className="w-full h-px bg-[#ffffff1a] mt-14 mb-8" />
-
+                    <div className="w-full h-px bg-white/20 mt-14 mb-8" />
                     {/* Copyright Bar */}
                     <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                         <p className="text-white text-[14px]">
@@ -259,32 +184,25 @@ export default function Footer() {
                         </p>
 
                         <div className="flex items-center gap-6">
-                            <Link
-                                to={'/'}
-                                className="text-white text-[14px] hover:text-primary-gradient transition-colors"
-                            >
+                            <Link to="/" className="text-white text-[14px] hover:text-[#a5f94e] transition-colors">
                                 Privacy Policy
                             </Link>
                             <span className="text-[#ffffff33]">|</span>
-                            <Link
-                                to={'/'}
-                                className="text-white text-[14px] hover:text-primary-gradient transition-colors"
-                            >
+                            <Link to="/" className="text-white text-[14px] hover:text-[#a5f94e] transition-colors">
                                 Terms & Condition
                             </Link>
 
-                            {/* Scroll to top button */}
                             <button
                                 onClick={scrollToTop}
-                                className="w-[44px] h-[44px] rounded-full bg-primary-gradient hover:bg-[#95e944] flex items-center justify-center transition-colors ml-2"
+                                className="w-[44px] h-[44px] rounded-[10px] bg-primary-gradient fixed bottom-8 right-5 flex items-center justify-center transition-colors ml-2"
                                 aria-label="Scroll to top"
                             >
-                                <ArrowUp className="w-5 h-5 text-[#161616]" />
+                                <ArrowUp className="w-5 h-5 text-[#161616] " />
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-    )
+    );
 }

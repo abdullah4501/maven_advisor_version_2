@@ -82,7 +82,7 @@ const HeroSlider = () => {
               {/* Content */}
               <div className="relative z-10 container ">
                 <div className="hero-grid grid-cols-1 lg:grid-cols-2">
-                  <div className="py-[190px] ">
+                  <div className="py-[300px] ">
                     <span className="block text-[18px] tracking-widest text-[#fff] mb-4 wdt-heading">
                       {slide.subtitle}
                     </span>
@@ -101,7 +101,7 @@ const HeroSlider = () => {
 
                     <a
                       href="#"
-                      className="inline-flex items-center mt-3 gap-3 bg-primary-gradient text-black text-[18px] px-8 py-4 rounded-[12px] font-semibold transition hover:scale-105"
+                      className="relative z-[2] inline-flex items-center mt-3 gap-3 bg-primary-gradient text-black text-[18px] px-8 py-4 rounded-[12px] font-medium transition "
                     >
                       {slide.cta}
                       <svg
