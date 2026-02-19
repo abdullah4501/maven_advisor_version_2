@@ -3,6 +3,7 @@ import sectionImg from "@/assets/h1.jpg"
 import sectionImg2 from "@/assets/feature_main2.jpg"
 import sectionImg3 from "@/assets/interactive-Section-img-02.jpg"
 import sectionImg4 from "@/assets/interactive-Section-img-03.jpg"
+import { motion, AnimatePresence } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
@@ -120,29 +121,52 @@ export default function InteractiveShowcase() {
                     {/* TOP AREA */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         {/* IMAGE */}
-                        <div className="w-full ">
-                            <img src={item.image} className="h-[620px] w-[500]  rounded-[32px] object-cover bg-center"
-                            />
+                        <div className="w-full overflow-hidden">
+                            <AnimatePresence mode="wait">
+                                <motion.img
+                                    key={item.image}
+                                    src={item.image}
+                                    initial={{ x: -80, opacity: 0 }}
+                                    animate={{ x: 0, opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.35, ease: "easeOut" }}
+                                    className="h-[620px] w-[500] rounded-[32px] object-cover bg-center"
+                                />
+                            </AnimatePresence>
                         </div>
+
 
                         {/* CONTENT */}
                         <div className="max-w-[560px]">
+                        <AnimatePresence mode="wait">
+                        <motion.div
+                            key={item.heading}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.25, ease: "easeInOut" }}
+                            className="max-w-[560px]"
+                        >
                             <div className="mb-4 flex items-center gap-4 text-[16px] font-bold tracking-wide">
-                                <h3 className="wdt-heading">{item.subtitle}</h3>
+                            <h3 className="wdt-heading">{item.subtitle}</h3>
                             </div>
 
                             <h2 className="text-[46px] font-semibold leading-[1.15]">
-                                {item.heading}
+                            {item.heading}
                             </h2>
 
                             <p className="mt-5 text-[18px] leading-[1.7] text-[#6b6b6b]">
-                                {item.content}
+                            {item.content}
                             </p>
 
                             <button className="mt-10 inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
-                                Get Started
-                                <ArrowRight />
+                            Get Started
+                            <ArrowRight />
                             </button>
+                        </motion.div>
+                        </AnimatePresence>
+
+
                         </div>
                     </div>
 

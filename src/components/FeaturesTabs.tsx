@@ -6,6 +6,7 @@ import feature3 from "@/assets/interactive-Section-img-02.jpg";
 import feature4 from "@/assets/interactive-Section-img-03.jpg";
 import feature5 from "@/assets/interactive-Section-img-04.jpg";
 import { ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion"
 
 const FEATURES = [
   {
@@ -148,38 +149,46 @@ export default function FeaturesTabs() {
 
           {/* RIGHT – Content */}
           <div className="lg:w-[72%] md:w-[60%] w-full">
-            <div className="bg-[#fff] rounded-[30px] flex overflow-hidden max-lg:flex-col">
-              <div className="w-1/2 max-lg:w-full">
-                <img
-                  src={current.image}
-                  alt={current.heading}
-                  className="h-full w-full object-cover rounded-[30px]"
-                />
-              </div>
-
-              <div className="w-1/2 max-lg:w-full py-[50px] px-[25px] lg:px-[50px] flex flex-col justify-center gap-10">
-                <div>
-                  <h4 className="text-[30px] font-semibold leading-[1.15]">
-                    {current.heading}
-                  </h4>
-                  <p className="mt-5 text-[18px] leading-[1.7] text-[#6b6b6b]">
-                    {current.description}
-                  </p>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current.heading}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25, ease: "easeInOut" }}
+                className="bg-[#fff] rounded-[30px] flex overflow-hidden max-lg:flex-col">
+                <div className="w-1/2 max-lg:w-full">
+                  <img
+                    src={current.image}
+                    alt={current.heading}
+                    className="h-full w-full object-cover rounded-[30px]"
+                  />
                 </div>
 
-                <ul className="space-y-4">
-                  {current.points.map((point, idx) => (
-                    <li
-                      key={idx}
-                      className="flex items-center gap-3 text-[18px] leading-[1.7] text-[#6b6b6b]"
-                    >
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" className="w-[20px] h-[20px]"><path d="M15,0A15,15,0,1,0,30,15,15,15,0,0,0,15,0Zm8.06,7a.79.79,0,0,1-.2.52A55.39,55.39,0,0,0,13.19,23a1.24,1.24,0,0,1-2.25.11,35.8,35.8,0,0,0-4.25-6.49,1.78,1.78,0,0,1,2.66-2.36,32.86,32.86,0,0,1,2.82,3.45,0,0,0,0,0,0,0A46.22,46.22,0,0,1,21.8,6.44.76.76,0,0,1,23.06,7Z"></path></svg>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+                <div className="w-1/2 max-lg:w-full py-[50px] px-[25px] lg:px-[50px] flex flex-col justify-center gap-10">
+                  <div>
+                    <h4 className="text-[30px] font-semibold leading-[1.15]">
+                      {current.heading}
+                    </h4>
+                    <p className="mt-5 text-[18px] leading-[1.7] text-[#6b6b6b]">
+                      {current.description}
+                    </p>
+                  </div>
+
+                  <ul className="space-y-4">
+                    {current.points.map((point, idx) => (
+                      <li
+                        key={idx}
+                        className="flex items-center gap-3 text-[18px] leading-[1.7] text-[#6b6b6b]"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" className="w-[20px] h-[20px]"><path d="M15,0A15,15,0,1,0,30,15,15,15,0,0,0,15,0Zm8.06,7a.79.79,0,0,1-.2.52A55.39,55.39,0,0,0,13.19,23a1.24,1.24,0,0,1-2.25.11,35.8,35.8,0,0,0-4.25-6.49,1.78,1.78,0,0,1,2.66-2.36,32.86,32.86,0,0,1,2.82,3.45,0,0,0,0,0,0,0A46.22,46.22,0,0,1,21.8,6.44.76.76,0,0,1,23.06,7Z"></path></svg>
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>
