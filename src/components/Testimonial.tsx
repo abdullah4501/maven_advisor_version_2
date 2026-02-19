@@ -92,7 +92,7 @@ export default function Testimonial() {
                         <h2 className="text-[46px] font-semibold leading-[1.15] text-center">
                             Advanced Tools And Features.
                         </h2>
-                        <p className="mt-5 text-[18px] leading-[1.7] text-[#6b6b6b]">
+                        <p className="mt-5 text-[18px] leading-[1.7] text-[#6b6b6b] text-center">
                             Sem placerat in id cursus mi pretium tellus. Sed diam urna tempor pulvinar vivamus.
                         </p>
 
@@ -101,9 +101,9 @@ export default function Testimonial() {
                 </div>
 
                 <div className="grid grid-cols-4 gap-10">
-                    <div className="col-span-3">
-                        <div className="bg-white testimonial-left flex rounded-[20px] h-full pr-5">
-                            <div className="w-full sm:w-[44%] flex flex-col justify-center p-[50px] inner-left relative">
+                    <div className="col-span-4 lg:col-span-3">
+                        <div className="bg-white testimonial-left flex flex-col md:flex-row rounded-[20px] h-full px-5">
+                            <div className="w-full md:w-[44%] flex flex-col justify-center p-[40px] inner-left relative">
                                 <div className="">
                                     <h4 className="text-[30px] font-semibold leading-[1.15]">
                                         Trusted by over 1300 loyal clients
@@ -119,9 +119,9 @@ export default function Testimonial() {
                                     </button>
                                 </div>
                             </div>
-                            <div className="w-full sm:w-[56%]">
-                                <section className="grid grid-cols-2 gap-5 h-full">
-                                    {/* LEFT: top → bottom */}
+                            <div className="w-full md:w-[56%]">
+                                <section className="grid grid-cols-1 lg:grid-cols-2 gap-5 h-full">
+                                    {/* LEFT */}
                                     <div className="marquee-container min-h-full">
                                         <div className="marquee-track marquee-down">
                                             {items.map((item, i) => (
@@ -130,8 +130,8 @@ export default function Testimonial() {
                                         </div>
                                     </div>
 
-                                    {/* RIGHT: bottom → top */}
-                                    <div className="marquee-container min-h-full">
+                                    {/* RIGHT (desktop only) */}
+                                    <div className="marquee-container min-h-full hidden lg:block">
                                         <div className="marquee-track marquee-up">
                                             {items.map((item, i) => (
                                                 <Card key={`right-${i}`} {...item} />
@@ -142,9 +142,9 @@ export default function Testimonial() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-span-1 flex flex-col gap-[30px] justify-start">
-                        <div className="bg-white testimonial-right-up items-center flex flex-col rounded-[20px] p-[50px]">
-                            <h2 className="text-[70px] font-bold leading-[1.15] text-center mb-6">
+                    <div className="col-span-4 lg:col-span-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-[30px] justify-start">
+                        <div className="w-full bg-white testimonial-right-up items-center flex flex-col rounded-[20px] p-[50px]">
+                            <h2 className="md:text-[70px] text-[50px] font-bold leading-[1.15] text-center mb-6">
                                 4.80
                             </h2>
                             <span className="flex gap-0 mb-5">
@@ -163,9 +163,9 @@ export default function Testimonial() {
                                 <img src={youtube} alt="" className="w-[35px] h-[35px]" />
                             </div>
                         </div>
-                        <div className=" testimonial-right-down flex flex-col gap-y-[100px] rounded-[20px] p-[50px]">
+                        <div className="w-full testimonial-right-down flex flex-col gap-y-[100px] rounded-[20px] p-[50px]">
                             <div className="max-w-[70%]">
-                                <h4 className="text-[30px] font-semibold leading-[1.15]">
+                                <h4 className="md:text-[30px] text-[24px] font-semibold leading-[1.15]">
                                     Group Cooperation
                                 </h4>
                             </div>
@@ -176,22 +176,22 @@ export default function Testimonial() {
                     </div>
                 </div>
 
-                <div className="counters p-[60px] bg-[#161616] relative rounded-[20px] mt-[40px] grid grid-cols-4 bg-cover" style={{backgroundImage: 'url(../src/assets/footer_img.webp)'}}>
-                    <div className="w-full flex flex-col border-r border-[#fff3] items-center relative ">
-                        <h4 className="text-[5em] font-medium text-white ">27+</h4>
-                        <p className="text-white font-medium text-[22px]">Depth Of Experience</p>
+                <div className="counters p-[60px] bg-[#161616] relative rounded-[20px] mt-[40px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 bg-cover gap-y-10" style={{ backgroundImage: 'url(../src/assets/footer_img.webp)' }}>
+                    <div className=" w-full flex flex-col border-r border-[#fff3] items-center relative ">
+                        <h4 className="text-[2rem] md:text-[4rem] lg:text-[5em] font-medium text-white ">27+</h4>
+                        <p className="text-white font-medium text-[18px] lg:text-[22px]">Depth Of Experience</p>
                     </div>
-                    <div className="w-full flex flex-col border-r border-[#fff3] items-center relative ">
-                        <h4 className="text-[5em] font-medium text-white ">150+</h4>
-                        <p className="text-white font-medium text-[22px]">Happy Clients</p>
+                    <div className=" w-full flex flex-col border-r border-[#fff3] items-center relative ">
+                        <h4 className="text-[2rem] md:text-[4rem] lg:text-[5em] font-medium text-white ">150+</h4>
+                        <p className="text-white font-medium text-[18px] lg:text-[22px]">Happy Clients</p>
                     </div>
-                    <div className="w-full flex flex-col border-r border-[#fff3] items-center relative ">
-                        <h4 className="text-[5em] font-medium text-white ">$600</h4>
-                        <p className="text-white font-medium text-[22px]">Profit Growth</p>
+                    <div className=" w-full flex flex-col border-r border-[#fff3] items-center relative ">
+                        <h4 className="text-[2rem] md:text-[4rem] lg:text-[5em] font-medium text-white ">$600</h4>
+                        <p className="text-white font-medium text-[18px] lg:text-[22px]">Profit Growth</p>
                     </div>
-                    <div className="w-full flex flex-col items-center relative ">
-                        <h4 className="text-[5em] font-medium text-white ">97%</h4>
-                        <p className="text-white font-medium text-[22px]">Customer Success Rate</p>
+                    <div className=" w-full flex flex-col items-center relative ">
+                        <h4 className="text-[2rem] md:text-[4rem] lg:text-[5em] font-medium text-white ">97%</h4>
+                        <p className="text-white font-medium text-[18px] lg:text-[22px]">Customer Success Rate</p>
                     </div>
                 </div>
             </div>

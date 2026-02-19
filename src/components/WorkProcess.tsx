@@ -4,6 +4,11 @@ import active1 from "@/assets/active-work-process.jpg"
 import active2 from "@/assets/active-work-process.jpg"
 import active3 from "@/assets/active-work-process.jpg"
 import active4 from "@/assets/active-work-process.jpg"
+import { Swiper, SwiperSlide } from "swiper/react"
+import "swiper/css"
+
+import "swiper/css"
+import "swiper/css/navigation"
 
 
 
@@ -34,7 +39,7 @@ const STEPS = [
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" className="w-[80px] h-[80px]" fill="#79eb93"><path d="M1.31,27.27a1.28,1.28,0,0,1-.94-.39A1.24,1.24,0,0,1,0,25.93a11.39,11.39,0,0,1,.52-3.24q1.17-2,8.85-4.08a4,4,0,0,0,.85-2.37,5.58,5.58,0,0,1-2.58-4.68V9.8H4.47a.51.51,0,0,1,0-1H21.94a.51.51,0,0,1,0,1H18.77v1.76a5.57,5.57,0,0,1-2.57,4.68A3.93,3.93,0,0,0,17,18.61c1.54.42,2.88.83,4,1.25a6,6,0,0,0-2.2,4.66,6.11,6.11,0,0,0,.66,2.76ZM21.44,15a.51.51,0,0,1,.5-.5.5.5,0,0,1,.5.5v2.84a.49.49,0,0,1-.5.49H19.11a.5.5,0,1,1,0-1h2.33ZM4,15a.5.5,0,0,1,1,0v2.34H7.3a.5.5,0,1,1,0,1H4.47a.5.5,0,0,1-.5-.49ZM5,3.71a.5.5,0,1,1-1,0V.89a.5.5,0,0,1,.5-.51H7.3a.5.5,0,0,1,.5.51.49.49,0,0,1-.5.49H5Zm17.47,0a.5.5,0,0,1-.5.5.5.5,0,0,1-.5-.5V1.38H19.11a.49.49,0,0,1-.5-.49.5.5,0,0,1,.5-.51h2.83a.5.5,0,0,1,.5.51ZM24.9,19.42a5.15,5.15,0,0,1,2.67.75l.59-.74a.5.5,0,0,1,.7-.08.49.49,0,0,1,.09.7l-4.26,5.29-1.11-1.4a.5.5,0,0,0-.7-.07.48.48,0,0,0-.08.69l1.51,1.89a.49.49,0,0,0,.69.07.27.27,0,0,0,.08-.07l4-4.92a5.09,5.09,0,1,1-4.13-2.11ZM7.64,7.8V7.11a5.57,5.57,0,0,1,11.13,0V7.8Z"></path></svg>
         ),
         img: active2
-        
+
     },
     {
         id: "04",
@@ -42,7 +47,7 @@ const STEPS = [
         desc: "Habitant morbi senectus netus suscipit auctor curabitur.",
         active: true,
         icon: (
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" className="w-[80px] h-[80px]" fill="#000"><path d="M38.7,100H28.4a23.4,23.4,0,0,1-8.6-1.9C14.2,95.7,10.6,91.5,8.3,86A34.9,34.9,0,0,1,5.7,74a56.6,56.6,0,0,1,.2-9.2,47,47,0,0,1,1.3-6.3,50.8,50.8,0,0,1,2.3-6.9,39.7,39.7,0,0,1,5.8-9.4c1.5-1.6,2.6-3.5,4.2-5A43.4,43.4,0,0,1,24.9,33a1.7,1.7,0,0,1,1.4-.4h1.1c7.2,0,14.4.1,21.6-.1a8.6,8.6,0,0,1,5.8,2.1,21.6,21.6,0,0,1,3.8,3.6,1.7,1.7,0,0,1,.4,1.1v2.3a8.3,8.3,0,0,0,3,6.6c.4.4.4.6-.1,1A8.1,8.1,0,0,0,59,55.5v4A8.6,8.6,0,0,0,61.9,66c.5.4.5.6.1.9a8.1,8.1,0,0,0-3,6.6V77a8.4,8.4,0,0,0,2.7,6.5c.5.5.7.7,0,1.3A7.8,7.8,0,0,0,59,90.6c0,2-.1,4.1.1,6.1.1.4-.1.6-.5.8a21.8,21.8,0,0,1-9.7,2.5Zm-2-14.5v1.7a1.9,1.9,0,0,0,2,1.8,2,2,0,0,0,1.7-2V84.7c0-1.2,0-1.2,1.2-1.7a8.5,8.5,0,0,0,5.8-6.7,9,9,0,0,0-8.6-10.8,5.6,5.6,0,0,1-5.3-3.6,5.5,5.5,0,0,1,8.1-6.5,5.5,5.5,0,0,1,2.5,4.5,1.7,1.7,0,0,0,1.2,1.7,1.6,1.6,0,0,0,2-.7,2.3,2.3,0,0,0,.2-2.1,8.9,8.9,0,0,0-6.4-7.5c-.5-.2-.8-.4-.7-1s0-1.9-.1-2.9a1.7,1.7,0,0,0-1.9-1.8c-1,0-1.5.6-1.6,1.9v2.7c.1.6-.1.9-.8,1.1a9.2,9.2,0,0,0-4.6,3.2,9.1,9.1,0,0,0,.7,11.8A8.7,8.7,0,0,0,38.4,69a10.8,10.8,0,0,1,1.9.3,5.5,5.5,0,0,1,3.3,7.3,5.1,5.1,0,0,1-4.3,3.3,5.2,5.2,0,0,1-5.2-2.3,5.4,5.4,0,0,1-1-3,1.7,1.7,0,0,0-1.8-1.8,1.7,1.7,0,0,0-1.7,1.9,5.7,5.7,0,0,0,.1,1.3c.6,3.2,2.3,5.7,5.4,6.8C36.5,83.4,37,84.1,36.7,85.5Z"></path><path d="M38.6,21.9H29.5a5.2,5.2,0,0,1-3.6-1.1,14.5,14.5,0,0,1-5.3-8.5A20.2,20.2,0,0,1,20.2,8c0-.9.2-1,1.1-1a39.6,39.6,0,0,1,8.4.6,13.3,13.3,0,0,1,5.7,2.2A3.4,3.4,0,0,1,36.7,12c.2,1.5,1.1,2.2,2.2,2a1.6,1.6,0,0,0,1.3-1.3c.4-2.3,2-3.5,4-4.2A32.5,32.5,0,0,1,56.2,7c.4,0,.6.1.6.6.2,5.4-1.3,10-5.8,13.3a4,4,0,0,1-2.9,1Z"></path><path d="M78.3,47H67.9a5.3,5.3,0,0,1-5.3-4,1.9,1.9,0,0,1-.1-.8c0-1.4.1-2.7,0-4.1a5.3,5.3,0,0,1,5.1-5.2c7.2-.1,14.3-.1,21.4,0a5.4,5.4,0,0,1,5.3,5.4v3.3A5.4,5.4,0,0,1,89,47Z"></path><path d="M78.3,64.7H68.2a5.4,5.4,0,0,1-5.5-3.8,4.3,4.3,0,0,1-.2-1.1c0-1.1.1-2.3,0-3.5a5.6,5.6,0,0,1,5.8-5.8H86.8a17.7,17.7,0,0,1,2.3,0c2.4.2,4.3,1.4,4.9,3.8s.7,5-.4,7.4a5.1,5.1,0,0,1-4.8,2.9Z"></path><path d="M78.5,68.3H89a5.5,5.5,0,0,1,5.3,5.2v3.2a5.5,5.5,0,0,1-5.6,5.6H68a5.5,5.5,0,0,1-5.4-4c0-.3-.1-.5-.1-.8s.1-2.6,0-3.9a5.3,5.3,0,0,1,5.4-5.3Z"></path><path d="M78.4,86H89a5.3,5.3,0,0,1,5.3,5.2v3.4a5.6,5.6,0,0,1-5.4,5.4h-21a5.4,5.4,0,0,1-5.4-5.4,18.2,18.2,0,0,0,0-3.3,5.5,5.5,0,0,1,5.3-5.4Z"></path><path d="M73.8,6.3,71.9,8.5a1.9,1.9,0,0,1-3.2-.8,1.4,1.4,0,0,1,.5-1.6L74.6.7c1-1,1.9-.9,2.9.1S81,4.4,82.7,6.3a1.7,1.7,0,0,1,0,2.6,1.8,1.8,0,0,1-2.6-.1L78.3,7c-.1-.1-.2-.4-.4-.3s-.1.4-.1.5V23.8a1.7,1.7,0,0,1-1.2,1.8,1.7,1.7,0,0,1-1.8-.3,1.5,1.5,0,0,1-.5-1.2,14.9,14.9,0,0,1-.2-2.1V7.5A1.6,1.6,0,0,0,73.8,6.3Z"></path><path d="M38.6,25.4H49.9c1.2,0,1.5.4,1.5,1.5a1.7,1.7,0,0,1,0,1c0,.8-.5,1.2-1.3,1.2h-23c-1,0-1.3-.3-1.4-1.3s.1-2.4,2.4-2.4Z"></path><path d="M85.2,20.3v3.5a1.9,1.9,0,0,1-1.7,2,1.9,1.9,0,0,1-2-2V16.7a1.9,1.9,0,0,1,1.9-1.9,1.8,1.8,0,0,1,1.8,2Z"></path><path d="M70.4,20.3v3.6a1.9,1.9,0,0,1-1.7,1.9A1.7,1.7,0,0,1,66.9,24c-.1-2.5-.1-4.9,0-7.4a1.7,1.7,0,0,1,1.8-1.8,1.7,1.7,0,0,1,1.7,1.9Z"></path></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" className="w-[80px] h-[80px]" fill="#79eb93"><path d="M38.7,100H28.4a23.4,23.4,0,0,1-8.6-1.9C14.2,95.7,10.6,91.5,8.3,86A34.9,34.9,0,0,1,5.7,74a56.6,56.6,0,0,1,.2-9.2,47,47,0,0,1,1.3-6.3,50.8,50.8,0,0,1,2.3-6.9,39.7,39.7,0,0,1,5.8-9.4c1.5-1.6,2.6-3.5,4.2-5A43.4,43.4,0,0,1,24.9,33a1.7,1.7,0,0,1,1.4-.4h1.1c7.2,0,14.4.1,21.6-.1a8.6,8.6,0,0,1,5.8,2.1,21.6,21.6,0,0,1,3.8,3.6,1.7,1.7,0,0,1,.4,1.1v2.3a8.3,8.3,0,0,0,3,6.6c.4.4.4.6-.1,1A8.1,8.1,0,0,0,59,55.5v4A8.6,8.6,0,0,0,61.9,66c.5.4.5.6.1.9a8.1,8.1,0,0,0-3,6.6V77a8.4,8.4,0,0,0,2.7,6.5c.5.5.7.7,0,1.3A7.8,7.8,0,0,0,59,90.6c0,2-.1,4.1.1,6.1.1.4-.1.6-.5.8a21.8,21.8,0,0,1-9.7,2.5Zm-2-14.5v1.7a1.9,1.9,0,0,0,2,1.8,2,2,0,0,0,1.7-2V84.7c0-1.2,0-1.2,1.2-1.7a8.5,8.5,0,0,0,5.8-6.7,9,9,0,0,0-8.6-10.8,5.6,5.6,0,0,1-5.3-3.6,5.5,5.5,0,0,1,8.1-6.5,5.5,5.5,0,0,1,2.5,4.5,1.7,1.7,0,0,0,1.2,1.7,1.6,1.6,0,0,0,2-.7,2.3,2.3,0,0,0,.2-2.1,8.9,8.9,0,0,0-6.4-7.5c-.5-.2-.8-.4-.7-1s0-1.9-.1-2.9a1.7,1.7,0,0,0-1.9-1.8c-1,0-1.5.6-1.6,1.9v2.7c.1.6-.1.9-.8,1.1a9.2,9.2,0,0,0-4.6,3.2,9.1,9.1,0,0,0,.7,11.8A8.7,8.7,0,0,0,38.4,69a10.8,10.8,0,0,1,1.9.3,5.5,5.5,0,0,1,3.3,7.3,5.1,5.1,0,0,1-4.3,3.3,5.2,5.2,0,0,1-5.2-2.3,5.4,5.4,0,0,1-1-3,1.7,1.7,0,0,0-1.8-1.8,1.7,1.7,0,0,0-1.7,1.9,5.7,5.7,0,0,0,.1,1.3c.6,3.2,2.3,5.7,5.4,6.8C36.5,83.4,37,84.1,36.7,85.5Z"></path><path d="M38.6,21.9H29.5a5.2,5.2,0,0,1-3.6-1.1,14.5,14.5,0,0,1-5.3-8.5A20.2,20.2,0,0,1,20.2,8c0-.9.2-1,1.1-1a39.6,39.6,0,0,1,8.4.6,13.3,13.3,0,0,1,5.7,2.2A3.4,3.4,0,0,1,36.7,12c.2,1.5,1.1,2.2,2.2,2a1.6,1.6,0,0,0,1.3-1.3c.4-2.3,2-3.5,4-4.2A32.5,32.5,0,0,1,56.2,7c.4,0,.6.1.6.6.2,5.4-1.3,10-5.8,13.3a4,4,0,0,1-2.9,1Z"></path><path d="M78.3,47H67.9a5.3,5.3,0,0,1-5.3-4,1.9,1.9,0,0,1-.1-.8c0-1.4.1-2.7,0-4.1a5.3,5.3,0,0,1,5.1-5.2c7.2-.1,14.3-.1,21.4,0a5.4,5.4,0,0,1,5.3,5.4v3.3A5.4,5.4,0,0,1,89,47Z"></path><path d="M78.3,64.7H68.2a5.4,5.4,0,0,1-5.5-3.8,4.3,4.3,0,0,1-.2-1.1c0-1.1.1-2.3,0-3.5a5.6,5.6,0,0,1,5.8-5.8H86.8a17.7,17.7,0,0,1,2.3,0c2.4.2,4.3,1.4,4.9,3.8s.7,5-.4,7.4a5.1,5.1,0,0,1-4.8,2.9Z"></path><path d="M78.5,68.3H89a5.5,5.5,0,0,1,5.3,5.2v3.2a5.5,5.5,0,0,1-5.6,5.6H68a5.5,5.5,0,0,1-5.4-4c0-.3-.1-.5-.1-.8s.1-2.6,0-3.9a5.3,5.3,0,0,1,5.4-5.3Z"></path><path d="M78.4,86H89a5.3,5.3,0,0,1,5.3,5.2v3.4a5.6,5.6,0,0,1-5.4,5.4h-21a5.4,5.4,0,0,1-5.4-5.4,18.2,18.2,0,0,0,0-3.3,5.5,5.5,0,0,1,5.3-5.4Z"></path><path d="M73.8,6.3,71.9,8.5a1.9,1.9,0,0,1-3.2-.8,1.4,1.4,0,0,1,.5-1.6L74.6.7c1-1,1.9-.9,2.9.1S81,4.4,82.7,6.3a1.7,1.7,0,0,1,0,2.6,1.8,1.8,0,0,1-2.6-.1L78.3,7c-.1-.1-.2-.4-.4-.3s-.1.4-.1.5V23.8a1.7,1.7,0,0,1-1.2,1.8,1.7,1.7,0,0,1-1.8-.3,1.5,1.5,0,0,1-.5-1.2,14.9,14.9,0,0,1-.2-2.1V7.5A1.6,1.6,0,0,0,73.8,6.3Z"></path><path d="M38.6,25.4H49.9c1.2,0,1.5.4,1.5,1.5a1.7,1.7,0,0,1,0,1c0,.8-.5,1.2-1.3,1.2h-23c-1,0-1.3-.3-1.4-1.3s.1-2.4,2.4-2.4Z"></path><path d="M85.2,20.3v3.5a1.9,1.9,0,0,1-1.7,2,1.9,1.9,0,0,1-2-2V16.7a1.9,1.9,0,0,1,1.9-1.9,1.8,1.8,0,0,1,1.8,2Z"></path><path d="M70.4,20.3v3.6a1.9,1.9,0,0,1-1.7,1.9A1.7,1.7,0,0,1,66.9,24c-.1-2.5-.1-4.9,0-7.4a1.7,1.7,0,0,1,1.8-1.8,1.7,1.7,0,0,1,1.7,1.9Z"></path></svg>
         ),
         img: active3
     },
@@ -64,7 +69,7 @@ export default function WorkProcess() {
         <section className="bg-[#f6f7f4] py-[120px] -mt-[80px] relative work-process-section">
             <div className="container">
                 {/* Header */}
-                <div className="flex items-center justify-between mb-20">
+                <div className="flex flex-col md:flex-row md:items-center items-start justify-between mb-20">
                     <div className="max-w-[560px]">
                         <div className="mb-4 flex items-center gap-4 text-[16px] font-bold tracking-wide">
                             <h3 className="wdt-heading">Work Process</h3>
@@ -75,62 +80,92 @@ export default function WorkProcess() {
                         </h2>
                     </div>
 
-                    <button className="mt-10 inline-flex items-center gap-3 rounded-[14px] bg-[#7DEC94] px-8 py-4 text-[15px] font-semibold">
+                    <button className="mt-10 inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
                         View All
                         <ArrowRight />
                     </button>
                 </div>
                 <div className="relative py-5 overflow-hidden">
 
-                    <div className="absolute top-[34%] left-1/2 w-[78%] -translate-x-1/2 h-[2px] overflow-hidden">
-                        <div className="process-line w-full h-full" />
-                    </div>
+                    <div className="relative py-5 overflow-hidden">
+
+                        {/* Animated horizontal line (desktop only) */}
+                        <div className="absolute top-[34%] left-1/2 w-[78%] -translate-x-1/2 h-[2px] overflow-hidden">
+                            <div className="process-line w-full h-full" />
+                        </div>
+
+                        <Swiper
+                            slidesPerView={1}
+                            spaceBetween={30}
+                            breakpoints={{
+                                0: { slidesPerView: 1 },
+                                768: { slidesPerView: 2 },
+                                992: { slidesPerView: 3 },
+                                1280: { slidesPerView: 4 },
+                            }}
+                            className="relative z-10"
+                        >
+                            {STEPS.map((step, index) => (
+                                <SwiperSlide key={step.id} className="flex justify-center">
+                                    <div
+                                        className={`group cursor-pointer flex flex-col items-center text-center process-card relative`}
+                                        onMouseEnter={(e) => {
+                                            e.currentTarget
+                                                .querySelector(".process-image")
+                                                ?.classList.add("active-green");
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            e.currentTarget
+                                                .querySelector(".process-image")
+                                                ?.classList.remove("active-green");
+                                        }}
+                                    >
+                                        <div
+                                            className={`
+                                            process-image
+                                            relative w-[140px] h-[140px] rounded-[20px] overflow-hidden 
+                                            flex items-center justify-center 
+                                            bg-white 
+                                            transition-all duration-300
+                                            
+                                        `}
+                                        >
+                                            {/* Background image on hover */}
+                                            <img
+                                                src={step.img}
+                                                alt={step.title}
+                                                className="
+                                                absolute inset-0 w-full h-full object-cover
+                                                opacity-0 group-hover:opacity-100
+                                                transition-opacity duration-300
+                                            "
+                                            />
+
+                                            {/* Icon */}
+                                            <div className="relative z-[2] icon absolute rounded-xl flex items-center justify-center  transition-transform duration-300 ">
+                                                <span className="font-bold text-lg">
+                                                    {step.icon}
+                                                </span>
+                                            </div>
+                                        </div>
 
 
-                    {/* Steps */}
-                    <div className="relative z-10 w-full mx-auto grid grid-cols-4 gap-10">
-                        {STEPS.map((step) => (
-                            <div
-                                key={step.id}
-                                className="flex flex-col items-center text-center process-card relative"
-                            >
-                                {/* Image */}
-                                <div
-                                    className={`relative w-[160px] h-[160px] rounded-2xl overflow-hidden flex items-center justify-center
-                        ${step.active ? "active-green" : "bg-white"}`}
-                                >
-                                    {step.active && (
-                                        <img
-                                            src={step.img}
-                                            alt={step.title}
-                                            className={`w-full h-full object-cover`}
-                                
-                                        />
+                                        {/* Step number */}
+                                        <div className="-mt-4 text-[16px] font-normal bg-[#79eb93] text-black px-[6px] py-[4px] rounded-[5px] border border-[#d0d0d0] relative">
+                                            {step.id}
+                                        </div>
 
-                                    )}
-
-                                    {/* Icon Placeholder */}
-                                    <div className="absolute rounded-xl flex items-center justify-center z-[2]">
-                                        <span className="text-white font-bold text-lg ">
-                                            {step.icon}
-                                        </span>
+                                        {/* Text */}
+                                        <h4 className="mt-4 font-semibold text-[20px]">
+                                            {step.title}
+                                        </h4>
+                                        <p className="mt-2 text-[18px] text-gray-500 max-w-xs">
+                                            {step.desc}
+                                        </p>
                                     </div>
-                                </div>
-
-                                {/* Number Badge */}
-                                <div className="-mt-4 text-[16px] font-normal bg-[#79eb93] text-[#000] px-[6px] py-[4px] rounded-[5px] border border-[#d0d0d0] relative">
-                                    {step.id}
-                                </div>
-
-                                {/* Text */}
-                                <h4 className="mt-4 font-semibold text-[20px]">
-                                    {step.title}
-                                </h4>
-                                <p className="mt-2 text-[18px] text-gray-500 max-w-xs">
-                                    {step.desc}
-                                </p>
-                            </div>
-                        ))}
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
                     </div>
                 </div>
                 <p className="text-[20px] text-center mt-20 ">Let’s talk! We’ll reply within a day. <a href="#" className="relative link-underline">Get Free Quote</a></p>

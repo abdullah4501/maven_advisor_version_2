@@ -26,12 +26,12 @@ export default function FAQSection() {
 
   return (
     <section className="bg-[#f6f7f4] w-full">
-      <div className="relative w-full rounded-t-[80px] bg-[url('https://wdtbullish.wpengine.com/wp-content/uploads/2025/05/footer_img.webp')] bg-cover bg-center px-20">
+      <div className="relative w-full overflow-hidden rounded-t-[80px] bg-[url('https://wdtbullish.wpengine.com/wp-content/uploads/2025/05/footer_img.webp')] bg-cover bg-center lg:px-[60px] !px-0">
         <div className="absolute inset-0 rounded-[80px] bg-[#1616166e]" />
         <div className="container pt-[120px] pb-[170px]">
           <div className="relative">
-            <div className="grid grid-cols-3 gap-6">
-              <div className="col-span-2">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div className="lg:col-span-2">
                 {/* HEADER */}
                 <div className="mb-14">
                   <div className="mb-4 flex items-center gap-4 text-[16px] font-bold tracking-wide">
@@ -52,8 +52,8 @@ export default function FAQSection() {
                   return (
                     <div
                       key={index}
-                      className={`rounded-[20px] p-[40px] mb-5 transition-all duration-300 ease-in-out
-                        ${isActive ? "bg-primary faq-item-active" : "bg-[#3f3f3f]"}
+                      className={`rounded-[20px] lg:p-[40px] p-[30px] mb-5 transition-all duration-300 ease-in-out
+                        ${isActive ? "bg-primary-gradient faq-item-active" : "bg-[#3f3f3f]"}
                       `}
                     >
                       {/* Header */}
@@ -62,7 +62,7 @@ export default function FAQSection() {
                         className="w-full flex items-center justify-between text-left"
                       >
                         <h3
-                          className={`text-[30px] font-medium transition-colors duration-300 ${isActive ? "text-black" : "text-white"
+                          className={`lg:text-[30px] text-[16px] font-medium transition-colors duration-300 ${isActive ? "text-black" : "text-white"
                             }`}
                         >
                           {faq.question}
@@ -90,7 +90,7 @@ export default function FAQSection() {
                       >
                         <div className="overflow-hidden">
                           <p
-                            className={`leading-relaxed text-[22px] ${isActive ? "text-black" : "text-white/80"
+                            className={`leading-relaxed lg:text-[22px] text-[15px] ${isActive ? "text-black" : "text-white/80"
                               }`}
                           >
                             {faq.answer}
@@ -107,7 +107,7 @@ export default function FAQSection() {
                     <span className="flex justify-center">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 22.66" className="w-[100px] w-[100px]"><path d="M3.88,19.29c.19-1.52.28-2.78.53-4a1.22,1.22,0,0,0-.68-1.51A7,7,0,0,1,0,8.23,6.47,6.47,0,0,1,2.63,2.62C6.75-.85,14-.87,18.14,2.56c3.61,3,3.61,7.57,0,10.51a11.77,11.77,0,0,1-8.4,2.5,2.93,2.93,0,0,0-2.26.78c-1.1,1-2.25,1.86-3.56,2.94Z"></path><path d="M26.11,22.66c-1.3-1.07-2.41-1.89-3.42-2.81a3.26,3.26,0,0,0-2.6-.92,11.74,11.74,0,0,1-7.84-2.21c3.3-.66,6.16-1.75,8.12-4.37a7.22,7.22,0,0,0,.33-8.71c3.65-.45,8.27,2.68,9.12,6.09.67,2.72-.53,5.46-3.35,7.27a1.63,1.63,0,0,0-.88,1.93c.22,1.13.33,2.28.52,3.73Z"></path></svg>
                     </span>
-                    <h4 className="text-[36px] mb-5 font-semibold leading-[1.15]">
+                    <h4 className=" text-[28px] mb-5 font-semibold leading-[1.15]">
                       Have Questions About Something?
                     </h4>
                     <p className="text-[20px]  font-normal">Nec metus bibendum egestas iaculis massa nisl malesuada. Semper vel class aptent taciti sociosqu ad litora.</p>
@@ -118,32 +118,32 @@ export default function FAQSection() {
                       <ArrowRight />
                     </button>
                   </div>
-                  <div className="flex flex-col items-center text-center space-y-8 text-black">
+                  <div className="flex flex-col w-full items-center text-center space-y-8 text-black">
 
                     {/* Talk To Us */}
                     <div className="space-y-2">
-                      <p className="text-[22px] font-medium">Talk To Us</p>
+                      <p className="text-[20px] font-medium">Talk To Us</p>
                       <div className="flex items-center justify-center gap-3 text-base font-semibold">
-                        <Phone className="w-8 h-8" />
-                        <span className="text-[22px]">+000 - 123456789</span>
+                        <Phone className="w-7 h-7" />
+                        <span className="text-[20px]">+000 - 123456789</span>
                       </div>
                     </div>
 
                     {/* Email */}
                     <div className="space-y-2">
-                      <p className="text-[22px] font-medium">Email</p>
+                      <p className="text-[20px] font-medium">Email</p>
                       <div className="flex items-center justify-center gap-3 text-base font-semibold">
-                        <Mail className="w-8 h-8" />
-                        <span className="text-[22px]">info@example.com</span>
+                        <Mail className="w-7 h-7" />
+                        <span className="text-[20px]">info@example.com</span>
                       </div>
                     </div>
 
                     {/* Location */}
                     <div className="space-y-2">
-                      <p className="text-[22px] font-medium">Our Location</p>
+                      <p className="text-[20px] font-medium">Our Location</p>
                       <div className="flex items-start justify-center gap-3 text-base font-semibold max-w-xs">
-                        <MapPin className="w-8 h-8 mt-1" />
-                        <span className="text-[22px]">
+                        <MapPin className="w-7 h-7 mt-1" />
+                        <span className="text-[20px]">
                           456 Finance Street, WC1A
                           <br />
                           1AA

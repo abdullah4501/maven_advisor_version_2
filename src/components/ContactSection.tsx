@@ -17,15 +17,13 @@ export default function ContactSection() {
 
     return (
         <section className="bg-[#f6f7f4] w-full">
-            <div className="relative w-full rounded-t-[80px] bg-[url('../src/assets/contactbg.jpg')] bg-cover bg-center px-20">
+            <div className="relative w-full rounded-t-[80px] bg-[url('../src/assets/contactbg.jpg')] bg-cover bg-center ">
                 <div className="absolute inset-0 rounded-[80px] bg-[#1616166e]" />
                 <div className="container pt-[120px] pb-[170px]">
                     <div className="relative">
-                        <div className="grid grid-cols-2 gap-6">
-                            <div className="col-span-1">
-
-                            </div>
-                            <div className="col-span-1">
+                        <div className="flex justify-end">
+                            
+                            <div className="lg:w-[50%] md:w-[85%] w-full">
                                 <div className="p-[60px] rounded-[20px] bg-white/60 backdrop-blur-lg">
                                     {/* Header */}
                                     <div className="flex  mb-20">
@@ -119,7 +117,7 @@ export default function ContactSection() {
 
                                         {/* Submit */}
                                         <div>
-                                            <button type="submit" className="mt-10 inline-flex items-center gap-3 rounded-[14px] bg-[#7DEC94] px-8 py-4 text-[15px] font-semibold">
+                                            <button type="submit" className="mt-10 inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
                                                 Submit
                                                 <ArrowRight />
                                             </button>

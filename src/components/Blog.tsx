@@ -72,7 +72,7 @@ export default function Blog() {
                         </h2>
                     </div>
 
-                    <button className="mt-10 inline-flex items-center gap-3 rounded-[14px] bg-[#7DEC94] px-8 py-4 text-[15px] font-semibold">
+                    <button className="mt-10 inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
                         View All Feastures
                         <ArrowRight />
                     </button>
@@ -98,7 +98,7 @@ export default function Blog() {
                                         />
 
                                         {/* Category badge (TOP RIGHT) */}
-                                        <span className="absolute top-5 right-5 bg-primary text-black text-[13px] font-semibold px-4 py-1.5 rounded-full uppercase tracking-wide">
+                                        <span className="absolute top-5 right-5 bg-primary-gradient text-black text-[13px] font-semibold px-4 py-1.5 rounded-full uppercase tracking-wide">
                                             {post.category}
                                         </span>
                                     </div>

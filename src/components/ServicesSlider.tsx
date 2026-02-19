@@ -43,7 +43,7 @@ export default function ServicesType3() {
 
 
   return (
-    <section className="relative w-full overflow-hidden rounded-t-[80px] bg-[url('https://wdtbullish.wpengine.com/wp-content/uploads/2025/05/footer_img.webp')] bg-cover bg-center px-20">
+    <section className="relative w-full overflow-hidden rounded-t-[80px] bg-[url('https://wdtbullish.wpengine.com/wp-content/uploads/2025/05/footer_img.webp')] bg-cover bg-center lg:px-[60px] px-0">
       <div className="absolute inset-0 rounded-[38px] bg-[#1616166e]" />
       <div className="container pt-[120px] pb-[170px]">
         <div className="relative">
@@ -61,7 +61,7 @@ export default function ServicesType3() {
             </p>
           </div>
 
-          <div ref={wrapperRef} className="relative">
+          <div ref={wrapperRef} className="relative py-[55px]">
 
           <Swiper
             modules={[Navigation]}
@@ -124,13 +124,14 @@ export default function ServicesType3() {
                 </SwiperSlide>
               ))}
             </Swiper>
-
-            <button className="services-prev flex h-14 w-14 items-center justify-center rounded-full border border-white/30 text-white hover:border-[#79eb93] hover:text-[#79eb93]">
-              <ArrowLeft />
-            </button>
-            <button className="services-next flex h-14 w-14 items-center justify-center rounded-full border border-white/30 text-white hover:border-[#79eb93] hover:text-[#79eb93]">
-              <ArrowRight />
-            </button>
+            <div className="service-slider-nav-buttons">
+              <button className="services-prev flex h-14 w-14 items-center justify-center rounded-full border border-white/30 text-white hover:border-[#79eb93] hover:text-[#79eb93]">
+                <ArrowLeft />
+              </button>
+              <button className="services-next flex h-14 w-14 items-center justify-center rounded-full border border-white/30 text-white hover:border-[#79eb93] hover:text-[#79eb93]">
+                <ArrowRight />
+              </button>
+            </div>
 
           </div>
         </div>

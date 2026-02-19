@@ -16,7 +16,7 @@ export default function Footer() {
 
     return (
         <section className="bg-[#f6f7f4] w-full">
-            <div className="relative w-full rounded-t-[80px] bg-[url('https://wdtbullish.wpengine.com/wp-content/uploads/2025/05/footer_img.webp')] bg-cover bg-center px-20">
+            <div className="relative w-full rounded-t-[80px] bg-[url('https://wdtbullish.wpengine.com/wp-content/uploads/2025/05/footer_img.webp')] bg-cover bg-center">
                 <div className="absolute inset-0 rounded-[80px] bg-[#1616166e]" />
                 <div className="container relative py-[80px]">
                     <div className="flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-20">
@@ -54,7 +54,7 @@ export default function Footer() {
                                     placeholder="Enter your email address"
                                     className="flex-1 bg-transparent text-white placeholder:text-[#ffffff66] text-[15px] px-8 h-full outline-none"
                                 />
-                                <button className="flex items-center justify-center bg-primary hover:bg-[#95e944] transition-colors rounded-full w-[54px] h-[54px] mr-[5px] shrink-0">
+                                <button className="flex items-center justify-center bg-primary-gradient hover:bg-[#95e944] transition-colors rounded-full w-[54px] h-[54px] mr-[5px] shrink-0">
                                     <ArrowRight className="w-5 h-5 text-[#161616]" />
                                 </button>
                             </div>
@@ -64,7 +64,7 @@ export default function Footer() {
                                 <div
                                     onClick={() => setAgreed(!agreed)}
                                     className={`w-[18px] h-[18px] rounded-[3px] border-2 flex items-center justify-center transition-colors ${agreed
-                                        ? "bg-primary border-primary"
+                                        ? "bg-primary-gradient border-primary"
                                         : "border-[#ffffff4d] bg-transparent"
                                         }`}
                                 >
@@ -106,7 +106,7 @@ export default function Footer() {
                                 {/* X (Twitter) */}
                                 <Link
                                     to={'/'}
-                                    className="w-[50px] h-[50px] rounded-full border border-[#a5f94e66] flex items-center justify-center text-primary hover:bg-primary hover:text-[#161616] transition-all"
+                                    className="w-[50px] h-[50px] rounded-full border border-[#a5f94e66] flex items-center justify-center text-primary-gradient hover:bg-primary-gradient hover:text-[#161616] transition-all"
                                     aria-label="Twitter"
                                 >
                                     <svg
@@ -121,7 +121,7 @@ export default function Footer() {
                                 {/* YouTube */}
                                 <Link
                                     to={'/'}
-                                    className="w-[50px] h-[50px] rounded-full border border-[#a5f94e66] flex items-center justify-center text-primary hover:bg-primary hover:text-[#161616] transition-all"
+                                    className="w-[50px] h-[50px] rounded-full border border-[#a5f94e66] flex items-center justify-center text-primary-gradient hover:bg-primary-gradient hover:text-[#161616] transition-all"
                                     aria-label="YouTube"
                                 >
                                     <svg
@@ -136,7 +136,7 @@ export default function Footer() {
                                 {/* Instagram */}
                                 <Link
                                     to={'/'}
-                                    className="w-[50px] h-[50px] rounded-full border border-[#a5f94e66] flex items-center justify-center text-primary hover:bg-primary hover:text-[#161616] transition-all"
+                                    className="w-[50px] h-[50px] rounded-full border border-[#a5f94e66] flex items-center justify-center text-primary-gradient hover:bg-primary-gradient hover:text-[#161616] transition-all"
                                     aria-label="Instagram"
                                 >
                                     <svg
@@ -151,7 +151,7 @@ export default function Footer() {
                                 {/* Globe / Website */}
                                 <Link
                                     to={'/'}
-                                    className="w-[50px] h-[50px] rounded-full border border-[#a5f94e66] flex items-center justify-center text-primary hover:bg-primary hover:text-[#161616] transition-all"
+                                    className="w-[50px] h-[50px] rounded-full border border-[#a5f94e66] flex items-center justify-center text-primary-gradient hover:bg-primary-gradient hover:text-[#161616] transition-all"
                                     aria-label="Website"
                                 >
                                     <svg
@@ -189,7 +189,7 @@ export default function Footer() {
                                     <li key={item}>
                                         <Link
                                             to={'/'}
-                                            className="text-white text-[15px] hover:text-primary transition-colors"
+                                            className="text-white text-[15px] hover:text-primary-gradient transition-colors"
                                         >
                                             {item}
                                         </Link>
@@ -213,7 +213,7 @@ export default function Footer() {
                                     <li key={item}>
                                         <Link
                                             to={'/'}
-                                            className="text-white text-[15px] hover:text-primary transition-colors"
+                                            className="text-white text-[15px] hover:text-primary-gradient transition-colors"
                                         >
                                             {item}
                                         </Link>
@@ -239,7 +239,7 @@ export default function Footer() {
                                     <li key={item}>
                                         <Link
                                             to={'/'}
-                                            className="text-white text-[15px] hover:text-primary transition-colors"
+                                            className="text-white text-[15px] hover:text-primary-gradient transition-colors"
                                         >
                                             {item}
                                         </Link>
@@ -261,14 +261,14 @@ export default function Footer() {
                         <div className="flex items-center gap-6">
                             <Link
                                 to={'/'}
-                                className="text-white text-[14px] hover:text-primary transition-colors"
+                                className="text-white text-[14px] hover:text-primary-gradient transition-colors"
                             >
                                 Privacy Policy
                             </Link>
                             <span className="text-[#ffffff33]">|</span>
                             <Link
                                 to={'/'}
-                                className="text-white text-[14px] hover:text-primary transition-colors"
+                                className="text-white text-[14px] hover:text-primary-gradient transition-colors"
                             >
                                 Terms & Condition
                             </Link>
@@ -276,7 +276,7 @@ export default function Footer() {
                             {/* Scroll to top button */}
                             <button
                                 onClick={scrollToTop}
-                                className="w-[44px] h-[44px] rounded-full bg-primary hover:bg-[#95e944] flex items-center justify-center transition-colors ml-2"
+                                className="w-[44px] h-[44px] rounded-full bg-primary-gradient hover:bg-[#95e944] flex items-center justify-center transition-colors ml-2"
                                 aria-label="Scroll to top"
                             >
                                 <ArrowUp className="w-5 h-5 text-[#161616]" />

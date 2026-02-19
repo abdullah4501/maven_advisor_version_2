@@ -1,9 +1,12 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import sectionImg from "@/assets/h1.jpg"
 import sectionImg2 from "@/assets/feature_main2.jpg"
 import sectionImg3 from "@/assets/interactive-Section-img-02.jpg"
 import sectionImg4 from "@/assets/interactive-Section-img-03.jpg"
 import { ArrowRight } from "lucide-react"
+import { Swiper, SwiperSlide } from "swiper/react"
+import "swiper/css"
+import "swiper/css/navigation"
 
 type Item = {
     title: string
@@ -40,6 +43,7 @@ const Marquee: MarqueeItem[] = [
 ]
 
 function MarqueeRow({ items }: { items: MarqueeItem[] }) {
+
     return (
         <div className="flex items-center gap-[48px] ">
             {items.map((item, i) =>
@@ -71,7 +75,7 @@ const ITEMS: Item[] = [
         description: "Ante condimentum neque at luctus nibh facilisis. Sollicitudin erat elementum.",
         subtitle: "Guidance. Trust. Results.",
         heading: "Guiding Business Growth Through Expert Strategy.",
-        image:sectionImg,
+        image: sectionImg,
         content:
             "Class aptent taciti sociosqu ad litora torquent per. Natoque penatibus parturient montes nascetur. Nulla molestie mattis scelerisque.",
     },
@@ -80,7 +84,7 @@ const ITEMS: Item[] = [
         description: "Cras eleifend turpis fames orci primis vulputate. Proin libero feugiat tristique.",
         subtitle: "Trusted Support",
         heading: "Customer Support Built Around Your Needs",
-        image:sectionImg2,
+        image: sectionImg2,
         content:
             "Class aptent taciti sociosqu ad litora torquent per. Natoque penatibus parturient montes nascetur.",
     },
@@ -89,7 +93,7 @@ const ITEMS: Item[] = [
         description: "Donec rhoncus eros lobortis nulla mattis efficitur laoreet scelerisque.",
         subtitle: "Always Prepared",
         heading: "Business Resilience Starts With Proper Planning",
-        image:sectionImg3,
+        image: sectionImg3,
         content:
             "Class aptent taciti sociosqu ad litora torquent per. Natoque penatibus parturient montes nascetur.",
     },
@@ -98,7 +102,7 @@ const ITEMS: Item[] = [
         description: "Ut hendrerit semper vel class aptent taciti sociosqu. Inceptos orci varius.",
         subtitle: "Explore, Engage, Learn",
         heading: "Experience the Journey, Grow with Confidence",
-        image:sectionImg4,
+        image: sectionImg4,
         content:
             "Class aptent taciti sociosqu ad litora torquent per. Natoque penatibus parturient montes nascetur.",
     },
@@ -107,15 +111,16 @@ const ITEMS: Item[] = [
 export default function InteractiveShowcase() {
     const [active, setActive] = useState(0)
     const item = ITEMS[active]
+    const wrapperRef = useRef<HTMLDivElement>(null)
 
     return (
         <>
             <section className=" rounded-t-[80px] bg-[#f6f7f4] py-[120px] -mt-[80px] relative">
                 <div className="container">
                     {/* TOP AREA */}
-                    <div className="grid grid-cols-2 gap-12 items-center">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         {/* IMAGE */}
-                        <div className="w-full">
+                        <div className="w-full ">
                             <img src={item.image} className="h-[620px] w-[500]  rounded-[32px] object-cover bg-center"
                             />
                         </div>
@@ -134,7 +139,7 @@ export default function InteractiveShowcase() {
                                 {item.content}
                             </p>
 
-                            <button className="mt-10 inline-flex items-center gap-3 rounded-[14px] bg-[#7DEC94] px-8 py-4 text-[15px] font-semibold">
+                            <button className="mt-10 inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
                                 Get Started
                                 <ArrowRight />
                             </button>
@@ -142,32 +147,50 @@ export default function InteractiveShowcase() {
                     </div>
 
                     {/* BOTTOM TABS */}
-                    <div className="mt-[88px] grid grid-cols-4 gap-[56px]">
-                        {ITEMS.map((tab, index) => {
-                            const isActive = index === active
+                    <div className="mt-[88px]">
+                        <div ref={wrapperRef} className="relative">
+                            <Swiper
+                                loop
+                                spaceBetween={56}
+                                speed={600}
+                                observer
+                                observeParents
+                                breakpoints={{
+                                    0: { slidesPerView: 1 },
+                                    768: { slidesPerView: 2 },
+                                    992: { slidesPerView: 3 },
+                                    1280: { slidesPerView: 4 },
+                                }}
+                            >
+                                {ITEMS.map((tab, index) => {
+                                    const isActive = index === active
 
-                            return (
-                                <div
-                                    key={tab.title}
-                                    onClick={() => setActive(index)}
-                                    className={`group cursor-pointer transition-opacity ${isActive ? "opacity-100" : "opacity-40 hover:opacity-100"
-                                        }`}
-                                >
-                                    {/* ICON */}
-                                    <div className="relative mb-6 pb-8 w-fit tab-line w-full border-b border-[#d0d0d0]">
-                                        <span className="icon"><i><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" className={`transition-colors duration-300 ${isActive ? "fill-[#79eb93]" : "fill-[#686868] group-hover:fill-[#79eb93]"}`}><path d="M47,32.42a10.16,10.16,0,0,1,0-14.48,9.94,9.94,0,0,0,3-7.07A10.11,10.11,0,0,0,32.84,3.71a11.06,11.06,0,0,1-15.52-.19A10.11,10.11,0,0,0,0,10.5a10.12,10.12,0,0,0,17.16,7.16,11,11,0,0,1,15.51.19l.09.09a10.18,10.18,0,0,1,0,14.49,9.94,9.94,0,0,0-2.95,7.07,10.1,10.1,0,0,0,20.2,0,9.94,9.94,0,0,0-2.95-7.07Z"></path><path d="M17.65,46.14A9.93,9.93,0,0,0,16.81,32a10.16,10.16,0,0,0-14.26.84A9.93,9.93,0,0,0,3.39,47,10.17,10.17,0,0,0,17.65,46.14Z"></path></svg></i></span>
-                                    </div>
+                                    return (
+                                        <SwiperSlide key={index}>
+                                            <div
+                                                key={tab.title}
+                                                onClick={() => setActive(index)}
+                                                className={`group cursor-pointer transition-opacity ${isActive ? "opacity-100" : "opacity-40 hover:opacity-100"
+                                                    }`}
+                                            >
+                                                {/* ICON */}
+                                                <div className="relative mb-6 pb-8 w-fit tab-line w-full border-b border-[#d0d0d0]">
+                                                    <span className="icon"><i><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" className={`transition-colors duration-300 ${isActive ? "fill-[#79eb93]" : "fill-[#686868] group-hover:fill-[#79eb93]"}`}><path d="M47,32.42a10.16,10.16,0,0,1,0-14.48,9.94,9.94,0,0,0,3-7.07A10.11,10.11,0,0,0,32.84,3.71a11.06,11.06,0,0,1-15.52-.19A10.11,10.11,0,0,0,0,10.5a10.12,10.12,0,0,0,17.16,7.16,11,11,0,0,1,15.51.19l.09.09a10.18,10.18,0,0,1,0,14.49,9.94,9.94,0,0,0-2.95,7.07,10.1,10.1,0,0,0,20.2,0,9.94,9.94,0,0,0-2.95-7.07Z"></path><path d="M17.65,46.14A9.93,9.93,0,0,0,16.81,32a10.16,10.16,0,0,0-14.26.84A9.93,9.93,0,0,0,3.39,47,10.17,10.17,0,0,0,17.65,46.14Z"></path></svg></i></span>
+                                                </div>
 
-                                    <h4 className="text-[24px] font-semibold">
-                                        {tab.title}
-                                    </h4>
+                                                <h4 className="text-[24px] font-semibold">
+                                                    {tab.title}
+                                                </h4>
 
-                                    <p className="mt-3 text-[16px] leading-[1.2] text-[#7a7a7a]">
-                                        {tab.description}
-                                    </p>
-                                </div>
-                            )
-                        })}
+                                                <p className="mt-3 text-[16px] leading-[1.2] text-[#7a7a7a]">
+                                                    {tab.description}
+                                                </p>
+                                            </div>
+                                        </SwiperSlide>
+                                    )
+                                })}
+                            </Swiper>
+                        </div>
                     </div>
                 </div>
             </section>

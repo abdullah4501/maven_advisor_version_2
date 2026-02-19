@@ -104,7 +104,7 @@ export default function FeaturesTabs() {
     <section className=" rounded-t-[80px] bg-[#f6f7f4] py-[120px] -mt-[80px] relative ">
       <div className="container">
         {/* Header */}
-        <div className="flex items-center justify-between mb-20">
+        <div className="flex flex-col md:flex-row md:items-center items-start justify-between mb-20">
           <div className="max-w-[560px]">
             <div className="mb-4 flex items-center gap-4 text-[16px] font-bold tracking-wide">
               <h3 className="wdt-heading">Smart Solutions</h3>
@@ -115,16 +115,16 @@ export default function FeaturesTabs() {
             </h2>
           </div>
 
-          <button className="mt-10 inline-flex items-center gap-3 rounded-[14px] bg-[#7DEC94] px-8 py-4 text-[15px] font-semibold">
+          <button className="mt-10 inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
             View All Feastures
             <ArrowRight />
           </button>
         </div>
 
         {/* Tabs Layout */}
-        <div className="flex gap-16 items-start">
+        <div className="flex flex-col md:flex-row lg:gap-16 gap-8 items-start">
           {/* LEFT – Tabs */}
-          <ul className="w-[28%] sticky top-24 flex flex-col gap-5">
+          <ul className="lg:w-[28%] md:w-[40%] w-full md:sticky top-24 flex flex-col gap-5">
             {FEATURES.map((tab, i) => {
               const isActive = i === active
 
@@ -132,7 +132,7 @@ export default function FeaturesTabs() {
                 <li
                   key={tab.id}
                   onClick={() => setActive(i)}
-                  className={`rounded-[20px] ${isActive ? "bg-primary" : "bg-white"
+                  className={`rounded-[20px] ${isActive ? "bg-primary-gradient" : "bg-white"
                     }`}
                 >
                   <button className="flex items-center gap-[20px] py-[18px] px-[20px] w-full">
@@ -147,7 +147,7 @@ export default function FeaturesTabs() {
           </ul>
 
           {/* RIGHT – Content */}
-          <div className="w-[72%]">
+          <div className="lg:w-[72%] md:w-[60%] w-full">
             <div className="bg-[#fff] rounded-[30px] flex overflow-hidden max-lg:flex-col">
               <div className="w-1/2 max-lg:w-full">
                 <img
@@ -157,7 +157,7 @@ export default function FeaturesTabs() {
                 />
               </div>
 
-              <div className="w-1/2 max-lg:w-full p-14 flex flex-col justify-center gap-10">
+              <div className="w-1/2 max-lg:w-full py-[50px] px-[25px] lg:px-[50px] flex flex-col justify-center gap-10">
                 <div>
                   <h4 className="text-[30px] font-semibold leading-[1.15]">
                     {current.heading}
