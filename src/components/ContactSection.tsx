@@ -24,7 +24,7 @@ export default function ContactSection() {
                         <div className="flex justify-end">
                             
                             <div className="lg:w-[50%] md:w-[85%] w-full">
-                                <div className="p-[60px] rounded-[20px] bg-white/60 backdrop-blur-lg">
+                                <div className="sm:p-[60px] px-[20px] py-[50px] rounded-[20px] bg-white/60 backdrop-blur-lg">
                                     {/* Header */}
                                     <div className="flex  mb-20">
                                         <div className="m-auto flex flex-col">

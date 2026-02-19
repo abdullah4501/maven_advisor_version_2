@@ -61,19 +61,19 @@ export default function Blog() {
         <section className=" rounded-t-[80px] bg-[#f6f7f4] py-[120px] -mt-[80px] relative ">
             <div className="container">
                 {/* Header */}
-                <div className="flex items-center justify-between mb-20">
+                <div className="flex flex-col md:flex-row md:items-center items-start justify-between mb-20">
                     <div className="max-w-[560px]">
                         <div className="mb-4 flex items-center gap-4 text-[16px] font-bold tracking-wide">
-                            <h3 className="wdt-heading">Our Blogs</h3>
+                            <h3 className="wdt-heading">Our Blog</h3>
                         </div>
 
                         <h2 className="text-[46px] font-semibold leading-[1.15]">
-                            Latest Business Insights
+                            Execution With Clear Steps.
                         </h2>
                     </div>
 
                     <button className="mt-10 inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
-                        View All Feastures
+                        View All
                         <ArrowRight />
                     </button>
                 </div>
