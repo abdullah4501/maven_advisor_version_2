@@ -135,7 +135,7 @@ export default function Footer() {
                                     >
                                         <span className="text-[22px] font-bold text-black">Support Pages</span>
                                         <svg
-                                            className={`w-6 h-6 transition-transform ${openSection === "support" ? "" : "rotate-180"}`}
+                                            className={`w-8 h-8 transition-transform ${openSection === "support" ? "" : "rotate-180"}`}
                                             viewBox="0 0 24 24"
                                             fill="currentColor"
                                         >
@@ -180,7 +180,7 @@ export default function Footer() {
                                     >
                                         <span className="text-[22px] font-bold text-black">About</span>
                                         <svg
-                                            className={`w-6 h-6 transition-transform ${openSection === "about" ? "" : "rotate-180"}`}
+                                            className={`w-8 h-8 transition-transform ${openSection === "about" ? "" : "rotate-180"}`}
                                             viewBox="0 0 24 24"
                                             fill="currentColor"
                                         >
@@ -225,7 +225,7 @@ export default function Footer() {
                                     >
                                         <span className="text-[22px] font-bold text-black">Quick Links</span>
                                         <svg
-                                            className={`w-6 h-6 transition-transform ${openSection === "quick" ? "" : "rotate-180"}`}
+                                            className={`w-8 h-8 transition-transform ${openSection === "quick" ? "" : "rotate-180"}`}
                                             viewBox="0 0 24 24"
                                             fill="currentColor"
                                         >
