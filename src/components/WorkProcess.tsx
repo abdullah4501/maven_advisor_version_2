@@ -69,7 +69,7 @@ export default function WorkProcess() {
         <section className="bg-[#f6f7f4] py-[40px] md:py-[120px] md:-mt-[80px] relative work-process-section">
             <div className="container">
                 {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center items-start justify-between mb-20">
+                <div className="flex flex-col md:flex-row md:items-center items-start justify-between mb-5 md:mb-20">
                     <div className="max-w-[560px]">
                         <div className="mb-4 flex items-center gap-4 text-[16px] font-bold tracking-wide">
                             <h3 className="wdt-heading">Work Process</h3>
@@ -123,7 +123,7 @@ export default function WorkProcess() {
                                         <div
                                             className={`
                                             process-image
-                                            relative w-[140px] h-[140px] rounded-[20px] overflow-hidden 
+                                            relative w-[100px] md:w-[140px] h-[100px] md:h-[140px] rounded-[20px] overflow-hidden 
                                             flex items-center justify-center 
                                             bg-white 
                                             transition-all duration-300

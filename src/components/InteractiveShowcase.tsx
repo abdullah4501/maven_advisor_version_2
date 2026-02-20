@@ -112,6 +112,7 @@ const ITEMS: Item[] = [
 
 export default function InteractiveShowcase() {
     const [active, setActive] = useState(0)
+    const [activeIndex, setActiveIndex] = useState(0)
     const item = ITEMS[active]
     const wrapperRef = useRef<HTMLDivElement>(null)
 
@@ -181,10 +182,7 @@ export default function InteractiveShowcase() {
                                 observer
                                 observeParents
                                 modules={[Pagination]}
-                                pagination={{
-                                    type: 'progressbar',
-                                    clickable: true, 
-                                }}
+                                onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
                                 breakpoints={{
                                     0: { slidesPerView: 1 },
                                     768: { slidesPerView: 2 },
@@ -217,9 +215,20 @@ export default function InteractiveShowcase() {
                                                 </p>
                                             </div>
                                         </SwiperSlide>
+
                                     )
                                 })}
                             </Swiper>
+                            <div className="mt-10 w-full block md:hidden">
+                                <div className="relative h-[4px] rounded-[2px] w-full bg-[#e6e6e6] overflow-hidden">
+                                    <div
+                                    className="absolute left-0 top-0 h-full bg-primary-gradient transition-all duration-500 ease-out"
+                                    style={{
+                                        width: `${((activeIndex + 1) / ITEMS.length) * 100}%`,
+                                    }}
+                                    />
+                                </div>
+                            </div>
                             
                         </div>
                     </div>

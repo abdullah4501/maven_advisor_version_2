@@ -8,6 +8,7 @@ import feature5 from "@/assets/interactive-Section-img-04.jpg";
 import { ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion"
 
+
 const FEATURES = [
   {
     id: 0,
@@ -100,12 +101,14 @@ const FEATURES = [
 export default function FeaturesTabs() {
   const [active, setActive] = useState(0)
   const current = FEATURES[active]
+  const [open, setOpen] = useState(false)
+  
 
   return (
     <section className=" md:rounded-t-[80px] bg-[#f6f7f4] py-[40px] md:py-[120px] md:-mt-[80px] relative ">
       <div className="container">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-center items-start justify-between mb-20">
+        <div className="flex flex-col md:flex-row md:items-center items-start justify-between mb-10 md:mb-20">
           <div className="max-w-[560px]">
             <div className="mb-4 flex items-center gap-4 text-[16px] font-bold tracking-wide">
               <h3 className="wdt-heading">Smart Solutions</h3>
@@ -124,8 +127,52 @@ export default function FeaturesTabs() {
 
         {/* Tabs Layout */}
         <div className="flex flex-col md:flex-row lg:gap-16 gap-8 items-start">
+          <div className="block lg:hidden w-full relative">
+            <button
+              onClick={() => setOpen(!open)}
+              className="w-full rounded-[20px] bg-primary-gradient flex items-center justify-between gap-[20px] py-[18px] px-[20px]"
+            >
+              <div className="flex items-center gap-[20px]">
+                {FEATURES[active].icon}
+                <span className="text-lg font-medium text-[#000]">
+                  {FEATURES[active].title}
+                </span>
+              </div>
+
+              <svg
+                className={`w-8 h-8 transition-transform ${open ? "" : "rotate-180"}`}
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M7 14l5-5 5 5" />
+              </svg>
+            </button>
+
+            {open && (
+              <ul className="absolute left-0 top-full w-full flex flex-col rounded-[20px] overflow-hidden bg-white border border-[#e5e5e5]">
+                {FEATURES.map((tab, i) => (
+                  <li
+                    key={tab.id}
+                    onClick={() => {
+                      setActive(i)
+                      setOpen(false)
+                    }}
+                    className={`cursor-pointer transition-colors ${i === active ? "bg-primary-gradient" : "bg-white hover:bg-[#f5f5f5]"
+                      }`}
+                  >
+                    <div className="flex items-center gap-[20px] py-[18px] px-[20px] w-full">
+                      {tab.icon}
+                      <span className="text-lg font-medium text-[#000]">
+                        {tab.title}
+                      </span>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
           {/* LEFT – Tabs */}
-          <ul className="lg:w-[28%] md:w-[40%] w-full md:sticky top-24 flex flex-col gap-5">
+          <ul className="hidden lg:flex lg:w-[28%] md:w-[40%] w-full md:sticky top-24 flex-col gap-5">
             {FEATURES.map((tab, i) => {
               const isActive = i === active
 
@@ -167,10 +214,10 @@ export default function FeaturesTabs() {
 
                 <div className="w-1/2 max-lg:w-full py-[50px] px-[25px] lg:px-[50px] flex flex-col justify-center gap-10">
                   <div>
-                    <h4 className="text-[30px] font-semibold leading-[1.15]">
+                    <h4 className="text-[26px] md:text-[30px] font-semibold leading-[1.15]">
                       {current.heading}
                     </h4>
-                    <p className="mt-5 text-[18px] leading-[1.7] text-[#6b6b6b]">
+                    <p className="md:mt-5 mt-2 text-[16px] md:text-[18px] leading-[1.5] text-[#6b6b6b]">
                       {current.description}
                     </p>
                   </div>
