@@ -22,7 +22,7 @@ const slides: Slide[] = [
     highlight: "Finance",
     extra: "Consulting Patner",
     description:
-      "Nisl malesuada etiam dignissim diam quis enim. Euismod in pellentesque massa placerat duis ut venenatis.",
+      " Nisl malesuada etiam dignissim diam quis enim.Euismod in pellentesque massa placerat duis ut venenatis. Odio pellentesque diam volutpat commodo sed egestas. Massa sapien faucibus et molestie ac feugiat sed lectus.",
     cta: "Free Consultation",
     bg: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/07/home-01-slider-img-01.jpg",
   },
@@ -68,7 +68,7 @@ const HeroSlider = () => {
               }}
             >
               {/* Overlay + Union graphic */}
-              <div className="absolute inset-0 bg-black/30">
+              <div className="absolute inset-0 bg-black/50">
                 <div
                   className="absolute inset-0 bg-no-repeat bg-left opacity-[0.1] animate-bg-drift"
                   style={{
@@ -82,7 +82,7 @@ const HeroSlider = () => {
               {/* Content */}
               <div className="relative z-10 container ">
                 <div className="hero-grid grid-cols-1 lg:grid-cols-2">
-                  <div className="py-[300px] ">
+                  <div className="md:py-[300px] py-[50px]">
                     <span className="block text-[18px] tracking-widest text-[#fff] mb-4 wdt-heading">
                       {slide.subtitle}
                     </span>
@@ -95,13 +95,13 @@ const HeroSlider = () => {
                       <span>{slide.extra}</span>
                     </h1>
 
-                    <p className="text-white font-normal mb-8 text-[18px]">
+                    <p className="text-white font-normal mb-8 text-[16px] md:text-[18px]">
                       {slide.description}
                     </p>
 
                     <a
                       href="#"
-                      className="relative z-[2] inline-flex items-center mt-3 gap-3 bg-primary-gradient text-black text-[18px] px-8 py-4 rounded-[12px] font-medium transition "
+                      className="relative z-[2] inline-flex items-center mt-3 gap-3 bg-primary-gradient text-black text-[16px] px-6 py-3 rounded-[10px] font-medium transition "
                     >
                       {slide.cta}
                       <svg
@@ -112,15 +112,13 @@ const HeroSlider = () => {
                         <path d="M12.1,18V10.6H0V7.4H12.1V0L27.7,9Z" />
                       </svg>
                     </a>
-                    <div className="relative hidden lg:block">
+                    <div className="relative">
                       <div className="absolute -top-[300px] -left-[20%] w-[600px] h-[600px] bg-[radial-gradient(circle,#CEFF9C63_0%,transparent_70%)]" />
                     </div>
                   </div>
 
                   {/* Right side glow */}
-                  <div className="relative hidden lg:block">
-
-                    <div className="absolute bottom-[10%] -right-[40%] w-[550px] h-[550px] bg-[radial-gradient(circle,#ABE47157_0%,transparent_70%)]" />
+                  <div className="relative grad-right-top">
                   </div>
                 </div>
               </div>

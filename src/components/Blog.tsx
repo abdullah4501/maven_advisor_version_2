@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Link } from "react-router-dom";
@@ -8,6 +8,10 @@ import analyticsImage from '@/assets/Blog-img-07.jpg';
 import teamMeetingImage from '@/assets/Blog-img-08.jpg';
 import teamMeetingImage2 from '@/assets/Blog-img-12.jpg';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { Swiper, SwiperSlide } from "swiper/react"
+import { Navigation } from "swiper/modules"
+import "swiper/css"
+import "swiper/css/navigation"
 
 const topArticles = [
     {
@@ -56,9 +60,10 @@ const topArticles = [
 
 export default function Blog() {
     const [active, setActive] = useState(0)
+    const wrapperRef = useRef<HTMLDivElement>(null)
 
     return (
-        <section className=" rounded-t-[80px] bg-[#f6f7f4] py-[120px] -mt-[80px] relative ">
+        <section className="md:rounded-t-[80px] bg-[#f6f7f4] py-[40px] md:py-[120px] md:-mt-[80px] relative">
             <div className="container">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-center items-start justify-between mb-20">
@@ -67,57 +72,84 @@ export default function Blog() {
                             <h3 className="wdt-heading">Our Blog</h3>
                         </div>
 
-                        <h2 className="text-[46px] font-semibold leading-[1.15]">
-                            Execution With Clear Steps.
+                        <h2 className="md:text-[46px] text-[36px] font-semibold leading-[1.15]">
+                            Latest Business Insights.
                         </h2>
                     </div>
 
                     <button className="mt-10 inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
-                        View All
+                        View All Blogs
                         <ArrowRight />
                     </button>
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-16">
                     {/* LEFT: FEATURED BLOGS */}
-                    <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {topArticles.slice(0, 2).map((post, index) => (
-                            <motion.article
-                                key={post.title}
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: index * 0.15 }}
-                                className="relative group cursor-pointer "
-                            >
-                                <Link to={'/blog/why-financial-forecasting-is-critical-for-sustainable-growth'}>
-                                    {/* Image */}
-                                    <div className="team-img relative h-[420px] overflow-hidden shadow-[0px_20px_60px_0px_rgba(0,0,0,0.20)] rounded-[10px]">
-                                        <img
-                                            src={post.image}
-                                            alt={post.title}
-                                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04] rounded-[10px] "
-                                        />
+                    <div ref={wrapperRef} className="relative lg:col-span-2">
+                        <Swiper
+                            spaceBetween={56}
+                            speed={600}
+                            observer
+                            observeParents
+                            modules={[Navigation]}
+                            navigation={{
+                                prevEl: ".blog-nav-prev",
+                                nextEl: ".blog-nav-next",
+                            }}
+                            breakpoints={{
+                                0: { slidesPerView: 1 },
+                                768: { slidesPerView: 2 },
+                            }}
+                        >
+                            {topArticles.slice(0, 2).map((post, index) => (
+                                <SwiperSlide key={index}>
+                                    <motion.article
+                                        key={post.title}
+                                        initial={{ opacity: 0, y: 30 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.5, delay: index * 0.15 }}
+                                        className="relative group cursor-pointer "
+                                    >
+                                        <Link to={'/blog/why-financial-forecasting-is-critical-for-sustainable-growth'}>
+                                            {/* Image */}
+                                            <div className="team-img relative h-[420px] overflow-hidden shadow-[0px_20px_60px_0px_rgba(0,0,0,0.20)] rounded-[10px]">
+                                                <img
+                                                    src={post.image}
+                                                    alt={post.title}
+                                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04] rounded-[10px] "
+                                                />
 
-                                        {/* Category badge (TOP RIGHT) */}
-                                        <span className="absolute top-5 right-5 bg-primary-gradient text-black text-[13px] font-semibold px-4 py-1.5 rounded-full uppercase tracking-wide">
-                                            {post.category}
-                                        </span>
-                                    </div>
+                                                {/* Category badge (TOP RIGHT) */}
+                                                <span className="absolute top-5 right-5 bg-primary-gradient text-black text-[13px] font-semibold px-4 py-1.5 rounded-full uppercase tracking-wide">
+                                                    {post.category}
+                                                </span>
+                                            </div>
 
-                                    {/* Floating content box */}
-                                    <div className="-mt-[60px] mx-[25px] relative bg-white p-7 rounded-t-[12px] ">
-                                        <div className="flex items-center gap-3 text-[13px] text-muted-foreground font-semibold uppercase mb-3">
-                                            <span>{post.date}</span>
-                                            <span className="w-1 h-1 bg-gray-400 rounded-full" />
-                                            <span>By Gudfin</span>
-                                        </div>
+                                            {/* Floating content box */}
+                                            <div className="-mt-[60px] mx-[25px] relative bg-white p-7 rounded-t-[12px] ">
+                                                <div className="flex items-center gap-3 text-[13px] text-muted-foreground font-semibold uppercase mb-3">
+                                                    <span>{post.date}</span>
+                                                    <span className="w-1 h-1 bg-gray-400 rounded-full" />
+                                                    <span>By Gudfin</span>
+                                                </div>
 
-                                        <h3 className="text-[22px] leading-snug font-bold text-navy">
-                                            {post.title}
-                                        </h3>
-                                    </div>
-                                </Link>
-                            </motion.article>
-                        ))}
+                                                <h3 className="text-[22px] leading-snug font-bold text-navy">
+                                                    {post.title}
+                                                </h3>
+                                            </div>
+                                        </Link>
+                                    </motion.article>
+                                </SwiperSlide>
+                            ))}
+
+                        </Swiper>
+                        <div className="blog-nav flex gap-5 justify-center mt-5">
+                            <button className="blog-nav-prev flex h-10 w-10 items-center justify-center rounded-full border border-white hover:border-[#79eb93] text-[#000] bg-white !hover:bg-primary-gradient rotate-[180deg] ">
+                                <ArrowRight className="h-5 w-5" />
+                            </button>
+                            <button className="blog-nav-next flex h-10 w-10 items-center justify-center rounded-full border border-white hover:border-[#79eb93] text-[#000] bg-white !hover:bg-primary-gradient ">
+                                <ArrowRight className="h-5 w-5" />
+                            </button>
+                        </div>
                     </div>
 
                     {/* RIGHT: COMPACT BLOG LIST */}

@@ -66,7 +66,7 @@ export default function WorkProcess() {
     }, []);
 
     return (
-        <section className="bg-[#f6f7f4] py-[120px] -mt-[80px] relative work-process-section">
+        <section className="bg-[#f6f7f4] py-[40px] md:py-[120px] md:-mt-[80px] relative work-process-section">
             <div className="container">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-center items-start justify-between mb-20">
@@ -75,7 +75,7 @@ export default function WorkProcess() {
                             <h3 className="wdt-heading">Work Process</h3>
                         </div>
 
-                        <h2 className="text-[46px] font-semibold leading-[1.15]">
+                        <h2 className="text-[36px] md:text-[46px] font-semibold leading-[1.15]">
                             Execution With Clear Steps.
                         </h2>
                     </div>
@@ -168,7 +168,7 @@ export default function WorkProcess() {
                         </Swiper>
                     </div>
                 </div>
-                <p className="text-[20px] text-center mt-20 ">Let’s talk! We’ll reply within a day. <a href="#" className="relative link-underline">Get Free Quote</a></p>
+                <p className="text-[20px] text-center md:mt-20 mt-10">Let’s talk! We’ll reply within a day. <a href="#" className="relative link-underline">Get Free Quote</a></p>
             </div>
         </section>
     )

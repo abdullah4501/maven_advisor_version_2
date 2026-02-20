@@ -43,9 +43,9 @@ export default function ServicesType3() {
 
 
   return (
-    <section className="relative w-full overflow-hidden rounded-t-[80px] bg-[url('https://wdtbullish.wpengine.com/wp-content/uploads/2025/05/footer_img.webp')] bg-cover bg-center lg:px-[60px] px-0">
+    <section className="relative w-full overflow-hidden md:rounded-t-[80px] bg-[url('https://wdtbullish.wpengine.com/wp-content/uploads/2025/05/footer_img.webp')] bg-cover bg-center lg:px-[60px] px-0">
       <div className="absolute inset-0 rounded-[38px] bg-[#1616166e]" />
-      <div className="container pt-[120px] pb-[170px]">
+      <div className="container py-[50px] md:pt-[120px] md:pb-[170px]">
         <div className="relative">
 
           {/* HEADER */}
@@ -53,15 +53,15 @@ export default function ServicesType3() {
             <h3 className="mb-3 flex items-center justify-center gap-3 text-sm text-white wdt-heading">
               Consulting Services
             </h3>
-            <h2 className="text-5xl font-semibold text-white">
+            <h2 className="text-[38px] md:text-5xl font-semibold text-white leading-[38px]">
               Trusted <span className="text-[#79eb93]">Guidance</span> Built For You
             </h2>
-            <p className="mx-auto mt-4 max-w-xl text-white/70">
+            <p className="mx-auto mt-4 max-w-xl text-white">
               Euismod quam justo lectus commodo augue arcu dignissim.
             </p>
           </div>
 
-          <div ref={wrapperRef} className="relative py-[55px]">
+          <div ref={wrapperRef} className="relative md:pb-[55px]">
 
           <Swiper
             modules={[Navigation]}
@@ -96,7 +96,7 @@ export default function ServicesType3() {
                     {/* CONTENT */}
                     <div className="wdt-service-detail-group">
                       <div className="wdt-service-content-group flex items-center justify-between mb-[26px]">
-                        <h5 className="text-white text-[30px] font-semibold leading-[35px]">
+                        <h5 className="text-white text-[24px] md:text-[30px] font-semibold leading-[26px]">
                           {s.title[0]}<br />{s.title[1]}
                         </h5>
                         <div className="wdt-service-type-icon svg-icon">
@@ -125,10 +125,10 @@ export default function ServicesType3() {
               ))}
             </Swiper>
             <div className="service-slider-nav-buttons">
-              <button className="services-prev flex h-14 w-14 items-center justify-center rounded-full border border-white/30 text-white hover:border-[#79eb93] hover:text-[#79eb93]">
+              <button className="services-prev flex h-10 w-10 items-center justify-center rounded-full border border-white text-white hover:border-[#79eb93] hover:text-[#79eb93]">
                 <ArrowLeft />
               </button>
-              <button className="services-next flex h-14 w-14 items-center justify-center rounded-full border border-white/30 text-white hover:border-[#79eb93] hover:text-[#79eb93]">
+              <button className="services-next flex h-10 w-10 items-center justify-center rounded-full border border-white text-white hover:border-[#79eb93] hover:text-[#79eb93]">
                 <ArrowRight />
               </button>
             </div>

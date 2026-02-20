@@ -102,7 +102,7 @@ export default function FeaturesTabs() {
   const current = FEATURES[active]
 
   return (
-    <section className=" rounded-t-[80px] bg-[#f6f7f4] py-[120px] -mt-[80px] relative ">
+    <section className=" md:rounded-t-[80px] bg-[#f6f7f4] py-[40px] md:py-[120px] md:-mt-[80px] relative ">
       <div className="container">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center items-start justify-between mb-20">
@@ -111,7 +111,7 @@ export default function FeaturesTabs() {
               <h3 className="wdt-heading">Smart Solutions</h3>
             </div>
 
-            <h2 className="text-[46px] font-semibold leading-[1.15]">
+            <h2 className="text-[36px] md:text-[46px] font-semibold leading-[1.15]">
               Advanced Tools And Features.
             </h2>
           </div>

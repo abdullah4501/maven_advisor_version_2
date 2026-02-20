@@ -6,6 +6,7 @@ import sectionImg4 from "@/assets/interactive-Section-img-03.jpg"
 import { motion, AnimatePresence } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { Swiper, SwiperSlide } from "swiper/react"
+import { Pagination } from 'swiper/modules';
 import "swiper/css"
 import "swiper/css/navigation"
 
@@ -52,7 +53,7 @@ function MarqueeRow({ items }: { items: MarqueeItem[] }) {
                     <a
                         key={i}
                         href={item.href ?? "#"}
-                        className="text-[110px] font-bold text-[#d7d7d7] whitespace-nowrap transition-colors hover:text-[#79eb93]"
+                        className="text-[70px] md:text-[110px] font-bold text-[#d7d7d7] whitespace-nowrap transition-colors hover:text-[#79eb93]"
                     >
                         {item.label}
                     </a>
@@ -61,7 +62,7 @@ function MarqueeRow({ items }: { items: MarqueeItem[] }) {
                         key={i}
                         src={item.src}
                         alt={item.alt ?? ""}
-                        className="h-[110px] w-[110px] object-contain"
+                        className="h-[70px] md:h-[110px] w-[70px] md:w-[110px] object-contain"
                         loading="eager"
                     />
                 )
@@ -116,12 +117,12 @@ export default function InteractiveShowcase() {
 
     return (
         <>
-            <section className=" rounded-t-[80px] bg-[#f6f7f4] py-[120px] -mt-[80px] relative">
+            <section className=" md:rounded-t-[80px] bg-[#f6f7f4] py-[40px] md:py-[120px] md:-mt-[80px] relative">
                 <div className="container">
                     {/* TOP AREA */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                         {/* IMAGE */}
-                        <div className="w-full overflow-hidden">
+                        <div className="w-full overflow-hidden order-1-sm">
                             <AnimatePresence mode="wait">
                                 <motion.img
                                     key={item.image}
@@ -130,7 +131,7 @@ export default function InteractiveShowcase() {
                                     animate={{ x: 0, opacity: 1 }}
                                     exit={{ opacity: 0 }}
                                     transition={{ duration: 0.35, ease: "easeOut" }}
-                                    className="h-[620px] w-[500] rounded-[32px] object-cover bg-center"
+                                    className="h-[350px] lg:h-[620px] w-[500] rounded-[32px] object-cover bg-center "
                                 />
                             </AnimatePresence>
                         </div>
@@ -138,33 +139,33 @@ export default function InteractiveShowcase() {
 
                         {/* CONTENT */}
                         <div className="max-w-[560px]">
-                        <AnimatePresence mode="wait">
-                        <motion.div
-                            key={item.heading}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.25, ease: "easeInOut" }}
-                            className="max-w-[560px]"
-                        >
-                            <div className="mb-4 flex items-center gap-4 text-[16px] font-bold tracking-wide">
-                            <h3 className="wdt-heading">{item.subtitle}</h3>
-                            </div>
+                            <AnimatePresence mode="wait">
+                                <motion.div
+                                    key={item.heading}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{ duration: 0.25, ease: "easeInOut" }}
+                                    className="max-w-[560px]"
+                                >
+                                    <div className="mb-4 flex items-center gap-4 text-[16px] font-bold tracking-wide">
+                                        <h3 className="wdt-heading">{item.subtitle}</h3>
+                                    </div>
 
-                            <h2 className="text-[46px] font-semibold leading-[1.15]">
-                            {item.heading}
-                            </h2>
+                                    <h2 className="text-[36px] md:text-[46px] font-semibold leading-[1.15]">
+                                        {item.heading}
+                                    </h2>
 
-                            <p className="mt-5 text-[18px] leading-[1.7] text-[#6b6b6b]">
-                            {item.content}
-                            </p>
+                                    <p className="mt-5 text-[16px] md:text-[18px] leading-[1.7] text-[#6b6b6b]">
+                                        {item.content}
+                                    </p>
 
-                            <button className="mt-10 inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
-                            Get Started
-                            <ArrowRight />
-                            </button>
-                        </motion.div>
-                        </AnimatePresence>
+                                    <button className="mt-10 inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
+                                        Get Started
+                                        <ArrowRight />
+                                    </button>
+                                </motion.div>
+                            </AnimatePresence>
 
 
                         </div>
@@ -179,6 +180,11 @@ export default function InteractiveShowcase() {
                                 speed={600}
                                 observer
                                 observeParents
+                                modules={[Pagination]}
+                                pagination={{
+                                    type: 'progressbar',
+                                    clickable: true, 
+                                }}
                                 breakpoints={{
                                     0: { slidesPerView: 1 },
                                     768: { slidesPerView: 2 },
@@ -214,6 +220,7 @@ export default function InteractiveShowcase() {
                                     )
                                 })}
                             </Swiper>
+                            
                         </div>
                     </div>
                 </div>
