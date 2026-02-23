@@ -3,6 +3,7 @@ import { ArrowRight, ArrowUp, Send } from "lucide-react";
 import logo from "@/assets/light-logo.svg";
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
+import footerBg from "@/assets/footer.png"
 
 const fadeUpVariants = {
     hidden: { opacity: 0, y: 60 },
@@ -33,7 +34,7 @@ export default function Footer() {
                 initial="hidden"
                 animate={sectionInView ? "visible" : "hidden"}
                 className="relative w-full md:rounded-t-[60px] bg-cover bg-center"
-                style={{ backgroundImage: "url('../src/assets/footer.png')" }}
+                style={{ backgroundImage: `url(${footerBg})` }}
             >
                 <div className="absolute inset-0 md:rounded-t-[60px] bg-[#1616166e]" />
                 <div className="container relative md:pt-[100px] md:pb-[60px] py-[40px]">
