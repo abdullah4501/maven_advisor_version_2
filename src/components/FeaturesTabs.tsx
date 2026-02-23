@@ -104,7 +104,7 @@ const fadeUpVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.6 },
   },
 }
 
@@ -229,7 +229,7 @@ export default function FeaturesTabs() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.25, ease: "easeInOut" }}
+                  transition={{ duration: 0.25 }}
                   className="bg-[#fff] rounded-[30px] flex overflow-hidden max-lg:flex-col">
                   <div className="w-1/2 max-lg:w-full">
                     <img

@@ -6,7 +6,7 @@ import { Navigation } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/navigation"
 import { useInView, motion } from "framer-motion";
-
+import bgImg from "@/assets/footer.png"
 
 const FAQS = [
   {
@@ -39,7 +39,7 @@ const fadeUpVariants = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.6 },
   },
 }
 
@@ -64,10 +64,10 @@ export default function FAQSection() {
 
   return (
     <section className="bg-[#f6f7f4] w-full">
-      <div className="relative w-full overflow-hidden md:rounded-t-[60px] bg-[url('https://wdtbullish.wpengine.com/wp-content/uploads/2025/05/footer_img.webp')] bg-cover bg-center lg:px-[60px] !px-0"
-
+      <div className="relative w-full overflow-hidden md:rounded-t-[60px] bg- bg-cover bg-center lg:px-[60px] !px-0"
+      style={{backgroundImage: `url(${bgImg})`}}
       >
-        <div className="absolute inset-0 rounded-[80px] bg-[#1616166e]" />
+        <div className="absolute inset-0 rounded-[80px] bg-[#161616ba]" />
 
         <div className="container py-[50px] md:pt-[150px] md:pb-[210px]">
           <motion.div className="relative"

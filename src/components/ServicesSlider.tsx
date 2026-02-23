@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation } from "swiper/modules"
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import { useEffect, useRef } from "react"
-
+import bgImg from "@/assets/footer.png"
 
 import serviceImg1 from "@/assets/service1.jpg"
 import serviceImg2 from "@/assets/service2.jpg"
@@ -58,8 +58,10 @@ export default function ServicesType3() {
 
 
   return (
-    <section className="relative w-full overflow-hidden md:rounded-t-[60px] bg-[url('https://wdtbullish.wpengine.com/wp-content/uploads/2025/05/footer_img.webp')] bg-cover bg-center lg:px-[60px] px-0">
-      <div className="absolute inset-0 rounded-[38px] bg-[#1616166e]" />
+    <section className="relative w-full overflow-hidden md:rounded-t-[60px] bg-cover bg-center lg:px-[60px] px-0"
+     style={{backgroundImage: `url(${bgImg})`}}
+    >
+      <div className="absolute inset-0 rounded-[38px] bg-[#161616ba]" />
       <div className="container py-[50px] md:pt-[140px] md:pb-[180px]">
         <div className="relative">
 

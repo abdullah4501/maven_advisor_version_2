@@ -116,7 +116,7 @@ const fadeUpVariants = {
     visible: {
         opacity: 1,
         y: 0,
-        transition: { duration: 0.6, ease: "easeInOut" },
+        transition: { duration: 0.6 },
     },
 }
 
@@ -157,7 +157,7 @@ export default function InteractiveShowcase() {
                                     initial={{  opacity: 0 }}
                                     animate={{  opacity: 1 }}
                                     exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.35, ease: "easeOut" }}
+                                    transition={{ duration: 0.35 }}
                                     className="h-[350px] lg:h-[500px] w-[620] rounded-[32px] object-cover bg-center "
                                 />
                             </AnimatePresence>
@@ -171,7 +171,7 @@ export default function InteractiveShowcase() {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.25, ease: "easeInOut" }}
+                                    transition={{ duration: 0.25 }}
                                     className="max-w-[560px]"
                                 >
                                     <div className="mb-4 flex items-center gap-4 text-[16px] font-bold tracking-wide">

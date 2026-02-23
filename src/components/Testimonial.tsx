@@ -10,6 +10,7 @@ import { Navigation } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/navigation"
 import { motion, useInView } from "framer-motion"
+import footerImg from "@/assets/footer.png"
 
 
 const testimonials = [
@@ -87,7 +88,7 @@ const fadeUpVariants = {
     visible: {
         opacity: 1,
         y: 0,
-        transition: { duration: 0.6, ease: "easeOut" },
+        transition: { duration: 0.6 },
     },
 }
 
@@ -218,8 +219,8 @@ export default function Testimonial() {
                     variants={fadeUpVariants}
                     initial="hidden"
                     animate={countersInView ? "visible" : "hidden"}
-                    className="counters md:p-[50px] p-[20px] bg-[#161616] relative rounded-[20px] mt-[40px] bg-cover"
-                    style={{ backgroundImage: "url(../src/assets/footer_img.webp)" }}
+                    className="counters md:p-[50px] p-[20px] bg-[#161616ba] relative rounded-[20px] mt-[40px] "
+                    style={{ backgroundImage: `url(${footerImg})` }}
                 >
                     <div ref={wrapperRef} className="relative">
                         <Swiper

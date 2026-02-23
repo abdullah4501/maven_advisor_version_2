@@ -10,7 +10,7 @@ const fadeUpVariants = {
     visible: {
         opacity: 1,
         y: 0,
-        transition: { duration: 0.6, ease: "easeOut" },
+        transition: { duration: 0.6 },
     },
 }
 
@@ -36,7 +36,7 @@ export default function Footer() {
                 className="relative w-full md:rounded-t-[60px] bg-cover bg-center"
                 style={{ backgroundImage: `url(${footerBg})` }}
             >
-                <div className="absolute inset-0 md:rounded-t-[60px] bg-[#1616166e]" />
+                <div className="absolute inset-0 md:rounded-t-[60px] bg-[#161616ba]" />
                 <div className="container relative md:pt-[100px] md:pb-[60px] py-[40px]">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-[30px]">
                         <div className="w-full col-span-2 lg:col-span-1 flex flex-col gap-8 lg:pr-[60px]">
