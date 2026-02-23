@@ -19,11 +19,11 @@ const Header = () => {
 
             {/* DESKTOP NAV */}
             <nav className="hidden lg:flex items-center gap-14 text-white">
-              <Link to="/" className="text-[18px]">Home</Link>
-              <Link to="/about" className="text-[18px]">About</Link>
-              <Link to="/services" className="text-[18px]">Services</Link>
-              <Link to="/blog" className="text-[18px]">Blog</Link>
-              <Link to="/contact" className="text-[18px]">Contact Us</Link>
+              <Link to="/" className="text-[18px] hover:text-primary duration-300">Home</Link>
+              <Link to="/about" className="text-[18px] hover:text-primary duration-300">About</Link>
+              <Link to="/services" className="text-[18px] hover:text-primary duration-300">Services</Link>
+              <Link to="/blog" className="text-[18px] hover:text-primary duration-300">Blog</Link>
+              <Link to="/contact" className="text-[18px] hover:text-primary duration-300">Contact Us</Link>
             </nav>
 
             <div className="flex items-center gap-4">
