@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { ArrowRight } from "lucide-react";
 import { ChevronDown } from "lucide-react"
+import { motion, useInView } from "framer-motion";
 
 
 const SERVICES = [
@@ -11,13 +12,32 @@ const SERVICES = [
     "Financial Analysis",
 ]
 
+const fadeUpVariants = {
+    hidden: { opacity: 0, y: 60 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: "easeOut" },
+    },
+}
+
 export default function ContactSection() {
     const [open, setOpen] = useState(false)
     const [selected, setSelected] = useState("Choose Services*")
 
+    const sectionRef = useRef<HTMLDivElement>(null)
+    const sectionInView = useInView(sectionRef, { once: true, margin: "0px 0px -80px 0px" })
+
+
     return (
         <section className="bg-[#f6f7f4] w-full">
-            <div className="relative w-full md:rounded-t-[80px] bg-[url('../src/assets/contactbg.jpg')] bg-cover bg-center ">
+            <motion.div
+                ref={sectionRef}
+                variants={fadeUpVariants}
+                initial="hidden"
+                animate={sectionInView ? "visible" : "hidden"}
+                className="relative w-full md:rounded-t-[60px] bg-[url('../src/assets/contactbg.jpg')] bg-cover bg-center"
+            >
                 <div className="absolute inset-0 md:rounded-[80px] bg-[#1616166e]" />
                 <div className="container pt-[120px] pb-[170px]">
                     <div className="relative">
@@ -26,7 +46,7 @@ export default function ContactSection() {
                             <div className="lg:w-[50%] md:w-[85%] w-full">
                                 <div className="sm:p-[60px] px-[20px] py-[50px] rounded-[20px] bg-white/60 backdrop-blur-lg">
                                     {/* Header */}
-                                    <div className="flex mb-5 md:mb-20">
+                                    <div className="flex">
                                         <div className="m-auto flex flex-col">
                                             <div className="mb-4 flex gap-4 text-[16px] font-bold tracking-wide">
                                                 <h3 className="wdt-heading text-center">Let's Talk</h3>
@@ -35,7 +55,7 @@ export default function ContactSection() {
                                             <h2 className="md:text-[46px] text-[36px] font-semibold leading-[1.15] ">
                                                 Connect With Us
                                             </h2>
-                                            <p className="mt-5 text-[16px] md:text-[18px] leading-[1.7] text-[#6b6b6b] ">
+                                            <p className="mt-5 text-[16px] leading-[1.5] text-[#6b6b6b] ">
                                                 Hey! Connect us with <a href="" className="relative link-underline text-[#000]">0987-6543-210</a> , or email us through <a href="" className="relative link-underline text-[#000]">info@example.com</a>, or fill the following form. We will contact you back within 12 hours or prior.
                                             </p>
 
@@ -44,7 +64,7 @@ export default function ContactSection() {
                                     </div>
 
                                     {/* Form */}
-                                    <form className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 relative">
+                                    <form className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 relative pt-[30px] md:pt-[60px]">
                                         <div className="col-span-1">
                                             <input
                                                 className="w-full rounded-xl px-6 py-5 bg-white text-gray-700 placeholder:text-gray-400 outline-none"
@@ -136,7 +156,7 @@ export default function ContactSection() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </section>
     )
 }

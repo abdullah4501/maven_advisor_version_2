@@ -1,10 +1,11 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ArrowRight } from "lucide-react";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/navigation"
+import { useInView, motion } from "framer-motion";
 
 
 const FAQS = [
@@ -26,18 +27,54 @@ const FAQS = [
     answer: "Et tempore ipsam non voluptatum molestiae et beatae incidunt. Vel maxime voluptatem aut molestias quia sit praesentium.",
 
   },
+  {
+    question: "What is the purpose of a financial audit?",
+    answer: "Et tempore ipsam non voluptatum molestiae et beatae incidunt. Vel maxime voluptatem aut molestias quia sit praesentium.",
+
+  },
 ]
+
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 60 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+}
 
 export default function FAQSection() {
   const [active, setActive] = useState<number | null>(0)
+  const [activeStyling, setActiveStyling] = useState<number | null>(0)
   const wrapperRef = useRef<HTMLDivElement>(null)
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const sectionInView = useInView(sectionRef, { once: true, margin: "0px 0px -80px 0px" })
+
+  useEffect(() => {
+    if (active === null) {
+      setActiveStyling(null)
+      return
+    }
+    const timer = setTimeout(() => {
+      setActiveStyling(active)
+    }, 150) 
+
+    return () => clearTimeout(timer)
+  }, [active])
 
   return (
     <section className="bg-[#f6f7f4] w-full">
-      <div className="relative w-full overflow-hidden md:rounded-t-[80px] bg-[url('https://wdtbullish.wpengine.com/wp-content/uploads/2025/05/footer_img.webp')] bg-cover bg-center lg:px-[60px] !px-0">
+      <div className="relative w-full overflow-hidden md:rounded-t-[60px] bg-[url('https://wdtbullish.wpengine.com/wp-content/uploads/2025/05/footer_img.webp')] bg-cover bg-center lg:px-[60px] !px-0"
+
+      >
         <div className="absolute inset-0 rounded-[80px] bg-[#1616166e]" />
-        <div className="container py-[50px] md:pt-[120px] md:pb-[170px]">
-          <div className="relative">
+
+        <div className="container py-[50px] md:pt-[150px] md:pb-[210px]">
+          <motion.div className="relative"
+            ref={sectionRef}
+            variants={fadeUpVariants}
+            initial="hidden"
+            animate={sectionInView ? "visible" : "hidden"}>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div className="lg:col-span-2">
                 {/* HEADER */}
@@ -62,7 +99,8 @@ export default function FAQSection() {
                       key={index}
                       onClick={() => setActive(isActive ? null : index)}
                       className={`rounded-[20px] lg:p-[40px] p-[30px] mb-5 cursor-pointer transition-all duration-300 ease-in-out
-                        ${isActive ? "bg-primary-gradient faq-item-active" : "bg-[#3f3f3f]"}
+                          ${isActive ? "faq-item" : "bg-[#3f3f3f]"}
+                          ${activeStyling === index ? "faq-item-active" : ""}
                       `}
                     >
                       {/* Header */}
@@ -71,7 +109,7 @@ export default function FAQSection() {
                         className="w-full flex items-center justify-between text-left"
                       >
                         <h3
-                          className={`lg:text-[30px] text-[16px] font-medium transition-colors duration-300 ${isActive ? "text-black" : "text-white"
+                          className={`lg:text-[23px] text-[16px] font-medium transition-colors duration-300 ${isActive ? "text-black" : "text-white"
                             }`}
                         >
                           {faq.question}
@@ -110,7 +148,7 @@ export default function FAQSection() {
                 })}
               </div>
               <div className="col-span-1">
-                <div className="faq-right h-full flex flex-col items-center gap-y-[60px] rounded-[20px] px-[20px] py-[60px]">
+                <div className="faq-right h-full flex flex-col items-center gap-y-[60px] rounded-[20px] px-[20px] py-[60px] justify-center">
                   <div className="text-center">
                     <span className="flex justify-center">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 22.66" className="w-[100px] w-[100px]"><path d="M3.88,19.29c.19-1.52.28-2.78.53-4a1.22,1.22,0,0,0-.68-1.51A7,7,0,0,1,0,8.23,6.47,6.47,0,0,1,2.63,2.62C6.75-.85,14-.87,18.14,2.56c3.61,3,3.61,7.57,0,10.51a11.77,11.77,0,0,1-8.4,2.5,2.93,2.93,0,0,0-2.26.78c-1.1,1-2.25,1.86-3.56,2.94Z"></path><path d="M26.11,22.66c-1.3-1.07-2.41-1.89-3.42-2.81a3.26,3.26,0,0,0-2.6-.92,11.74,11.74,0,0,1-7.84-2.21c3.3-.66,6.16-1.75,8.12-4.37a7.22,7.22,0,0,0,.33-8.71c3.65-.45,8.27,2.68,9.12,6.09.67,2.72-.53,5.46-3.35,7.27a1.63,1.63,0,0,0-.88,1.93c.22,1.13.33,2.28.52,3.73Z"></path></svg>
@@ -207,7 +245,7 @@ export default function FAQSection() {
                     {/* Location */}
                     <div className="space-y-2">
                       <p className="text-[20px] font-medium">Our Location</p>
-                      <div className="flex items-start justify-center gap-3 text-base font-semibold max-w-xs">
+                      <div className="flex items-start justify-center gap-3 text-base font-semibold ">
                         <MapPin className="w-7 h-7 mt-1" />
                         <span className="text-[20px]">
                           456 Finance Street, WC1A
@@ -221,7 +259,7 @@ export default function FAQSection() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

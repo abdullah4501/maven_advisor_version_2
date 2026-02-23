@@ -47,7 +47,7 @@ const TeamSection = ({ }) => {
     const wrapperRef = useRef<HTMLDivElement>(null)
 
     return (
-        <section className="md:rounded-t-[80px] bg-[#f6f7f4] py-[40px] md:py-[120px] md:-mt-[80px] relative">
+        <section className="md:rounded-t-[60px] bg-[#f6f7f4] py-[40px] md:py-[120px] md:-mt-[80px] relative">
             <div className="container">
                 {/* Header */}
                 <div className="flex items-center mb-5 mb:mb-20">

@@ -15,7 +15,7 @@ const Header = () => {
           <div className="flex items-center justify-between rounded-[10px] px-6 py-4 backdrop-blur-md bg-white/15">
 
             {/* LOGO */}
-            <img src={logo} alt="Bullish" className="md:w-[180px] max-w-[100px] h-auto" />
+            <img src={logo} alt="Bullish" className="md:max-w-[150px] max-w-[100px] h-auto" />
 
             {/* DESKTOP NAV */}
             <nav className="hidden lg:flex items-center gap-14 text-white">
@@ -62,7 +62,7 @@ const Header = () => {
           }`}
       >
         {/* CLOSE */}
-        <div className="flex justify-end p-6">
+        <div className="flex justify-end px-6 py-3">
           <button onClick={() => setOpen(false)} className="text-white">
             <X size={26} />
           </button>
@@ -79,7 +79,7 @@ const Header = () => {
           ].map((item, i) => (
             <div
               key={i}
-              className={`flex items-center justify-between px-4 py-4 mb-2 cursor-pointer
+              className={`flex items-center justify-between px-4 py-2 mb-2 cursor-pointer border-b border-white/20 last:border-0
                 ${item.active ? "bg-[#7DEC94] text-black" : "text-white"}
               `}
             >

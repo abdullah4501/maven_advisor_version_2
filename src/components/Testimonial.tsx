@@ -9,6 +9,8 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/navigation"
+import { motion, useInView } from "framer-motion"
+
 
 const testimonials = [
     {
@@ -80,15 +82,39 @@ function Card({
     )
 }
 
+const fadeUpVariants = {
+    hidden: { opacity: 0, y: 60 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: "easeOut" },
+    },
+}
+
+
 export default function Testimonial() {
     const [active, setActive] = useState(0)
     const wrapperRef = useRef<HTMLDivElement>(null)
 
+    const gridRef = useRef<HTMLDivElement>(null)
+    const countersRef = useRef<HTMLDivElement>(null)
+    const headerRef = useRef<HTMLDivElement>(null)
+
+    const gridInView = useInView(gridRef, { once: true, margin: "0px 0px -80px 0px" })
+    const countersInView = useInView(countersRef, { once: true, margin: "0px 0px -80px 0px" })
+    const headerInView = useInView(headerRef, { once: true, margin: "0px 0px -80px 0px" })
+
+
     return (
-        <section className="bg-[#f6f7f4] py-[40px] md:py-[120px] md:-mt-[80px] relative">
+        <section className="bg-[#f6f7f4] py-[40px] pt-0 md:py-[100px] md:-mt-[80px] relative">
             <div className="container">
                 {/* Header */}
-                <div className="flex items-center  mb-10 md:mb-20">
+                <motion.div className="flex items-center  mb-10 md:mb-20"
+                    ref={headerRef}
+                    variants={fadeUpVariants}
+                    initial="hidden"
+                    animate={gridInView ? "visible" : "hidden"}
+                >
                     <div className="m-auto flex flex-col items-center">
                         <div className="mb-4 flex items-center gap-4 text-[16px] font-bold tracking-wide">
                             <h3 className="wdt-heading text-center">Testimonial</h3>
@@ -103,9 +129,15 @@ export default function Testimonial() {
 
                     </div>
 
-                </div>
+                </motion.div>
 
-                <div className="grid grid-cols-4 gap-10">
+                <motion.div
+                    ref={gridRef}
+                    variants={fadeUpVariants}
+                    initial="hidden"
+                    animate={gridInView ? "visible" : "hidden"}
+                    className="grid grid-cols-4 gap-10"
+                >
                     <div className="col-span-4 lg:col-span-3">
                         <div className="bg-white testimonial-left flex flex-col md:flex-row rounded-[20px] h-full px-5">
                             <div className="w-full md:w-[44%] flex flex-col justify-center md:p-[40px] py-[30px] inner-left relative">
@@ -117,7 +149,7 @@ export default function Testimonial() {
                                         Ad litora torquent per conubia nostra inceptos himenaeos. Dis parturient montes nascetur ridiculus mus donec.
                                     </p>
                                 </div>
-                                <div>
+                                <div className="relative">
                                     <button className="mt-10  flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
                                         Contact Us
                                         <ArrowRight />
@@ -148,7 +180,7 @@ export default function Testimonial() {
                         </div>
                     </div>
                     <div className="col-span-4 lg:col-span-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-[30px] justify-start">
-                        <div className="w-full bg-white testimonial-right-up items-center flex flex-col rounded-[20px] p-[50px]">
+                        <div className="w-full bg-white testimonial-right-up items-center flex flex-col rounded-[20px] p-[40px]">
                             <h2 className="md:text-[70px] text-[50px] font-bold leading-[1.15] text-center mb-6">
                                 4.80
                             </h2>
@@ -168,7 +200,7 @@ export default function Testimonial() {
                                 <img src={youtube} alt="" className="w-[35px] h-[35px]" />
                             </div>
                         </div>
-                        <div className="w-full testimonial-right-down flex flex-col gap-y-[100px] rounded-[20px] md:p-[50px] p-[30px]">
+                        <div className="w-full testimonial-right-down flex flex-col gap-y-[100px] rounded-[20px] md:p-[35px] p-[30px]">
                             <div className="max-w-[70%]">
                                 <h4 className="md:text-[30px] text-[24px] font-semibold leading-[1.15]">
                                     Group Cooperation
@@ -179,9 +211,16 @@ export default function Testimonial() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </motion.div>
 
-                <div className="counters md:p-[60px] p-[20px] bg-[#161616] relative rounded-[20px] mt-[40px] bg-cover " style={{ backgroundImage: 'url(../src/assets/footer_img.webp)' }}>
+                <motion.div
+                    ref={countersRef}
+                    variants={fadeUpVariants}
+                    initial="hidden"
+                    animate={countersInView ? "visible" : "hidden"}
+                    className="counters md:p-[50px] p-[20px] bg-[#161616] relative rounded-[20px] mt-[40px] bg-cover"
+                    style={{ backgroundImage: "url(../src/assets/footer_img.webp)" }}
+                >
                     <div ref={wrapperRef} className="relative">
                         <Swiper
                             spaceBetween={56}
@@ -202,39 +241,39 @@ export default function Testimonial() {
                         >
                             <SwiperSlide key='experience'>
                                 <div className=" w-full flex flex-col md:border-r border-[#fff3] items-center relative ">
-                                    <h4 className="text-[40px] md:text-[4rem] lg:text-[5em] font-medium text-white ">27+</h4>
-                                    <p className="text-white font-medium text-[18px] md:text-[22px]">Depth Of Experience</p>
+                                    <h4 className="text-[40px] md:text-[4rem] lg:text-[4.5em] font-medium text-white ">27+</h4>
+                                    <p className="text-white font-medium text-[18px] md:text-[20px]">Depth Of Experience</p>
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide key='clients'>
                                 <div className=" w-full flex flex-col md:border-r border-[#fff3] items-center relative ">
-                                    <h4 className="text-[40px] md:text-[4rem] lg:text-[5em] font-medium text-white ">150+</h4>
-                                    <p className="text-white font-medium text-[18px]tmd:ext-[22px]">Happy Clients</p>
+                                    <h4 className="text-[40px] md:text-[4rem] lg:text-[4.5em] font-medium text-white ">150+</h4>
+                                    <p className="text-white font-medium text-[18px]tmd:ext-[02px]">Happy Clients</p>
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide key='growth'>
                                 <div className=" w-full flex flex-col md:border-r border-[#fff3] items-center relative ">
-                                    <h4 className="text-[40px] md:text-[4rem] lg:text-[5em] font-medium text-white ">$600</h4>
-                                    <p className="text-white font-medium text-[18px] md:text-[22px]">Profit Growth</p>
+                                    <h4 className="text-[40px] md:text-[4rem] lg:text-[4.5em] font-medium text-white ">$600</h4>
+                                    <p className="text-white font-medium text-[18px] md:text-[20px]">Profit Growth</p>
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide key='success'>
                                 <div className=" w-full flex flex-col items-center relative md:border-r border-[#fff3]">
-                                    <h4 className="text-[40px] md:text-[4rem] lg:text-[5em] font-medium text-white ">97%</h4>
-                                    <p className="text-white font-medium text-[18px] md:text-[22px]">Customer Success Rate</p>
+                                    <h4 className="text-[40px] md:text-[4rem] lg:text-[4.5em] font-medium text-white ">97%</h4>
+                                    <p className="text-white font-medium text-[18px] md:text-[20px]">Customer Success Rate</p>
                                 </div>
                             </SwiperSlide>
                         </Swiper>
-                        <div className="counters-nav flex gap-5 justify-center mt-10">
-                            <button className="counters-nav-prev flex h-10 w-10 items-center justify-center rounded-full border border-white hover:border-[#79eb93] text-[#000] bg-white !hover:bg-primary-gradient rotate-[180deg]">
-                                <ArrowRight className="h-5 w-5"/>
+                        <div className="counters-nav flex gap-5 justify-center ">
+                            <button className="mt-10 counters-nav-prev flex h-10 w-10 items-center justify-center rounded-full border border-white hover:border-[#79eb93] text-[#000] bg-white !hover:bg-primary-gradient rotate-[180deg]">
+                                <ArrowRight className="h-5 w-5" />
                             </button>
-                            <button className="counters-nav-next flex h-10 w-10 items-center justify-center rounded-full border border-white hover:border-[#79eb93] text-[#000] bg-white !hover:bg-primary-gradient">
-                                <ArrowRight className="h-5 w-5"/>
+                            <button className="mt-10 counters-nav-next flex h-10 w-10 items-center justify-center rounded-full border border-white hover:border-[#79eb93] text-[#000] bg-white !hover:bg-primary-gradient">
+                                <ArrowRight className="h-5 w-5" />
                             </button>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </div>
         </section>
     )

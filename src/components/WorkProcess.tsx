@@ -1,11 +1,12 @@
 import { ArrowRight } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import active1 from "@/assets/active-work-process.jpg"
 import active2 from "@/assets/active-work-process.jpg"
 import active3 from "@/assets/active-work-process.jpg"
 import active4 from "@/assets/active-work-process.jpg"
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
+import { motion, useInView } from "framer-motion"
 
 import "swiper/css"
 import "swiper/css/navigation"
@@ -53,10 +54,28 @@ const STEPS = [
     },
 ];
 
-
+const fadeUpVariants = {
+    hidden: { opacity: 0, y: 60 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: "easeOut" },
+    },
+}
 
 export default function WorkProcess() {
     const [offset, setOffset] = useState(0);
+    const [activeCard, setActiveCard] = useState<number>(0)
+
+    const headerRef = useRef<HTMLDivElement>(null)
+    const sliderRef = useRef<HTMLDivElement>(null)
+    const footerRef = useRef<HTMLParagraphElement>(null)
+
+    const headerInView = useInView(headerRef, { once: true, margin: "0px 0px -80px 0px" })
+    const sliderInView = useInView(sliderRef, { once: true, margin: "0px 0px -80px 0px" })
+    const footerInView = useInView(footerRef, { once: true, margin: "0px 0px -80px 0px" })
+
+
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -66,10 +85,16 @@ export default function WorkProcess() {
     }, []);
 
     return (
-        <section className="bg-[#f6f7f4] py-[40px] md:py-[120px] md:-mt-[80px] relative work-process-section">
+        <section className="bg-[#f6f7f4] py-[40px] md:py-[80px] md:-mt-[80px] relative work-process-section !pt-[40px]">
             <div className="container">
                 {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center items-start justify-between mb-5 md:mb-20">
+                <motion.div
+                    ref={headerRef}
+                    variants={fadeUpVariants}
+                    initial="hidden"
+                    animate={headerInView ? "visible" : "hidden"}
+                    className="flex flex-col md:flex-row md:items-center items-start justify-between mb-5 md:mb-20"
+                >
                     <div className="max-w-[560px]">
                         <div className="mb-4 flex items-center gap-4 text-[16px] font-bold tracking-wide">
                             <h3 className="wdt-heading">Work Process</h3>
@@ -84,92 +109,86 @@ export default function WorkProcess() {
                         View All
                         <ArrowRight />
                     </button>
-                </div>
-                <div className="relative py-5 overflow-hidden">
+                </motion.div>
+                <motion.div
+                    ref={sliderRef}
+                    variants={fadeUpVariants}
+                    initial="hidden"
+                    animate={sliderInView ? "visible" : "hidden"}
+                    className="relative py-5 overflow-hidden"
+                >
 
-                    <div className="relative py-5 overflow-hidden">
+                    {/* Animated horizontal line (desktop only) */}
+                    <div className="absolute top-[34%] left-1/2 w-[78%] -translate-x-1/2 h-[2px] overflow-hidden">
+                        <div className="process-line w-full h-full" />
+                    </div>
 
-                        {/* Animated horizontal line (desktop only) */}
-                        <div className="absolute top-[34%] left-1/2 w-[78%] -translate-x-1/2 h-[2px] overflow-hidden">
-                            <div className="process-line w-full h-full" />
-                        </div>
-
-                        <Swiper
-                            slidesPerView={1}
-                            spaceBetween={30}
-                            breakpoints={{
-                                0: { slidesPerView: 1 },
-                                768: { slidesPerView: 2 },
-                                992: { slidesPerView: 3 },
-                                1280: { slidesPerView: 4 },
-                            }}
-                            className="relative z-10"
-                        >
-                            {STEPS.map((step, index) => (
-                                <SwiperSlide key={step.id} className="flex justify-center">
+                    <Swiper
+                        slidesPerView={1}
+                        spaceBetween={30}
+                        breakpoints={{
+                            0: { slidesPerView: 1 },
+                            768: { slidesPerView: 2 },
+                            992: { slidesPerView: 3 },
+                            1280: { slidesPerView: 4 },
+                        }}
+                        className="relative z-10"
+                    >
+                        {STEPS.map((step, index) => (
+                            <SwiperSlide key={step.id} className="flex justify-center">
+                                <div
+                                    className={`group cursor-pointer flex flex-col items-center text-center process-card relative`}
+                                    onMouseEnter={() => setActiveCard(index)}
+                                >
                                     <div
-                                        className={`group cursor-pointer flex flex-col items-center text-center process-card relative`}
-                                        onMouseEnter={(e) => {
-                                            e.currentTarget
-                                                .querySelector(".process-image")
-                                                ?.classList.add("active-green");
-                                        }}
-                                        onMouseLeave={(e) => {
-                                            e.currentTarget
-                                                .querySelector(".process-image")
-                                                ?.classList.remove("active-green");
-                                        }}
-                                    >
-                                        <div
-                                            className={`
+                                        className={`
                                             process-image
                                             relative w-[100px] md:w-[140px] h-[100px] md:h-[140px] rounded-[20px] overflow-hidden 
                                             flex items-center justify-center 
                                             bg-white 
                                             transition-all duration-300
-                                            
+                                            ${activeCard === index ? "active-green" : ""}
                                         `}
-                                        >
-                                            {/* Background image on hover */}
-                                            <img
-                                                src={step.img}
-                                                alt={step.title}
-                                                className="
+                                    >
+                                        {/* Background image — visible when this card is active */}
+                                        <img
+                                            src={step.img}
+                                            alt={step.title}
+                                            className={`
                                                 absolute inset-0 w-full h-full object-cover
-                                                opacity-0 group-hover:opacity-100
                                                 transition-opacity duration-300
-                                            "
-                                            />
+                                                ${activeCard === index ? "opacity-100" : "opacity-0"}
+                                            `}
+                                        />
 
-                                            {/* Icon */}
-                                            <div className="relative z-[2] icon absolute rounded-xl flex items-center justify-center  transition-transform duration-300 ">
-                                                <span className="font-bold text-lg">
-                                                    {step.icon}
-                                                </span>
-                                            </div>
+                                        {/* Icon */}
+                                        <div className="relative z-[2] icon absolute rounded-xl flex items-center justify-center transition-transform duration-300">
+                                            <span className="font-bold text-lg">
+                                                {step.icon}
+                                            </span>
                                         </div>
-
-
-                                        {/* Step number */}
-                                        <div className="-mt-4 text-[16px] font-normal bg-[#79eb93] text-black px-[6px] py-[4px] rounded-[5px] border border-[#d0d0d0] relative">
-                                            {step.id}
-                                        </div>
-
-                                        {/* Text */}
-                                        <h4 className="mt-4 font-semibold text-[20px]">
-                                            {step.title}
-                                        </h4>
-                                        <p className="mt-2 text-[18px] text-gray-500 max-w-xs">
-                                            {step.desc}
-                                        </p>
                                     </div>
-                                </SwiperSlide>
-                            ))}
-                        </Swiper>
-                    </div>
-                </div>
-                <p className="text-[20px] text-center md:mt-20 mt-10">Let’s talk! We’ll reply within a day. <a href="#" className="relative link-underline">Get Free Quote</a></p>
-            </div>
-        </section>
+
+                                    {/* Step number */}
+                                    <div className="-mt-4 text-[16px] font-normal bg-[#79eb93] text-black px-[6px] py-[4px] rounded-[5px] border border-[#d0d0d0] relative">
+                                        {step.id}
+                                    </div>
+
+                                    {/* Text */}
+                                    <h4 className="mt-4 font-semibold text-[20px]">
+                                        {step.title}
+                                    </h4>
+                                    <p className="mt-2 text-[18px] text-gray-500 max-w-xs">
+                                        {step.desc}
+                                    </p>
+                                </div>
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
+                </motion.div>
+            <p className="text-[20px] text-center md:mt-20 mt-10">Let’s talk! We’ll reply within a day. <a href="#" className="relative link-underline">Get Free Quote</a>
+            </p>
+        </div>
+        </section >
     )
 }

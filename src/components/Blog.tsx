@@ -1,13 +1,12 @@
 import { useState, useRef } from "react";
 import { ArrowRight } from "lucide-react";
-import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { Link } from "react-router-dom";
 import image from '@/assets/team-banner.jpg';
 import strategyImage from '@/assets/blog-img-11.jpg';
 import analyticsImage from '@/assets/Blog-img-07.jpg';
 import teamMeetingImage from '@/assets/Blog-img-08.jpg';
 import teamMeetingImage2 from '@/assets/Blog-img-12.jpg';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation } from "swiper/modules"
 import "swiper/css"
@@ -56,17 +55,39 @@ const topArticles = [
         title: "Don't Let Poor Investment Choices Hurt Your Future",
         excerpt: 'Tips for making smart investment decisions.',
     },
-];
+]
+
+const fadeUpVariants = {
+    hidden: { opacity: 0, y: 60 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: "easeOut" },
+    },
+}
 
 export default function Blog() {
     const [active, setActive] = useState(0)
     const wrapperRef = useRef<HTMLDivElement>(null)
 
+    const headerRef = useRef<HTMLDivElement>(null)
+    const gridRef = useRef<HTMLDivElement>(null)
+
+    const headerInView = useInView(headerRef, { once: true, margin: "0px 0px -80px 0px" })
+    const gridInView = useInView(gridRef, { once: true, margin: "0px 0px -80px 0px" })
+
     return (
-        <section className="md:rounded-t-[80px] bg-[#f6f7f4] py-[40px] md:py-[120px] md:-mt-[80px] relative">
+        <section className="md:rounded-t-[60px] bg-[#f6f7f4] py-[40px] md:py-[80px] md:-mt-[80px] relative">
             <div className="container">
-                {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center items-start justify-between mb-20">
+
+                {/* Header — animates first */}
+                <motion.div
+                    ref={headerRef}
+                    variants={fadeUpVariants}
+                    initial="hidden"
+                    animate={headerInView ? "visible" : "hidden"}
+                    className="flex flex-col md:flex-row md:items-center items-start justify-between mb-20"
+                >
                     <div className="max-w-[560px]">
                         <div className="mb-4 flex items-center gap-4 text-[16px] font-bold tracking-wide">
                             <h3 className="wdt-heading">Our Blog</h3>
@@ -81,8 +102,16 @@ export default function Blog() {
                         View All Blogs
                         <ArrowRight />
                     </button>
-                </div>
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-16">
+                </motion.div>
+
+                {/* Grid — animates second */}
+                <motion.div
+                    ref={gridRef}
+                    variants={fadeUpVariants}
+                    initial="hidden"
+                    animate={gridInView ? "visible" : "hidden"}
+                    className="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-16"
+                >
                     {/* LEFT: FEATURED BLOGS */}
                     <div ref={wrapperRef} className="relative lg:col-span-2">
                         <Swiper
@@ -107,7 +136,7 @@ export default function Blog() {
                                         initial={{ opacity: 0, y: 30 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.5, delay: index * 0.15 }}
-                                        className="relative group cursor-pointer "
+                                        className="relative group cursor-pointer"
                                     >
                                         <Link to={'/blog/why-financial-forecasting-is-critical-for-sustainable-growth'}>
                                             {/* Image */}
@@ -115,17 +144,15 @@ export default function Blog() {
                                                 <img
                                                     src={post.image}
                                                     alt={post.title}
-                                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04] rounded-[10px] "
+                                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04] rounded-[10px]"
                                                 />
-
-                                                {/* Category badge (TOP RIGHT) */}
                                                 <span className="absolute top-5 right-5 bg-primary-gradient text-black text-[13px] font-semibold px-4 py-1.5 rounded-full uppercase tracking-wide">
                                                     {post.category}
                                                 </span>
                                             </div>
 
                                             {/* Floating content box */}
-                                            <div className="-mt-[60px] mx-[25px] relative bg-white p-7 rounded-t-[12px] ">
+                                            <div className="-mt-[60px] mx-[25px] relative bg-white p-7 rounded-t-[12px]">
                                                 <div className="flex items-center gap-3 text-[13px] text-muted-foreground font-semibold uppercase mb-3">
                                                     <span>{post.date}</span>
                                                     <span className="w-1 h-1 bg-gray-400 rounded-full" />
@@ -140,13 +167,13 @@ export default function Blog() {
                                     </motion.article>
                                 </SwiperSlide>
                             ))}
-
                         </Swiper>
+
                         <div className="blog-nav flex gap-5 justify-center mt-5">
-                            <button className="blog-nav-prev flex h-10 w-10 items-center justify-center rounded-full border border-white hover:border-[#79eb93] text-[#000] bg-white !hover:bg-primary-gradient rotate-[180deg] ">
+                            <button className="blog-nav-prev flex h-10 w-10 items-center justify-center rounded-full border border-white hover:border-[#79eb93] text-[#000] bg-white !hover:bg-primary-gradient rotate-[180deg]">
                                 <ArrowRight className="h-5 w-5" />
                             </button>
-                            <button className="blog-nav-next flex h-10 w-10 items-center justify-center rounded-full border border-white hover:border-[#79eb93] text-[#000] bg-white !hover:bg-primary-gradient ">
+                            <button className="blog-nav-next flex h-10 w-10 items-center justify-center rounded-full border border-white hover:border-[#79eb93] text-[#000] bg-white !hover:bg-primary-gradient">
                                 <ArrowRight className="h-5 w-5" />
                             </button>
                         </div>
@@ -160,11 +187,11 @@ export default function Blog() {
                                 initial={{ opacity: 0, x: 30 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.4, delay: index * 0.12 }}
-                                className="  border-b border-gray-200 pb-8 last:border-b-0 last:pb-0 cursor-pointer group"
+                                className="border-b border-gray-200 pb-8 last:border-b-0 last:pb-0 cursor-pointer group"
                             >
                                 <Link to={'/blog/why-financial-forecasting-is-critical-for-sustainable-growth'} className="flex items-start gap-5">
                                     {/* Thumbnail */}
-                                    <div className="team-img relative min-w-[150px] w-[150px] h-[115px] rounded-lg overflow-hidden flex-shrink-0 ">
+                                    <div className="team-img relative min-w-[150px] w-[150px] h-[115px] rounded-lg overflow-hidden flex-shrink-0">
                                         <img
                                             src={post.image}
                                             alt={post.title}
@@ -188,8 +215,8 @@ export default function Blog() {
                             </motion.article>
                         ))}
                     </div>
+                </motion.div>
 
-                </div>
             </div>
         </section>
     )

@@ -82,7 +82,7 @@ const HeroSlider = () => {
               {/* Content */}
               <div className="relative z-10 container ">
                 <div className="hero-grid grid-cols-1 lg:grid-cols-2">
-                  <div className="md:py-[300px] py-[50px]">
+                  <div className="md:py-[250px] py-[50px]">
                     <span className="block text-[18px] tracking-widest text-[#fff] mb-4 wdt-heading">
                       {slide.subtitle}
                     </span>

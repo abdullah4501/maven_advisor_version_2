@@ -3,7 +3,7 @@ import sectionImg from "@/assets/h1.jpg"
 import sectionImg2 from "@/assets/feature_main2.jpg"
 import sectionImg3 from "@/assets/interactive-Section-img-02.jpg"
 import sectionImg4 from "@/assets/interactive-Section-img-03.jpg"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, useInView } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Pagination } from 'swiper/modules';
@@ -110,33 +110,58 @@ const ITEMS: Item[] = [
     },
 ]
 
+// Reusable fade-up animation variants
+const fadeUpVariants = {
+    hidden: { opacity: 0, y: 60 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: "easeInOut" },
+    },
+}
+
 export default function InteractiveShowcase() {
     const [active, setActive] = useState(0)
     const [activeIndex, setActiveIndex] = useState(0)
     const item = ITEMS[active]
     const wrapperRef = useRef<HTMLDivElement>(null)
 
+    // Refs for viewport detection
+    const topAreaRef = useRef<HTMLDivElement>(null)
+    const bottomTabsRef = useRef<HTMLDivElement>(null)
+    const marqueeRef = useRef<HTMLDivElement>(null)
+
+    // useInView hooks — once: true means animation fires only once
+    const topAreaInView = useInView(topAreaRef, { once: true, margin: "0px 0px -80px 0px" })
+    const bottomTabsInView = useInView(bottomTabsRef, { once: true, margin: "0px 0px -80px 0px" })
+    const marqueeInView = useInView(marqueeRef, { once: true, margin: "0px 0px -80px 0px" })
+
     return (
         <>
-            <section className=" md:rounded-t-[80px] bg-[#f6f7f4] py-[40px] md:py-[120px] md:-mt-[80px] relative">
+            <section className=" md:rounded-t-[60px] bg-[#f6f7f4] py-[60px] md:py-[120px] md:-mt-[80px] relative">
                 <div className="container">
                     {/* TOP AREA */}
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <motion.div
+                        ref={topAreaRef}
+                        variants={fadeUpVariants}
+                        initial="hidden"
+                        animate={topAreaInView ? "visible" : "hidden"}
+                        className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-[100px] items-center"
+                    >
                         {/* IMAGE */}
                         <div className="w-full overflow-hidden order-1-sm">
                             <AnimatePresence mode="wait">
                                 <motion.img
                                     key={item.image}
                                     src={item.image}
-                                    initial={{ x: -80, opacity: 0 }}
-                                    animate={{ x: 0, opacity: 1 }}
+                                    initial={{  opacity: 0 }}
+                                    animate={{  opacity: 1 }}
                                     exit={{ opacity: 0 }}
                                     transition={{ duration: 0.35, ease: "easeOut" }}
-                                    className="h-[350px] lg:h-[620px] w-[500] rounded-[32px] object-cover bg-center "
+                                    className="h-[350px] lg:h-[500px] w-[620] rounded-[32px] object-cover bg-center "
                                 />
                             </AnimatePresence>
                         </div>
-
 
                         {/* CONTENT */}
                         <div className="max-w-[560px]">
@@ -167,13 +192,17 @@ export default function InteractiveShowcase() {
                                     </button>
                                 </motion.div>
                             </AnimatePresence>
-
-
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* BOTTOM TABS */}
-                    <div className="mt-[88px]">
+                    <motion.div
+                        ref={bottomTabsRef}
+                        variants={fadeUpVariants}
+                        initial="hidden"
+                        animate={bottomTabsInView ? "visible" : "hidden"}
+                        className="mt-[88px]"
+                    >
                         <div ref={wrapperRef} className="relative">
                             <Swiper
                                 loop
@@ -206,7 +235,7 @@ export default function InteractiveShowcase() {
                                                     <span className="icon"><i><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" className={`transition-colors duration-300 ${isActive ? "fill-[#79eb93]" : "fill-[#686868] group-hover:fill-[#79eb93]"}`}><path d="M47,32.42a10.16,10.16,0,0,1,0-14.48,9.94,9.94,0,0,0,3-7.07A10.11,10.11,0,0,0,32.84,3.71a11.06,11.06,0,0,1-15.52-.19A10.11,10.11,0,0,0,0,10.5a10.12,10.12,0,0,0,17.16,7.16,11,11,0,0,1,15.51.19l.09.09a10.18,10.18,0,0,1,0,14.49,9.94,9.94,0,0,0-2.95,7.07,10.1,10.1,0,0,0,20.2,0,9.94,9.94,0,0,0-2.95-7.07Z"></path><path d="M17.65,46.14A9.93,9.93,0,0,0,16.81,32a10.16,10.16,0,0,0-14.26.84A9.93,9.93,0,0,0,3.39,47,10.17,10.17,0,0,0,17.65,46.14Z"></path></svg></i></span>
                                                 </div>
 
-                                                <h4 className="text-[24px] font-semibold">
+                                                <h4 className="text-[30px] font-semibold">
                                                     {tab.title}
                                                 </h4>
 
@@ -215,30 +244,36 @@ export default function InteractiveShowcase() {
                                                 </p>
                                             </div>
                                         </SwiperSlide>
-
                                     )
                                 })}
                             </Swiper>
                             <div className="mt-10 w-full block md:hidden">
                                 <div className="relative h-[4px] rounded-[2px] w-full bg-[#e6e6e6] overflow-hidden">
                                     <div
-                                    className="absolute left-0 top-0 h-full bg-primary-gradient transition-all duration-500 ease-out"
-                                    style={{
-                                        width: `${((activeIndex + 1) / ITEMS.length) * 100}%`,
-                                    }}
+                                        className="absolute left-0 top-0 h-full bg-primary-gradient transition-all duration-500 ease-out"
+                                        style={{
+                                            width: `${((activeIndex + 1) / ITEMS.length) * 100}%`,
+                                        }}
                                     />
                                 </div>
                             </div>
-                            
                         </div>
-                    </div>
+                    </motion.div>
                 </div>
             </section>
-            <div className="relative overflow-hidden w-full pb-20 bg-[#f6f7f4]">
+
+            {/* MARQUEE */}
+            <motion.div
+                ref={marqueeRef}
+                variants={fadeUpVariants}
+                initial="hidden"
+                animate={marqueeInView ? "visible" : "hidden"}
+                className="relative overflow-hidden w-full pb-10 md:pb-20 bg-[#f6f7f4]"
+            >
                 <div className="marquee-track flex w-max">
                     <MarqueeRow items={Marquee} />
                 </div>
-            </div>
+            </motion.div>
         </>
     )
 }

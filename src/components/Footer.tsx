@@ -1,12 +1,25 @@
-import { useState } from "react";
-import { ArrowRight, ArrowUp, Send, Share } from "lucide-react";
+import { useState, useRef } from "react";
+import { ArrowRight, ArrowUp, Send } from "lucide-react";
 import logo from "@/assets/light-logo.svg";
 import { Link } from "react-router-dom";
+import { motion, useInView } from "framer-motion";
+
+const fadeUpVariants = {
+    hidden: { opacity: 0, y: 60 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: "easeOut" },
+    },
+}
 
 export default function Footer() {
     const [email, setEmail] = useState("");
     const [agreed, setAgreed] = useState(false);
     const [openSection, setOpenSection] = useState<string | null>(null)
+
+    const sectionRef = useRef<HTMLDivElement>(null)
+    const sectionInView = useInView(sectionRef, { once: true, margin: "0px 0px -80px 0px" })
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -14,18 +27,21 @@ export default function Footer() {
 
     return (
         <section className="bg-[#f6f7f4] w-full">
-            <div
-                className="relative w-full md:rounded-t-[80px] bg-cover bg-center"
-                style={{ backgroundImage: "url('https://wdtbullish.wpengine.com/wp-content/uploads/2025/05/footer_img.webp')" }}
+            <motion.div
+                ref={sectionRef}
+                variants={fadeUpVariants}
+                initial="hidden"
+                animate={sectionInView ? "visible" : "hidden"}
+                className="relative w-full md:rounded-t-[60px] bg-cover bg-center"
+                style={{ backgroundImage: "url('../src/assets/footer.png')" }}
             >
-                <div className="absolute inset-0 md:rounded-t-[80px] bg-[#1616166e] " />
+                <div className="absolute inset-0 md:rounded-t-[60px] bg-[#1616166e]" />
                 <div className="container relative md:pt-[100px] md:pb-[60px] py-[40px]">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-[30px]">
                         <div className="w-full col-span-2 lg:col-span-1 flex flex-col gap-8 lg:pr-[60px]">
                             <div className="w-full">
                                 <div className="mb-6">
-                                    {/* LOGO */}
-                                    <img src={logo} alt="Bullish" className="md:w-[180px] max-w-[140px] h-auto" />
+                                    <img src={logo} alt="Bullish" className="w-[150px] md:-w-[200px] h-auto" />
                                 </div>
                                 <p className="text-white text-[16px] md:text-[18px] font-medium leading-[1.5]">
                                     Sed quaerat cupiditate ut aspernatur pariatur quo facere dolores
@@ -76,7 +92,7 @@ export default function Footer() {
                                         <Link
                                             key={social.label}
                                             to="/"
-                                            className="w-[35px] h-[35px] md:w-[50px] md:h-[50px] rounded-full border border-[#a5f94e66] flex items-center justify-center text-[#a5f94e] hover:bg-primary-gradient hover:text-[#161616] transition-all"
+                                            className="w-[35px] h-[35px] md:w-[50px] md:h-[50px] rounded-full border border-[#a5f94e66] flex items-center justify-center text-[#79eb93] hover:bg-primary-gradient hover:text-[#161616] transition-all"
                                             aria-label={social.label}
                                         >
                                             {social.icon}
@@ -85,13 +101,13 @@ export default function Footer() {
                                 </div>
                             </div>
                         </div>
-                        <div className="w-full col-span-2 ">
+                        <div className="w-full col-span-2">
                             <div className="flex flex-col md:flex-row gap-[30px]">
                                 <h2 className="w-full md:w-1/2 text-white text-[24px] md:text-[32px] font-bold leading-tight">
                                     Register For Our Updates!
                                 </h2>
                                 <div className="w-full">
-                                    <div className="relative flex items-center bg-white border  rounded-[10px] overflow-hidden h-[56px]">
+                                    <div className="relative flex items-center bg-white border rounded-[10px] overflow-hidden h-[56px]">
                                         <input
                                             type="email"
                                             value={email}
@@ -99,7 +115,7 @@ export default function Footer() {
                                             placeholder="Enter your email address"
                                             className="flex-1 bg-transparent text-black/90 placeholder:text-black/40 text-[16px] px-7 h-full outline-none"
                                         />
-                                        <button className="flex items-center justify-center bg-primary-gradient  transition-colors rounded-[10px] w-[60px] h-full shrink-0">
+                                        <button className="flex items-center justify-center bg-primary-gradient transition-colors rounded-[10px] w-[60px] h-full shrink-0">
                                             <Send className="w-5 h-5 text-[#000] font-bold rotate-[40deg]" />
                                         </button>
                                     </div>
@@ -125,47 +141,25 @@ export default function Footer() {
                                 </div>
                             </div>
                             <div className="w-full h-px bg-white/20 md:my-14 my-10" />
+
+                            {/* Mobile Accordion */}
                             <div className="flex lg:hidden flex-col items-center gap-6">
-                                <div className=" w-full">
+                                <div className="w-full">
                                     <button
-                                        onClick={() =>
-                                            setOpenSection(openSection === "support" ? null : "support")
-                                        }
-                                        className={`lg:hidden w-full  bg-primary-gradient flex items-center justify-between py-[18px] px-[20px] ${openSection === "support" ? "rounded-t-[20px]" : "rounded-[20px]"}`}
+                                        onClick={() => setOpenSection(openSection === "support" ? null : "support")}
+                                        className={`lg:hidden w-full bg-primary-gradient flex items-center justify-between py-[18px] px-[20px] ${openSection === "support" ? "rounded-t-[20px]" : "rounded-[20px]"}`}
                                     >
                                         <span className="text-[22px] font-bold text-black">Support Pages</span>
-                                        <svg
-                                            className={`w-8 h-8 transition-transform ${openSection === "support" ? "" : "rotate-180"}`}
-                                            viewBox="0 0 24 24"
-                                            fill="currentColor"
-                                        >
+                                        <svg className={`w-8 h-8 transition-transform ${openSection === "support" ? "" : "rotate-180"}`} viewBox="0 0 24 24" fill="currentColor">
                                             <path d="M7 14l5-5 5 5" />
                                         </svg>
                                     </button>
-
-                                    <div
-                                        className={`lg:block transition-all duration-500 ease-in-out origin-top ${openSection === "support" ? "max-h-[500px] opacity-100 scale-y-100" : "max-h-0 opacity-0 scale-y-0 pointer-events-none"
-                                            } rounded-b-[20px] -mt-1 bg-[#2a2a2a] lg:bg-transparent overflow-hidden`}
-                                    >
-                                        <h3 className="hidden lg:block text-white text-[22px] font-bold mb-7">
-                                            Support Pages
-                                        </h3>
+                                    <div className={`lg:block transition-all duration-500 ease-in-out origin-top ${openSection === "support" ? "max-h-[500px] opacity-100 scale-y-100" : "max-h-0 opacity-0 scale-y-0 pointer-events-none"} rounded-b-[20px] -mt-1 bg-[#2a2a2a] lg:bg-transparent overflow-hidden`}>
+                                        <h3 className="hidden lg:block text-white text-[22px] font-bold mb-7">Support Pages</h3>
                                         <ul className="flex flex-col gap-[12px] p-6 lg:p-0">
-                                            {[
-                                                "About",
-                                                "Live Chat",
-                                                "Trading Guide",
-                                                "Terms & Conditions",
-                                                "Privacy Policy",
-                                                "Risk Disclosure",
-                                            ].map((item) => (
+                                            {["About", "Live Chat", "Trading Guide", "Terms & Conditions", "Privacy Policy", "Risk Disclosure"].map((item) => (
                                                 <li key={item}>
-                                                    <Link
-                                                        to="/"
-                                                        className="text-white font-medium text-[15px] hover:text-[#a5f94e] transition-colors"
-                                                    >
-                                                        {item}
-                                                    </Link>
+                                                    <Link to="/" className="text-white font-medium text-[15px] hover:text-[#a5f94e] transition-colors">{item}</Link>
                                                 </li>
                                             ))}
                                         </ul>
@@ -173,133 +167,76 @@ export default function Footer() {
                                 </div>
                                 <div className="w-full">
                                     <button
-                                        onClick={() =>
-                                            setOpenSection(openSection === "about" ? null : "about")
-                                        }
-                                        className={`lg:hidden w-full  bg-primary-gradient flex items-center justify-between py-[18px] px-[20px] ${openSection === "about" ? "rounded-t-[20px]" : "rounded-[20px]"}`}
+                                        onClick={() => setOpenSection(openSection === "about" ? null : "about")}
+                                        className={`lg:hidden w-full bg-primary-gradient flex items-center justify-between py-[18px] px-[20px] ${openSection === "about" ? "rounded-t-[20px]" : "rounded-[20px]"}`}
                                     >
                                         <span className="text-[22px] font-bold text-black">About</span>
-                                        <svg
-                                            className={`w-8 h-8 transition-transform ${openSection === "about" ? "" : "rotate-180"}`}
-                                            viewBox="0 0 24 24"
-                                            fill="currentColor"
-                                        >
+                                        <svg className={`w-8 h-8 transition-transform ${openSection === "about" ? "" : "rotate-180"}`} viewBox="0 0 24 24" fill="currentColor">
                                             <path d="M7 14l5-5 5 5" />
                                         </svg>
                                     </button>
-
-                                    <div
-                                        className={`lg:block transition-all duration-500 ease-in-out origin-top ${openSection === "about" ? "max-h-[500px] opacity-100 scale-y-100" : "max-h-0 opacity-0 scale-y-0 pointer-events-none"
-                                            } rounded-b-[20px] -mt-1 bg-[#2a2a2a] lg:bg-transparent overflow-hidden`}
-                                    >
-                                        <h3 className="hidden lg:block text-white text-[22px] font-bold mb-7">
-                                            About
-                                        </h3>
+                                    <div className={`lg:block transition-all duration-500 ease-in-out origin-top ${openSection === "about" ? "max-h-[500px] opacity-100 scale-y-100" : "max-h-0 opacity-0 scale-y-0 pointer-events-none"} rounded-b-[20px] -mt-1 bg-[#2a2a2a] lg:bg-transparent overflow-hidden`}>
+                                        <h3 className="hidden lg:block text-white text-[22px] font-bold mb-7">About</h3>
                                         <ul className="flex flex-col gap-[12px] p-6 lg:p-0">
-                                            {[
-                                                "Our Story",
-                                                "Our Team",
-                                                "Portfolio",
-                                                "Career",
-                                                "Client Testimonials",
-                                                "Security Promise",
-                                            ].map((item) => (
+                                            {["Our Story", "Our Team", "Portfolio", "Career", "Client Testimonials", "Security Promise"].map((item) => (
                                                 <li key={item}>
-                                                    <Link
-                                                        to="/"
-                                                        className="text-white font-medium text-[15px] hover:text-[#a5f94e] transition-colors"
-                                                    >
-                                                        {item}
-                                                    </Link>
+                                                    <Link to="/" className="text-white font-medium text-[15px] hover:text-[#a5f94e] transition-colors">{item}</Link>
                                                 </li>
                                             ))}
                                         </ul>
                                     </div>
                                 </div>
-                                <div className=" w-full">
+                                <div className="w-full">
                                     <button
-                                        onClick={() =>
-                                            setOpenSection(openSection === "quick" ? null : "quick")
-                                        }
+                                        onClick={() => setOpenSection(openSection === "quick" ? null : "quick")}
                                         className={`lg:hidden w-full ${openSection === "quick" ? "rounded-t-[20px]" : "rounded-[20px]"} bg-primary-gradient flex items-center justify-between py-[18px] px-[20px]`}
                                     >
                                         <span className="text-[22px] font-bold text-black">Quick Links</span>
-                                        <svg
-                                            className={`w-8 h-8 transition-transform ${openSection === "quick" ? "" : "rotate-180"}`}
-                                            viewBox="0 0 24 24"
-                                            fill="currentColor"
-                                        >
+                                        <svg className={`w-8 h-8 transition-transform ${openSection === "quick" ? "" : "rotate-180"}`} viewBox="0 0 24 24" fill="currentColor">
                                             <path d="M7 14l5-5 5 5" />
                                         </svg>
                                     </button>
-
-                                    <div
-                                        className={`lg:block transition-all duration-500 ease-in-out origin-top ${openSection === "quick" ? "max-h-[500px] opacity-100 scale-y-100" : "max-h-0 opacity-0 scale-y-0 pointer-events-none"
-                                            } rounded-b-[20px] bg-[#2a2a2a] lg:bg-transparent overflow-hidden`}
-                                    >
-                                        <h3 className="hidden lg:block text-white text-[22px] font-bold mb-7">
-                                            Quick Links
-                                        </h3>
+                                    <div className={`lg:block transition-all duration-500 ease-in-out origin-top ${openSection === "quick" ? "max-h-[500px] opacity-100 scale-y-100" : "max-h-0 opacity-0 scale-y-0 pointer-events-none"} rounded-b-[20px] bg-[#2a2a2a] lg:bg-transparent overflow-hidden`}>
+                                        <h3 className="hidden lg:block text-white text-[22px] font-bold mb-7">Quick Links</h3>
                                         <ul className="flex flex-col gap-[12px] p-6 lg:p-0">
-                                            {[
-                                                "FAQ",
-                                                "Pricing Plan",
-                                                "Contact",
-                                                "Market Overview",
-                                                "Deposit & Withdrawals",
-                                                "Account Login",
-                                            ].map((item) => (
+                                            {["FAQ", "Pricing Plan", "Contact", "Market Overview", "Deposit & Withdrawals", "Account Login"].map((item) => (
                                                 <li key={item}>
-                                                    <Link
-                                                        to="/"
-                                                        className="text-white font-medium text-[15px] hover:text-[#a5f94e] transition-colors"
-                                                    >
-                                                        {item}
-                                                    </Link>
+                                                    <Link to="/" className="text-white font-medium text-[15px] hover:text-[#a5f94e] transition-colors">{item}</Link>
                                                 </li>
                                             ))}
                                         </ul>
                                     </div>
                                 </div>
                             </div>
+
+                            {/* Desktop Links */}
                             <div className="hidden lg:flex flex-wrap flex-col lg:flex-row items-center gap-y-12 gap-0">
-                                {/* Support Pages */}
-                                <div className=" lg:w-[33.33%] w-[50%]">
+                                <div className="lg:w-[33.33%] w-[50%]">
                                     <h3 className="text-white text-[22px] font-bold mb-7">Support Pages</h3>
                                     <ul className="flex flex-col gap-[14px]">
                                         {["About", "Live Chat", "Trading Guide", "Terms & Conditions", "Privacy Policy", "Risk Disclosure"].map((item) => (
                                             <li key={item}>
-                                                <Link to="/" className="text-white text-[15px] hover:text-[#a5f94e] transition-colors">
-                                                    {item}
-                                                </Link>
+                                                <Link to="/" className="text-white text-[15px] hover:text-[#a5f94e] transition-colors">{item}</Link>
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
-
-                                {/* About */}
-                                <div className=" lg:w-[33.33%] w-[50%]">
+                                <div className="lg:w-[33.33%] w-[50%]">
                                     <h3 className="text-white text-[22px] font-bold mb-7">About</h3>
                                     <ul className="flex flex-col gap-[14px]">
                                         {["Our Story", "Our Team", "Portfolio", "Career", "Client Testimonials", "Security Promise"].map((item) => (
                                             <li key={item}>
-                                                <Link to="/" className="text-white text-[15px] hover:text-[#a5f94e] transition-colors">
-                                                    {item}
-                                                </Link>
+                                                <Link to="/" className="text-white text-[15px] hover:text-[#a5f94e] transition-colors">{item}</Link>
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
-
-                                {/* Quick Links */}
-                                <div className=" lg:w-[33.33%] w-[50%]">
+                                <div className="lg:w-[33.33%] w-[50%]">
                                     <h3 className="text-white text-[22px] font-bold mb-7">Quick Links</h3>
                                     <ul className="flex flex-col gap-[14px]">
                                         {["FAQ", "Pricing Plan", "Contact", "Market Overview", "Deposit & Withdrawals", "Account Login"].map((item) => (
                                             <li key={item}>
-                                                <Link to="/" className="text-white text-[15px] hover:text-[#a5f94e] transition-colors">
-                                                    {item}
-                                                </Link>
+                                                <Link to="/" className="text-white text-[15px] hover:text-[#a5f94e] transition-colors">{item}</Link>
                                             </li>
                                         ))}
                                     </ul>
@@ -308,13 +245,13 @@ export default function Footer() {
                         </div>
                     </div>
 
-                    <div className="w-full h-px bg-white/20 mt-14 mb-8" />
+                    <div className="w-full h-px bg-white/20 mt-8 mb-8" />
+
                     {/* Copyright Bar */}
                     <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                         <p className="text-white text-[14px]">
                             &copy; 2025 Wedesigntech. All Rights Reserved
                         </p>
-
                         <div className="flex items-center gap-6">
                             <Link to="/" className="text-white text-[14px] hover:text-[#a5f94e] transition-colors">
                                 Privacy Policy
@@ -323,18 +260,17 @@ export default function Footer() {
                             <Link to="/" className="text-white text-[14px] hover:text-[#a5f94e] transition-colors">
                                 Terms & Condition
                             </Link>
-
                             <button
                                 onClick={scrollToTop}
                                 className="w-[44px] h-[44px] rounded-[10px] bg-primary-gradient fixed z-[9] bottom-8 right-5 flex items-center justify-center transition-colors ml-2"
                                 aria-label="Scroll to top"
                             >
-                                <ArrowUp className="w-5 h-5 text-[#161616] " />
+                                <ArrowUp className="w-5 h-5 text-[#161616]" />
                             </button>
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </section>
     );
 }
