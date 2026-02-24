@@ -15,7 +15,7 @@
     --popover: 200 20% 12%;
     --popover-foreground: 0 0% 100%;
 
-    --primary: 132, 75%, 71%;
+    --primary: 211, 99%, 52%;
     --primary-foreground: 200 20% 10%;
 
     --secondary: 200 15% 18%;
@@ -361,8 +361,8 @@ body {
 
 .swiper-slide-active .wdt-service-type-icon svg,
 .wdt-service-item:hover .wdt-service-type-icon svg {
-  fill: #79eb93;
-  filter: drop-shadow(0 0 18px rgba(214, 255, 173, 0.8));
+  fill: #0C7FFE;
+  filter: drop-shadow(0 0 18px rgba(173, 199, 255, 0.8));
 }
 
 /* NAV */
@@ -408,13 +408,13 @@ body {
 
 .testimonial-right-down {
   background-color: transparent;
-  background-image: linear-gradient(90deg, #79EB93 0%, #D6FFAD 100%);
+  background-image: linear-gradient(90deg, #0C7FFE 0%, #73b6ff 100%);
 
 }
 
 .faq-right {
   background-color: transparent;
-  background-image: linear-gradient(90deg, #79EB93 0%, #D6FFAD 100%);
+  background-image:linear-gradient(90deg, #0C7FFE 0%, #b1d6ff 100%);
   box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.08);
   position: relative;
 
@@ -554,10 +554,7 @@ body {
   
 }
 .faq-item {
-    background-image: linear-gradient(90deg,
-      #79eb93,
-      #d6ffad,
-      #79eb93);
+    background-image: linear-gradient(90deg, #90c4ff, #0C7FFE, #a3cfff);
   background-size: 200% 100%;
   background-position: right center;
   transition: background-position 0.3s ease;
@@ -648,7 +645,7 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(90deg, #d6ffad, #79eb93, #fff, #fff);
+  background-image: linear-gradient(90deg, #0C7FFE, #0C7FFE, #fff, #fff);
   opacity: 0.3;
   z-index: 1;
 }
@@ -690,13 +687,11 @@ body {
 }
 
 .bg-primary-gradient {
-  background-image: linear-gradient(90deg,
-      #79eb93,
-      #d6ffad,
-      #79eb93);
+  background-image: linear-gradient(90deg, #56a5ff, #0C7FFE, #a3cfff);
   background-size: 200% 100%;
   background-position: left center;
   transition: background-position 0.3s ease;
+  color: #fff !important;
 }
 .bg-primary-gradient:hover {
   background-position: right center;
@@ -721,7 +716,7 @@ body {
 
 
 .text-primary-gradient {
-  background: linear-gradient(90deg, #d6ffad, #79eb93, #d6ffad);
+  background: linear-gradient(90deg, #90c4ff, #0C7FFE, #a3cfff);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;

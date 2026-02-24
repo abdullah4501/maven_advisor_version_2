@@ -1,5 +1,5 @@
 import { useState } from "react"
-import logo from "@/assets/light-logo.svg"
+import logo from "@/assets/logo.png"
 import { Search, X, ChevronRight } from "lucide-react"
 import { Link } from "react-router-dom"
 
@@ -15,12 +15,12 @@ const Header = () => {
           <div className="flex items-center justify-between rounded-[10px] px-6 py-4 backdrop-blur-md bg-white/15">
 
             {/* LOGO */}
-            <img src={logo} alt="Bullish" className="md:max-w-[150px] max-w-[100px] h-auto" />
+            <img src={logo} alt="Bullish" className="md:max-w-[300px] max-w-[250px] h-auto" />
 
             {/* DESKTOP NAV */}
             <nav className="hidden lg:flex items-center gap-14 text-white">
               <Link to="/" className="text-[18px] hover:text-primary duration-300">Home</Link>
-              <Link to="/about" className="text-[18px] hover:text-primary duration-300">About</Link>
+              <Link to="/about-us" className="text-[18px] hover:text-primary duration-300">About</Link>
               <Link to="/services" className="text-[18px] hover:text-primary duration-300">Services</Link>
               <Link to="/blog" className="text-[18px] hover:text-primary duration-300">Blog</Link>
               <Link to="/contact" className="text-[18px] hover:text-primary duration-300">Contact Us</Link>

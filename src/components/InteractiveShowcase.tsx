@@ -53,7 +53,7 @@ function MarqueeRow({ items }: { items: MarqueeItem[] }) {
                     <a
                         key={i}
                         href={item.href ?? "#"}
-                        className="text-[70px] md:text-[110px] font-bold text-[#d7d7d7] whitespace-nowrap transition-colors hover:text-[#79eb93]"
+                        className="text-[70px] md:text-[110px] font-bold text-[#d7d7d7] whitespace-nowrap transition-colors hover:text-[#0C7FFE]"
                     >
                         {item.label}
                     </a>
@@ -232,7 +232,7 @@ export default function InteractiveShowcase() {
                                             >
                                                 {/* ICON */}
                                                 <div className="relative mb-6 pb-8 w-fit tab-line w-full border-b border-[#d0d0d0]">
-                                                    <span className="icon"><i><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" className={`transition-colors duration-300 ${isActive ? "fill-[#79eb93]" : "fill-[#686868] group-hover:fill-[#79eb93]"}`}><path d="M47,32.42a10.16,10.16,0,0,1,0-14.48,9.94,9.94,0,0,0,3-7.07A10.11,10.11,0,0,0,32.84,3.71a11.06,11.06,0,0,1-15.52-.19A10.11,10.11,0,0,0,0,10.5a10.12,10.12,0,0,0,17.16,7.16,11,11,0,0,1,15.51.19l.09.09a10.18,10.18,0,0,1,0,14.49,9.94,9.94,0,0,0-2.95,7.07,10.1,10.1,0,0,0,20.2,0,9.94,9.94,0,0,0-2.95-7.07Z"></path><path d="M17.65,46.14A9.93,9.93,0,0,0,16.81,32a10.16,10.16,0,0,0-14.26.84A9.93,9.93,0,0,0,3.39,47,10.17,10.17,0,0,0,17.65,46.14Z"></path></svg></i></span>
+                                                    <span className="icon"><i><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" className={`transition-colors duration-300 ${isActive ? "fill-[#0C7FFE]" : "fill-[#686868] group-hover:fill-[#0C7FFE]"}`}><path d="M47,32.42a10.16,10.16,0,0,1,0-14.48,9.94,9.94,0,0,0,3-7.07A10.11,10.11,0,0,0,32.84,3.71a11.06,11.06,0,0,1-15.52-.19A10.11,10.11,0,0,0,0,10.5a10.12,10.12,0,0,0,17.16,7.16,11,11,0,0,1,15.51.19l.09.09a10.18,10.18,0,0,1,0,14.49,9.94,9.94,0,0,0-2.95,7.07,10.1,10.1,0,0,0,20.2,0,9.94,9.94,0,0,0-2.95-7.07Z"></path><path d="M17.65,46.14A9.93,9.93,0,0,0,16.81,32a10.16,10.16,0,0,0-14.26.84A9.93,9.93,0,0,0,3.39,47,10.17,10.17,0,0,0,17.65,46.14Z"></path></svg></i></span>
                                                 </div>
 
                                                 <h4 className="text-[30px] font-semibold">

@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Lenis from "@studio-freight/lenis";
 import Index from "@/pages/Index"
+import AboutUs from "@/pages/About"
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
+             <Route path="/about-us" element={<AboutUs breadcrumb="About Us" />} />
             
           </Routes>
 

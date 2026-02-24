@@ -71,7 +71,7 @@ export default function ServicesType3() {
               Consulting Services
             </h3>
             <h2 className="text-[38px] md:text-5xl font-semibold text-white leading-[38px]">
-              Trusted <span className="text-[#79eb93]">Guidance</span> Built For You
+              Trusted <span className="text-[#0C7FFE]">Guidance</span> Built For You
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-white">
               Euismod quam justo lectus commodo augue arcu dignissim.

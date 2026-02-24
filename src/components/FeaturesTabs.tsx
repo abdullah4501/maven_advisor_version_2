@@ -189,7 +189,7 @@ export default function FeaturesTabs() {
                     >
                       <div className="flex items-center gap-[20px] py-[18px] px-[20px] w-full">
                         {tab.icon}
-                        <span className="text-lg font-medium text-[#000]">
+                        <span className="text-lg font-medium text-white">
                           {tab.title}
                         </span>
                       </div>
@@ -207,12 +207,12 @@ export default function FeaturesTabs() {
                   <li
                     key={tab.id}
                     onClick={() => setActive(i)}
-                    className={`rounded-[20px] ${isActive ? "bg-primary-gradient" : "bg-white"
+                    className={`rounded-[20px] ${isActive ? "bg-primary-gradient text-white" : " bg-white"
                       }`}
                   >
                     <button className="flex items-center gap-[20px] py-[18px] px-[20px] w-full">
                       {tab.icon}
-                      <span className="text-lg font-medium text-[#000]">
+                      <span className={` text-lg font-medium ${isActive ? " text-white" : " text-[#000]"}`}>
                         {tab.title}
                       </span>
                     </button>

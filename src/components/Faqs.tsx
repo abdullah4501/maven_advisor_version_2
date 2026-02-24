@@ -83,7 +83,7 @@ export default function FAQSection() {
                     <h3 className="wdt-heading text-center text-white">Our FAQs</h3>
                   </div>
                   <h2 className="text-[38px] md:text-5xl font-semibold text-white leading-[38px]">
-                    Answers To <span className="text-[#79eb93]">Your</span> Questions
+                    Answers To <span className="text-[#0C7FFE]">Your</span> Questions
                   </h2>
                   <p className="mt-4 text-white">
                     Euismod quam justo lectus commodo augue arcu dignissim.

@@ -107,7 +107,7 @@ const HeroSlider = () => {
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 27.7 18"
-                        className="w-5 h-5"
+                        className="w-5 h-5 fill-current"
                       >
                         <path d="M12.1,18V10.6H0V7.4H12.1V0L27.7,9Z" />
                       </svg>

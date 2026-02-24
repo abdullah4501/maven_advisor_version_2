@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { ArrowRight, ArrowUp, Send } from "lucide-react";
-import logo from "@/assets/light-logo.svg";
+import logo from "@/assets/logo-white.png";
 import { Link } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import footerBg from "@/assets/footer.png"
@@ -42,7 +42,7 @@ export default function Footer() {
                         <div className="w-full col-span-2 lg:col-span-1 flex flex-col gap-8 lg:pr-[60px]">
                             <div className="w-full">
                                 <div className="mb-6">
-                                    <img src={logo} alt="Bullish" className="w-[150px] md:-w-[200px] h-auto" />
+                                    <img src={logo} alt="Bullish" className="w-[300px] md:w-[250px] h-auto" />
                                 </div>
                                 <p className="text-white text-[16px] md:text-[18px] font-medium leading-[1.5]">
                                     Sed quaerat cupiditate ut aspernatur pariatur quo facere dolores
@@ -93,7 +93,7 @@ export default function Footer() {
                                         <Link
                                             key={social.label}
                                             to="/"
-                                            className="w-[35px] h-[35px] md:w-[50px] md:h-[50px] rounded-full border border-[#a5f94e66] flex items-center justify-center text-[#79eb93] hover:bg-primary hover:text-[#161616] transition-all"
+                                            className="w-[35px] h-[35px] md:w-[50px] md:h-[50px] rounded-full border border-[#0C7FFE] flex items-center justify-center text-[#0C7FFE] hover:bg-primary hover:text-[#fff] transition-all"
                                             aria-label={social.label}
                                         >
                                             {social.icon}
@@ -107,8 +107,8 @@ export default function Footer() {
                                 <h2 className="w-full md:w-1/2 text-white text-[24px] md:text-[32px] font-bold leading-tight">
                                     Register For Our Updates!
                                 </h2>
-                                <div className="w-full">
-                                    <div className="relative flex items-center bg-white border rounded-[10px] overflow-hidden h-[56px]">
+                                <div className="sm:w-[70%] w-full">
+                                    <div className="relative flex items-center bg-white rounded-[10px] overflow-hidden h-[56px]">
                                         <input
                                             type="email"
                                             value={email}
@@ -266,7 +266,7 @@ export default function Footer() {
                                 className="w-[44px] h-[44px] rounded-[10px] bg-primary-gradient fixed z-[9] bottom-8 right-5 flex items-center justify-center transition-colors ml-2"
                                 aria-label="Scroll to top"
                             >
-                                <ArrowUp className="w-5 h-5 text-[#161616]" />
+                                <ArrowUp className="w-5 h-5 text-[#fff]" />
                             </button>
                         </div>
                     </div>
