@@ -8,6 +8,9 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FeaturesTabs from '@/components/FeaturesTabs';
 import ServicesSlider from '@/components/ServicesSlider';
+import Faqs from '@/components/Faqs';
+import Testimonial from '@/components/Testimonial';
+import Counter from '@/components/Counter';
 
 const About = ({ breadcrumb }) => {
     return (
@@ -20,7 +23,7 @@ const About = ({ breadcrumb }) => {
                 >
                     <img
                         src={image}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover object-top"
                     />
                 </div>
 
@@ -62,6 +65,11 @@ const About = ({ breadcrumb }) => {
             </section>
             <FeaturesTabs />
             <ServicesSlider />
+            <div className='bg-[#f6f7f4] py-[40px] md:py-[60px] md:-mt-[80px] relative'>
+                <Counter />
+            </div>
+            <Faqs/>
+            <Testimonial />
             <Footer />
         </>
     );

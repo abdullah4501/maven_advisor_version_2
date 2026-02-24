@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { ArrowRight, ArrowUp, Send } from "lucide-react";
 import logo from "@/assets/logo-white.png";
 import { Link } from "react-router-dom";
@@ -18,9 +18,21 @@ export default function Footer() {
     const [email, setEmail] = useState("");
     const [agreed, setAgreed] = useState(false);
     const [openSection, setOpenSection] = useState<string | null>(null)
+    const [showScrollTop, setShowScrollTop] = useState(false)
 
     const sectionRef = useRef<HTMLDivElement>(null)
     const sectionInView = useInView(sectionRef, { once: true, margin: "0px 0px -80px 0px" })
+
+    // Show button only when user has scrolled away from the top
+    useEffect(() => {
+        const handleScroll = () => {
+            setShowScrollTop(window.scrollY > 0)
+        }
+        window.addEventListener("scroll", handleScroll, { passive: true })
+        // Run once on mount in case page loaded mid-scroll
+        handleScroll()
+        return () => window.removeEventListener("scroll", handleScroll)
+    }, [])
 
     const scrollToTop = () => {
         window.scrollTo({ top: 0, behavior: "smooth" });
@@ -37,8 +49,8 @@ export default function Footer() {
                 style={{ backgroundImage: `url(${footerBg})` }}
             >
                 <div className="absolute inset-0 md:rounded-t-[60px] bg-[#161616ba]" />
-                <div className="container relative md:pt-[100px] md:pb-[60px] py-[40px]">
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-[30px]">
+                <div className="container relative md:pt-[150px] md:pb-[30px] py-[40px]">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-[30px] pb-[50px]">
                         <div className="w-full col-span-2 lg:col-span-1 flex flex-col gap-8 lg:pr-[60px]">
                             <div className="w-full">
                                 <div className="mb-6">
@@ -261,17 +273,21 @@ export default function Footer() {
                             <Link to="/" className="text-white text-[14px] hover:text-[#a5f94e] transition-colors">
                                 Terms & Condition
                             </Link>
-                            <button
-                                onClick={scrollToTop}
-                                className="w-[44px] h-[44px] rounded-[10px] bg-primary-gradient fixed z-[9] bottom-8 right-5 flex items-center justify-center transition-colors ml-2"
-                                aria-label="Scroll to top"
-                            >
-                                <ArrowUp className="w-5 h-5 text-[#fff]" />
-                            </button>
                         </div>
                     </div>
                 </div>
             </motion.div>
+
+            {/* Scroll-to-top button — fixed, only visible when scrolled away from top */}
+            <button
+                onClick={scrollToTop}
+                aria-label="Scroll to top"
+                className={`w-[44px] h-[44px] rounded-[10px] bg-primary-gradient fixed z-[9] bottom-8 right-5 flex items-center justify-center transition-all duration-300 ${
+                    showScrollTop ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"
+                }`}
+            >
+                <ArrowUp className="w-5 h-5 text-[#fff]" />
+            </button>
         </section>
     );
 }

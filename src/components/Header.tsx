@@ -10,9 +10,9 @@ const Header = () => {
     <>
       {/* ================= HEADER ================= */}
 
-      <header className="absolute top-6 left-0 w-full z-50">
+      <header className="absolute top-[30px] left-0 w-full z-50">
         <div className="container">
-          <div className="flex items-center justify-between rounded-[10px] px-6 py-4 backdrop-blur-md bg-white/15">
+          <div className="flex items-center justify-between rounded-[10px] px-6 py-[20px] backdrop-blur-md bg-white/15">
 
             {/* LOGO */}
             <img src={logo} alt="Bullish" className="md:max-w-[300px] max-w-[250px] h-auto" />

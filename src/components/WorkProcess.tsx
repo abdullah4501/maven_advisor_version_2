@@ -147,7 +147,7 @@ export default function WorkProcess() {
                                             flex items-center justify-center 
                                             bg-white 
                                             transition-all duration-300
-                                            ${activeCard === index ? "active-green" : ""}
+                                            ${activeCard === index ? "active-green " : ""}
                                         `}
                                     >
                                         {/* Background image — visible when this card is active */}
@@ -157,7 +157,7 @@ export default function WorkProcess() {
                                             className={`
                                                 absolute inset-0 w-full h-full object-cover
                                                 transition-opacity duration-300
-                                                ${activeCard === index ? "opacity-100" : "opacity-0"}
+                                                ${activeCard === index ? "opacity-[0.3]" : "opacity-0"}
                                             `}
                                         />
 

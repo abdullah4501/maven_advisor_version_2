@@ -98,7 +98,7 @@ export default function FAQSection() {
                     <div
                       key={index}
                       onClick={() => setActive(isActive ? null : index)}
-                      className={`rounded-[20px] lg:p-[40px] p-[30px] mb-5 cursor-pointer transition-all duration-300 ease-in-out
+                      className={`rounded-[20px] lg:p-[40px] p-[30px] mb-5 last:mb-0 cursor-pointer transition-all duration-300 ease-in-out
                           ${isActive ? "faq-item" : "bg-[#3f3f3f]"}
                           ${activeStyling === index ? "faq-item-active" : ""}
                       `}
@@ -148,7 +148,7 @@ export default function FAQSection() {
                 })}
               </div>
               <div className="col-span-1">
-                <div className="faq-right h-full flex flex-col items-center gap-y-[60px] rounded-[20px] px-[20px] py-[60px] justify-center">
+                <div className="faq-right h-full flex flex-col items-center gap-y-[60px] rounded-[20px] px-[20px] py-[50px] justify-center">
                   <div className="text-center">
                     <span className="flex justify-center">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 22.66" className="w-[100px] w-[100px]"><path d="M3.88,19.29c.19-1.52.28-2.78.53-4a1.22,1.22,0,0,0-.68-1.51A7,7,0,0,1,0,8.23,6.47,6.47,0,0,1,2.63,2.62C6.75-.85,14-.87,18.14,2.56c3.61,3,3.61,7.57,0,10.51a11.77,11.77,0,0,1-8.4,2.5,2.93,2.93,0,0,0-2.26.78c-1.1,1-2.25,1.86-3.56,2.94Z"></path><path d="M26.11,22.66c-1.3-1.07-2.41-1.89-3.42-2.81a3.26,3.26,0,0,0-2.6-.92,11.74,11.74,0,0,1-7.84-2.21c3.3-.66,6.16-1.75,8.12-4.37a7.22,7.22,0,0,0,.33-8.71c3.65-.45,8.27,2.68,9.12,6.09.67,2.72-.53,5.46-3.35,7.27a1.63,1.63,0,0,0-.88,1.93c.22,1.13.33,2.28.52,3.73Z"></path></svg>

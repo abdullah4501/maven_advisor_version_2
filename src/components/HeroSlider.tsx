@@ -60,7 +60,7 @@ const HeroSlider = () => {
         {slides.map((slide, i) => (
           <SwiperSlide key={i}>
             <div
-              className="relative min-h-[75vh] flex items-center"
+              className="relative min-h-[80vh] flex items-center"
               style={{
                 backgroundImage: `url(${slide.bg})`,
                 backgroundSize: "cover",
@@ -82,7 +82,7 @@ const HeroSlider = () => {
               {/* Content */}
               <div className="relative z-10 container ">
                 <div className="hero-grid grid-cols-1 lg:grid-cols-2">
-                  <div className="md:py-[250px] py-[50px]">
+                  <div className="md:py-[265px] py-[50px]">
                     <span className="block text-[18px] tracking-widest text-[#fff] mb-4 wdt-heading">
                       {slide.subtitle}
                     </span>
@@ -101,7 +101,7 @@ const HeroSlider = () => {
 
                     <a
                       href="#"
-                      className="relative z-[2] inline-flex items-center mt-3 gap-3 bg-primary-gradient text-black text-[16px] px-6 py-3 rounded-[10px] font-medium transition "
+                      className="relative z-[2] inline-flex items-center mt-3 gap-3 bg-primary-gradient text-black text-[16px] p-[clamp(1.125rem,1.0971rem+0.1274vw,1.25rem)_clamp(1.5rem,1.2771rem+1.0191vw,2.5rem)] rounded-[10px] font-medium transition "
                     >
                       {slide.cta}
                       <svg

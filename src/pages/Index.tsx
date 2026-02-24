@@ -10,21 +10,34 @@ import WorkProcess from "@/components/WorkProcess";
 import ContactSection from "@/components/ContactSection";
 import Blog from "@/components/Blog";
 import Footer from "@/components/Footer";
+import Counter from "@/components/Counter";
+import NewsletterPopup from "@/components/NewsletterPopup";
+import { useEffect, useState } from "react";
 
 
 const Home = () => {
+  const [popupOpen, setPopupOpen] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setPopupOpen(true), 800)
+    return () => clearTimeout(timer)
+  }, [])
   return (
     <>
+      <NewsletterPopup isOpen={popupOpen} onClose={() => setPopupOpen(false)} />
       <Header />
       <HeroSlider />
       <InteractiveShowcase />
       <ServicesSlider />
       <FeaturesTabs />
-      <Testimonial/>
-      <Faqs/>
+      <Testimonial />
+      <div className="bg-[#f6f7f4] py-[40px] !pt-0 md:py-[100px] md:-mt-[50px] relative">
+        <Counter />
+      </div>
+      <Faqs />
       <TeamSection />
-      <WorkProcess/>
-      <ContactSection/>
+      <WorkProcess />
+      <ContactSection />
       <Blog />
       <Footer />
     </>
@@ -32,4 +45,3 @@ const Home = () => {
 };
 
 export default Home;
- 

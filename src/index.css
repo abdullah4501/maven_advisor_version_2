@@ -214,6 +214,7 @@ body {
 .wdt-heading {
   position: relative;
   font-weight: 600;
+  font-size: 15px;
 }
 
 .wdt-heading::before {
@@ -554,13 +555,13 @@ body {
   
 }
 .faq-item {
-    background-image: linear-gradient(90deg, #90c4ff, #0C7FFE, #a3cfff);
+    background-image: linear-gradient(90deg, #56a5ff, #0C7FFE, rgb(141, 195, 253));
   background-size: 200% 100%;
-  background-position: right center;
+  background-position: bottom right;
   transition: background-position 0.3s ease;
 }
 .faq-item-active {
-  background-position: left center;
+  background-position: top left;
 } 
 .team-img::before {
   position: absolute;
@@ -635,7 +636,7 @@ body {
 }
 
 .active-green .icon svg {
-  fill: #000;
+  fill: #fff;
   transition: fill 0.3s ease;
 
 }
@@ -645,9 +646,9 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: linear-gradient(90deg, #0C7FFE, #0C7FFE, #fff, #fff);
-  opacity: 0.3;
-  z-index: 1;
+  background-image: linear-gradient(90deg, #76b8ff, #0C7FFE, #fff, #fff);
+  background-size: 300% 100%;
+  background-position: top left;
 }
 
 .link-underline::before,
@@ -687,14 +688,14 @@ body {
 }
 
 .bg-primary-gradient {
-  background-image: linear-gradient(90deg, #56a5ff, #0C7FFE, #a3cfff);
+  background-image: linear-gradient(90deg, #56a5ff, #0C7FFE, rgb(141, 195, 253));
   background-size: 200% 100%;
-  background-position: left center;
+  background-position: bottom right;
   transition: background-position 0.3s ease;
   color: #fff !important;
 }
 .bg-primary-gradient:hover {
-  background-position: right center;
+  background-position: top left;
 }
 .counters-nav-prev:hover,
 .counters-nav-next:hover,
