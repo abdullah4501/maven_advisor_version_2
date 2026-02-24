@@ -113,7 +113,7 @@ const HeroSlider = () => {
                       </svg>
                     </a>
                     <div className="relative">
-                      <div className="absolute -top-[300px] -left-[20%] w-[600px] h-[600px] bg-[radial-gradient(circle,#CEFF9C63_0%,transparent_70%)]" />
+                      <div className="absolute -top-[300px] -left-[20%] w-[600px] h-[600px] bg-[radial-gradient(circle,#75b1f359_0%,transparent_70%)]" />
                     </div>
                   </div>
 
