@@ -239,7 +239,7 @@ export default function FeaturesTabs() {
                     />
                   </div>
 
-                  <div className="w-1/2 max-lg:w-full py-[30px] px-[25px] lg:px-[40px] flex flex-col justify-center gap-10">
+                  <div className="w-1/2 max-lg:w-full py-[50px] px-[25px] lg:px-[40px] flex flex-col justify-center gap-10">
                     <div>
                       <h4 className="text-[26px] md:text-[30px] font-semibold leading-[1.15]">
                         {current.heading}

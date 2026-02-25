@@ -219,7 +219,7 @@ export default function InteractiveShowcase() {
                                         <h3 className="wdt-heading">{item.subtitle}</h3>
                                     </div>
 
-                                    <h2 className="text-[36px] md:text-[50px] font-semibold leading-[1.15]">
+                                    <h2 className="text-[36px] md:text-[46px] font-semibold leading-[1.15]">
                                         {item.heading}
                                     </h2>
 

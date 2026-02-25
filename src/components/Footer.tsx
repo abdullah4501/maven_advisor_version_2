@@ -119,7 +119,7 @@ export default function Footer() {
                                 <h2 className="w-full md:w-1/2 text-white text-[24px] md:text-[32px] font-bold leading-tight">
                                     Register For Our Updates!
                                 </h2>
-                                <div className="sm:w-[70%] w-full">
+                                <div className="sm:w-[65%] w-full">
                                     <div className="relative flex items-center bg-white rounded-[10px] overflow-hidden h-[56px]">
                                         <input
                                             type="email"

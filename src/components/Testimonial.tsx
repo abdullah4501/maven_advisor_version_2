@@ -137,7 +137,7 @@ export default function Testimonial() {
                     variants={fadeUpVariants}
                     initial="hidden"
                     animate={gridInView ? "visible" : "hidden"}
-                    className="grid grid-cols-4 gap-10"
+                    className="grid grid-cols-4 gap-8"
                 >
                     <div className="col-span-4 lg:col-span-3">
                         <div className="bg-white testimonial-left flex flex-col md:flex-row rounded-[20px] h-full px-5">

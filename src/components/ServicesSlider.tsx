@@ -191,10 +191,10 @@ export default function ServicesType3() {
             </motion.div>
 
             <div className="service-slider-nav-buttons">
-              <button className="services-prev flex h-10 w-10 items-center justify-center rounded-full border border-white text-white hover:border-[#79eb93] hover:text-[#79eb93]">
+              <button className="services-prev flex h-10 w-10 lg:h-[3.5em] lg:w-[3.5em] items-center justify-center rounded-full border border-white text-white hover:border-[#79eb93] hover:text-[#79eb93]">
                 <ArrowLeft />
               </button>
-              <button className="services-next flex h-10 w-10 items-center justify-center rounded-full border border-white text-white hover:border-[#79eb93] hover:text-[#79eb93]">
+              <button className="services-next flex h-10 w-10 lg:h-[3.5em] lg:w-[3.5em] items-center justify-center rounded-full border border-white text-white hover:border-[#79eb93] hover:text-[#79eb93]">
                 <ArrowRight />
               </button>
             </div>

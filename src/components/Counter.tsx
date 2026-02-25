@@ -76,7 +76,7 @@ export default function Counter() {
                                 </div>
                             </SwiperSlide>
                             <SwiperSlide key='success'>
-                                <div className=" w-full flex flex-col items-center relative md:border-r border-[#fff3]">
+                                <div className=" w-full flex flex-col items-center relative ">
                                     <h4 className="text-[40px] md:text-[4rem] lg:text-[4.5em] font-medium text-white ">97%</h4>
                                     <p className="text-white font-medium text-[18px] md:text-[20px]">Customer Success Rate</p>
                                 </div>
