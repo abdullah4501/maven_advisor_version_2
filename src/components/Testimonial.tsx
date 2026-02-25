@@ -107,10 +107,10 @@ export default function Testimonial() {
 
 
     return (
-        <section className="bg-[#f6f7f4] py-[40px] pt-0 md:py-[100px] md:-mt-[80px] relative">
+        <section className="bg-[#f6f7f4] py-[40px] pt-0 md:py-[100px] !pb-[85px] md:-mt-[80px] relative">
             <div className="container">
                 {/* Header */}
-                <motion.div className="flex items-center  mb-10 md:mb-20"
+                <motion.div className="flex items-center  mb-10 md:mb-[50px]"
                     ref={headerRef}
                     variants={fadeUpVariants}
                     initial="hidden"
@@ -121,10 +121,10 @@ export default function Testimonial() {
                             <h3 className="wdt-heading text-center">Testimonial</h3>
                         </div>
 
-                        <h2 className="text-[36px] md:text-[46px] font-semibold leading-[1.15] text-center">
-                            Advanced Tools And Features.
+                        <h2 className="text-[36px] md:text-[50px] font-semibold leading-[1.15] text-center">
+                            Hear What Our Clients Say.
                         </h2>
-                        <p className="mt-5 text-[16px] md:text-[18px] leading-[1.7] text-[#6b6b6b] text-center">
+                        <p className="mt-1 text-[16px] md:text-[18px] leading-[1.7] text-[#6b6b6b] text-center">
                             Sem placerat in id cursus mi pretium tellus. Sed diam urna tempor pulvinar vivamus.
                         </p>
 
@@ -146,7 +146,7 @@ export default function Testimonial() {
                                     <h4 className="text-[26px] md:text-[30px] font-semibold leading-[1.15]">
                                         Trusted by over 1300 loyal clients
                                     </h4>
-                                    <p className="mt-5 text-[16px] md:text-[18px] leading-[1.7] text-[#6b6b6b]">
+                                    <p className="mt-2 text-[16px] md:text-[17px] leading-[24px] text-[#6b6b6b]">
                                         Ad litora torquent per conubia nostra inceptos himenaeos. Dis parturient montes nascetur ridiculus mus donec.
                                     </p>
                                 </div>

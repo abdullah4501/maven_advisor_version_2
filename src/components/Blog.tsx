@@ -93,7 +93,7 @@ export default function Blog() {
                             <h3 className="wdt-heading">Our Blog</h3>
                         </div>
 
-                        <h2 className="md:text-[46px] text-[36px] font-semibold leading-[1.15]">
+                        <h2 className="md:text-[50px] text-[36px] font-semibold leading-[1.15]">
                             Latest Business Insights.
                         </h2>
                     </div>

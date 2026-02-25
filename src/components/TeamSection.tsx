@@ -56,7 +56,7 @@ const TeamSection = ({ }) => {
                             <h3 className="wdt-heading text-center">Our Teams</h3>
                         </div>
 
-                        <h2 className="text-[36px] md:text-[46px] font-semibold leading-[1.15] text-center">
+                        <h2 className="text-[36px] md:text-[50px] font-semibold leading-[1.15] text-center">
                             Expert Guidance Team
                         </h2>
                         <p className="mt-5 text-[16px] md:text-[18px] leading-[1.7] text-[#6b6b6b]">

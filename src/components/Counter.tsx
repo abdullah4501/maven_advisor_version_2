@@ -36,7 +36,7 @@ export default function Counter() {
                     variants={fadeUpVariants}
                     initial="hidden"
                     animate={countersInView ? "visible" : "hidden"}
-                    className="counters md:p-[50px] p-[20px] bg-[#161616ba] relative rounded-[20px] "
+                    className="counters md:p-[40px] p-[20px] bg-[#161616ba] relative rounded-[20px] "
                     style={{ backgroundImage: `url(${footerImg})` }}
                 >
                     <div ref={wrapperRef} className="relative">

@@ -44,7 +44,7 @@ export default function ContactSection() {
                         <div className="flex justify-end">
 
                             <div className="lg:w-[50%] md:w-[85%] w-full">
-                                <div className="sm:p-[60px] px-[20px] py-[50px] rounded-[20px] bg-white/60 backdrop-blur-lg">
+                                <div className="sm:p-[60px] px-[20px] !py-[60px] rounded-[20px] bg-white/60 backdrop-blur-lg">
                                     {/* Header */}
                                     <div className="flex">
                                         <div className="m-auto flex flex-col">
@@ -52,10 +52,10 @@ export default function ContactSection() {
                                                 <h3 className="wdt-heading text-center">Let's Talk</h3>
                                             </div>
 
-                                            <h2 className="md:text-[46px] text-[36px] font-semibold leading-[1.15] ">
+                                            <h2 className="md:text-[50px] text-[36px] font-semibold leading-[1.15] ">
                                                 Connect With Us
                                             </h2>
-                                            <p className="mt-5 text-[16px] leading-[1.5] text-[#6b6b6b] ">
+                                            <p className="mt-4 text-[15px] leading-[1.5] text-[#6b6b6b] ">
                                                 Hey! Connect us with <a href="" className="relative link-underline text-[#000]">0987-6543-210</a> , or email us through <a href="" className="relative link-underline text-[#000]">info@example.com</a>, or fill the following form. We will contact you back within 12 hours or prior.
                                             </p>
 
@@ -64,7 +64,7 @@ export default function ContactSection() {
                                     </div>
 
                                     {/* Form */}
-                                    <form className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 relative pt-[30px] md:pt-[60px]">
+                                    <form className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 relative pt-[30px] md:pt-[50px]">
                                         <div className="col-span-1">
                                             <input
                                                 className="w-full rounded-xl px-6 py-5 bg-white text-gray-700 placeholder:text-gray-400 outline-none"

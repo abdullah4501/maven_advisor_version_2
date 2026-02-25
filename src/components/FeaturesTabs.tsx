@@ -134,7 +134,7 @@ export default function FeaturesTabs() {
               <h3 className="wdt-heading">Smart Solutions</h3>
             </div>
 
-            <h2 className="text-[36px] md:text-[46px] font-semibold leading-[1.15]">
+            <h2 className="text-[36px] md:text-[50px] font-semibold leading-[1.15]">
               Advanced Tools And Features.
             </h2>
           </div>

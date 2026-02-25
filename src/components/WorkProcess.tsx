@@ -93,14 +93,14 @@ export default function WorkProcess() {
                     variants={fadeUpVariants}
                     initial="hidden"
                     animate={headerInView ? "visible" : "hidden"}
-                    className="flex flex-col md:flex-row md:items-center items-start justify-between mb-5 md:mb-20"
+                    className="flex flex-col md:flex-row md:items-center items-start justify-between mb-5 md:mb-[45px]"
                 >
                     <div className="max-w-[560px]">
                         <div className="mb-4 flex items-center gap-4 text-[16px] font-bold tracking-wide">
                             <h3 className="wdt-heading">Work Process</h3>
                         </div>
 
-                        <h2 className="text-[36px] md:text-[46px] font-semibold leading-[1.15]">
+                        <h2 className="text-[36px] md:text-[50px] font-semibold leading-[1.15]">
                             Execution With Clear Steps.
                         </h2>
                     </div>
