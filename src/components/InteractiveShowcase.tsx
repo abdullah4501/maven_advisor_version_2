@@ -10,6 +10,7 @@ import { Pagination } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
+import TrustedPartners from "./TrustedPartners"
 
 // icon is stored as an SVG inner-HTML string and rendered via TabIcon + dangerouslySetInnerHTML
 type Item = {
@@ -73,8 +74,6 @@ function MarqueeRow({ items }: { items: MarqueeItem[] }) {
     )
 }
 
-// Generic icon component — accepts the raw SVG path markup and isActive state.
-// Each item stores its own iconPaths string; this component handles styling.
 function TabIcon({ iconPaths, isActive }: { iconPaths: string; isActive: boolean }) {
     return (
         <svg
@@ -316,9 +315,7 @@ export default function InteractiveShowcase() {
                 animate={marqueeInView ? "visible" : "hidden"}
                 className="relative overflow-hidden w-full pb-10 md:pb-20 bg-[#f6f7f4]"
             >
-                <div className="marquee-track flex w-max">
-                    <MarqueeRow items={Marquee} />
-                </div>
+                <TrustedPartners />
             </motion.div>
         </>
     )

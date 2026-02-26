@@ -94,17 +94,12 @@ const fadeUpVariants = {
 
 
 export default function Testimonial() {
-    const [active, setActive] = useState(0)
-    const wrapperRef = useRef<HTMLDivElement>(null)
 
     const gridRef = useRef<HTMLDivElement>(null)
     const countersRef = useRef<HTMLDivElement>(null)
     const headerRef = useRef<HTMLDivElement>(null)
 
     const gridInView = useInView(gridRef, { once: true, margin: "0px 0px -80px 0px" })
-    const countersInView = useInView(countersRef, { once: true, margin: "0px 0px -80px 0px" })
-    const headerInView = useInView(headerRef, { once: true, margin: "0px 0px -80px 0px" })
-
 
     return (
         <section className="bg-[#f6f7f4] py-[40px] pt-0 md:py-[100px] !pb-[85px] md:-mt-[80px] relative">
