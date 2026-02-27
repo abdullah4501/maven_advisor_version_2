@@ -13,6 +13,7 @@ import Footer from "@/components/Footer";
 import Counter from "@/components/Counter";
 import NewsletterPopup from "@/components/NewsletterPopup";
 import { useEffect, useState } from "react";
+import ServiceSlider2 from "@/components/ServiceSlider2";
 
 
 const Home = () => {

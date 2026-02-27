@@ -1,7 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Navigation } from "swiper/modules"
-import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
-import { useEffect, useRef } from "react"
+import { Navigation, Pagination } from "swiper/modules"
+import { useRef, useState } from "react"
 import bgImg from "@/assets/footer.png"
 
 import serviceImg1 from "@/assets/service1.jpg"
@@ -15,53 +14,43 @@ import "swiper/css"
 import "swiper/css/navigation"
 import { motion, useInView } from "framer-motion"
 
-// Generic icon component — renders any SVG inner HTML at a fixed 50x50px size.
-// viewBox is per-icon so each shape scales correctly regardless of its coordinate space.
+// Generic icon component — renders any SVG inner HTML at a fixed size.
 function ServiceIcon({ iconPaths, iconViewBox }: { iconPaths: string; iconViewBox: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox={iconViewBox}
-      width={50}
-      height={50}
-      className="fill-white w-[50px] h-[50px]"
+      className="svg-icon-inner"
       dangerouslySetInnerHTML={{ __html: iconPaths }}
     />
   )
 }
 
-// Icon inner-HTML strings paired with their original viewBox values.
-// To swap an icon, replace the paths string and update viewBox if needed.
 const ICON_PATHS = {
-  // Slide 1 — viewBox 0 0 30 30
   icon1: {
     viewBox: "0 0 30 30",
     paths:
       '<path d="M15,6.75A8.25,8.25,0,1,0,23.25,15,8.25,8.25,0,0,0,15,6.75Zm-.94,6.79a4.59,4.59,0,0,0,1.35.65c.33.12.67.24,1,.41a2.62,2.62,0,0,1,1.37,1.53,2.85,2.85,0,0,1-.19,2.23,2.63,2.63,0,0,1-1.8,1.32v.78a.83.83,0,0,1-1.65,0v-.8A2.62,2.62,0,0,1,12,17.27a.83.83,0,0,1,1.65,0c0,.43.64.85,1.3.85a1.11,1.11,0,0,0,1.28-1.47.89.89,0,0,0-.49-.55c-.31-.14-.62-.25-.92-.36A5.64,5.64,0,0,1,13,14.8a2.57,2.57,0,0,1-.68-3,2.61,2.61,0,0,1,1.86-1.44V9.54a.83.83,0,0,1,1.65,0v.8A2.63,2.63,0,0,1,18,12.73a.83.83,0,1,1-1.65,0c0-.43-.65-.85-1.31-.85-.94,0-1.15.44-1.22.59a.92.92,0,0,0,.25,1.07Z"></path><path d="M27.58,24.76l-1.51.35A15.06,15.06,0,0,0,30,15a14.91,14.91,0,0,0-.72-4.61.92.92,0,1,0-1.76.56A13,13,0,0,1,28.16,15a13.16,13.16,0,0,1-3.71,9.15l.63-2.06a.92.92,0,0,0-1.76-.54l-1.53,5a.91.91,0,0,0,.88,1.19.65.65,0,0,0,.2,0L28,26.56a.91.91,0,0,0,.69-1.11.92.92,0,0,0-1.1-.69Z"></path><path d="M26.84,8.25A.92.92,0,0,0,27.47,8a.94.94,0,0,0,.27-.88L26.56,2a.92.92,0,0,0-1.8.41l.35,1.51a15,15,0,0,0-15-3.12A.9.9,0,0,0,9.57,2a.92.92,0,0,0,1.17.58,13.14,13.14,0,0,1,13.4,3l-2.05-.63a.93.93,0,0,0-.54,1.77l5,1.53a.75.75,0,0,0,.26,0Z"></path><path d="M2.48,19.05A13.15,13.15,0,0,1,1.84,15,13,13,0,0,1,5.31,6.1L4.71,8a.92.92,0,0,0,.88,1.19.91.91,0,0,0,.88-.65L8,3.56A.93.93,0,0,0,6.92,2.39L1.8,3.57a.92.92,0,1,0,.42,1.79L3.82,5A14.9,14.9,0,0,0,0,15a14.74,14.74,0,0,0,.73,4.62.91.91,0,0,0,.87.64,1,1,0,0,0,.29-.05.91.91,0,0,0,.59-1.16Z"></path><path d="M19.05,27.52a12.85,12.85,0,0,1-4.05.64,13.09,13.09,0,0,1-9.11-3.67l2,.61a.92.92,0,0,0,.54-1.76l-5-1.54a1,1,0,0,0-.9.21.91.91,0,0,0-.26.88L3.42,28a.9.9,0,0,0,.89.71.75.75,0,0,0,.21,0,.91.91,0,0,0,.69-1.1L4.85,26a15,15,0,0,0,14.77,3.24.93.93,0,0,0-.57-1.76Z"></path>',
   },
-  // Slide 2 — viewBox 0 0 100 100
   icon2: {
     viewBox: "0 0 100 100",
     paths:
       '<path d="M86.7,56.2c-1.9,7-5.6,13.1-10.8,17.9c0.1,1.1,0.2,2.2,0.2,3.4c0,1.5-0.1,2.9-0.4,4.3c8.4-6.1,14.5-15.1,16.9-25.6H86.7z M29.1,7.8c1.5,1.3,2.7,3,3.5,4.8C37.8,9.9,43.7,8.3,50,8.3s12.2,1.5,17.4,4.2c0.8-1.8,2-3.5,3.5-4.8C64.7,4.4,57.6,2.5,50,2.5 S35.3,4.4,29.1,7.8z M24,74.1c-5.1-4.8-8.9-11-10.7-17.9h-6c2.4,10.4,8.5,19.5,16.9,25.6c-0.2-1.4-0.4-2.8-0.4-4.3 C23.8,76.3,23.9,75.2,24,74.1z"></path><path d="M50,57.5c-11.1,0-20,9-20,20c0,11.1,9,20,20,20c11.1,0,20-9,20-20C70,66.4,61.1,57.5,50,57.5z M47.6,74 c0.8,0.7,2,1.1,3.2,1.6l0.1,0c0.8,0.3,1.6,0.6,2.5,1c1.5,0.7,2.7,2,3.2,3.6c0.6,1.7,0.4,3.7-0.5,5.3c-0.8,1.6-2.4,2.7-4.4,3.1v2 c0,1-0.8,1.8-1.8,1.8c-1,0-1.8-0.8-1.8-1.8v-2.1c-2.6-0.6-5.3-2.6-5.3-5.7c0-1,0.8-1.8,1.8-1.8c1,0,1.8,0.8,1.8,1.8 c0,1.2,1.8,2.3,3.4,2.3c1.5,0,2.6-0.5,3.1-1.4c0.4-0.7,0.5-1.6,0.2-2.4c-0.2-0.7-0.7-1.1-1.3-1.4c-0.7-0.3-1.3-0.5-1.9-0.8 l-0.3-0.1c-1.5-0.6-3.1-1.1-4.4-2.3c-2.1-1.7-2.8-4.8-1.6-7.2c0.8-1.8,2.4-3,4.5-3.4v-2c0-1,0.8-1.8,1.8-1.8c1,0,1.8,0.8,1.8,1.8 v2.1c2.6,0.6,5.3,2.6,5.3,5.7c0,1-0.8,1.8-1.8,1.8c-1,0-1.8-0.8-1.8-1.8c0-1.3-1.8-2.3-3.4-2.3s-2.7,0.5-3.2,1.5 C46.5,72.1,46.8,73.3,47.6,74L47.6,74z"></path><path d="M35.2,38.7v10.2c0,0.6-0.5,1.1-1.1,1.1H3.6c-0.6,0-1.1-0.5-1.1-1.1V38.7c0-4,2.9-7.3,6.7-7.9h0.3c2.6,2,5.8,3.2,9.3,3.2 c3.5,0,6.8-1.2,9.3-3.2h0.3C32.3,31.4,35.2,34.7,35.2,38.7z"></path><path d="M18.9,27.8c4.9,0,8.9-4,8.9-8.9c0-4.9-4-8.9-8.9-8.9c-4.9,0-8.9,4-8.9,8.9C9.9,23.8,13.9,27.8,18.9,27.8z"></path><path d="M97.5,38.7v10.2c0,0.6-0.5,1.1-1.1,1.1H65.9c-0.6,0-1.1-0.5-1.1-1.1V38.7c0-4,2.9-7.3,6.7-7.9h0.3c2.6,2,5.8,3.2,9.3,3.2 c3.5,0,6.8-1.2,9.3-3.2h0.3C94.6,31.4,97.5,34.7,97.5,38.7L97.5,38.7z"></path><path d="M81.1,27.8c4.9,0,8.9-4,8.9-8.9c0-4.9-4-8.9-8.9-8.9c-4.9,0-8.9,4-8.9,8.9C72.2,23.8,76.2,27.8,81.1,27.8z"></path>',
   },
-  // Slide 3 — viewBox 0 0 30 30
   icon3: {
     viewBox: "0 0 30 30",
     paths:
       '<path d="M16.72,0H13.28a2,2,0,0,0-2,2V5.4a2,2,0,0,0,2,2H14v6.83a8.26,8.26,0,0,1,1-.06c.28,0,.56,0,.84,0V7.36h.88a2,2,0,0,0,2-2V2A2,2,0,0,0,16.72,0Z"></path><path d="M5.4,7.36H2a2,2,0,0,0-2,2v3.44a2,2,0,0,0,2,2h.8v8a1.57,1.57,0,0,0,1.57,1.57H6.18a8.42,8.42,0,0,1-.09-1.24,5.91,5.91,0,0,1,0-.6H4.6V14.72h.8a2,2,0,0,0,2-2V9.32a2,2,0,0,0-2-2Z"></path><path d="M28,7.36H24.6a2,2,0,0,0-2,2v3.44a2,2,0,0,0,2,2h.8v7.73H23.89c0,.2,0,.4,0,.6a8.66,8.66,0,0,1-.09,1.25h1.85a1.57,1.57,0,0,0,1.57-1.58v-8H28a2,2,0,0,0,2-2V9.32a2,2,0,0,0-2-2Z"></path><path d="M15,16.09a7,7,0,1,0,7,7A7,7,0,0,0,15,16.09Zm-.76,5.79a3.4,3.4,0,0,0,1.08.52c.27.1.55.21.84.34A2.07,2.07,0,0,1,17.25,24a2.3,2.3,0,0,1-.15,1.78,2.1,2.1,0,0,1-1.45,1.06v.63a.65.65,0,1,1-1.3,0v-.65a2.1,2.1,0,0,1-1.74-1.91.66.66,0,0,1,.66-.65.65.65,0,0,1,.65.65c0,.36.52.7,1.06.7a1,1,0,0,0,1-.44.94.94,0,0,0,.07-.75.75.75,0,0,0-.41-.45c-.24-.11-.49-.2-.73-.29a4.66,4.66,0,0,1-1.47-.75,2,2,0,0,1-.54-2.42,2.07,2.07,0,0,1,1.49-1.16v-.62a.66.66,0,1,1,1.31,0v.64a2.11,2.11,0,0,1,1.73,1.91.66.66,0,0,1-.66.65.65.65,0,0,1-.65-.65c0-.36-.52-.69-1.06-.69-.76,0-.93.36-1,.47a.74.74,0,0,0,.2.87Z"></path>',
   },
-  // Slide 4 — viewBox 0 0 100 100
   icon4: {
     viewBox: "0 0 100 100",
     paths:
-      '<path d="M73.1,51.4c13.5,0,24.4-10.9,24.4-24.4c0-13.5-10.9-24.4-24.4-24.4C59.6,2.5,48.6,13.5,48.6,27C48.6,40.5,59.6,51.4,73.1,51.4z M70.4,12.5V9.1c0-0.4,0.3-0.7,0.7-0.7H75c0.4,0,0.7,0.3,0.7,0.7v3.4c3.9,0.7,6.9,3.8,7.2,7.8c0,0.4-0.3,0.7-0.7,0.7h-3.9c-0.3,0-0.6-0.2-0.7-0.5c-0.3-1.6-1.7-2.8-3.3-2.8H72c-1.7,0-3.2,1.1-3.5,2.8c-0.3,2.1,1.3,3.9,3.3,3.9h2.4c5.1,0,9.1,4.4,8.6,9.5c-0.4,3.9-3.5,6.9-7.2,7.6v3.5c0,0.4-0.3,0.7-0.7,0.7h-3.9c-0.4,0-0.7-0.3-0.7-0.7v-3.4c-3.8-0.6-6.8-3.8-7.2-7.8c0-0.4,0.3-0.8,0.7-0.8h3.9c0.3,0,0.6,0.2,0.7,0.6c0.3,1.6,1.6,2.8,3.3,2.8h2.3c1.7,0,3.2-1.1,3.5-2.8c0.4-2.1-1.2-3.9-3.3-3.9h-2c-4.5,0-8.6-3.3-9-7.8C62.8,17.2,66,13.2,70.4,12.5L70.4,12.5z"></path><path d="M54,65l-4.9-0.7c-0.6-1.5-0.8-1.9-1.4-3.4l3-4c0.8-1.1,0.7-2.5-0.3-3.5l-4-4c-0.9-0.9-2.4-1-3.5-0.2l-4,3c-1.5-0.6-1.9-0.8-3.4-1.4l-0.7-4.9c-0.2-1.3-1.3-2.3-2.6-2.3h-5.7c-1.3,0-2.4,1-2.6,2.3l-0.7,4.9c-1.5,0.6-1.9,0.8-3.4,1.4l-4-3c-1.1-0.8-2.5-0.7-3.5,0.2l-4,4c-0.9,0.9-1,2.4-0.3,3.5l3,4c-0.6,1.5-0.8,1.9-1.4,3.4L4.8,65c-1.3,0.2-2.3,1.3-2.3,2.6v5.7c0,1.3,1,2.4,2.3,2.6l4.9,0.7c0.6,1.5,0.8,1.9,1.4,3.4l-3,4c-0.8,1.1-0.7,2.5,0.3,3.5l4,4c0.9,0.9,2.4,1,3.5,0.3l4-3c1.5,0.6,1.9,0.8,3.4,1.4l0.7,4.9c0.2,1.3,1.3,2.3,2.6,2.3h5.7c1.3,0,2.4-1,2.6-2.3l0.7-4.9c1.5-0.6,1.9-0.8,3.4-1.4l4,3c1.1,0.8,2.5,0.7,3.5-0.3l4-4c0.9-0.9,1-2.4,0.3-3.5l-3-4c0.6-1.5,0.8-1.9,1.4-3.4L54,76c1.3-0.2,2.3-1.3,2.3-2.6v-5.7C56.3,66.3,55.3,65.2,54,65L54,65z M29.4,81.6c-6.1,0-11.1-5-11.1-11.1c0-6.1,5-11.1,11.1-11.1c6.1,0,11.1,5,11.1,11.1C40.5,76.6,35.5,81.6,29.4,81.6z"></path><path d="M10.9,42.9c1.3,0,2.4-1.1,2.4-2.4V20.7c0-2.7,2.2-4.8,4.8-4.8h18.1l-4.3,4.3c-1,1-1,2.5,0,3.5c0.5,0.5,1.1,0.7,1.7,0.7s1.2-0.2,1.7-0.7l8.5-8.5c0.5-0.5,0.7-1.1,0.7-1.7s-0.3-1.3-0.7-1.7l-8.5-8.5c-1-1-2.5-1-3.5,0c-1,1-1,2.5,0,3.5l4.3,4.3H18.1c-5.3,0-9.7,4.3-9.7,9.7v19.7C8.4,41.8,9.5,42.9,10.9,42.9L10.9,42.9z"></path><path d="M89.1,53.9c-1.3,0-2.4,1.1-2.4,2.4v22.9c0,2.7-2.2,4.8-4.8,4.8H66.5l4.3-4.3c1-1,1-2.5,0-3.5c-1-1-2.5-1-3.5,0l-8.5,8.5c-0.5,0.5-0.7,1.1-0.7,1.7c0,0.6,0.3,1.3,0.7,1.7l8.5,8.5c0.5,0.5,1.1,0.7,1.7,0.7c0.6,0,1.2-0.2,1.7-0.7c1-1,1-2.5,0-3.5l-4.3-4.3h15.4c5.3,0,9.7-4.3,9.7-9.7V56.3C91.6,55,90.5,53.9,89.1,53.9L89.1,53.9z"></path>',
+      '<path d="M94.3,65.2c-0.9-0.9-2.4-0.9-3.3,0l-4.1,4.1V55.2c0-1.3-1.1-2.3-2.3-2.3H52.3V46c-0.8,0.1-1.6,0.1-2.3,0.1c-0.8,0-1.6,0-2.3-0.1v6.8H15.4c-1.3,0-2.3,1.1-2.3,2.3v14.1L9,65.2c-0.9-0.9-2.4-0.9-3.3,0c-0.9,0.9-0.9,2.4,0,3.3l8.1,8.1c0.4,0.5,1.1,0.7,1.6,0.7c0.6,0,1.2-0.2,1.6-0.7l8.1-8.1c0.9-0.9,0.9-2.4,0-3.3c-0.9-0.9-2.4-0.9-3.3,0l-4.1,4.1V57.5h29.9v11.8l-4.1-4.1c-0.9-0.9-2.4-0.9-3.3,0c-0.9,0.9-0.9,2.4,0,3.3l8.1,8.1c0.4,0.5,1.1,0.7,1.6,0.7s1.2-0.2,1.6-0.7l8.1-8.1c0.9-0.9,0.9-2.4,0-3.3c-0.9-0.9-2.4-0.9-3.3,0l-4.1,4.1V57.5h30v11.8l-4.1-4.1c-0.9-0.9-2.4-0.9-3.3,0c-0.9,0.9-0.9,2.4,0,3.3l8.1,8.1c0.4,0.5,1.1,0.7,1.6,0.7c0.6,0,1.2-0.2,1.6-0.7l8.1-8.1C95.2,67.5,95.2,66.1,94.3,65.2L94.3,65.2z"></path><path d="M15.4,95.9c4,0,7.2-3.2,7.2-7.2c0-4-3.2-7.2-7.2-7.2c-4,0-7.2,3.2-7.2,7.2C8.2,92.7,11.4,95.9,15.4,95.9z"></path><path d="M50,81.5c-4,0-7.2,3.2-7.2,7.2c0,4,3.2,7.2,7.2,7.2c4,0,7.2-3.2,7.2-7.2C57.2,84.7,54,81.5,50,81.5z"></path><path d="M84.6,81.5c-4,0-7.2,3.2-7.2,7.2c0,4,3.2,7.2,7.2,7.2c4,0,7.2-3.2,7.2-7.2C91.8,84.7,88.6,81.5,84.6,81.5z"></path><path d="M50,41.3c10.3,0,18.7-8.3,18.7-18.6c0-10.3-8.4-18.6-18.7-18.6s-18.7,8.3-18.7,18.6C31.3,33,39.7,41.3,50,41.3z M48,11.7V9.1c0-0.3,0.3-0.5,0.6-0.5h3c0.3,0,0.5,0.2,0.5,0.5v2.6c2.9,0.5,5.2,2.9,5.5,5.9c0,0.3-0.2,0.6-0.6,0.6h-3c-0.2,0-0.5-0.2-0.5-0.4c-0.2-1.2-1.3-2.1-2.5-2.1h-1.7c-1.3,0-2.4,0.9-2.7,2.1c-0.3,1.6,1,3,2.5,3h1.9c3.9,0,7,3.3,6.6,7.3c-0.3,3-2.6,5.2-5.5,5.8v2.7c0,0.3-0.2,0.5-0.5,0.5h-3c-0.3,0-0.6-0.2-0.6-0.5v-2.6c-2.9-0.5-5.2-2.9-5.5-5.9c0-0.3,0.2-0.6,0.6-0.6h3c0.3,0,0.5,0.2,0.5,0.4c0.2,1.2,1.2,2.1,2.5,2.1h1.7c1.3,0,2.5-0.9,2.7-2.1c0.3-1.6-1-3-2.5-3h-1.6c-3.5,0-6.6-2.5-6.9-5.9C42.1,15.3,44.6,12.2,48,11.7L48,11.7z"></path>',
   },
-  // Slides 5 & 6 — swap these paths for your own icons when ready
   icon5: {
-    viewBox: "0 0 30 30",
+    viewBox: "0 0 73.1,51.4",
     paths:
-      '<path d="M15,6.75A8.25,8.25,0,1,0,23.25,15,8.25,8.25,0,0,0,15,6.75Zm-.94,6.79a4.59,4.59,0,0,0,1.35.65c.33.12.67.24,1,.41a2.62,2.62,0,0,1,1.37,1.53,2.85,2.85,0,0,1-.19,2.23,2.63,2.63,0,0,1-1.8,1.32v.78a.83.83,0,0,1-1.65,0v-.8A2.62,2.62,0,0,1,12,17.27a.83.83,0,0,1,1.65,0c0,.43.64.85,1.3.85a1.11,1.11,0,0,0,1.28-1.47.89.89,0,0,0-.49-.55c-.31-.14-.62-.25-.92-.36A5.64,5.64,0,0,1,13,14.8a2.57,2.57,0,0,1-.68-3,2.61,2.61,0,0,1,1.86-1.44V9.54a.83.83,0,0,1,1.65,0v.8A2.63,2.63,0,0,1,18,12.73a.83.83,0,1,1-1.65,0c0-.43-.65-.85-1.31-.85-.94,0-1.15.44-1.22.59a.92.92,0,0,0,.25,1.07Z"></path><path d="M27.58,24.76l-1.51.35A15.06,15.06,0,0,0,30,15a14.91,14.91,0,0,0-.72-4.61.92.92,0,1,0-1.76.56A13,13,0,0,1,28.16,15a13.16,13.16,0,0,1-3.71,9.15l.63-2.06a.92.92,0,0,0-1.76-.54l-1.53,5a.91.91,0,0,0,.88,1.19.65.65,0,0,0,.2,0L28,26.56a.91.91,0,0,0,.69-1.11.92.92,0,0,0-1.1-.69Z"></path><path d="M26.84,8.25A.92.92,0,0,0,27.47,8a.94.94,0,0,0,.27-.88L26.56,2a.92.92,0,0,0-1.8.41l.35,1.51a15,15,0,0,0-15-3.12A.9.9,0,0,0,9.57,2a.92.92,0,0,0,1.17.58,13.14,13.14,0,0,1,13.4,3l-2.05-.63a.93.93,0,0,0-.54,1.77l5,1.53a.75.75,0,0,0,.26,0Z"></path><path d="M2.48,19.05A13.15,13.15,0,0,1,1.84,15,13,13,0,0,1,5.31,6.1L4.71,8a.92.92,0,0,0,.88,1.19.91.91,0,0,0,.88-.65L8,3.56A.93.93,0,0,0,6.92,2.39L1.8,3.57a.92.92,0,1,0,.42,1.79L3.82,5A14.9,14.9,0,0,0,0,15a14.74,14.74,0,0,0,.73,4.62.91.91,0,0,0,.87.64,1,1,0,0,0,.29-.05.91.91,0,0,0,.59-1.16Z"></path><path d="M19.05,27.52a12.85,12.85,0,0,1-4.05.64,13.09,13.09,0,0,1-9.11-3.67l2,.61a.92.92,0,0,0,.54-1.76l-5-1.54a1,1,0,0,0-.9.21.91.91,0,0,0-.26.88L3.42,28a.9.9,0,0,0,.89.71.75.75,0,0,0,.21,0,.91.91,0,0,0,.69-1.1L4.85,26a15,15,0,0,0,14.77,3.24.93.93,0,0,0-.57-1.76Z"></path>',
+      '<path d="M73.1,51.4c13.5,0,24.4-10.9,24.4-24.4c0-13.5-10.9-24.4-24.4-24.4C59.6,2.5,48.6,13.5,48.6,27C48.6,40.5,59.6,51.4,73.1,51.4z M70.4,12.5V9.1c0-0.4,0.3-0.7,0.7-0.7H75c0.4,0,0.7,0.3,0.7,0.7v3.4c3.9,0.7,6.9,3.8,7.2,7.8c0,0.4-0.3,0.7-0.7,0.7h-3.9c-0.3,0-0.6-0.2-0.7-0.5c-0.3-1.6-1.7-2.8-3.3-2.8H72c-1.7,0-3.2,1.1-3.5,2.8c-0.3,2.1,1.3,3.9,3.3,3.9h2.4c5.1,0,9.1,4.4,8.6,9.5c-0.4,3.9-3.5,6.9-7.2,7.6v3.5c0,0.4-0.3,0.7-0.7,0.7h-3.9c-0.4,0-0.7-0.3-0.7-0.7v-3.4c-3.8-0.6-6.8-3.8-7.2-7.8c0-0.4,0.3-0.8,0.7-0.8h3.9c0.3,0,0.6,0.2,0.7,0.6c0.3,1.6,1.6,2.8,3.3,2.8h2.3c1.7,0,3.2-1.1,3.5-2.8c0.4-2.1-1.2-3.9-3.3-3.9h-2c-4.5,0-8.6-3.3-9-7.8C62.8,17.2,66,13.2,70.4,12.5L70.4,12.5z"></path>',
   },
   icon6: {
     viewBox: "0 0 30 30",
@@ -71,12 +60,12 @@ const ICON_PATHS = {
 }
 
 const SERVICES = [
-  { title: ["Decision", "Streamlining"], desc: "Senectus netus suscipit auctor curabitur facilisi cubilia curae.",    img: serviceImg1, icon: ICON_PATHS.icon1 },
-  { title: ["Boosted", "Efficiency"],    desc: "Vel maxime voluptatem aut molestias quia sit praesentium.",         img: serviceImg2, icon: ICON_PATHS.icon2 },
-  { title: ["Recruitment", "Support"],  desc: "Et tempore ipsam non voluptatum molestiae et beatae incidunt.",     img: serviceImg3, icon: ICON_PATHS.icon3 },
-  { title: ["Recruitment", "Support"],  desc: "Et tempore ipsam non voluptatum molestiae et beatae incidunt.",     img: serviceImg4, icon: ICON_PATHS.icon4 },
-  { title: ["Recruitment", "Support"],  desc: "Et tempore ipsam non voluptatum molestiae et beatae incidunt.",     img: serviceImg5, icon: ICON_PATHS.icon5 },
-  { title: ["Recruitment", "Support"],  desc: "Et tempore ipsam non voluptatum molestiae et beatae incidunt.",     img: serviceImg6, icon: ICON_PATHS.icon6 },
+  { title: "Decision Streamlining", desc: "Senectus netus suscipit auctor curabitur facilisi cubilia curae.", img: serviceImg1, icon: ICON_PATHS.icon1 },
+  { title: "Boosted Efficiency", desc: "Vel maxime voluptatem aut molestias quia sit praesentium.", img: serviceImg2, icon: ICON_PATHS.icon2 },
+  { title: "Recruitment Support", desc: "Et tempore ipsam non voluptatum molestiae et beatae incidunt.", img: serviceImg3, icon: ICON_PATHS.icon3 },
+  { title: "Budget Supervision", desc: "Est animi obcaecati vel perferendis debitis aut nemo sequi.", img: serviceImg4, icon: ICON_PATHS.icon4 },
+  { title: "Financial Planning", desc: "Et tempore ipsam non voluptatum molestiae et beatae incidunt.", img: serviceImg6, icon: ICON_PATHS.icon6 }, 
+  { title: "Financial Planning", desc: "Et tempore ipsam non voluptatum molestiae et beatae incidunt.", img: serviceImg6, icon: ICON_PATHS.icon6 }, 
 ]
 
 const fadeUpVariants = {
@@ -89,119 +78,112 @@ const fadeUpVariants = {
 }
 
 export default function ServicesType3() {
-  const wrapperRef = useRef<HTMLDivElement>(null)
   const sliderRef = useRef<HTMLDivElement>(null)
+  const swiperRef = useRef<any>(null)
   const sliderInView = useInView(sliderRef, { once: true, margin: "0px 0px -80px 0px" })
 
-  useEffect(() => {
-    if (!wrapperRef.current) return
-
-    const cards = wrapperRef.current.querySelectorAll<HTMLElement>(
-      ".wdt-service-item.wdt-type-3"
-    )
-
-    cards.forEach((card) => {
-      const desc = card.querySelector<HTMLElement>(".wdt-service-description")
-      if (!desc) return
-
-      const h = desc.offsetHeight
-      card.style.setProperty("--type3-desc-height", `${h}px`)
-    })
-  }, [])
-
   return (
-    <section
-      className="relative w-full overflow-hidden md:rounded-t-[60px] bg-cover bg-center lg:px-[60px] px-0"
-      style={{ backgroundImage: `url(${bgImg})` }}
-    >
-      <div className="absolute inset-0 rounded-[38px] bg-[#161616ba]" />
-      <div className="container py-[50px] md:pt-[150px] md:pb-[180px]">
-        <div className="relative">
+    <>
 
-          {/* HEADER */}
-          <div className="mb-[65px] text-center">
-            <h3 className="mb-3 flex items-center justify-center gap-3 text-white wdt-heading">
-              Consulting Services
-            </h3>
-            <h2 className="text-[38px] md:text-5xl font-semibold text-white leading-[38px]">
-              Trusted <span className="text-[#0C7FFE]">Guidance</span> Built For You
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-white">
-              Euismod quam justo lectus commodo augue arcu dignissim.
-            </p>
-          </div>
 
-          <div ref={wrapperRef} className="relative md:pb-[55px]">
-            <motion.div
-              ref={sliderRef}
-              variants={fadeUpVariants}
-              initial="hidden"
-              animate={sliderInView ? "visible" : "hidden"}
-            >
-              <Swiper
-                modules={[Navigation]}
-                centeredSlides
-                loop
-                spaceBetween={30}
-                speed={600}
-                observer
-                observeParents
-                navigation={{
-                  prevEl: ".services-prev",
-                  nextEl: ".services-next",
-                }}
-                breakpoints={{
-                  0: { slidesPerView: 1 },
-                  992: { slidesPerView: 2 },
-                  1280: { slidesPerView: 3 },
-                }}
+      <section
+        className="relative w-full overflow-hidden md:rounded-t-[60px] bg-cover bg-center"
+        style={{ backgroundImage: `url(${bgImg})` }}
+      >
+        <div className="absolute inset-0 rounded-[38px] bg-[#161616ba]" />
+        <div className="px-[20px] md:px-0 py-[60px] pb-[120px] md:pt-[150px] md:pb-[260px]">
+          <div className="relative">
+
+            {/* HEADER */}
+            <div className="mb-[65px] text-center">
+              <h3 className="mb-3 flex items-center justify-center gap-3 text-white wdt-heading">
+                Consulting Services
+              </h3>
+              <h2 className="text-[38px] md:text-5xl font-semibold text-white leading-[38px]">
+                Trusted <span className="text-[#0C7FFE]">Guidance</span> Built For You
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-white">
+                Euismod quam justo lectus commodo augue arcu dignissim.
+              </p>
+            </div>
+
+            <div className="wdt-services-wrapper cursor-grab relative md:pb-[55px]">
+              <motion.div
+                ref={sliderRef}
+                variants={fadeUpVariants}
+                initial="hidden"
+                animate={sliderInView ? "visible" : "hidden"}
               >
-                {SERVICES.map((s, i) => (
-                  <SwiperSlide key={i}>
-                    <div className="wdt-service-item wdt-type-3">
+                <Swiper
+                  modules={[Pagination]}
+                  ref={swiperRef}
+                  centeredSlides={true}
+                  spaceBetween={20}
+                  speed={600}
+                  observer
+                  observeParents
+                  pagination={{
+                    el: ".services-pagination",
+                    type: "bullets",
+                    clickable: true,
+                  }}
+                  breakpoints={{
+                    0: { slidesPerView: 1 },
+                    768: { slidesPerView: 1.5 },
+                    992: { slidesPerView: 2.5 },
+                    1280: { slidesPerView: 5.5 },
+                  }}
+                  >
+                  {SERVICES.map((s, i) => (
+                    <SwiperSlide key={i}>
+                      {/* wdt-type-1 card — matches WordPress inspect element structure exactly */}
+                      <div className="wdt-service2-item wdt-type-1">
 
-                      {/* MEDIA */}
-                      <div className="wdt-service-media-group">
-                        <div className="wdt-service-image">
-                          <img src={s.img} alt={s.title.join(" ")} />
-                        </div>
-                      </div>
-
-                      {/* CONTENT */}
-                      <div className="wdt-service-detail-group">
-                        <div className="wdt-service-content-group flex items-center justify-between mb-[26px] py-[5px]">
-                          <h5 className="text-white text-[24px] md:text-[30px] font-semibold leading-[33px]">
-                            {s.title[0]}<br />{s.title[1]}
-                          </h5>
-                          <div className="wdt-service-type-icon svg-icon">
-                            {/* Each slide renders its own icon at 50x50px */}
-                            <ServiceIcon iconPaths={s.icon.paths} iconViewBox={s.icon.viewBox} />
+                        {/* MEDIA GROUP */}
+                        <div className="wdt-service2-media-group">
+                          <div className="wdt-service2-image w-full">
+                            <a href="#">
+                              <img src={s.img} alt={s.title} />
+                            </a>
                           </div>
                         </div>
 
-                        <div className="wdt-service-description">
-                          {s.desc}
+                        {/* DETAIL GROUP */}
+                        <div className="wdt-service2-detail-group">
+
+                          {/* Icon */}
+                          <div className="wdt-service2-type-icon svg-icon">
+                            <ServiceIcon iconPaths={s.icon.paths} iconViewBox={s.icon.viewBox} />
+                          </div>
+
+                          {/* Title */}
+                          <div className="wdt-service2-title">
+                            <h5><a href="#">{s.title}</a></h5>
+                          </div>
+
+                          {/* Description */}
+                          <div className="wdt-service2-description">
+                            {s.desc}
+                          </div>
+
+                          {/* Button */}
+                          <div className="wdt-service2-button">
+                            <a href="#">Learn More</a>
+                          </div>
+
                         </div>
                       </div>
-
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
             </motion.div>
 
-            <div className="service-slider-nav-buttons">
-              <button className="services-prev flex h-10 w-10 lg:h-[3.5em] lg:w-[3.5em] items-center justify-center rounded-full border border-white text-white hover:border-[#79eb93] hover:text-[#79eb93]">
-                <ArrowLeft />
-              </button>
-              <button className="services-next flex h-10 w-10 lg:h-[3.5em] lg:w-[3.5em] items-center justify-center rounded-full border border-white text-white hover:border-[#79eb93] hover:text-[#79eb93]">
-                <ArrowRight />
-              </button>
-            </div>
+            <div className="services-pagination swiper-pagination flex justify-center gap-2  !-bottom-[30px] "></div>
           </div>
 
         </div>
       </div>
-    </section>
+    </section >
+    </>
   )
 }

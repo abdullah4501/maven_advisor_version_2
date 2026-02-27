@@ -1,5 +1,8 @@
+import { useState, useRef } from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Autoplay } from "swiper/modules";
+import { motion, AnimatePresence } from 'framer-motion';
+import type { Swiper as SwiperType } from 'swiper';
 import "swiper/css";
 import "swiper/css/effect-fade";
 
@@ -49,6 +52,15 @@ const slides: Slide[] = [
 ];
 
 const HeroSlider = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const swiperRef = useRef<SwiperType | null>(null);
+
+  const handlePaginationClick = (index: number) => {
+    if (swiperRef.current) {
+      swiperRef.current.slideToLoop(index);
+      swiperRef.current.autoplay?.start(); // keep autoplay alive
+    }
+  };
   return (
     <section className="relative z-0 cursor-grab">
       <Swiper
@@ -126,6 +138,32 @@ const HeroSlider = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+      <div className="absolute bottom-10 left-4    lg:left-24 z-20 flex items-center">
+        {slides.map((_, index) => (
+          <div key={index} className="flex items-center">
+            <button
+              onClick={() => handlePaginationClick(index)}
+              className={`text-sm font-medium transition-all duration-300 ${activeIndex === index ? 'text-white' : 'text-white/50'
+                }`}
+            >
+              {String(index + 1).padStart(2, '0')}
+            </button>
+            {index < slides.length - 1 && (
+              <div className="mx-3 w-10 h-[1px] bg-white/30 relative">
+                {activeIndex === index && (
+                  <motion.div
+                    className="absolute top-0 left-0 h-full bg-white"
+                    initial={{ width: 0 }}
+                    animate={{ width: '100%' }}
+                    transition={{ duration: 5, ease: 'linear' }}
+                    key={`progress-${activeIndex}`}
+                  />
+                )}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
 
     </section>
   );
