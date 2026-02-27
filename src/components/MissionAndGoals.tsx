@@ -7,6 +7,7 @@ import tabImg3 from "@/assets/Filler-With-tab-img-01.jpg"
 import tabImg4 from "@/assets/Filler-With-tab-img-02.jpg"
 import centeredCircle from "@/assets/Bullish-rotate-img-02.png"
 import rotateImg1 from "@/assets/Bullish-rotate-img-01.png"
+import { Link } from "react-router-dom"
 
 
 const CheckIcon = () => (
@@ -84,6 +85,7 @@ export default function MissionAndGoals() {
     const sectionRef = useRef<HTMLDivElement>(null)
     const inView = useInView(sectionRef, { once: true, margin: "0px 0px -80px 0px" })
     const content = TAB_CONTENT[activeTab]
+    const [open, setOpen] = useState(false)
 
     return (
         <>
@@ -137,10 +139,52 @@ export default function MissionAndGoals() {
 
                             {/* Tabs */}
                             <div className="w-full mt-10">
+                                <div className="block lg:hidden w-full relative">
+                                    <button
+                                        onClick={() => setOpen(!open)}
+                                        className="w-full rounded-[20px] bg-primary-gradient flex items-center justify-between gap-[20px] py-[18px] px-[20px]"
+                                    >
+                                        <div className="flex items-center gap-[20px]">
+                                            <span className="text-lg font-medium text-[#fff]">
+                                                {TABS[activeTab]?.label}
+                                            </span>
+                                        </div>
 
+                                        <svg
+                                            className={`w-8 h-8 transition-transform ${open ? "" : "rotate-180"}`}
+                                            viewBox="0 0 24 24"
+                                            fill="currentColor"
+                                        >
+                                            <path d="M7 14l5-5 5 5" />
+                                        </svg>
+                                    </button>
+
+                                    {open && (
+                                        <ul className="absolute left-0 top-full w-full flex flex-col rounded-[20px] overflow-hidden bg-white border border-[#e5e5e5]">
+                                            {TABS.map((item, j) => (
+                                                <li
+                                                    key={j}
+                                                    onClick={() => {
+                                                        setActiveTab(j)
+                                                        setOpen(false)
+                                                    }}
+                                                    className={`cursor-pointer transition-colors ${j === activeTab ? "bg-primary-gradient" : "bg-white hover:bg-[#f5f5f5]"
+
+                                                        }`}
+                                                >
+                                                    <div className="flex items-center gap-[20px] py-[18px] px-[20px] w-full">
+                                                        <span className={`text-lg font-medium ${j === activeTab ? "text-white" : "text-black"}`}>
+                                                            {item.label}
+                                                        </span>
+                                                    </div>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    )}
+                                </div>
                                 {/* Tab List */}
                                 <ul
-                                    className="wdt-tabs-list flex flex-wrap items-center gap-3 m-0 p-0 list-none border-b-2 border-[#e1e1e1] relative z-10 gap-y-5"
+                                    className="wdt-tabs-list hidden lg:flex flex-wrap items-center gap-3 m-0 p-0 list-none border-b-2 border-[#e1e1e1] relative z-10 gap-y-5"
                                     role="tablist"
                                 >
                                     {TABS.map((tab, i) => (

@@ -64,8 +64,8 @@ const SERVICES = [
   { title: "Boosted Efficiency", desc: "Vel maxime voluptatem aut molestias quia sit praesentium.", img: serviceImg2, icon: ICON_PATHS.icon2 },
   { title: "Recruitment Support", desc: "Et tempore ipsam non voluptatum molestiae et beatae incidunt.", img: serviceImg3, icon: ICON_PATHS.icon3 },
   { title: "Budget Supervision", desc: "Est animi obcaecati vel perferendis debitis aut nemo sequi.", img: serviceImg4, icon: ICON_PATHS.icon4 },
-  { title: "Financial Planning", desc: "Et tempore ipsam non voluptatum molestiae et beatae incidunt.", img: serviceImg6, icon: ICON_PATHS.icon6 }, 
-  { title: "Financial Planning", desc: "Et tempore ipsam non voluptatum molestiae et beatae incidunt.", img: serviceImg6, icon: ICON_PATHS.icon6 }, 
+  { title: "Financial Planning", desc: "Et tempore ipsam non voluptatum molestiae et beatae incidunt.", img: serviceImg6, icon: ICON_PATHS.icon6 },
+  { title: "Financial Planning", desc: "Et tempore ipsam non voluptatum molestiae et beatae incidunt.", img: serviceImg6, icon: ICON_PATHS.icon6 },
 ]
 
 const fadeUpVariants = {
@@ -87,26 +87,27 @@ export default function ServicesType3() {
 
 
       <section
-        className="relative w-full overflow-hidden md:rounded-t-[60px] bg-cover bg-center"
-        style={{ backgroundImage: `url(${bgImg})` }}
+        className="relative w-full overflow-hidden md:rounded-t-[60px] bg-cover bg-center bg-[#000000]"
       >
-        <div className="absolute inset-0 rounded-[38px] bg-[#161616ba]" />
-        <div className="px-[20px] md:px-0 py-[60px] pb-[120px] md:pt-[150px] md:pb-[260px]">
+        <div className="py-[60px] pb-[120px] md:pt-[150px] md:pb-[260px]">
           <div className="relative">
 
-            {/* HEADER */}
-            <div className="mb-[65px] text-center">
-              <h3 className="mb-3 flex items-center justify-center gap-3 text-white wdt-heading">
-                Consulting Services
-              </h3>
-              <h2 className="text-[38px] md:text-5xl font-semibold text-white leading-[38px]">
-                Trusted <span className="text-[#0C7FFE]">Guidance</span> Built For You
-              </h2>
-              <p className="mx-auto mt-4 max-w-xl text-white">
-                Euismod quam justo lectus commodo augue arcu dignissim.
-              </p>
+            {/* HEADER — stays inside container */}
+            <div className="container mx-auto px-[20px] md:px-[40px]">
+              <div className="mb-[65px] text-center">
+                <h3 className="mb-3 flex items-center justify-center gap-3 text-white wdt-heading">
+                  Consulting Services
+                </h3>
+                <h2 className="text-[38px] md:text-5xl font-semibold text-white leading-[38px]">
+                  Trusted <span className="text-[#0C7FFE]">Guidance</span> Built For You
+                </h2>
+                <p className="mx-auto mt-4 max-w-xl text-white">
+                  Euismod quam justo lectus commodo augue arcu dignissim.
+                </p>
+              </div>
             </div>
 
+            {/* SLIDER — has its own container for left alignment only */}
             <div className="wdt-services-wrapper cursor-grab relative md:pb-[55px]">
               <motion.div
                 ref={sliderRef}
@@ -114,29 +115,32 @@ export default function ServicesType3() {
                 initial="hidden"
                 animate={sliderInView ? "visible" : "hidden"}
               >
-                <Swiper
-                  modules={[Pagination]}
-                  ref={swiperRef}
-                  centeredSlides={true}
-                  spaceBetween={20}
-                  speed={600}
-                  observer
-                  observeParents
-                  pagination={{
-                    el: ".services-pagination",
-                    type: "bullets",
-                    clickable: true,
-                  }}
-                  breakpoints={{
-                    0: { slidesPerView: 1 },
-                    768: { slidesPerView: 1.5 },
-                    992: { slidesPerView: 2.5 },
-                    1280: { slidesPerView: 5.5 },
-                  }}
+                <div className="container mx-auto px-[20px] md:px-[40px]">
+                  <Swiper
+                    style={{ overflow: "visible" }}
+                    modules={[Pagination]}
+                    ref={swiperRef}
+                    centeredSlides={false}
+                    spaceBetween={20}
+                    speed={600}
+                    observer
+                    observeParents
+                    pagination={{
+                      el: ".services-pagination",
+                      type: "bullets",
+                      clickable: true,
+                    }}
+                    breakpoints={{
+                      0:    { slidesPerView: 1 },
+                      480:  { slidesPerView: 1 },
+                      768:  { slidesPerView: 2 },
+                      1025: { slidesPerView: 3 },
+                      1281: { slidesPerView: 3.2 },
+                      1541: { slidesPerView: 4.2 },
+                    }}
                   >
-                  {SERVICES.map((s, i) => (
-                    <SwiperSlide key={i}>
-                      {/* wdt-type-1 card — matches WordPress inspect element structure exactly */}
+                    {SERVICES.map((s, i) => (
+                      <SwiperSlide key={i}>
                       <div className="wdt-service2-item wdt-type-1">
 
                         {/* MEDIA GROUP */}
@@ -173,17 +177,22 @@ export default function ServicesType3() {
 
                         </div>
                       </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-            </motion.div>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </div>
 
-            <div className="services-pagination swiper-pagination flex justify-center gap-2  !-bottom-[30px] "></div>
+                {/* Pagination centered under the container */}
+                <div className="container mx-auto px-[20px] md:px-[40px]">
+                  <div className="services-pagination swiper-pagination flex justify-center gap-2 mt-[50px]"></div>
+                </div>
+
+              </motion.div>
+            </div>
+
           </div>
-
         </div>
-      </div>
-    </section >
+      </section>
     </>
   )
 }

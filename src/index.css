@@ -1036,8 +1036,8 @@ body {
 .wdt-service2-item.wdt-type-1 .wdt-service2-detail-group {
   padding: 40px;
   height: auto;
-  display: flex;
-  flex-direction: column;
+  place-content: end;
+  display: grid;
   justify-content: flex-end;
   padding-top: 200px;
   z-index: 2;
@@ -1050,7 +1050,6 @@ body {
 }
 
 .wdt-service2-item.wdt-type-1 .wdt-service2-media-group {
-  position: relative;
   right: 0;
   top: 0;
   display: block;
@@ -1174,7 +1173,10 @@ body {
 /* Image */
 .wdt-service2-item.wdt-type-1 .wdt-service2-image {
   height: 100%;
-  position: relative;
+  width: 100%;
+  right: 0;
+  top: 0;
+  position: absolute;
   overflow: hidden;
 }
 
@@ -1339,4 +1341,175 @@ body {
   width: 150px;
   height: auto;
   display: block;
+}
+
+
+/* =====================================================
+   Counter Section — wdt-rc-template-modern
+   ===================================================== */
+
+
+.wdt-column-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+/* Each column */
+.wdt-column {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Overlap columns: all items after the first get a negative left margin */
+@media screen and (min-width: 768px) {
+  .wdt-column:not(:first-child) .wdt-counter-item {
+    margin-left: -10px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .wdt-column-wrapper {
+    flex-direction: column;
+  }
+
+  .wdt-column:not(:first-child) .wdt-counter-item {
+    margin-top: -10px;
+  }
+}
+
+/* ---- The card circle ---- */
+.wdt-counter-item {
+  height: clamp(11.875rem, 7.2917rem + 9.5486vw, 18.75rem);
+  /* 190-300px */
+  width: clamp(11.875rem, 7.2917rem + 9.5486vw, 18.75rem);
+  /* 190-300px */
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 9999px;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  padding: clamp(0rem, -2.9464rem + 5.5804vw, 3.75rem);
+  /* 0-60px */
+  box-shadow: 0 0 30px 10px rgba(100, 100, 100, 0.3);
+  position: relative;
+  z-index: 3;
+  cursor: pointer;
+  transition: box-shadow 0.4s ease;
+  /* stacking context for pseudo elements */
+}
+
+.wdt-counter-item:hover {
+  box-shadow: none;
+}
+
+/* Rotating gradient border ring */
+.wdt-counter-item::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  display: inline-block;
+  background: linear-gradient(25deg,
+      rgba(12, 127, 254, 1) 54%,
+      rgba(86, 165, 255, 1),
+      transparent);
+  box-shadow: 0 0 80px 1px rgba(86, 165, 255, 0.3);
+
+  border-radius: inherit;
+  z-index: -3;
+  opacity: 0;
+  transition: opacity 0.3s linear;
+  animation: wdt-rotate 3s infinite linear;
+}
+
+/* Solid white fill sits between border and content */
+.wdt-counter-item::after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  background-color: #ffffff;
+  display: inline-block;
+  border-radius: 9999px;
+  left: 0;
+  top: 0;
+  opacity: 1;
+}
+
+.wdt-counter-item:hover::before,
+.wdt-counter-item:hover::after {
+  opacity: 1;
+}
+
+@keyframes wdt-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.wdt-counter-number-wrap {
+  background: linear-gradient(25deg,
+      rgba(12, 127, 254, 1) 54%,
+      rgba(86, 165, 255, 1),
+      transparent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-size: clamp(2.5rem, 2.082rem + 1.9108vw, 4.375rem);
+  font-weight: 800;
+  line-height: 1;
+}
+
+.wdt-counter-number,
+.wdt-counter-suffix {
+  font-size: inherit;
+  font-weight: inherit;
+  color: inherit;
+  line-height: inherit;
+}
+
+.wdt-counter-number-wrap>*:not(:last-child) {
+  margin-right: 2px;
+}
+
+.wdt-counter-item:hover .wdt-counter-number,
+.wdt-counter-item:hover .wdt-counter-suffix {
+  color: #0C7FFE;
+}
+
+/* ---- Label ---- */
+.wdt-counter-label {
+  font-size: clamp(1rem, 0.8333rem + 0.3472vw, 1.25rem);
+  /* 16-20px */
+  font-weight: 400;
+  color: #161616;
+  padding: 0 20px;
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
+/* ---- Dark bg variant (if used inside dark section) ---- */
+.wdt-dark-bg .wdt-counter-item::after {
+  background-color: #1a1a1a;
+}
+
+.wdt-dark-bg .wdt-counter-label {
+  color: #ffffff;
+}
+
+.wdt-dark-bg .wdt-counter-number-wrap {
+  color: #0C7FFE;
 }

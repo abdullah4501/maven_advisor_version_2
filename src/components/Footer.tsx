@@ -137,7 +137,7 @@ export default function Footer() {
                                         <div
                                             onClick={() => setAgreed(!agreed)}
                                             className={`w-[16px] h-[16px] rounded-[3px] border-2 flex items-center justify-center transition-colors ${agreed
-                                                ? "bg-primary-gradient border-[#a5f94e]"
+                                                ? "bg-primary-gradient  border-primary"
                                                 : "border-[#ffffff4d] bg-transparent"
                                                 }`}
                                         >
@@ -172,7 +172,7 @@ export default function Footer() {
                                         <ul className="flex flex-col gap-[12px] p-6 lg:p-0">
                                             {["About", "Live Chat", "Trading Guide", "Terms & Conditions", "Privacy Policy", "Risk Disclosure"].map((item) => (
                                                 <li key={item}>
-                                                    <Link to="/" className="text-white font-medium text-[15px] hover:text-[#a5f94e] transition-colors">{item}</Link>
+                                                    <Link to="/" className="text-white font-medium text-[15px] hover:text-primary transition-colors">{item}</Link>
                                                 </li>
                                             ))}
                                         </ul>
@@ -229,7 +229,7 @@ export default function Footer() {
                                     <ul className="flex flex-col gap-[14px]">
                                         {["About", "Live Chat", "Trading Guide", "Terms & Conditions", "Privacy Policy", "Risk Disclosure"].map((item) => (
                                             <li key={item}>
-                                                <Link to="/" className="text-white text-[15px] hover:text-[#a5f94e] transition-colors">{item}</Link>
+                                                <Link to="/" className="text-white text-[15px] hover:text-primary transition-colors">{item}</Link>
                                             </li>
                                         ))}
                                     </ul>
@@ -239,7 +239,7 @@ export default function Footer() {
                                     <ul className="flex flex-col gap-[14px]">
                                         {["Our Story", "Our Team", "Portfolio", "Career", "Client Testimonials", "Security Promise"].map((item) => (
                                             <li key={item}>
-                                                <Link to="/" className="text-white text-[15px] hover:text-[#a5f94e] transition-colors">{item}</Link>
+                                                <Link to="/" className="text-white text-[15px] hover:text-primary transition-colors">{item}</Link>
                                             </li>
                                         ))}
                                     </ul>
@@ -249,7 +249,7 @@ export default function Footer() {
                                     <ul className="flex flex-col gap-[14px]">
                                         {["FAQ", "Pricing Plan", "Contact", "Market Overview", "Deposit & Withdrawals", "Account Login"].map((item) => (
                                             <li key={item}>
-                                                <Link to="/" className="text-white text-[15px] hover:text-[#a5f94e] transition-colors">{item}</Link>
+                                                <Link to="/" className="text-white text-[15px] hover:text-primary transition-colors">{item}</Link>
                                             </li>
                                         ))}
                                     </ul>
@@ -266,11 +266,11 @@ export default function Footer() {
                             &copy; 2025 Wedesigntech. All Rights Reserved
                         </p>
                         <div className="flex items-center gap-6">
-                            <Link to="/" className="text-white text-[14px] hover:text-[#a5f94e] transition-colors">
+                            <Link to="/" className="text-white text-[14px] hover:text-primary transition-colors">
                                 Privacy Policy
                             </Link>
                             <span className="text-[#ffffff33]">|</span>
-                            <Link to="/" className="text-white text-[14px] hover:text-[#a5f94e] transition-colors">
+                            <Link to="/" className="text-white text-[14px] hover:text-primary transition-colors">
                                 Terms & Condition
                             </Link>
                         </div>

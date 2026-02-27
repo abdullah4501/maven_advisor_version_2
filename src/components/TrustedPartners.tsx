@@ -55,44 +55,46 @@ const TrustedPartners = () => {
     );
 
     return (
-        <div className='container'>
-            <div className="flex items-center  mb-10 md:mb-[50px]"
-            >
-                <div className="m-auto flex flex-col items-center">
-                    <div className="mb-4 flex items-center gap-4 text-[16px] font-bold tracking-wide">
-                        <h3 className="wdt-heading text-center">Our Company</h3>
+        <section className='md:rounded-t-[60px] bg-[#f6f7f4] py-[60px] md:py-[120px] md:pt-[60px] md:-mt-[80px] relative'>
+            <div className='container'>
+                <div className="flex items-center  mb-10 md:mb-[50px]"
+                >
+                    <div className="m-auto flex flex-col items-center">
+                        <div className="mb-4 flex items-center gap-4 text-[16px] font-bold tracking-wide">
+                            <h3 className="wdt-heading text-center">Our Company</h3>
+                        </div>
+
+                        <h2 className="text-[36px] md:text-[50px] font-semibold leading-[1.15] text-center">
+                            Trusted Business Partner
+                        </h2>
                     </div>
 
-                    <h2 className="text-[36px] md:text-[50px] font-semibold leading-[1.15] text-center">
-                        Trusted Business Partner
-                    </h2>
                 </div>
+                <div className="partners-marquee-container">
+                    {/* First row - scrolling left */}
+                    <div className="marquee-wrapper">
+                        <div className="marquee marquee-left">
+                            {[...companies, ...companies].map((company, idx) => (
+                                <CompanyCard key={idx} name={company.name} icon={company.icon} />
+                            ))}
+                        </div>
+                        <div className="marquee-gradient-left"></div>
+                        <div className="marquee-gradient-right"></div>
+                    </div>
 
+                    {/* Second row - scrolling right */}
+                    <div className="marquee-wrapper">
+                        <div className="marquee marquee-right">
+                            {[...companies2, ...companies2].map((company, idx) => (
+                                <CompanyCard key={idx} name={company.name} icon={company.icon} />
+                            ))}
+                        </div>
+                        <div className="marquee-gradient-left"></div>
+                        <div className="marquee-gradient-right"></div>
+                    </div>
+                </div>
             </div>
-            <div className="partners-marquee-container">
-                {/* First row - scrolling left */}
-                <div className="marquee-wrapper">
-                    <div className="marquee marquee-left">
-                        {[...companies, ...companies].map((company, idx) => (
-                            <CompanyCard key={idx} name={company.name} icon={company.icon} />
-                        ))}
-                    </div>
-                    <div className="marquee-gradient-left"></div>
-                    <div className="marquee-gradient-right"></div>
-                </div>
-
-                {/* Second row - scrolling right */}
-                <div className="marquee-wrapper">
-                    <div className="marquee marquee-right">
-                        {[...companies2, ...companies2].map((company, idx) => (
-                            <CompanyCard key={idx} name={company.name} icon={company.icon} />
-                        ))}
-                    </div>
-                    <div className="marquee-gradient-left"></div>
-                    <div className="marquee-gradient-right"></div>
-                </div>
-            </div>
-        </div>
+        </section>
     );
 };
 

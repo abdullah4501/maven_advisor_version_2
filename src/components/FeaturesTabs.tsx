@@ -161,7 +161,7 @@ export default function FeaturesTabs() {
               >
                 <div className="flex items-center gap-[20px]">
                   {FEATURES[active].icon}
-                  <span className="text-lg font-medium text-[#000]">
+                  <span className="text-lg font-medium text-[#fff]">
                     {FEATURES[active].title}
                   </span>
                 </div>
@@ -189,7 +189,7 @@ export default function FeaturesTabs() {
                     >
                       <div className="flex items-center gap-[20px] py-[18px] px-[20px] w-full">
                         {tab.icon}
-                        <span className="text-lg font-medium text-white">
+                        <span className={`text-lg font-medium ${i === active ? "text-white" : "text-black"}`}>
                           {tab.title}
                         </span>
                       </div>

@@ -313,7 +313,6 @@ export default function InteractiveShowcase() {
                 variants={fadeUpVariants}
                 initial="hidden"
                 animate={marqueeInView ? "visible" : "hidden"}
-                className="relative overflow-hidden w-full pb-10 md:pb-20 bg-[#f6f7f4]"
             >
                 <TrustedPartners />
             </motion.div>

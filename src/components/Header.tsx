@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react"
 import logo from "@/assets/logo.png"
 import officeTeam from "@/assets/blog-img-11.jpg"
 import { Search, X, ChevronRight, Info, CircleHelp, DollarSign, Settings, FileSearch, Briefcase, FileText, Users, AlertTriangle, Phone, Mail } from "lucide-react"
-import { Link } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 import {
   Youtube,
   Instagram,
@@ -75,7 +75,15 @@ const Header = () => {
 
             {/* DESKTOP NAV */}
             <nav className="hidden lg:flex items-center gap-0 text-white ">
-              <Link to="/" className="text-[18px] hover:text-primary duration-300 navItem relative px-[25px] active">Home</Link>
+              <NavLink
+                to="/"
+                end
+                className={({ isActive }) =>
+                  `text-[18px] hover:text-primary duration-300 navItem relative px-[25px]${isActive ? ' active' : ''}`
+                }
+              >
+                Home
+              </NavLink>
 
               {/* ABOUT WITH DROPDOWN */}
               <div
@@ -84,9 +92,16 @@ const Header = () => {
                 onMouseLeave={handleMouseLeave}
                 ref={dropdownRef}
               >
-                <Link to="/about-us" className="text-[18px] hover:text-primary duration-300 navItem relative px-[25px] flex items-center gap-1">
+                <NavLink
+                  to="/about-us"
+                  className={({ isActive }) =>
+                    `text-[18px] hover:text-primary duration-300 navItem relative px-[25px] flex items-center gap-1${
+                      isActive ? ' active' : ''
+                    }`
+                  }
+                >
                   About
-                </Link>
+                </NavLink>
 
                 {/* MEGA DROPDOWN */}
                 <div
@@ -106,9 +121,13 @@ const Header = () => {
                         {/* IMAGE + MENU */}
                         <div className="flex gap-10">
                           <div className="flex w-[40%] flex-col gap-5">
-                            <Link
-                              to='/'
-                              className="flex items-center gap-4 !text-[#fff] transition"
+                            <NavLink
+                              to='/about-us'
+                              className={({ isActive }) =>
+                                `flex items-center gap-4 !text-[#fff] transition${
+                                  isActive ? ' active' : ''
+                                }`
+                              }
                             >
                               <span className=" flex items-center justify-center">
                                 <Info className="w-[30px] h-[30px]" />
@@ -116,7 +135,7 @@ const Header = () => {
                               <span className="text-[16px] font-semibold">
                                 About Us
                               </span>
-                            </Link>
+                            </NavLink>
                             <img
                               src="https://images.unsplash.com/photo-1522071820081-009f0129c71c"
                               alt="Team"
@@ -126,10 +145,14 @@ const Header = () => {
 
                           <div className="w-[60%] grid grid-cols-2 gap-x-14 gap-y-6">
                             {menuItems.slice(1).map((item, i) => (
-                              <Link
+                              <NavLink
                                 key={i}
                                 to={item.link}
-                                className="flex items-center gap-4 !text-[#fff] transition"
+                                className={({ isActive }) =>
+                                  `flex items-center gap-4 !text-[#fff] transition${
+                                    isActive ? ' active' : ''
+                                  }`
+                                }
                               >
                                 <span className="flex items-center justify-center">
                                   {item.icon}
@@ -137,7 +160,7 @@ const Header = () => {
                                 <span className="text-[16px] font-semibold">
                                   {item.label}
                                 </span>
-                              </Link>
+                              </NavLink>
                             ))}
                           </div>
                         </div>
@@ -240,9 +263,36 @@ const Header = () => {
                 </div>
               </div>
 
-              <Link to="/services" className="text-[18px] hover:text-primary duration-300 navItem relative px-[25px]">Services</Link>
-              <Link to="/blog" className="text-[18px] hover:text-primary duration-300 navItem relative px-[25px]">Blog</Link>
-              <Link to="/contact" className="text-[18px] hover:text-primary duration-300 navItem relative px-[25px]">Contact Us</Link>
+              <NavLink
+                to="/services"
+                className={({ isActive }) =>
+                  `text-[18px] hover:text-primary duration-300 navItem relative px-[25px]${
+                    isActive ? ' active' : ''
+                  }`
+                }
+              >
+                Services
+              </NavLink>
+              <NavLink
+                to="/blog"
+                className={({ isActive }) =>
+                  `text-[18px] hover:text-primary duration-300 navItem relative px-[25px]${
+                    isActive ? ' active' : ''
+                  }`
+                }
+              >
+                Blog
+              </NavLink>
+              <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                  `text-[18px] hover:text-primary duration-300 navItem relative px-[25px]${
+                    isActive ? ' active' : ''
+                  }`
+                }
+              >
+                Contact Us
+              </NavLink>
             </nav>
 
             <div className="flex items-center gap-4">
@@ -288,23 +338,26 @@ const Header = () => {
         </div>
 
         {/* MENU */}
-        <nav className="">
+        <nav>
           {[
-            { label: "Home", active: true },
-            { label: "Pages" },
-            { label: "Blog" },
-            { label: "Careers" },
-            { label: "Contact Us" },
+            { label: "Home", to: "/" },
+            { label: "About", to: "/about-us" },
+            { label: "Services", to: "/services" },
+            { label: "Blog", to: "/blog" },
+            { label: "Contact Us", to: "/contact" },
           ].map((item, i) => (
-            <div
+            <NavLink
               key={i}
-              className={`flex items-center justify-between px-4 py-2 mb-2 cursor-pointer border-b border-white/20 last:border-0
-                ${item.active ? "bg-[#7DEC94] text-black" : "text-white"}
-              `}
+              to={item.to!}
+              className={({ isActive }) =>
+                `flex items-center justify-between px-4 py-2 mb-2 cursor-pointer border-b border-white/20 last:border-0 ${
+                  isActive ? "bg-[#7DEC94] text-black" : "text-white"
+                }`
+              }
             >
               <span className="text-[16px] font-medium">{item.label}</span>
               <ChevronRight size={18} />
-            </div>
+            </NavLink>
           ))}
         </nav>
       </aside>

@@ -16,6 +16,7 @@ import TrustedPartners from '@/components/TrustedPartners';
 import FAQSection2 from '@/components/Faqs2';
 import TestimonialsSection2 from '@/components/TestimonialSection2';
 import MissionAndGoals from '@/components/MissionAndGoals';
+import OurMission from '@/components/OurMission';
 
 const About = ({ breadcrumb }) => {
     return (
@@ -68,6 +69,7 @@ const About = ({ breadcrumb }) => {
 
 
             </section>
+            <OurMission />
             <MissionAndGoals />
             <ServiceSlider2 />
             <div className='py-20 bg-[#f6f7f4]'>
