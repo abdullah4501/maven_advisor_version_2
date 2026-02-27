@@ -32,6 +32,29 @@ const FAQS = [
     answer: "Et tempore ipsam non voluptatum molestiae et beatae incidunt. Vel maxime voluptatem aut molestias quia sit praesentium.",
 
   },
+  {
+    question: "What services do you offer?",
+    answer: "Euismod quam justo lectus commodo augue arcu dignissim. Senectus netus suscipit auctor curabitur facilisi cubilia curae.",
+    active: true
+  },
+  {
+    question: "How long does a typical project take?",
+    answer: "Vel maxime voluptatem aut molestias quia sit praesentium. Et tempore ipsam non voluptatum molestiae et beatae incidunt."
+  },
+  {
+    question: "What are your pricing models?",
+    answer: "Senectus netus suscipit auctor curabitur facilisi cubilia curae. Euismod quam justo lectus commodo augue arcu dignissim."
+  },
+  {
+    question: "Do you provide ongoing support?",
+    answer: "Et tempore ipsam non voluptatum molestiae et beatae incidunt. Vel maxime voluptatem aut molestias quia sit praesentium.",
+
+  },
+  {
+    question: "What is the purpose of a financial audit?",
+    answer: "Et tempore ipsam non voluptatum molestiae et beatae incidunt. Vel maxime voluptatem aut molestias quia sit praesentium.",
+
+  },
 ]
 
 const fadeUpVariants = {
@@ -45,7 +68,9 @@ const fadeUpVariants = {
 
 export default function FAQSection() {
   const [active, setActive] = useState<number | null>(0)
+  const [activeFaq2, setActiveFaq2] = useState<number | null>(0)
   const [activeStyling, setActiveStyling] = useState<number | null>(0)
+  const [activeStyling2, setActiveStyling2] = useState<number | null>(0)
   const wrapperRef = useRef<HTMLDivElement>(null)
   const sectionRef = useRef<HTMLDivElement>(null)
   const sectionInView = useInView(sectionRef, { once: true, margin: "0px 0px -80px 0px" })
@@ -91,7 +116,7 @@ export default function FAQSection() {
               <div className="col-span-1">
 
                 {/* FAQ ITEMS */}
-                {FAQS.map((faq, index) => {
+                {FAQS.slice(0,4).map((faq, index) => {
                   const isActive = active === index
 
                   return (
@@ -149,16 +174,16 @@ export default function FAQSection() {
               <div className="col-span-1">
 
                 {/* FAQ ITEMS */}
-                {FAQS.map((faq, index) => {
-                  const isActive = active === index
+                {FAQS.slice(5,9).map((faq, index) => {
+                  const isActiveFaq2 = activeFaq2 === index
 
                   return (
                     <div
                       key={index}
-                      onClick={() => setActive(isActive ? null : index)}
+                      onClick={() => setActiveFaq2(isActiveFaq2 ? null : index)}
                       className={`rounded-[20px] lg:p-[40px] p-[30px] mb-5 last:mb-0 cursor-pointer transition-all duration-300 ease-in-out
-                          ${isActive ? "faq-item" : "bg-[#3f3f3f]"}
-                          ${activeStyling === index ? "faq-item-active" : ""}
+                          ${isActiveFaq2 ? "faq-item" : "bg-[#3f3f3f]"}
+                          ${activeStyling2 === index ? "faq-item-active" : ""}
                       `}
                     >
                       {/* Header */}
@@ -173,13 +198,13 @@ export default function FAQSection() {
                         </h3>
 
                         <span
-                          className={`faq-arrow transition-transform duration-300 ${isActive ? "rotate-180" : ""
+                          className={`faq-arrow transition-transform duration-300 ${isActiveFaq2 ? "rotate-180" : ""
                             }`}
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 15.62 10.97"
-                            className={`w-4 h-4 transition-colors duration-300 ${isActive ? "fill-black" : "fill-white"
+                            className={`w-4 h-4 transition-colors duration-300 ${isActiveFaq2 ? "fill-black" : "fill-white"
                               }`}
                           >
                             <path d="M6.77,10.47a1.32,1.32,0,0,0,2.07,0l6.5-8.35A1.31,1.31,0,0,0,14.3,0h-13a1.31,1.31,0,0,0-1,2.12Z" />
@@ -188,7 +213,7 @@ export default function FAQSection() {
                       </div>
 
                       <div
-                        className={`grid transition-all duration-300 ease-in-out ${isActive ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0 mt-0"
+                        className={`grid transition-all duration-300 ease-in-out ${isActiveFaq2 ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0 mt-0"
                           }`}
                       >
                         <div className="overflow-hidden">
