@@ -863,6 +863,7 @@ body {
   .marquee-track {
     animation: marquee-left 15s linear infinite;
   }
+
   .wdt-services-wrapper .swiper-slide {
     height: auto !important;
   }
@@ -1229,11 +1230,12 @@ body {
   background: rgb(255, 255, 255);
   opacity: 1;
   transition: all 0.3s ease;
-  
+
 }
 
 
-.services-pagination .swiper-pagination-bullet-active, .services-pagination .swiper-pagination-bullet:hover {
+.services-pagination .swiper-pagination-bullet-active,
+.services-pagination .swiper-pagination-bullet:hover {
   background-image: linear-gradient(90deg, #56a5ff, #0C7FFE, rgb(141, 195, 253));
   background-size: 200% 100%;
   background-position: bottom right;
@@ -1246,4 +1248,95 @@ body {
 
 .services-pagination .swiper-pagination-bullet:hover {
   background-position: top left;
+}
+
+/* 1. Tab animated underline via ::before / ::after */
+.wdt-tab-btn {
+  position: relative;
+}
+
+.wdt-tab-btn::before,
+.wdt-tab-btn::after {
+  position: absolute;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  content: '';
+  background-color: #161616;
+}
+
+.wdt-tab-btn::before {
+  left: 0;
+  transition: width 0.5s cubic-bezier(.22, .61, .36, 1);
+}
+
+.wdt-tab-btn::after {
+  right: 0;
+  transition: width 0.8s cubic-bezier(.22, .61, .36, 1);
+}
+
+.wdt-tab-active .wdt-tab-btn::before,
+.wdt-tabs-list li:hover .wdt-tab-btn::before {
+  width: 100%;
+}
+
+
+
+/* 2. Per-cell grid padding */
+.img-cell-1 {
+  padding: 60px 0 0 60px;
+}
+
+.img-cell-4 {
+  padding: 0 60px 60px 0;
+}
+
+@media (max-width: 767px) {
+  .img-cell-1 {
+    padding: 30px 0 0 30px;
+  }
+
+  .img-cell-4 {
+    padding: 0 30px 30px 0;
+  }
+}
+
+@media (max-width: 479px) {
+
+  .img-cell-1,
+  .img-cell-4 {
+    padding: 0;
+  }
+}
+
+.wdt-rotate-image-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+.wdt-rotate-image {
+  position: absolute;
+  inset: 0;
+}
+
+.wdt-rotate-image img {
+  width: 150px;
+  height: auto;
+  display: block;
+}
+
+.wdt-rotate-second-image {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.wdt-rotate-second-image img {
+  width: 150px;
+  height: auto;
+  display: block;
 }

@@ -11,6 +11,11 @@ import ServicesSlider from '@/components/ServicesSlider';
 import Faqs from '@/components/Faqs';
 import Testimonial from '@/components/Testimonial';
 import Counter from '@/components/Counter';
+import ServiceSlider2 from '@/components/ServiceSlider2';
+import TrustedPartners from '@/components/TrustedPartners';
+import FAQSection2 from '@/components/Faqs2';
+import TestimonialsSection2 from '@/components/TestimonialSection2';
+import MissionAndGoals from '@/components/MissionAndGoals';
 
 const About = ({ breadcrumb }) => {
     return (
@@ -63,13 +68,13 @@ const About = ({ breadcrumb }) => {
 
 
             </section>
-            <FeaturesTabs />
-            <ServicesSlider />
-            <div className='bg-[#f6f7f4] py-[40px] md:py-[60px] md:-mt-[80px] relative'>
-                <Counter />
+            <MissionAndGoals />
+            <ServiceSlider2 />
+            <div className='py-20 bg-[#f6f7f4]'>
+                <TrustedPartners />
             </div>
-            <Faqs/>
-            <Testimonial />
+            <FAQSection2/>
+            <TestimonialsSection2 />
             <Footer />
         </>
     );

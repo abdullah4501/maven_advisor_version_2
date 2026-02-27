@@ -146,8 +146,7 @@ export default function FAQSection() {
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 15.62 10.97"
-                            className={`w-4 h-4 transition-colors duration-300 ${isActive ? "fill-black" : "fill-white"
-                              }`}
+                            className={`w-4 h-4 transition-colors duration-300 fill-white `}
                           >
                             <path d="M6.77,10.47a1.32,1.32,0,0,0,2.07,0l6.5-8.35A1.31,1.31,0,0,0,14.3,0h-13a1.31,1.31,0,0,0-1,2.12Z" />
                           </svg>
@@ -204,8 +203,7 @@ export default function FAQSection() {
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 15.62 10.97"
-                            className={`w-4 h-4 transition-colors duration-300 ${isActiveFaq2 ? "fill-black" : "fill-white"
-                              }`}
+                            className={`w-4 h-4 transition-colors duration-300 fill-white`}
                           >
                             <path d="M6.77,10.47a1.32,1.32,0,0,0,2.07,0l6.5-8.35A1.31,1.31,0,0,0,14.3,0h-13a1.31,1.31,0,0,0-1,2.12Z" />
                           </svg>

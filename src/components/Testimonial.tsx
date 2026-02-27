@@ -102,7 +102,7 @@ export default function Testimonial() {
     const gridInView = useInView(gridRef, { once: true, margin: "0px 0px -80px 0px" })
 
     return (
-        <section className="bg-[#f6f7f4] py-[40px] pt-0 md:py-[100px] !pb-[85px] md:-mt-[80px] relative">
+        <section className="bg-[#f6f7f4] py-[40px] pt-0 md:py-[100px] !pb-[85px] md:-mt-[80px] relative ">
             <div className="container">
                 {/* Header */}
                 <motion.div className="flex items-center  mb-10 md:mb-[50px]"
