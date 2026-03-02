@@ -85,7 +85,7 @@ export default function WorkProcess() {
     }, []);
 
     return (
-        <section className="bg-[#f6f7f4] py-[40px] md:py-[80px] md:pb-[150px] md:-mt-[80px] relative work-process-section !pt-[40px]">
+        <section className="bg-[#f6f7f4] py-[40px] md:py-[120px] md:-mt-[80px] relative work-process-section !pt-[80px]">
             <div className="container">
                 {/* Header */}
                 <motion.div
@@ -93,22 +93,20 @@ export default function WorkProcess() {
                     variants={fadeUpVariants}
                     initial="hidden"
                     animate={headerInView ? "visible" : "hidden"}
-                    className="flex flex-col md:flex-row md:items-center items-start justify-between mb-5 md:mb-[45px]"
+                    className="flex flex-col md:flex-row items-center justify-center mb-5 md:mb-[45px]"
                 >
-                    <div className="max-w-[560px]">
-                        <div className="mb-4 flex items-center gap-4 text-[16px] font-bold tracking-wide">
-                            <h3 className="wdt-heading">Work Process</h3>
+                    <div className="">
+                        <div className="mb-4 flex items-center justify-center gap-4 text-[16px] font-bold tracking-wide">
+                            <h3 className="wdt-heading text-center">Work Process</h3>
                         </div>
 
-                        <h2 className="text-[36px] md:text-[50px] font-semibold leading-[1.15]">
+                        <h2 className="text-[36px] md:text-[50px] font-semibold leading-[1.15] text-center">
                             Execution With Clear Steps.
                         </h2>
+                        <p className="mx-auto mt-4 text-center">
+                            Euismod quam justo lectus commodo augue arcu dignissim.
+                        </p>
                     </div>
-
-                    <button className="mt-10 inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
-                        View All
-                        <ArrowRight />
-                    </button>
                 </motion.div>
                 <motion.div
                     ref={sliderRef}
@@ -185,10 +183,8 @@ export default function WorkProcess() {
                             </SwiperSlide>
                         ))}
                     </Swiper>
-                </motion.div>
-            <p className="text-[20px] text-center md:mt-20 mt-10">Let’s talk! We’ll reply within a day. <a href="#" className="relative link-underline">Get Free Quote</a>
-            </p>
-        </div>
+                </motion.div>   
+            </div>
         </section >
     )
 }

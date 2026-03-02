@@ -4,16 +4,17 @@ import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react"
 import { useEffect, useRef } from "react"
 import bgImg from "@/assets/footer.png"
 
-import serviceImg1 from "@/assets/service1.jpg"
-import serviceImg2 from "@/assets/service2.jpg"
-import serviceImg3 from "@/assets/service3.jpg"
-import serviceImg4 from "@/assets/service4.jpg"
-import serviceImg5 from "@/assets/service5.jpg"
-import serviceImg6 from "@/assets/service6.jpg"
+import serviceImg1 from "@/assets/service-1.jpg"
+import serviceImg2 from "@/assets/service-2.jpg"
+import serviceImg3 from "@/assets/service-3.jpg"
+import serviceImg4 from "@/assets/service-4.jpg"
+import serviceImg5 from "@/assets/service-5.jpg"
+import serviceImg6 from "@/assets/service-6.jpg"
 
 import "swiper/css"
 import "swiper/css/navigation"
 import { motion, useInView } from "framer-motion"
+import HistorySlider from "./HistorySlider"
 
 // Generic icon component — renders any SVG inner HTML at a fixed 50x50px size.
 // viewBox is per-icon so each shape scales correctly regardless of its coordinate space.
@@ -88,7 +89,7 @@ const fadeUpVariants = {
   },
 }
 
-export default function ServiceSlider2() {
+export default function OurHistory() {
   const wrapperRef = useRef<HTMLDivElement>(null)
   const sliderRef = useRef<HTMLDivElement>(null)
   const sliderInView = useInView(sliderRef, { once: true, margin: "0px 0px -80px 0px" })
@@ -115,92 +116,9 @@ export default function ServiceSlider2() {
       style={{ backgroundImage: `url(${bgImg})` }}
     >
       <div className="absolute inset-0 rounded-[38px] bg-[#161616ba]" />
-      <div className="container py-[50px] md:pt-[150px] md:pb-[180px]">
-        <div className="relative">
-
-          {/* HEADER */}
-          <div className="mb-[65px] text-center">
-            <h3 className="mb-3 flex items-center justify-center gap-3 text-white wdt-heading">
-              Consulting Services
-            </h3>
-            <h2 className="text-[38px] md:text-5xl font-semibold text-white leading-[38px]">
-              Trusted <span className="text-[#0C7FFE]">Guidance</span> Built For You
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-white">
-              Euismod quam justo lectus commodo augue arcu dignissim.
-            </p>
-          </div>
-
-          <div ref={wrapperRef} className="relative md:pb-[55px]">
-            <motion.div
-              ref={sliderRef}
-              variants={fadeUpVariants}
-              initial="hidden"
-              animate={sliderInView ? "visible" : "hidden"}
-            >
-              <Swiper
-                modules={[Navigation]}
-                centeredSlides
-                loop
-                spaceBetween={30}
-                speed={600}
-                observer
-                observeParents
-                navigation={{
-                  prevEl: ".services-prev",
-                  nextEl: ".services-next",
-                }}
-                breakpoints={{
-                  0: { slidesPerView: 1 },
-                  992: { slidesPerView: 2 },
-                  1280: { slidesPerView: 3 },
-                }}
-              >
-                {SERVICES.map((s, i) => (
-                  <SwiperSlide key={i}>
-                    <div className="wdt-service-item wdt-type-3">
-
-                      {/* MEDIA */}
-                      <div className="wdt-service-media-group">
-                        <div className="wdt-service-image">
-                          <img src={s.img} alt={s.title.join(" ")} />
-                        </div>
-                      </div>
-
-                      {/* CONTENT */}
-                      <div className="wdt-service-detail-group">
-                        <div className="wdt-service-content-group flex items-center justify-between mb-[26px] py-[5px]">
-                          <h5 className="text-white text-[24px] md:text-[30px] font-semibold leading-[33px]">
-                            {s.title[0]}<br />{s.title[1]}
-                          </h5>
-                          <div className="wdt-service-type-icon svg-icon">
-                            {/* Each slide renders its own icon at 50x50px */}
-                            <ServiceIcon iconPaths={s.icon.paths} iconViewBox={s.icon.viewBox} />
-                          </div>
-                        </div>
-
-                        <div className="wdt-service-description">
-                          {s.desc}
-                        </div>
-                      </div>
-
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </motion.div>
-
-            <div className="service-slider-nav-buttons">
-              <button className="services-prev flex h-10 w-10 lg:h-[3.5em] lg:w-[3.5em] items-center justify-center rounded-full border border-white text-white hover:border-primary hover:text-primary">
-                <ArrowLeft />
-              </button>
-              <button className="services-next flex h-10 w-10 lg:h-[3.5em] lg:w-[3.5em] items-center justify-center rounded-full border border-white text-white hover:border-primary hover:text-primary">
-                <ArrowRight />
-              </button>
-            </div>
-          </div>
-
-        </div>
+      <div className="py-[50px] md:pt-[150px] md:pb-[180px]">
+        
+        <HistorySlider />
       </div>
     </section>
   )
