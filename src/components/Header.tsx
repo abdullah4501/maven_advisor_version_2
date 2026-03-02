@@ -64,7 +64,6 @@ const Header = () => {
 
   return (
     <>
-      {/* ================= HEADER ================= */}
 
       <header className="absolute top-[30px] left-0 w-full z-50 ">
         <div className="container">
@@ -88,9 +87,9 @@ const Header = () => {
               {/* ABOUT WITH DROPDOWN */}
               <div
                 className=""
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-                ref={dropdownRef}
+                // onMouseEnter={handleMouseEnter}
+                // onMouseLeave={handleMouseLeave}
+                // ref={dropdownRef}
               >
                 <NavLink
                   to="/about-us"

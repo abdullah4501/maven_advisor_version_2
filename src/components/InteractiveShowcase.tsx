@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import sectionImg from "@/assets/h1.jpg"
 import sectionImg2 from "@/assets/feature_main2.jpg"
 import sectionImg3 from "@/assets/interactive-Section-img-02.jpg"
@@ -10,7 +10,7 @@ import { Pagination } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
-import TrustedPartners from "./TrustedPartners"
+import type { Swiper as SwiperType } from "swiper"
 
 // icon is stored as an SVG inner-HTML string and rendered via TabIcon + dangerouslySetInnerHTML
 type Item = {
@@ -81,9 +81,8 @@ function TabIcon({ iconPaths, isActive }: { iconPaths: string; isActive: boolean
             viewBox="0 0 50 50"
             width={50}
             height={50}
-            className={`transition-colors duration-300  ${
-                isActive ? "fill-[#0C7FFE]" : "fill-[#686868] group-hover:fill-[#0C7FFE]"
-            }`}
+            className={`transition-colors duration-300  ${isActive ? "fill-[#0C7FFE]" : "fill-[#686868] group-hover:fill-[#0C7FFE]"
+                }`}
             dangerouslySetInnerHTML={{ __html: iconPaths }}
         />
     )
@@ -173,7 +172,9 @@ export default function InteractiveShowcase() {
     // useInView hooks — once: true means animation fires only once
     const topAreaInView = useInView(topAreaRef, { once: true, margin: "0px 0px -80px 0px" })
     const bottomTabsInView = useInView(bottomTabsRef, { once: true, margin: "0px 0px -80px 0px" })
-    const marqueeInView = useInView(marqueeRef, { once: true, margin: "0px 0px -80px 0px" })
+    const swiperRef = useRef<SwiperType | null>(null)
+
+
 
     return (
         <>
@@ -246,6 +247,7 @@ export default function InteractiveShowcase() {
                         <div ref={wrapperRef} className="relative">
                             {/* Fix 6: removed deprecated observer / observeParents props */}
                             <Swiper
+                                onSwiper={(swiper) => (swiperRef.current = swiper)}
                                 loop
                                 spaceBetween={56}
                                 speed={600}
@@ -269,9 +271,8 @@ export default function InteractiveShowcase() {
                                         <SwiperSlide key={index}>
                                             <div
                                                 onClick={() => setActive(index)}
-                                                className={`group cursor-pointer transition-opacity ${
-                                                    isActive ? "opacity-100" : "opacity-40 hover:opacity-100"
-                                                }`}
+                                                className={`group cursor-pointer transition-opacity ${isActive ? "opacity-100" : "opacity-40 hover:opacity-100"
+                                                    }`}
                                             >
                                                 {/* ICON — each tab gets its own SVG paths via tab.icon */}
                                                 <div className="relative mb-6 pb-8 w-fit tab-line w-full border-b border-[#d0d0d0]">
@@ -307,15 +308,6 @@ export default function InteractiveShowcase() {
                 </div>
             </section>
 
-            {/* MARQUEE */}
-            <motion.div
-                ref={marqueeRef}
-                variants={fadeUpVariants}
-                initial="hidden"
-                animate={marqueeInView ? "visible" : "hidden"}
-            >
-                
-            </motion.div>
         </>
     )
 }

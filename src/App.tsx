@@ -5,6 +5,7 @@ import Lenis from "@studio-freight/lenis";
 import Index from "@/pages/Index"
 import AboutUs from "@/pages/About"
 import Services from './pages/Services';
+import Contact from './pages/Contact';
 
 const queryClient = new QueryClient();
 
@@ -34,6 +35,7 @@ const App = () => {
             <Route path="/" element={<Index />} />
              <Route path="/about-us" element={<AboutUs breadcrumb="About Us" />} />
              <Route path="/services" element={<Services breadcrumb="Services" />} />
+             <Route path="/contact" element={<Contact breadcrumb="Contact Us" />} />
             
           </Routes>
 

@@ -26,7 +26,7 @@ const Home = () => {
   }, [])
   return (
     <>
-      <NewsletterPopup isOpen={popupOpen} onClose={() => setPopupOpen(false)} />
+      {/* <NewsletterPopup isOpen={popupOpen} onClose={() => setPopupOpen(false)} /> */}
       <Header />
       <HeroSlider />
       <InteractiveShowcase />

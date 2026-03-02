@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Navigation, Pagination } from "swiper/modules"
+import { Navigation, Pagination, Autoplay } from "swiper/modules"
 import { useRef, useState } from "react"
 import bgImg from "@/assets/footer.png"
 
@@ -118,7 +118,9 @@ export default function ServicesType3() {
                 <div className="container mx-auto px-[20px] md:px-[40px]">
                   <Swiper
                     style={{ overflow: "visible" }}
-                    modules={[Pagination]}
+                    modules={[Pagination, Autoplay]}
+                    autoplay={{ delay: 5000, disableOnInteraction: false }}
+
                     ref={swiperRef}
                     centeredSlides={false}
                     spaceBetween={20}
@@ -131,9 +133,9 @@ export default function ServicesType3() {
                       clickable: true,
                     }}
                     breakpoints={{
-                      0:    { slidesPerView: 1 },
-                      480:  { slidesPerView: 1 },
-                      768:  { slidesPerView: 2 },
+                      0: { slidesPerView: 1 },
+                      480: { slidesPerView: 1 },
+                      768: { slidesPerView: 2 },
                       1025: { slidesPerView: 3 },
                       1281: { slidesPerView: 3.2 },
                       1541: { slidesPerView: 4.2 },
@@ -141,42 +143,42 @@ export default function ServicesType3() {
                   >
                     {SERVICES.map((s, i) => (
                       <SwiperSlide key={i}>
-                      <div className="wdt-service2-item wdt-type-1">
+                        <div className="wdt-service2-item wdt-type-1">
 
-                        {/* MEDIA GROUP */}
-                        <div className="wdt-service2-media-group">
-                          <div className="wdt-service2-image w-full">
-                            <a href="#">
-                              <img src={s.img} alt={s.title} />
-                            </a>
+                          {/* MEDIA GROUP */}
+                          <div className="wdt-service2-media-group">
+                            <div className="wdt-service2-image w-full">
+                              <a href="#">
+                                <img src={s.img} alt={s.title} />
+                              </a>
+                            </div>
+                          </div>
+
+                          {/* DETAIL GROUP */}
+                          <div className="wdt-service2-detail-group">
+
+                            {/* Icon */}
+                            <div className="wdt-service2-type-icon svg-icon">
+                              <ServiceIcon iconPaths={s.icon.paths} iconViewBox={s.icon.viewBox} />
+                            </div>
+
+                            {/* Title */}
+                            <div className="wdt-service2-title">
+                              <h5><a href="#">{s.title}</a></h5>
+                            </div>
+
+                            {/* Description */}
+                            <div className="wdt-service2-description">
+                              {s.desc}
+                            </div>
+
+                            {/* Button */}
+                            <div className="wdt-service2-button">
+                              <a href="#">Learn More</a>
+                            </div>
+
                           </div>
                         </div>
-
-                        {/* DETAIL GROUP */}
-                        <div className="wdt-service2-detail-group">
-
-                          {/* Icon */}
-                          <div className="wdt-service2-type-icon svg-icon">
-                            <ServiceIcon iconPaths={s.icon.paths} iconViewBox={s.icon.viewBox} />
-                          </div>
-
-                          {/* Title */}
-                          <div className="wdt-service2-title">
-                            <h5><a href="#">{s.title}</a></h5>
-                          </div>
-
-                          {/* Description */}
-                          <div className="wdt-service2-description">
-                            {s.desc}
-                          </div>
-
-                          {/* Button */}
-                          <div className="wdt-service2-button">
-                            <a href="#">Learn More</a>
-                          </div>
-
-                        </div>
-                      </div>
                       </SwiperSlide>
                     ))}
                   </Swiper>

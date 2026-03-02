@@ -1,5 +1,5 @@
 import { useState, useRef } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Link, Mail, Phone } from "lucide-react";
 import { ChevronDown } from "lucide-react"
 import { motion, useInView } from "framer-motion";
 
@@ -36,33 +36,99 @@ export default function ContactSection() {
                 variants={fadeUpVariants}
                 initial="hidden"
                 animate={sectionInView ? "visible" : "hidden"}
-                className="relative w-full md:rounded-t-[60px] bg-[url('../src/assets/contactbg.jpg')] bg-cover bg-center"
+                className="relative w-full md:rounded-t-[60px] bg-cover bg-center"
             >
-                <div className="absolute inset-0 md:rounded-[80px] bg-[#1616166e]" />
+                <div className="absolute inset-0 md:rounded-[80px] bg-[#f6f7f4]" />
                 <div className="container pt-[120px] pb-[170px]">
                     <div className="relative">
                         <div className="flex justify-end">
 
-                            <div className="lg:w-[50%] md:w-[85%] w-full">
-                                <div className="sm:p-[60px] px-[20px] !py-[60px] rounded-[20px] bg-white/60 backdrop-blur-lg">
-                                    {/* Header */}
-                                    <div className="flex">
-                                        <div className="m-auto flex flex-col">
-                                            <div className="mb-4 flex gap-4 text-[16px] font-bold tracking-wide">
-                                                <h3 className="wdt-heading text-center">Let's Talk</h3>
-                                            </div>
-
-                                            <h2 className="md:text-[50px] text-[36px] font-semibold leading-[1.15] ">
-                                                Connect With Us
-                                            </h2>
-                                            <p className="mt-4 text-[15px] leading-[1.5] text-[#6b6b6b] ">
-                                                Hey! Connect us with <a href="" className="relative link-underline text-[#000]">0987-6543-210</a> , or email us through <a href="" className="relative link-underline text-[#000]">info@example.com</a>, or fill the following form. We will contact you back within 12 hours or prior.
-                                            </p>
-
+                            <div className=" grid md:grid-cols-2 grid-cols-1 w-full gap-10">
+                                {/* Header */}
+                                <div className="flex flex-col gap-10">
+                                    <div className=" flex flex-col">
+                                        <div className="mb-4 flex gap-4 text-[16px] font-bold tracking-wide">
+                                            <h3 className="wdt-heading text-center">Let's Talk</h3>
                                         </div>
 
+                                        <h2 className="md:text-[50px] text-[36px] font-semibold leading-[1.15] ">
+                                            Connect With Us
+                                        </h2>
+                                        <p className="mt-4 text-[15px] leading-[1.5] text-[#6b6b6b] ">
+                                            Hey! Connect us with <a href="" className="relative link-underline text-[#000]">0987-6543-210</a> , or email us through <a href="" className="relative link-underline text-[#000]">info@example.com</a>, or fill the following form. We will contact you back within 12 hours or prior.
+                                        </p>
+                                    </div>
+                                    <div className="grid lg:grid-cols-2 grid-cols-1 justify-between gap-7">
+                                        <div className="col-span-1 flex gap-4 mb-6">
+                                            <div className="p-[10px] rounded-[14px] bg-[#6565651a]">
+                                                <div className="w-[48px] h-[48px] rounded-[14px] bg-primary-gradient flex items-center justify-center">
+                                                    <Phone className="w-[20px] h-[20px]" />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p className="font-bold text-[15px] text-black">Company Address</p>
+                                                <p className="text-[14px] text-black/60">
+                                                    230 Neville Street New Albany, IN 71520
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className="col-span-1 flex gap-4 mb-6">
+                                            <div className="p-[10px] rounded-[14px] bg-[#6565651a]">
+                                                <div className="w-[48px] h-[48px] rounded-[14px] bg-primary-gradient flex items-center justify-center">
+                                                    <Phone className="w-[20px] h-[20px]" />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p className="font-bold text-[15px] text-black">Talk To Us</p>
+                                                <p className="text-[14px] text-black/60">
+                                                    +00-123-456789
+                                                </p>
+                                                <p className="text-[14px] text-black/60">
+                                                    +000-1234-56789
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className="col-span-1 flex gap-4 mb-6">
+                                            <div className="p-[10px] rounded-[14px] bg-[#6565651a]">
+                                                <div className="w-[48px] h-[48px] rounded-[14px] bg-primary-gradient flex items-center justify-center">
+                                                    <Phone className="w-[20px] h-[20px]" />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p className="font-bold text-[15px] text-black">Office Days</p>
+                                                <p className="text-[14px] text-black/60">
+                                                    Mon to Sat: 09:00am-07:00pm
+                                                </p>
+                                                <p className="text-[14px] text-black/60">
+                                                    Sunday : Closed
+                                                </p>
+                                            </div>
+                                        </div>
+                                        {/* EMAIL */}
+                                        <div className="col-span-1 flex gap-4 mb-8">
+                                            <div className="p-[10px] rounded-[14px] bg-[#6565651a]">
+                                                <div className="w-[48px] h-[48px] rounded-[14px] bg-primary-gradient flex items-center justify-center">
+                                                    <Mail className="w-[20px] h-[20px]" />
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <p className="font-bold text-[15px] text-black">Email Us</p>
+                                                <p className="text-[14px] text-black/60">
+                                                    Info@Example.Com
+                                                </p>
+                                                <p className="text-[14px] text-black/60">
+                                                    Support@Example.Com
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
 
+
+                                </div>
+                                <div className="sm:p-[60px] px-[20px] !py-[60px] rounded-[20px] bg-white/60 backdrop-blur-lg">
+                                    <h2 className="md:text-[35px] text-[25px] font-semibold leading-[1.15] ">
+                                        Book Your Free Consultation
+                                    </h2>
                                     {/* Form */}
                                     <form className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 relative pt-[30px] md:pt-[50px]">
                                         <div className="col-span-1">
