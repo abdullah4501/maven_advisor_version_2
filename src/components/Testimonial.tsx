@@ -198,7 +198,7 @@ export default function Testimonial() {
                         </div>
                         <div className="w-full testimonial-right-down flex flex-col gap-y-[100px] rounded-[20px] md:p-[35px] p-[30px]">
                             <div className="max-w-[70%]">
-                                <h4 className="md:text-[30px] text-[24px] font-semibold leading-[1.15]">
+                                <h4 className="md:text-[30px] text-[24px] font-semibold leading-[1.15] text-white">
                                     Group Cooperation
                                 </h4>
                             </div>

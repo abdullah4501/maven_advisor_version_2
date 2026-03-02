@@ -14,6 +14,7 @@ import Counter from "@/components/Counter";
 import NewsletterPopup from "@/components/NewsletterPopup";
 import { useEffect, useState } from "react";
 import ServiceSlider2 from "@/components/ServiceSlider2";
+import TrustedPartners from "@/components/TrustedPartners";
 
 
 const Home = () => {
@@ -29,17 +30,19 @@ const Home = () => {
       <Header />
       <HeroSlider />
       <InteractiveShowcase />
+      <WorkProcess />
       <ServicesSlider />
       <FeaturesTabs />
       <Testimonial />
       <div className="bg-[#f6f7f4] py-[40px] !pt-0 md:py-[100px] md:-mt-[50px] relative">
         <Counter />
       </div>
-      <Faqs />
-      <TeamSection />
-      <WorkProcess />
-      <ContactSection />
-      <Blog />
+      {/* <Faqs /> */}
+      {/* <TeamSection /> */}
+      <TrustedPartners />
+      
+      {/* <ContactSection /> */}
+      {/* <Blog />  */}
       <Footer />
     </>
   );

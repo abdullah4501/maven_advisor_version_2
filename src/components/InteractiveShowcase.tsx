@@ -314,7 +314,7 @@ export default function InteractiveShowcase() {
                 initial="hidden"
                 animate={marqueeInView ? "visible" : "hidden"}
             >
-                <TrustedPartners />
+                
             </motion.div>
         </>
     )
