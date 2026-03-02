@@ -94,7 +94,7 @@ interface TimelineSlideProps {
 
 const TimelineSlide = ({ data }: TimelineSlideProps) => {
     return (
-        <div className="flex flex-col h-full min-h-[500px] md:min-h-[600px]">
+        <div className={`flex flex-col h-full min-h-[500px] md:min-h-[600px] relative  ${data.dotPosition === 'top' ? 'top-[32px]' : 'bottom-[25px]'}`}>
             {/* Top Content Area */}
             <div className="flex-1 flex flex-col justify-end pb-4">
                 {data.top.type === 'text' && (
@@ -173,19 +173,16 @@ const HistorySlider = () => {
     return (
         <section className="relative min-h-[80vh] bg-navy py-12 md:py-20 overflow-hidden">
             <div className="">
-                <div className="py-[50px] md:pt-[150px] md:pb-[180px]">
-                    <div className="mb-[65px] text-center">
-                        <h3 className="mb-3 flex items-center justify-center gap-3 text-white wdt-heading">
-                            Consulting Services
-                        </h3>
-                        <h2 className="text-[38px] md:text-5xl font-semibold text-white leading-[38px]">
-                            Trusted <span className="text-[#0C7FFE]">Guidance</span> Built For You
-                        </h2>
-                        <p className="mx-auto mt-4 max-w-xl text-white">
-                            Euismod quam justo lectus commodo augue arcu dignissim.
-                        </p>
-                    </div>
-                    <HistorySlider />
+                <div className="mb-[65px] text-center">
+                    <h3 className="mb-3 flex items-center justify-center gap-3 text-white wdt-heading">
+                        Consulting Services
+                    </h3>
+                    <h2 className="text-[38px] md:text-5xl font-semibold text-white leading-[38px]">
+                        Trusted <span className="text-[#0C7FFE]">Guidance</span> Built For You
+                    </h2>
+                    <p className="mx-auto mt-4 max-w-xl text-white">
+                        Euismod quam justo lectus commodo augue arcu dignissim.
+                    </p>
                 </div>
                 {/* Timeline Swiper Container */}
                 <div className="relative">

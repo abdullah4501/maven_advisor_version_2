@@ -112,12 +112,11 @@ export default function OurHistory() {
 
   return (
     <section
-      className="relative w-full overflow-hidden md:rounded-t-[60px] bg-cover bg-center lg:px-[60px] px-0"
+      className="relative w-full overflow-hidden md:rounded-t-[60px] bg-cover bg-center"
       style={{ backgroundImage: `url(${bgImg})` }}
     >
       <div className="absolute inset-0 rounded-[38px] bg-[#161616ba]" />
-      <div className="py-[50px] md:pt-[150px] md:pb-[180px]">
-        
+      <div className="py-[50px] ">
         <HistorySlider />
       </div>
     </section>
