@@ -148,7 +148,7 @@ const HeroSlider = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-      <div className="absolute bottom-[150px] left-4    lg:left-24 z-20 flex items-center">
+      <div className="absolute lg:bottom-[150px] left-4  md:bottom-[150px] bottom-[80px]  lg:left-24 z-20 flex items-center">
         {slides.map((_, i) => (
           <div key={i} className="flex items-center">
             <button

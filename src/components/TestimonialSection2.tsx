@@ -60,7 +60,7 @@ const TestimonialsSection2 = () => {
 
     return (
         <>
-            <section className="section-padding px-0 bg-[#f6f7f4] py-20" >
+            <section className="section-padding px-0 bg-[#f6f7f4] py-[120px] md:pb-[150px]" >
                 <div className="container relative pb-[80px]">
                     {/* Header */}
                     <motion.div className="flex items-center  mb-10 md:mb-[50px]"
@@ -71,7 +71,7 @@ const TestimonialsSection2 = () => {
                             </div>
 
                             <h2 className="text-[36px] md:text-[50px] font-semibold leading-[1.15] text-center">
-                                Client feedback Andreviews
+                                Client feedback And reviews
                             </h2>
                             <p className="mt-1 text-[16px] md:text-[18px] leading-[1.7] text-[#6b6b6b] text-center">
                                 Sem placerat in id cursus mi pretium tellus. Sed diam urna tempor pulvinar vivamus.

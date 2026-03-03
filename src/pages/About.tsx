@@ -72,7 +72,6 @@ const About = ({ breadcrumb }) => {
             </section>
             <OurMission />
             <MissionAndGoals />
-            <ServiceSlider2 />
             <div className='py-20 bg-[#f6f7f4]'>
                 <TrustedPartners />
             </div>

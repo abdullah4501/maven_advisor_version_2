@@ -49,7 +49,7 @@ export default function Footer() {
                 style={{ backgroundImage: `url(${footerBg})` }}
             >
                 <div className="absolute inset-0 md:rounded-t-[60px] bg-[#161616ba]" />
-                <div className="container relative md:pt-[150px] md:pb-[30px] py-[40px]">
+                <div className="container relative md:pt-[150px] md:pb-[30px] py-[40px] relative md:-mt-[80px]">
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-[30px] pb-[50px]">
                         <div className="w-full col-span-2 lg:col-span-1 flex flex-col gap-8 lg:pr-[60px]">
                             <div className="w-full">
@@ -129,7 +129,7 @@ export default function Footer() {
                                             className="flex-1 bg-transparent text-black/90 placeholder:text-black/40 text-[16px] px-7 h-full outline-none"
                                         />
                                         <button className="flex items-center justify-center bg-primary-gradient transition-colors rounded-[10px] w-[60px] h-full shrink-0">
-                                            <Send className="w-5 h-5 text-[#000] font-bold rotate-[40deg]" />
+                                            <Send className="w-5 h-5 text-[#fff] font-bold rotate-[40deg]" />
                                         </button>
                                     </div>
 
@@ -162,7 +162,7 @@ export default function Footer() {
                                         onClick={() => setOpenSection(openSection === "support" ? null : "support")}
                                         className={`lg:hidden w-full bg-primary-gradient flex items-center justify-between py-[18px] px-[20px] ${openSection === "support" ? "rounded-t-[20px]" : "rounded-[20px]"}`}
                                     >
-                                        <span className="text-[22px] font-bold text-black">Support Pages</span>
+                                        <span className="text-[22px] font-bold text-white">Support Pages</span>
                                         <svg className={`w-8 h-8 transition-transform ${openSection === "support" ? "" : "rotate-180"}`} viewBox="0 0 24 24" fill="currentColor">
                                             <path d="M7 14l5-5 5 5" />
                                         </svg>
@@ -183,7 +183,7 @@ export default function Footer() {
                                         onClick={() => setOpenSection(openSection === "about" ? null : "about")}
                                         className={`lg:hidden w-full bg-primary-gradient flex items-center justify-between py-[18px] px-[20px] ${openSection === "about" ? "rounded-t-[20px]" : "rounded-[20px]"}`}
                                     >
-                                        <span className="text-[22px] font-bold text-black">About</span>
+                                        <span className="text-[22px] font-bold text-white">About</span>
                                         <svg className={`w-8 h-8 transition-transform ${openSection === "about" ? "" : "rotate-180"}`} viewBox="0 0 24 24" fill="currentColor">
                                             <path d="M7 14l5-5 5 5" />
                                         </svg>
@@ -204,7 +204,7 @@ export default function Footer() {
                                         onClick={() => setOpenSection(openSection === "quick" ? null : "quick")}
                                         className={`lg:hidden w-full ${openSection === "quick" ? "rounded-t-[20px]" : "rounded-[20px]"} bg-primary-gradient flex items-center justify-between py-[18px] px-[20px]`}
                                     >
-                                        <span className="text-[22px] font-bold text-black">Quick Links</span>
+                                        <span className="text-[22px] font-bold text-white">Quick Links</span>
                                         <svg className={`w-8 h-8 transition-transform ${openSection === "quick" ? "" : "rotate-180"}`} viewBox="0 0 24 24" fill="currentColor">
                                             <path d="M7 14l5-5 5 5" />
                                         </svg>
