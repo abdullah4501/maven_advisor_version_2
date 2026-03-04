@@ -4,6 +4,7 @@ import active1 from "@/assets/active-work-process.jpg"
 import active2 from "@/assets/active-work-process.jpg"
 import active3 from "@/assets/active-work-process.jpg"
 import active4 from "@/assets/active-work-process.jpg"
+import { Autoplay } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
 import { motion, useInView } from "framer-motion"
@@ -124,6 +125,12 @@ export default function WorkProcess() {
                     <Swiper
                         slidesPerView={1}
                         spaceBetween={30}
+                        modules={[Autoplay]}
+                        autoplay={{
+                            delay: 3000,
+                            disableOnInteraction: false,
+                            pauseOnMouseEnter: true
+                        }}
                         breakpoints={{
                             0: { slidesPerView: 1 },
                             768: { slidesPerView: 2 },
@@ -183,7 +190,7 @@ export default function WorkProcess() {
                             </SwiperSlide>
                         ))}
                     </Swiper>
-                </motion.div>   
+                </motion.div>
             </div>
         </section >
     )

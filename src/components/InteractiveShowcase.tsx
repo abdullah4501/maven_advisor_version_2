@@ -6,7 +6,7 @@ import sectionImg4 from "@/assets/interactive-Section-img-03.jpg"
 import { motion, AnimatePresence, useInView } from "framer-motion"
 import { ArrowRight } from "lucide-react"
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Pagination } from "swiper/modules"
+import { Pagination, Autoplay } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
@@ -251,8 +251,12 @@ export default function InteractiveShowcase() {
                                 loop
                                 spaceBetween={56}
                                 speed={600}
-                                modules={[Pagination]}
-                                // Fix 7: sync both active states on slide change
+                                modules={[Pagination, Autoplay]}
+                                autoplay={{
+                                    delay: 3000,
+                                    disableOnInteraction: false,
+                                    pauseOnMouseEnter: true
+                                }}
                                 onSlideChange={(swiper) => {
                                     setActiveIndex(swiper.realIndex)
                                     setActive(swiper.realIndex)
