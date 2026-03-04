@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 
 import { ArrowRight, Star } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react"
-import { Navigation } from "swiper/modules"
+import { Navigation, Autoplay } from "swiper/modules"
 import "swiper/css"
 import "swiper/css/navigation"
 import { motion, useInView } from "framer-motion"
@@ -45,7 +45,13 @@ export default function Counter() {
                             speed={600}
                             observer
                             observeParents
-                            modules={[Navigation]}
+                            modules={[Navigation, Autoplay]}
+                            autoplay={{
+                                delay: 3000,
+                                disableOnInteraction: false,
+                                pauseOnMouseEnter: true
+                            }}
+
                             navigation={{
                                 prevEl: ".counters-nav-prev",
                                 nextEl: ".counters-nav-next",
