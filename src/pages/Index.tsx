@@ -34,7 +34,7 @@ const Home = () => {
       <ServicesSlider />
       <FeaturesTabs />
       <Testimonial />
-      <div className="bg-[#f6f7f4] py-[40px] !pt-0 md:py-[100px] md:-mt-[50px] relative">
+      <div className="bg-[#f6f7f4] py-0 !pt-0 md:py-[100px] md:-mt-[50px] relative">
         <Counter />
       </div>
       {/* <Faqs /> */}

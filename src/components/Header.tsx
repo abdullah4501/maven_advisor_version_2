@@ -26,7 +26,6 @@ const Header = () => {
     { label: "Home", to: "/" },
     { label: "About", to: "/about-us" },
     { label: "Services", to: "/services" },
-    { label: "Blog", to: "/blog" },
     { label: "Contact Us", to: "/contact" },
   ]
 
@@ -37,7 +36,7 @@ const Header = () => {
         <div className="container">
           <div className="relative flex items-center justify-between rounded-[10px] px-6 py-[20px] backdrop-blur-md bg-black/25">
 
-            <img src={logo} alt="Bullish" className="md:max-w-[300px] max-w-[250px] h-auto" />
+            <img src={logo} alt="Bullish" className="md:max-w-[280px] max-w-[180px] h-auto" />
 
             <nav className="hidden lg:flex items-center gap-0 text-white">
               {navLinks.map((item) => (
@@ -93,7 +92,7 @@ const Header = () => {
         <div className="container">
           <div className="flex items-center justify-between px-6 py-[16px]">
 
-            <img src={logo} alt="Bullish" className="md:max-w-[220px] max-w-[180px] h-auto" />
+            <img src={logo} alt="Bullish" className="md:max-w-[280px] max-w-[180px] h-auto" />
 
             <nav className="hidden lg:flex items-center gap-0">
               {navLinks.map((item) => (

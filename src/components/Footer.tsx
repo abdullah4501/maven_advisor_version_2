@@ -105,7 +105,7 @@ export default function Footer() {
                                         <Link
                                             key={social.label}
                                             to="/"
-                                            className="w-[35px] h-[35px] md:w-[50px] md:h-[50px] rounded-full border border-[#0C7FFE] flex items-center justify-center text-[#0C7FFE] hover:bg-primary hover:text-[#fff] transition-all"
+                                            className="w-[35px] h-[35px] md:w-[50px] md:h-[50px] rounded-full border flex items-center justify-center text-[#0C7FFE] hover:bg-primary hover:text-[#fff] transition-all"
                                             aria-label={social.label}
                                         >
                                             {social.icon}
@@ -224,32 +224,26 @@ export default function Footer() {
 
                             {/* Desktop Links */}
                             <div className="hidden lg:flex flex-wrap flex-col lg:flex-row items-center gap-y-12 gap-0">
-                                <div className="lg:w-[33.33%] w-[50%]">
+                                <div className=" w-[50%]">
                                     <h3 className="text-white text-[22px] font-bold mb-7">Support Pages</h3>
                                     <ul className="flex flex-col gap-[14px]">
-                                        {["About", "Live Chat", "Trading Guide", "Terms & Conditions", "Privacy Policy", "Risk Disclosure"].map((item) => (
-                                            <li key={item}>
-                                                <Link to="/" className="text-white text-[15px] hover:text-primary transition-colors">{item}</Link>
+                                        {[
+                                            {title:"About", link: '/about-us'}, {title:"Live Chat", link: "/"}, {title:"Terms & Conditions", link:'/'}, {title: "Privacy Policy", link: '/'}
+                                        ].map((item) => (
+                                            <li key={item.title}>
+                                                <Link to={item.link} className="text-white text-[15px] hover:text-primary transition-colors">{item.title}</Link>
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
-                                <div className="lg:w-[33.33%] w-[50%]">
+                                <div className=" w-[50%]">
                                     <h3 className="text-white text-[22px] font-bold mb-7">About</h3>
                                     <ul className="flex flex-col gap-[14px]">
-                                        {["Our Story", "Our Team", "Portfolio", "Career", "Client Testimonials", "Security Promise"].map((item) => (
-                                            <li key={item}>
-                                                <Link to="/" className="text-white text-[15px] hover:text-primary transition-colors">{item}</Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                                <div className="lg:w-[33.33%] w-[50%]">
-                                    <h3 className="text-white text-[22px] font-bold mb-7">Quick Links</h3>
-                                    <ul className="flex flex-col gap-[14px]">
-                                        {["FAQ", "Pricing Plan", "Contact", "Market Overview", "Deposit & Withdrawals", "Account Login"].map((item) => (
-                                            <li key={item}>
-                                                <Link to="/" className="text-white text-[15px] hover:text-primary transition-colors">{item}</Link>
+                                        {[
+                                             {title: "Our Team", link: '/'}, {title: "Career", link: '/'}, {title: "Security Promise", link: '/'}
+                                        ].map((item) => (
+                                            <li key={item.title}>
+                                                <Link to={item.link} className="text-white text-[15px] hover:text-primary transition-colors">{item.title}</Link>
                                             </li>
                                         ))}
                                     </ul>

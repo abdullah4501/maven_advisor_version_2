@@ -80,7 +80,7 @@ const About = ({ breadcrumb }) => {
                                     transition={{ duration: 0.4, delay: 0.2 }}
                                     className="text-white text-[16px] lg:text-[18px] lg:leading-[30px] font-[500] z-10 self-end"
                                 >
-                                    Yalla Startup is a Middle East–based business and financial advisory firm specializing in equity and debt investment solutions for startups, SMEs, and growth-stage companies.
+                                    Mavens Advisor is a Virtual CFO firm delivering complete finance departments with CFO-level leadership, AI-powered analytics, and evergreen support for every stage of growth.
                                 </motion.p>
                             </div>
                         </div>

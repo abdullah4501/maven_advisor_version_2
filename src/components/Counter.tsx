@@ -88,14 +88,6 @@ export default function Counter() {
                                 </div>
                             </SwiperSlide>
                         </Swiper>
-                        <div className="counters-nav flex gap-5 justify-center ">
-                            <button className="mt-10 counters-nav-prev flex h-10 w-10 items-center justify-center rounded-full border border-white hover:border-primary text-[#000] bg-white  rotate-[180deg]">
-                                <ArrowRight className="h-5 w-5" />
-                            </button>
-                            <button className="mt-10 counters-nav-next flex h-10 w-10 items-center justify-center rounded-full border border-white hover:border-primary text-[#000] bg-white ">
-                                <ArrowRight className="h-5 w-5" />
-                            </button>
-                        </div>
                     </div>
                 </motion.div>
             </div>
