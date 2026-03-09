@@ -6,6 +6,8 @@ import Index from "@/pages/Index"
 import AboutUs from "@/pages/About"
 import Services from './pages/Services';
 import Contact from './pages/Contact';
+import Calculator from './pages/Calculator';
+import { SettingsProvider } from "./context/SettingsContext";
 
 const queryClient = new QueryClient();
 
@@ -28,18 +30,21 @@ const App = () => {
   }, []);
 
     return (
+      
       <QueryClientProvider client={queryClient}>
+        <SettingsProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/about-us" element={<AboutUs breadcrumb="About Us" />} />
+              <Route path="/services" element={<Services breadcrumb="Services" />} />
+              <Route path="/contact" element={<Contact breadcrumb="Contact Us" />} />
+              <Route path="/calculator" element={<Calculator breadcrumb="Calculator" />} />
+              
+            </Routes>
 
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Index />} />
-             <Route path="/about-us" element={<AboutUs breadcrumb="About Us" />} />
-             <Route path="/services" element={<Services breadcrumb="Services" />} />
-             <Route path="/contact" element={<Contact breadcrumb="Contact Us" />} />
-            
-          </Routes>
-
-        </BrowserRouter>
+          </BrowserRouter>
+        </SettingsProvider>
       </QueryClientProvider>
     )
   }

@@ -117,7 +117,7 @@ export default function Footer() {
                         <div className="w-full col-span-2">
                             <div className="flex flex-col md:flex-row gap-[30px]">
                                 <h2 className="w-full md:w-1/2 text-white text-[24px] md:text-[32px] font-bold leading-tight">
-                                    Register For Our Updates!
+                                    Register For Tax Updates!
                                 </h2>
                                 <div className="sm:w-[65%] w-full">
                                     <div className="relative flex items-center bg-white rounded-[10px] overflow-hidden h-[56px]">
@@ -224,26 +224,32 @@ export default function Footer() {
 
                             {/* Desktop Links */}
                             <div className="hidden lg:flex flex-wrap flex-col lg:flex-row items-center gap-y-12 gap-0">
-                                <div className=" w-[50%]">
+                                <div className="lg:w-[33.33%] w-[50%]">
                                     <h3 className="text-white text-[22px] font-bold mb-7">Support Pages</h3>
                                     <ul className="flex flex-col gap-[14px]">
-                                        {[
-                                            {title:"About", link: '/about-us'}, {title:"Live Chat", link: "/"}, {title:"Terms & Conditions", link:'/'}, {title: "Privacy Policy", link: '/'}
-                                        ].map((item) => (
-                                            <li key={item.title}>
-                                                <Link to={item.link} className="text-white text-[15px] hover:text-primary transition-colors">{item.title}</Link>
+                                        {["About", "Live Chat", "Trading Guide", "Terms & Conditions", "Privacy Policy", "Risk Disclosure"].map((item) => (
+                                            <li key={item}>
+                                                <Link to="/" className="text-white text-[15px] hover:text-primary transition-colors">{item}</Link>
                                             </li>
                                         ))}
                                     </ul>
                                 </div>
-                                <div className=" w-[50%]">
+                                <div className="lg:w-[33.33%] w-[50%]">
                                     <h3 className="text-white text-[22px] font-bold mb-7">About</h3>
                                     <ul className="flex flex-col gap-[14px]">
-                                        {[
-                                             {title: "Our Team", link: '/'}, {title: "Career", link: '/'}, {title: "Security Promise", link: '/'}
-                                        ].map((item) => (
-                                            <li key={item.title}>
-                                                <Link to={item.link} className="text-white text-[15px] hover:text-primary transition-colors">{item.title}</Link>
+                                        {["Our Story", "Our Team", "Portfolio", "Career", "Client Testimonials", "Security Promise"].map((item) => (
+                                            <li key={item}>
+                                                <Link to="/" className="text-white text-[15px] hover:text-primary transition-colors">{item}</Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                                <div className="lg:w-[33.33%] w-[50%]">
+                                    <h3 className="text-white text-[22px] font-bold mb-7">Quick Links</h3>
+                                    <ul className="flex flex-col gap-[14px]">
+                                        {["FAQ", "Pricing Plan", "Contact", "Market Overview", "Deposit & Withdrawals", "Account Login"].map((item) => (
+                                            <li key={item}>
+                                                <Link to="/" className="text-white text-[15px] hover:text-primary transition-colors">{item}</Link>
                                             </li>
                                         ))}
                                     </ul>
@@ -276,9 +282,8 @@ export default function Footer() {
             <button
                 onClick={scrollToTop}
                 aria-label="Scroll to top"
-                className={`w-[44px] h-[44px] rounded-[10px] bg-primary-gradient fixed z-[99] bottom-8 right-5 flex items-center justify-center transition-all duration-300 ${
-                    showScrollTop ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"
-                }`}
+                className={`w-[44px] h-[44px] rounded-[10px] bg-primary-gradient fixed z-[99] bottom-8 right-5 flex items-center justify-center transition-all duration-300 ${showScrollTop ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"
+                    }`}
             >
                 <ArrowUp className="w-5 h-5 text-[#fff]" />
             </button>

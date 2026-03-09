@@ -158,7 +158,7 @@ const Header = () => {
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
                 `flex items-center justify-between px-4 py-2 mb-2 cursor-pointer border-b border-white/20 last:border-0 ${
-                  isActive ? "bg-[#7DEC94] text-black" : "text-white"
+                  isActive ? "bg-primary text-white" : "text-white"
                 }`
               }
             >

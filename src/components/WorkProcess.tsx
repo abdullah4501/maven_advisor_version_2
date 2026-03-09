@@ -127,7 +127,7 @@ export default function WorkProcess() {
                         spaceBetween={30}
                         modules={[Autoplay]}
                         autoplay={{
-                            delay: 3000,
+                            delay: 2000,
                             disableOnInteraction: false,
                             pauseOnMouseEnter: true
                         }}

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import type { Swiper as SwiperType } from 'swiper';
 import "swiper/css";
 import "swiper/css/effect-fade";
+import { Link } from 'react-router-dom';
 
 type Slide = {
   subtitle: string;
@@ -121,8 +122,8 @@ const HeroSlider = () => {
                       {slide.description}
                     </p>
 
-                    <a
-                      href="#"
+                    <Link
+                      to={'/calculator'}
                       className="relative z-[2] inline-flex items-center mt-3 gap-3 bg-primary-gradient text-black text-[16px] p-[clamp(1.125rem,1.0971rem+0.1274vw,1.25rem)_clamp(1.5rem,1.2771rem+1.0191vw,2.5rem)] rounded-[10px] font-medium transition "
                     >
                       {slide.cta}
@@ -133,7 +134,7 @@ const HeroSlider = () => {
                       >
                         <path d="M12.1,18V10.6H0V7.4H12.1V0L27.7,9Z" />
                       </svg>
-                    </a>
+                    </Link>
                     <div className="relative">
                       <div className="absolute -top-[300px] -left-[20%] w-[600px] h-[600px] bg-[radial-gradient(circle,#75b1f359_0%,transparent_70%)]" />
                     </div>

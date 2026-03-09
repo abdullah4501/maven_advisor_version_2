@@ -47,7 +47,7 @@ export default function Counter() {
                             observeParents
                             modules={[Navigation, Autoplay]}
                             autoplay={{
-                                delay: 3000,
+                                delay: 2000,
                                 disableOnInteraction: false,
                                 pauseOnMouseEnter: true
                             }}

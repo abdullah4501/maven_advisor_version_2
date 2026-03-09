@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import featuresMain from "@/assets/features_main.jpg";
 import feature1 from "@/assets/features_main.jpg";
 import feature2 from "@/assets/feature_main2.jpg";
@@ -116,7 +116,12 @@ export default function FeaturesTabs() {
   const headerRef = useRef<HTMLDivElement>(null)
   const headerInView = useInView(headerRef, { once: true, margin: "0px 0px -80px 0px" })
   const tabsInView = useInView(tabsRef, { once: true, margin: "0px 0px -80px 0px" })
-
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActive((prev) => (prev + 1) % FEATURES.length)
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [])
 
   return (
     <section className=" md:rounded-t-[60px] bg-[#f6f7f4] py-[40px] md:py-[120px] md:-mt-[80px] relative ">
@@ -153,117 +158,115 @@ export default function FeaturesTabs() {
           animate={tabsInView ? "visible" : "hidden"}
           className="flex flex-col md:flex-row lg:gap-16 gap-8 items-start"
         >
-          <div className="flex flex-col md:flex-row lg:gap-16 gap-8 items-start">
-            <div className="block lg:hidden w-full relative">
-              <button
-                onClick={() => setOpen(!open)}
-                className="w-full rounded-[20px] bg-primary-gradient flex items-center justify-between gap-[20px] py-[18px] px-[20px]"
+          <div className="block md:hidden w-full relative">
+            <button
+              onClick={() => setOpen(!open)}
+              className="w-full rounded-[20px] bg-primary-gradient flex items-center justify-between gap-[20px] py-[18px] px-[20px]"
+            >
+              <div className="flex items-center gap-[20px]">
+                {FEATURES[active].icon}
+                <span className="text-lg font-medium text-[#fff]">
+                  {FEATURES[active].title}
+                </span>
+              </div>
+
+              <svg
+                className={`w-8 h-8 transition-transform ${open ? "" : "rotate-180"}`}
+                viewBox="0 0 24 24"
+                fill="currentColor"
               >
-                <div className="flex items-center gap-[20px]">
-                  {FEATURES[active].icon}
-                  <span className="text-lg font-medium text-[#fff]">
-                    {FEATURES[active].title}
-                  </span>
-                </div>
+                <path d="M7 14l5-5 5 5" />
+              </svg>
+            </button>
 
-                <svg
-                  className={`w-8 h-8 transition-transform ${open ? "" : "rotate-180"}`}
-                  viewBox="0 0 24 24"
-                  fill="currentColor"
-                >
-                  <path d="M7 14l5-5 5 5" />
-                </svg>
-              </button>
-
-              {open && (
-                <ul className="absolute left-0 top-full w-full flex flex-col rounded-[20px] overflow-hidden bg-white border border-[#e5e5e5]">
-                  {FEATURES.map((tab, i) => (
-                    <li
-                      key={tab.id}
-                      onClick={() => {
-                        setActive(i)
-                        setOpen(false)
-                      }}
-                      className={`cursor-pointer transition-colors ${i === active ? "bg-primary-gradient" : "bg-white hover:bg-[#f5f5f5]"
-                        }`}
-                    >
-                      <div className="flex items-center gap-[20px] py-[18px] px-[20px] w-full">
-                        {tab.icon}
-                        <span className={`text-lg font-medium ${i === active ? "text-white" : "text-black"}`}>
-                          {tab.title}
-                        </span>
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-            {/* LEFT – Tabs */}
-            <ul className="hidden lg:flex lg:w-[28%] md:w-[40%] w-full md:sticky top-24 flex-col gap-5">
-              {FEATURES.map((tab, i) => {
-                const isActive = i === active
-
-                return (
+            {open && (
+              <ul className="absolute left-0 top-full w-full flex flex-col rounded-[20px] overflow-hidden bg-white border border-[#e5e5e5]">
+                {FEATURES.map((tab, i) => (
                   <li
                     key={tab.id}
-                    onClick={() => setActive(i)}
-                    className={`rounded-[20px] ${isActive ? "bg-primary-gradient text-white" : " bg-white"
+                    onClick={() => {
+                      setActive(i)
+                      setOpen(false)
+                    }}
+                    className={`cursor-pointer transition-colors ${i === active ? "bg-primary-gradient" : "bg-white hover:bg-[#f5f5f5]"
                       }`}
                   >
-                    <button className="flex items-center gap-[20px] py-[18px] px-[20px] w-full">
+                    <div className="flex items-center gap-[20px] py-[18px] px-[20px] w-full">
                       {tab.icon}
-                      <span className={` text-lg font-medium ${isActive ? " text-white" : " text-[#000]"}`}>
+                      <span className={`text-lg font-medium ${i === active ? "text-white" : "text-black"}`}>
                         {tab.title}
                       </span>
-                    </button>
-                  </li>
-                )
-              })}
-            </ul>
-
-            {/* RIGHT – Content */}
-            <div className="lg:w-[72%] md:w-[60%] w-full">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={current.heading}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="bg-[#fff] rounded-[30px] flex overflow-hidden max-lg:flex-col">
-                  <div className="w-1/2 max-lg:w-full">
-                    <img
-                      src={current.image}
-                      alt={current.heading}
-                      className="h-full w-full object-cover rounded-[30px]"
-                    />
-                  </div>
-
-                  <div className="w-1/2 max-lg:w-full py-[50px] px-[25px] lg:px-[40px] flex flex-col justify-center gap-10">
-                    <div>
-                      <h4 className="text-[26px] md:text-[30px] font-semibold leading-[1.15]">
-                        {current.heading}
-                      </h4>
-                      <p className="md:mt-5 mt-2 text-[16px] md:text-[18px] leading-[1.5] text-[#6b6b6b]">
-                        {current.description}
-                      </p>
                     </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+          {/* LEFT – Tabs */}
+          <ul className="hidden md:flex lg:w-[28%] md:w-[50%] w-full md:sticky top-24 flex-col gap-5">
+            {FEATURES.map((tab, i) => {
+              const isActive = i === active
 
-                    <ul className="space-y-4">
-                      {current.points.map((point, idx) => (
-                        <li
-                          key={idx}
-                          className="flex items-center gap-3 text-[18px] leading-[1.7] text-[#6b6b6b]"
-                        >
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" className="w-[20px] h-[20px]"><path d="M15,0A15,15,0,1,0,30,15,15,15,0,0,0,15,0Zm8.06,7a.79.79,0,0,1-.2.52A55.39,55.39,0,0,0,13.19,23a1.24,1.24,0,0,1-2.25.11,35.8,35.8,0,0,0-4.25-6.49,1.78,1.78,0,0,1,2.66-2.36,32.86,32.86,0,0,1,2.82,3.45,0,0,0,0,0,0,0A46.22,46.22,0,0,1,21.8,6.44.76.76,0,0,1,23.06,7Z"></path></svg>
-                          <span>{point}</span>
-                        </li>
-                      ))}
-                    </ul>
+              return (
+                <li
+                  key={tab.id}
+                  onClick={() => setActive(i)}
+                  className={`rounded-[20px] ${isActive ? "bg-primary-gradient text-white" : " bg-white"
+                    }`}
+                >
+                  <button className="flex items-center gap-[20px] py-[18px] px-[20px] w-full">
+                    {tab.icon}
+                    <span className={` text-lg font-medium ${isActive ? " text-white" : " text-[#000]"}`}>
+                      {tab.title}
+                    </span>
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+
+          {/* RIGHT – Content */}
+          <div className="lg:w-[72%] md:w-[60%] w-full">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={current.heading}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                className="bg-[#fff] rounded-[30px] flex overflow-hidden max-lg:flex-col">
+                <div className="w-1/2 max-lg:w-full">
+                  <img
+                    src={current.image}
+                    alt={current.heading}
+                    className="h-full w-full object-cover rounded-[30px]"
+                  />
+                </div>
+
+                <div className="w-1/2 max-lg:w-full py-[50px] px-[25px] lg:px-[40px] flex flex-col justify-center gap-10">
+                  <div>
+                    <h4 className="text-[26px] md:text-[30px] font-semibold leading-[1.15]">
+                      {current.heading}
+                    </h4>
+                    <p className="md:mt-5 mt-2 text-[16px] md:text-[18px] leading-[1.5] text-[#6b6b6b]">
+                      {current.description}
+                    </p>
                   </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
+
+                  <ul className="space-y-4">
+                    {current.points.map((point, idx) => (
+                      <li
+                        key={idx}
+                        className="flex items-center gap-3 text-[18px] leading-[1.7] text-[#6b6b6b]"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" className="w-[20px] h-[20px]"><path d="M15,0A15,15,0,1,0,30,15,15,15,0,0,0,15,0Zm8.06,7a.79.79,0,0,1-.2.52A55.39,55.39,0,0,0,13.19,23a1.24,1.24,0,0,1-2.25.11,35.8,35.8,0,0,0-4.25-6.49,1.78,1.78,0,0,1,2.66-2.36,32.86,32.86,0,0,1,2.82,3.45,0,0,0,0,0,0,0A46.22,46.22,0,0,1,21.8,6.44.76.76,0,0,1,23.06,7Z"></path></svg>
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
         </motion.div>
       </div>
