@@ -13,6 +13,22 @@ const fadeUpVariants = {
         transition: { duration: 0.6 },
     },
 }
+const AboutLinks = [
+  { label: "Our Story", url: "/" },
+  { label: "Our Team", url: "/our-team" },
+  { label: "Portfolio", url: "/" },
+  { label: "Career", url: "/" },
+  { label: "Client Testimonials", url: "/" },
+  { label: "Security Promise", url: "/" }
+];
+const QuickLinks = [
+  { label: "FAQ", url: "/faq" },
+  { label: "Pricing Plan", url: "/" },
+  { label: "Contact", url: "/contact" },
+  { label: "Market Overview", url: "/" },
+  { label: "Deposit & Withdrawals", url: "/" },
+  { label: "Account Login", url: "/" }
+]
 
 export default function Footer() {
     const [email, setEmail] = useState("");
@@ -191,9 +207,9 @@ export default function Footer() {
                                     <div className={`lg:block transition-all duration-500 ease-in-out origin-top ${openSection === "about" ? "max-h-[500px] opacity-100 scale-y-100" : "max-h-0 opacity-0 scale-y-0 pointer-events-none"} rounded-b-[20px] -mt-1 bg-[#2a2a2a] lg:bg-transparent overflow-hidden`}>
                                         <h3 className="hidden lg:block text-white text-[22px] font-bold mb-7">About</h3>
                                         <ul className="flex flex-col gap-[12px] p-6 lg:p-0">
-                                            {["Our Story", "Our Team", "Portfolio", "Career", "Client Testimonials", "Security Promise"].map((item) => (
-                                                <li key={item}>
-                                                    <Link to="/" className="text-white font-medium text-[15px] hover:text-[#a5f94e] transition-colors">{item}</Link>
+                                            {AboutLinks.map((item) => (
+                                                <li key={item.label}>
+                                                    <Link to={item.url} className="text-white font-medium text-[15px] hover:text-[#a5f94e] transition-colors">{item.label}</Link>
                                                 </li>
                                             ))}
                                         </ul>
@@ -212,9 +228,9 @@ export default function Footer() {
                                     <div className={`lg:block transition-all duration-500 ease-in-out origin-top ${openSection === "quick" ? "max-h-[500px] opacity-100 scale-y-100" : "max-h-0 opacity-0 scale-y-0 pointer-events-none"} rounded-b-[20px] bg-[#2a2a2a] lg:bg-transparent overflow-hidden`}>
                                         <h3 className="hidden lg:block text-white text-[22px] font-bold mb-7">Quick Links</h3>
                                         <ul className="flex flex-col gap-[12px] p-6 lg:p-0">
-                                            {["FAQ", "Pricing Plan", "Contact", "Market Overview", "Deposit & Withdrawals", "Account Login"].map((item) => (
-                                                <li key={item}>
-                                                    <Link to="/" className="text-white font-medium text-[15px] hover:text-[#a5f94e] transition-colors">{item}</Link>
+                                            {QuickLinks.map((item) => (
+                                                <li key={item.label}>
+                                                    <Link to={item.url} className="text-white font-medium text-[15px] hover:text-[#a5f94e] transition-colors">{item.label}</Link>
                                                 </li>
                                             ))}
                                         </ul>
@@ -237,9 +253,9 @@ export default function Footer() {
                                 <div className="lg:w-[33.33%] w-[50%]">
                                     <h3 className="text-white text-[22px] font-bold mb-7">About</h3>
                                     <ul className="flex flex-col gap-[14px]">
-                                        {["Our Story", "Our Team", "Portfolio", "Career", "Client Testimonials", "Security Promise"].map((item) => (
-                                            <li key={item}>
-                                                <Link to="/" className="text-white text-[15px] hover:text-primary transition-colors">{item}</Link>
+                                        {AboutLinks.map((item) => (
+                                            <li key={item.label}>
+                                                <Link to={item.url} className="text-white text-[15px] hover:text-primary transition-colors">{item.label}</Link>
                                             </li>
                                         ))}
                                     </ul>
@@ -247,9 +263,9 @@ export default function Footer() {
                                 <div className="lg:w-[33.33%] w-[50%]">
                                     <h3 className="text-white text-[22px] font-bold mb-7">Quick Links</h3>
                                     <ul className="flex flex-col gap-[14px]">
-                                        {["FAQ", "Pricing Plan", "Contact", "Market Overview", "Deposit & Withdrawals", "Account Login"].map((item) => (
-                                            <li key={item}>
-                                                <Link to="/" className="text-white text-[15px] hover:text-primary transition-colors">{item}</Link>
+                                        {QuickLinks.map((item) => (
+                                            <li key={item.label}>
+                                                <Link to={item.url} className="text-white text-[15px] hover:text-primary transition-colors">{item.label}</Link>
                                             </li>
                                         ))}
                                     </ul>

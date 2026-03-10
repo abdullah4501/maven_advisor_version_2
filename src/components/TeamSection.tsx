@@ -5,6 +5,8 @@ import team1 from '@/assets/team-img1.jpg';
 import team2 from '@/assets/team-img2.jpg';
 import team3 from '@/assets/team-img3.jpg';
 import team4 from '@/assets/team-img4.jpg';
+import team5 from '@/assets/team-5.jpg';
+import team6 from '@/assets/team-6.jpg';
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation } from "swiper/modules"
 import "swiper/css"
@@ -38,6 +40,27 @@ const teamMembers = [
         name: "Marilynn Church",
         role: "Tax Director",
         img: team4,
+        expertise: ["Estate Planning", "IRS Negotiation", "R&D Credits"],
+        email: "marilynn@limpa.com",
+    },
+    {
+        name: "Marilynn Church",
+        role: "Tax Director",
+        img: team4,
+        expertise: ["Estate Planning", "IRS Negotiation", "R&D Credits"],
+        email: "marilynn@limpa.com",
+    },
+    {
+        name: "Marilynn Church",
+        role: "Tax Director",
+        img: team5,
+        expertise: ["Estate Planning", "IRS Negotiation", "R&D Credits"],
+        email: "marilynn@limpa.com",
+    },
+    {
+        name: "Marilynn Church",
+        role: "Tax Director",
+        img: team6,
         expertise: ["Estate Planning", "IRS Negotiation", "R&D Credits"],
         email: "marilynn@limpa.com",
     },

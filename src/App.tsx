@@ -8,6 +8,9 @@ import Services from './pages/Services';
 import Contact from './pages/Contact';
 import Calculator from './pages/Calculator';
 import { SettingsProvider } from "./context/SettingsContext";
+import Team from './pages/Team';
+import FAQ from './pages/FAQ';
+import Blog from './pages/Blog';
 
 const queryClient = new QueryClient();
 
@@ -39,6 +42,9 @@ const App = () => {
               <Route path="/about-us" element={<AboutUs breadcrumb="About Us" />} />
               <Route path="/services" element={<Services breadcrumb="Services" />} />
               <Route path="/contact" element={<Contact breadcrumb="Contact Us" />} />
+              <Route path="/our-team" element={<Team breadcrumb="Our Team" />} />
+              <Route path="/faq" element={<FAQ breadcrumb="FAQs" />} />
+              <Route path="/blog" element={<Blog breadcrumb="Blog" />} />
               <Route path="/calculator" element={<Calculator breadcrumb="Calculator" />} />
               
             </Routes>

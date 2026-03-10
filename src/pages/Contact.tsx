@@ -228,9 +228,7 @@ const Contact = ({ breadcrumb }) => {
                     </motion.div>
                 </div>
             </section>
-            <section className=''>
-                <Footer />
-            </section>
+            <Footer />
         </>
     );
 };

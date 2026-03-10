@@ -42,7 +42,7 @@ const Home = () => {
       <TrustedPartners />
       
       {/* <ContactSection /> */}
-      {/* <Blog />  */}
+      <Blog /> 
       <Footer />
     </>
   );
