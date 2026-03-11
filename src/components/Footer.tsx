@@ -26,7 +26,7 @@ const QuickLinks = [
   { label: "Pricing Plan", url: "/" },
   { label: "Contact", url: "/contact" },
   { label: "Market Overview", url: "/" },
-  { label: "Deposit & Withdrawals", url: "/" },
+  { label: "Blog", url: "/blog" },
   { label: "Account Login", url: "/" }
 ]
 
@@ -70,7 +70,9 @@ export default function Footer() {
                         <div className="w-full col-span-2 lg:col-span-1 flex flex-col gap-8 lg:pr-[60px]">
                             <div className="w-full">
                                 <div className="mb-6">
-                                    <img src={logo} alt="Bullish" className="w-[300px] md:w-[250px] h-auto" />
+                                    <Link to={"/"}>
+                                        <img src={logo} alt="Bullish" className="w-[300px] md:w-[250px] h-auto" />
+                                    </Link>
                                 </div>
                                 <p className="text-white text-[16px] md:text-[18px] font-medium leading-[1.5]">
                                     Sed quaerat cupiditate ut aspernatur pariatur quo facere dolores

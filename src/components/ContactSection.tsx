@@ -167,7 +167,7 @@ export default function ContactSection() {
                                                 type="button"
                                                 onClick={() => setOpen(!open)}
                                                 className={`w-full rounded-xl px-6 py-5 bg-[#f3f5f4] text-gray-700 flex items-center justify-between outline-none
-                                                ${open ? "ring-2 ring-green-400" : ""}`}
+                                                ${open ? "ring-2 ring-blue-400" : ""}`}
                                             >
                                                 <span>{selected}</span>
                                                 <ChevronDown
@@ -189,7 +189,7 @@ export default function ContactSection() {
                                                             className={`w-full text-left px-4 py-3 rounded-lg text-sm transition
                                                             ${service === selected
                                                                     ? "bg-green-200 text-black"
-                                                                    : "hover:bg-green-100 text-gray-700"
+                                                                    : "hover:bg-blue-100 text-gray-700"
                                                                 }`}
                                                         >
                                                             {service}

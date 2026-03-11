@@ -89,11 +89,8 @@ const About = ({ breadcrumb }) => {
 
             </section>
             <OurMission />
-            <MissionAndGoals />
-            <div className='py-20 bg-[#f6f7f4]'>
-                <TrustedPartners />
-            </div>
             <OurHistory />
+            <MissionAndGoals />
             <TestimonialsSection2 />
             <Footer />
         </>

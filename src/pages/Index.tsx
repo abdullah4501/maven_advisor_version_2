@@ -39,10 +39,12 @@ const Home = () => {
       </div>
       {/* <Faqs /> */}
       {/* <TeamSection /> */}
-      <TrustedPartners />
+      <div className="pb-20">
+        <TrustedPartners />
+      </div>
       
       {/* <ContactSection /> */}
-      <Blog /> 
+      {/* <Blog />  */}
       <Footer />
     </>
   );

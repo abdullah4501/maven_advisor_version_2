@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from "react"
 import logo from "@/assets/logo.png"
+import logoW from "@/assets/logo-white.png"
 import { Search, X, ChevronRight } from "lucide-react"
-import { NavLink } from "react-router-dom"
+import { Link, NavLink } from "react-router-dom"
 
 const Header = () => {
   const [open, setOpen] = useState(false)
@@ -27,7 +28,6 @@ const Header = () => {
     { label: "About", to: "/about-us" },
     { label: "Services", to: "/services" },
     { label: "Contact Us", to: "/contact" },
-    { label: "Blog", to: "/blog" },
   ]
 
   return (
@@ -36,9 +36,9 @@ const Header = () => {
       <header className="absolute top-[30px] left-0 w-full z-50">
         <div className="container">
           <div className="relative flex items-center justify-between rounded-[10px] px-6 py-[20px] backdrop-blur-md bg-black/25">
-
-            <img src={logo} alt="Bullish" className="md:max-w-[280px] max-w-[180px] h-auto" />
-
+            <Link to={"/"}>
+              <img src={logoW} alt="Bullish" className="md:max-w-[220px] max-w-[180px] h-auto" />
+            </Link>
             <nav className="hidden lg:flex items-center gap-0 text-white">
               {navLinks.map((item) => (
                 <NavLink
@@ -50,7 +50,7 @@ const Header = () => {
                   }
                 >
                   {item.label}
-                </NavLink>
+                </NavLink>     
               ))}
             </nav>
 
@@ -92,9 +92,9 @@ const Header = () => {
       >
         <div className="container">
           <div className="flex items-center justify-between px-6 py-[16px]">
-
-            <img src={logo} alt="Bullish" className="md:max-w-[280px] max-w-[180px] h-auto" />
-
+            <Link to={"/"}>
+              <img src={logo} alt="Bullish" className="md:max-w-[220px] max-w-[180px] h-auto" />
+            </Link>
             <nav className="hidden lg:flex items-center gap-0">
               {navLinks.map((item) => (
                 <NavLink
