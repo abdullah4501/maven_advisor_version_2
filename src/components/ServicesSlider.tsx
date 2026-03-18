@@ -60,12 +60,12 @@ const ICON_PATHS = {
 }
 
 const SERVICES = [
-  { title: "Decision Streamlining", desc: "Senectus netus suscipit auctor curabitur facilisi cubilia curae.", img: serviceImg1, icon: ICON_PATHS.icon1 },
-  { title: "Boosted Efficiency", desc: "Vel maxime voluptatem aut molestias quia sit praesentium.", img: serviceImg2, icon: ICON_PATHS.icon2 },
-  { title: "Recruitment Support", desc: "Et tempore ipsam non voluptatum molestiae et beatae incidunt.", img: serviceImg3, icon: ICON_PATHS.icon3 },
-  { title: "Budget Supervision", desc: "Est animi obcaecati vel perferendis debitis aut nemo sequi.", img: serviceImg4, icon: ICON_PATHS.icon4 },
-  { title: "Financial Planning", desc: "Et tempore ipsam non voluptatum molestiae et beatae incidunt.", img: serviceImg6, icon: ICON_PATHS.icon6 },
-  { title: "Financial Planning", desc: "Et tempore ipsam non voluptatum molestiae et beatae incidunt.", img: serviceImg6, icon: ICON_PATHS.icon6 },
+  { title: "Core Finance Operations", desc: "Monthly Bookkeeping, Payroll, Invoicing, and Billing to keep your operations organized and efficient.", img: serviceImg1, icon: ICON_PATHS.icon1 },
+  { title: "Financial Reporting", desc: "Turning data into meaningful P&L reports, budgets, and cash flow forecasts to plan your growth.", img: serviceImg2, icon: ICON_PATHS.icon2 },
+  { title: "Compliance Support", desc: "Full management of VAT filings, HMRC, and Companies House requirements for London-based businesses.", img: serviceImg3, icon: ICON_PATHS.icon3 },
+  { title: "Tax Advisory", desc: "Strategic tax planning and filing for both companies and individuals to optimize efficiency.", img: serviceImg4, icon: ICON_PATHS.icon4 },
+  { title: "AI CFO Portal", desc: "Proprietary access to real-time financial insights and AI-powered intelligence for decision support.", img: serviceImg5, icon: ICON_PATHS.icon1 },
+  { title: "Strategic Leadership", desc: "Beyond reporting, we act as your partner for growth planning, cost optimization, and capital strategy.", img: serviceImg6, icon: ICON_PATHS.icon6 },
 ]
 
 const fadeUpVariants = {

@@ -8,10 +8,10 @@ interface CounterItem {
 }
 
 const COUNTERS: CounterItem[] = [
-    { to: 16, suffix: "+", label: "Broad Career Experience" },
-    { to: 22, suffix: "k+", label: "High-Earning Growth" },
-    { to: 15, suffix: "k", label: "Happy Clients World Wide" },
-    { to: 96, suffix: "%", label: "Customer Retention Rate" },
+    { to: 100, suffix: "%", label: "Price Transparency" },
+    { to: 0, suffix: "£", label: "Hourly Charges" },
+    { to: 10, suffix: "+", label: "Years Experience" },
+    { to: 24, suffix: "/7", label: "Client Portal Access" },
 ]
 
 function useCounter(to: number, duration: number, started: boolean) {
@@ -69,7 +69,7 @@ const OurMission = () => {
                         </div>
 
                         <h2 className="text-[36px] md:text-[50px] font-semibold leading-[1.15] text-center">
-                            Smart Solutions To Help Businesses.
+                            Your Scalable Virtual CFO and Finance Department
                         </h2>
                     </div>
 

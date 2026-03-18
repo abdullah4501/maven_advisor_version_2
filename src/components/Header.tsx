@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react"
 import logo from "@/assets/logo.png"
 import logoW from "@/assets/logo-white.png"
-import { Search, X, ChevronRight } from "lucide-react"
+import { Search, X, ChevronRight, ArrowRight } from "lucide-react"
 import { Link, NavLink } from "react-router-dom"
 
 const Header = () => {
@@ -50,23 +50,16 @@ const Header = () => {
                   }
                 >
                   {item.label}
-                </NavLink>     
+                </NavLink>
               ))}
             </nav>
 
             <div className="flex items-center gap-4">
               <div className="hidden lg:flex items-center gap-4">
-                <button className="w-12 h-12 rounded-full border border-white/40 flex items-center justify-center text-white">
-                  <Search className="w-5 h-5 opacity-80" />
-                </button>
-                <button className="w-12 h-12 rounded-full border border-white/40 flex items-center justify-center text-white">
-                  <svg className="w-5 h-5" viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="7" height="7" stroke="currentColor" fill="none" />
-                    <rect x="14" y="3" width="7" height="7" stroke="currentColor" fill="none" />
-                    <rect x="3" y="14" width="7" height="7" stroke="currentColor" fill="none" />
-                    <rect x="14" y="14" width="7" height="7" stroke="currentColor" fill="none" />
-                  </svg>
-                </button>
+                <Link to={"/calculator"} className=" inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
+                  Get Quote Now
+                  <ArrowRight />
+                </Link>
               </div>
               <button
                 onClick={() => setOpen(true)}
@@ -102,8 +95,7 @@ const Header = () => {
                   to={item.to}
                   end={item.to === "/"}
                   className={({ isActive }) =>
-                    `text-[17px] font-medium duration-300 navItem relative px-[22px] ${
-                      isActive ? "text-primary active" : "text-gray-700 hover:text-primary"
+                    `text-[17px] font-medium duration-300 navItem relative px-[22px] ${isActive ? "text-primary active" : "text-gray-700 hover:text-primary"
                     }`
                   }
                 >
@@ -114,17 +106,10 @@ const Header = () => {
 
             <div className="flex items-center gap-4">
               <div className="hidden lg:flex items-center gap-3">
-                <button className="w-11 h-11 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:border-primary hover:text-primary transition-colors duration-200">
-                  <Search className="w-5 h-5" />
-                </button>
-                <button className="w-11 h-11 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:border-primary hover:text-primary transition-colors duration-200">
-                  <svg className="w-5 h-5" viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="7" height="7" stroke="currentColor" fill="none" />
-                    <rect x="14" y="3" width="7" height="7" stroke="currentColor" fill="none" />
-                    <rect x="3" y="14" width="7" height="7" stroke="currentColor" fill="none" />
-                    <rect x="14" y="14" width="7" height="7" stroke="currentColor" fill="none" />
-                  </svg>
-                </button>
+                <Link to={"/calculator"} className=" inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
+                  Get Quote Now
+                  <ArrowRight />
+                </Link>
               </div>
               {/* MOBILE TAB BUTTON — ONLY THIS */}
               <button
@@ -141,9 +126,8 @@ const Header = () => {
 
       {/* ===== MOBILE SIDEBAR ===== */}
       <aside
-        className={`fixed top-0 right-0 h-screen w-[70%] max-w-[360px] bg-black z-[100] transform transition-transform duration-300 ${
-          open ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`fixed top-0 right-0 h-screen w-[70%] max-w-[360px] bg-black z-[100] transform transition-transform duration-300 ${open ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         <div className="flex justify-end px-6 py-3">
           <button onClick={() => setOpen(false)} className="text-white">
@@ -158,8 +142,7 @@ const Header = () => {
               end={item.to === "/"}
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
-                `flex items-center justify-between px-4 py-2 mb-2 cursor-pointer border-b border-white/20 last:border-0 ${
-                  isActive ? "bg-primary text-white" : "text-white"
+                `flex items-center justify-between px-4 py-2 mb-2 cursor-pointer border-b border-white/20 last:border-0 ${isActive ? "bg-primary text-white" : "text-white"
                 }`
               }
             >
@@ -172,9 +155,8 @@ const Header = () => {
 
       <div
         onClick={() => setOpen(false)}
-        className={`fixed inset-0 bg-black/60 z-[99] transition-opacity ${
-          open ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
+        className={`fixed inset-0 bg-black/60 z-[99] transition-opacity ${open ? "opacity-100 visible" : "opacity-0 invisible"
+          }`}
       />
     </>
   )

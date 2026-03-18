@@ -158,7 +158,7 @@ const Contact = ({ breadcrumb }) => {
                         className="relative w-full md:rounded-t-[60px] bg-cover bg-center"
                     >
                         {/* Header */}
-                        <div className="flex flex-col gap-10 md:sticky md:top-[40px] mb-[50px]">
+                        <div className="flex flex-col gap-10 mb-[50px]">
                             <div className="items-center flex flex-col">
                                 <div className="mb-4 flex gap-4 text-[16px] font-bold tracking-wide">
                                     <h3 className="wdt-heading text-center">Our Branches</h3>

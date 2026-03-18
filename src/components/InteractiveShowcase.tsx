@@ -11,6 +11,7 @@ import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
 import type { Swiper as SwiperType } from "swiper"
+import { Link } from "react-router-dom"
 
 type Item = {
     title: string
@@ -74,47 +75,46 @@ const ICON_PATHS = {
 
 const ITEMS: Item[] = [
     {
-        title: "Reliability",
-        description: "Ante condimentum neque at luctus nibh facilisis. Sollicitudin erat elementum.",
+        title: "CFO Level Financial Guidance",
+        description: "You get a dedicated CFO who helps you plan, analyse, and make confident financial decisions so your business grows with clarity and control.",
         icon: ICON_PATHS.reliability,
-        subtitle: "Guidance. Trust. Results.",
-        heading: "Guiding Business Growth Through Expert Strategy.",
+        subtitle: "CFO Level Leadership",
+        heading: "Get a Personal CFO Without Hiring One",
         image: sectionImg,
         content:
-            "Class aptent taciti sociosqu ad litora torquent per. Natoque penatibus parturient montes nascetur. Nulla molestie mattis scelerisque.",
+            "Make better business decisions with the guidance of a CFO who understands your numbers, your risks, and your growth goals.",
     },
     {
-        title: "Customer Care",
-        description: "Cras eleifend turpis fames orci primis vulputate. Proin libero feugiat tristique.",
+        title: "End to End Finance Management",
+        description: "Your bookkeeping, payroll, invoicing, reporting, and compliance are handled by a structured team that works as part of your business.",
         icon: ICON_PATHS.customerCare,
-        subtitle: "Trusted Support",
-        heading: "Customer Support Built Around Your Needs",
+        subtitle: "Complete Finance Department",
+        heading: "Your Entire Finance Team Under One Subscription",
         image: sectionImg2,
         content:
-            "Class aptent taciti sociosqu ad litora torquent per. Natoque penatibus parturient montes nascetur.",
+            "Stop managing multiple people and processes. Get a complete finance department that handles everything from bookkeeping to compliance.",
     },
     {
-        title: "Business Continuity",
-        description: "Donec rhoncus eros lobortis nulla mattis efficitur laoreet scelerisque.",
+        title: "Clarity & Control Over Finances",
+        description: "Get clear profit insights, cash flow visibility, and performance tracking so you can make faster and better decisions.",
         icon: ICON_PATHS.businessContinuity,
-        subtitle: "Always Prepared",
-        heading: "Business Resilience Starts With Proper Planning",
+        subtitle: "Financial Visibility",
+        heading: "Understand Your Numbers Without Confusion",
         image: sectionImg3,
         content:
-            "Class aptent taciti sociosqu ad litora torquent per. Natoque penatibus parturient montes nascetur.",
+            "Know exactly where your business stands with clear reports, real time insights, and meaningful financial analysis.",
     },
     {
-        title: "Experience",
-        description: "Ut hendrerit semper vel class aptent taciti sociosqu. Inceptos orci varius.",
+        title: "Tax Efficiency & Compliance",
+        description: "From VAT to company tax and personal tax, your filings are handled properly while opportunities for tax efficiency are identified.",
         icon: ICON_PATHS.experience,
-        subtitle: "Explore, Engage, Learn",
-        heading: "Experience the Journey, Grow with Confidence",
+        subtitle: "Tax & Compliance",
+        heading: "Stay Compliant While Optimising Your Taxes",
         image: sectionImg4,
         content:
-            "Class aptent taciti sociosqu ad litora torquent per. Natoque penatibus parturient montes nascetur.",
+            "Avoid penalties, meet deadlines, and identify potential tax savings with structured compliance and expert tax advisory.",
     },
 ]
-
 const fadeUpVariants = {
     hidden: { opacity: 0, y: 60 },
     visible: {
@@ -137,7 +137,6 @@ export default function InteractiveShowcase() {
     const bottomTabsInView = useInView(bottomTabsRef, { once: true, margin: "0px 0px -80px 0px" })
     const swiperRef = useRef<SwiperType | null>(null)
 
-    // Auto-cycle tabs every 5 seconds
     useEffect(() => {
         const timer = setInterval(() => {
             setActive((prev) => {
@@ -202,14 +201,14 @@ export default function InteractiveShowcase() {
                                         {item.heading}
                                     </h2>
 
-                                    <p className="mt-5 text-[16px] md:text-[18px] leading-[1.7] text-[#6b6b6b]">
+                                    <p className="mt-5 text-[16px] md:text-[16px] leading-[1.7] text-[#6b6b6b]">
                                         {item.content}
                                     </p>
 
-                                    <button className="mt-10 inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
+                                    <Link to={"/contact"} className="mt-10 inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
                                         Get Started
                                         <ArrowRight />
-                                    </button>
+                                    </Link>
                                 </motion.div>
                             </AnimatePresence>
                         </div>

@@ -115,12 +115,6 @@
     z-index: 1;
   }
 
-  /* EXACT ELEMENTOR COLUMN RATIOS */
-  .hero-grid {
-    display: grid;
-    grid-template-columns: 50% 50%;
-  }
-
   .animate-bg-drift {
     animation: bg-drift 20s ease-in-out infinite;
   }

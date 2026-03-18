@@ -21,34 +21,45 @@ type Slide = {
 
 const slides: Slide[] = [
   {
-    subtitle: "Business Consultant",
-    title: "Trusted",
-    highlight: "Finance",
-    extra: "Consulting Patner",
+    subtitle: "Expert Virtual CFO",
+    title: "Your Personal",
+    highlight: " CFO ",
+    extra: "At the Cost of a Bookkeeper",
     description:
-      " Nisl malesuada etiam dignissim diam quis enim.Euismod in pellentesque massa placerat duis ut venenatis. Odio pellentesque diam volutpat commodo sed egestas. Massa sapien faucibus et molestie ac feugiat sed lectus.",
-    cta: "Free Consultation",
-    bg: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/07/home-01-slider-img-01.jpg",
+      "Get a dedicated CFO, a complete finance team, and full financial control without hiring in house.",
+    cta: "Calculate Your Monthly Fee",
+    bg: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/07/home-01-slider-img-02.jpg",
   },
   {
-    subtitle: "Financial Strategist",
-    title: "Executive",
-    highlight: "Leader",
-    extra: "Consulting Patner",
+    subtitle: "Transparent Pricing",
+    title: "One Monthly",
+    highlight: " Fee ",
+    extra: "No Surprises",
     description:
-      "Dictum risus blandit quis suspendisse aliquet enim. Euismod in pellentesque massa placerat duis ut venenatis.",
-    cta: "Schedule a Call",
+      "Know exactly what you pay. No hourly billing. No hidden costs. Just a predictable finance solution built around your business activity.",
+    cta: "Get Your Instant Quote",
     bg: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/06/h1-hero-banner-img.jpg",
   },
   {
-    subtitle: "Expert Advisor",
-    title: "Business",
-    highlight: "Growth",
-    extra: "Consulting Patner",
+    subtitle: "Smart Financial Insights",
+    title: "Your CFO",
+    highlight: " Portal  ",
+    extra: "With AI CFO",
     description:
-      "Primis vulputate ornare sagittis vehicula praesent dui felis. Accumsan maecenas potenti ultricies habitant.",
-    cta: "Get Started Now",
+      "Understand your business numbers instantly, identify opportunities, and make better decisions with AI driven financial insights.",
+    cta: "See How It Works",
     bg: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/07/home-01-slider-img-02.jpg",
+  },
+
+  {
+    subtitle: "Built for Growth",
+    title: "A Finance",
+    highlight: " Team ",
+    extra: "That Grows With You",
+    description:
+      "As your business scales, your finance team scales with you. No rehiring. No disruption. Just continuous support.",
+    cta: "Start Your CFO Journey",
+    bg: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/07/home-01-slider-img-01.jpg",
   },
 ];
 
@@ -83,7 +94,7 @@ const HeroSlider = () => {
         {slides.map((slide, i) => (
           <SwiperSlide key={i}>
             <div
-              className="relative min-h-[80vh] flex items-center"
+              className="relative md:h-screen h-[85vh] flex items-center"
               style={{
                 backgroundImage: `url(${slide.bg})`,
                 backgroundSize: "cover",
@@ -104,7 +115,7 @@ const HeroSlider = () => {
 
               {/* Content */}
               <div className="relative z-10 container ">
-                <div className="hero-grid grid-cols-1 lg:grid-cols-2">
+                <div className="hero-grid ">
                   <div className="md:py-[265px] py-[50px]">
                     <span className="block text-[18px] tracking-widest text-[#fff] mb-4 wdt-heading">
                       {slide.subtitle}
@@ -113,8 +124,8 @@ const HeroSlider = () => {
                     <h1 className="text-white text-[40px] lg:text-[70px] font-bold leading-tight mb-3">
                       {slide.title}{" "}
                       <span className="text-primary-gradient">
-                        {slide.highlight}
-                      </span> <br />
+                        {slide.highlight}<br />
+                      </span>
                       <span>{slide.extra}</span>
                     </h1>
 

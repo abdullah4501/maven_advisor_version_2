@@ -23,26 +23,26 @@ const ArrowIcon = () => (
 )
 
 const TABS = [
-    { label: "Inspection" },
-    { label: "Approach" },
-    { label: "Performance" },
+    { label: "Our Mission" },
+    { label: "Our approach" },
+    { label: "Our Promise" },
 ]
 
 const TAB_CONTENT = [
     {
-        text: "Proin libero feugiat tristique accumsan maecenas potenti ultricies. Consequat magna ante condimentum neque at luctus nibh. Ut hendrerit semper vel class aptent taciti sociosqu. Suscipit auctor curabitur.",
-        list1: ["Efficient Resource Allocation", "Improved Productivity", "Auto reporting system"],
-        list2: ["Maintain ethics & compliance", "Give Profit-oriented advice", "Ensure timely updates"],
+        text: "Our mission is to give founders and growing companies the financial clarity, structure, and strategic support required to build sustainable and scalable businesses.",
+        list1: ["Financial clarity", "Strategic support", "Scalable business models"],
+        list2: ["Sustainable growth", "Founders freedom", "Predictable costs"],
     },
     {
-        text: "Ad litora torquent per conubia nostra inceptos himenaeos. Dis parturient montes nascetur ridiculus mus donec. Ut hendrerit semper vel class aptent taciti sociosqu. Suscipit auctor curabitur.",
-        list1: ["Efficient Resource Allocation", "Improved Productivity", "Auto reporting system"],
-        list2: ["Maintain ethics & compliance", "Give Profit-oriented advice", "Ensure timely updates"],
+        text: "Our approach combines financial expertise, structured finance operations, and modern technology to ensure that businesses always have access to reliable information.",
+        list1: ["Financial expertise", "Structured operations", "Modern technology"],
+        list2: ["Reliable information", "Strategic guidance", "Compliance confidence"],
     },
     {
-        text: "Ut hendrerit semper vel class aptent taciti sociosqu. Suscipit auctor curabitur. Ad litora torquent per conubia nostra inceptos himenaeos. Dis parturient montes nascetur ridiculus mus donec.",
-        list1: ["Efficient Resource Allocation", "Improved Productivity", "Auto reporting system"],
-        list2: ["Maintain ethics & compliance", "Give Profit-oriented advice", "Ensure timely updates"],
+        text: "We give founders the freedom to focus on innovation, growth, and building great businesses while we take responsibility for their finance function.",
+        list1: ["Innovation focus", "Growth acceleration", "Great business building"],
+        list2: ["Finance leadership", "Evergreen structure", "Financial intelligence"],
     },
 ]
 
@@ -133,7 +133,7 @@ export default function MissionAndGoals() {
                                     <h3 className="wdt-heading">Mission & Goals</h3>
                                 </div>
                                 <h2 className="text-[36px] md:text-[46px] font-semibold leading-[1.15]">
-                                    Achieving success through clear Company goals.
+                                    Build with Confidence. Scale with Clarity.
                                 </h2>
                             </div>
 
@@ -238,10 +238,13 @@ export default function MissionAndGoals() {
                                                 </ul>
                                             </div>
 
-                                            <button className="inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
-                                                Get Started
+                                            <Link
+                                                to={'/calculator'}
+                                                className="inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold"
+                                            >
+                                                Calculate Your Quote
                                                 <ArrowRight />
-                                            </button>
+                                            </Link>
                                         </motion.div>
                                     </AnimatePresence>
                                 </div>

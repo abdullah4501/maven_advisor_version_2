@@ -12,7 +12,7 @@ import { motion, AnimatePresence, useInView } from "framer-motion"
 const FEATURES = [
   {
     id: 0,
-    title: "Business Strategists",
+    title: "AI CFO Portal",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -28,57 +28,57 @@ const FEATURES = [
       </svg>
     ),
     image: feature1,
-    heading: "Strategic planning Led by Experts",
-    description: "Lacinia integer nunc posuere ut hendrerit semper vel.",
+    heading: "Smart Financial Command Center",
+    description: "Every client receives access to our proprietary CFO Portal with AI CFO which serves as the financial command center of the business.",
     points: [
-      "Montes nascetur ridiculus mus",
-      "Fermentum odio phasellus non",
-      "Imperdiet mollis nullam volutpat",
+      "Real time financial insights",
+      "Customized KPIs tailored to you",
+      "Clear profitability & margin visibility",
     ],
   },
   {
     id: 1,
-    title: "Flexible Plans",
+    title: "AI CFO",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" className="w-[30px] h-[30px] fill-current"><path d="M15,6.75A8.25,8.25,0,1,0,23.25,15,8.25,8.25,0,0,0,15,6.75Zm-.94,6.79a4.59,4.59,0,0,0,1.35.65c.33.12.67.24,1,.41a2.62,2.62,0,0,1,1.37,1.53,2.85,2.85,0,0,1-.19,2.23,2.63,2.63,0,0,1-1.8,1.32v.78a.83.83,0,0,1-1.65,0v-.8A2.62,2.62,0,0,1,12,17.27a.83.83,0,0,1,1.65,0c0,.43.64.85,1.3.85a1.11,1.11,0,0,0,1.28-1.47.89.89,0,0,0-.49-.55c-.31-.14-.62-.25-.92-.36A5.64,5.64,0,0,1,13,14.8a2.57,2.57,0,0,1-.68-3,2.61,2.61,0,0,1,1.86-1.44V9.54a.83.83,0,0,1,1.65,0v.8A2.63,2.63,0,0,1,18,12.73a.83.83,0,1,1-1.65,0c0-.43-.65-.85-1.31-.85-.94,0-1.15.44-1.22.59a.92.92,0,0,0,.25,1.07Z"></path><path d="M27.58,24.76l-1.51.35A15.06,15.06,0,0,0,30,15a14.91,14.91,0,0,0-.72-4.61.92.92,0,1,0-1.76.56A13,13,0,0,1,28.16,15a13.16,13.16,0,0,1-3.71,9.15l.63-2.06a.92.92,0,0,0-1.76-.54l-1.53,5a.91.91,0,0,0,.88,1.19.65.65,0,0,0,.2,0L28,26.56a.91.91,0,0,0,.69-1.11.92.92,0,0,0-1.1-.69Z"></path><path d="M26.84,8.25A.92.92,0,0,0,27.47,8a.94.94,0,0,0,.27-.88L26.56,2a.92.92,0,0,0-1.8.41l.35,1.51a15,15,0,0,0-15-3.12A.9.9,0,0,0,9.57,2a.92.92,0,0,0,1.17.58,13.14,13.14,0,0,1,13.4,3l-2.05-.63a.93.93,0,0,0-.54,1.77l5,1.53a.75.75,0,0,0,.26,0Z"></path><path d="M2.48,19.05A13.15,13.15,0,0,1,1.84,15,13,13,0,0,1,5.31,6.1L4.71,8a.92.92,0,0,0,.88,1.19.91.91,0,0,0,.88-.65L8,3.56A.93.93,0,0,0,6.92,2.39L1.8,3.57a.92.92,0,1,0,.42,1.79L3.82,5A14.9,14.9,0,0,0,0,15a14.74,14.74,0,0,0,.73,4.62.91.91,0,0,0,.87.64,1,1,0,0,0,.29-.05.91.91,0,0,0,.59-1.16Z"></path><path d="M19.05,27.52a12.85,12.85,0,0,1-4.05.64,13.09,13.09,0,0,1-9.11-3.67l2,.61a.92.92,0,0,0,.54-1.76l-5-1.54a1,1,0,0,0-.9.21.91.91,0,0,0-.26.88L3.42,28a.9.9,0,0,0,.89.71.75.75,0,0,0,.21,0,.91.91,0,0,0,.69-1.1L4.85,26a15,15,0,0,0,14.77,3.24.93.93,0,0,0-.57-1.76Z"></path></svg>
     ),
     image: feature2,
-    heading: "Plans built Around your Goals",
-    description: "Torquent per conubia nostra inceptos himenaeos.",
+    heading: "Intelligent Financial Assistant",
+    description: "The AI CFO acts as an intelligent financial assistant that can interpret financial data and answer questions instantly.",
     points: [
-      "Fermentum odio phasellus non purus",
-      "Imperdiet mollis nullam volutpat",
-      "Ornare sagittis vehicula praesent",
+      "Interpret financial data",
+      "Highlight trends and potential risks",
+      "Suggest possible tax savings",
     ],
   },
   {
     id: 2,
-    title: "Smart Data Insights",
+    title: "Scalable Foundation",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" className="w-[30px] h-[30px] fill-current"><path d="M1.92,4.28a.22.22,0,0,1,.2-.11H3.21V.44A.44.44,0,0,1,3.65,0H5.84a.44.44,0,0,1,.44.44V4.17H7.37a.2.2,0,0,1,.19.11.24.24,0,0,1,0,.23L4.93,8.72a.22.22,0,0,1-.37,0L1.93,4.51a.24.24,0,0,1,0-.23Z"></path><path d="M12.18,4.28a.21.21,0,0,1,.19-.11h1.1V.44A.44.44,0,0,1,13.91,0H16.1a.44.44,0,0,1,.43.44V4.17h1.1a.22.22,0,0,1,.18.34L15.19,8.72a.22.22,0,0,1-.38,0L12.19,4.51a.24.24,0,0,1,0-.23Z"></path><path d="M22.44,4.28a.21.21,0,0,1,.19-.11h1.1V.44A.44.44,0,0,1,24.16,0h2.19a.44.44,0,0,1,.44.44V4.17h1.1a.2.2,0,0,1,.18.11.24.24,0,0,1,0,.23L25.44,8.72a.22.22,0,0,1-.37,0L22.44,4.51a.24.24,0,0,1,0-.23Z"></path><path d="M22.15,10.78H7.84a1.53,1.53,0,0,0-1.52,1.53V26.2H8.15V16.78a8.71,8.71,0,0,0,4.16-4.16h5.37a8.75,8.75,0,0,0,4.16,4.16V26.2h1.84V12.31a1.54,1.54,0,0,0-1.53-1.53Z"></path><path d="M20,25.78a2.88,2.88,0,0,1,0,.42H10c0-.13,0-.28,0-.42a5,5,0,1,1,10,0Z"></path><path d="M16,17.73a1.46,1.46,0,1,0-2.07,0A1.47,1.47,0,0,0,16,17.73Z"></path><path d="M29.08,30H.92A.92.92,0,0,1,0,29.08v-7a.92.92,0,0,1,1.84,0v6.1H28.16v-6.1a.92.92,0,1,1,1.84,0v7a.92.92,0,0,1-.92.92Z"></path></svg>
     ),
     image: feature3,
-    heading: "Data insights That drive Real Results",
-    description: "Fermentum odio phasellus non purus est efficitur laoreet. Blandit quis suspendisse tortor ligula aliquet.",
+    heading: "Build a Sustainable Future",
+    description: "Mavens Advisor is not a temporary arrangement. It is a scalable and long term finance foundation.",
     points: [
-      "Fermentum odio phasellus non purus",
-      "Imperdiet mollis nullam volutpat",
-      "Ornare sagittis vehicula praesent",
+      "No rehiring needed",
+      "No restructuring disruption",
+      "Evergreen finance department",
     ],
   },
   {
     id: 3,
-    title: "Focused On Growth",
+    title: "Monthly Subscription",
     icon: (
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" className="w-[30px] h-[30px] fill-current"><path d="M16.72,0H13.28a2,2,0,0,0-2,2V5.4a2,2,0,0,0,2,2H14v6.83a8.26,8.26,0,0,1,1-.06c.28,0,.56,0,.84,0V7.36h.88a2,2,0,0,0,2-2V2A2,2,0,0,0,16.72,0Z"></path><path d="M5.4,7.36H2a2,2,0,0,0-2,2v3.44a2,2,0,0,0,2,2h.8v8a1.57,1.57,0,0,0,1.57,1.57H6.18a8.42,8.42,0,0,1-.09-1.24,5.91,5.91,0,0,1,0-.6H4.6V14.72h.8a2,2,0,0,0,2-2V9.32a2,2,0,0,0-2-2Z"></path><path d="M28,7.36H24.6a2,2,0,0,0-2,2v3.44a2,2,0,0,0,2,2h.8v7.73H23.89c0,.2,0,.4,0,.6a8.66,8.66,0,0,1-.09,1.25h1.85a1.57,1.57,0,0,0,1.57-1.58v-8H28a2,2,0,0,0,2-2V9.32a2,2,0,0,0-2-2Z"></path><path d="M15,16.09a7,7,0,1,0,7,7A7,7,0,0,0,15,16.09Zm-.76,5.79a3.4,3.4,0,0,0,1.08.52c.27.1.55.21.84.34A2.07,2.07,0,0,1,17.25,24a2.3,2.3,0,0,1-.15,1.78,2.1,2.1,0,0,1-1.45,1.06v.63a.65.65,0,1,1-1.3,0v-.65a2.1,2.1,0,0,1-1.74-1.91.66.66,0,0,1,.66-.65.65.65,0,0,1,.65.65c0,.36.52.7,1.06.7a1,1,0,0,0,1-.44.94.94,0,0,0,.07-.75.75.75,0,0,0-.41-.45c-.24-.11-.49-.2-.73-.29a4.66,4.66,0,0,1-1.47-.75,2,2,0,0,1-.54-2.42,2.07,2.07,0,0,1,1.49-1.16v-.62a.66.66,0,1,1,1.31,0v.64a2.11,2.11,0,0,1,1.73,1.91.66.66,0,0,1-.66.65.65.65,0,0,1-.65-.65c0-.36-.52-.69-1.06-.69-.76,0-.93.36-1,.47a.74.74,0,0,0,.2.87Z"></path></svg>
     ),
     image: feature4,
-    heading: "Your growth, Our strategic Priority",
-    description: "Turpis fames primis vulputate ornare sagittis vehicula praesent. Feugiat tristique accumsan maecenas.",
+    heading: "Transparent Monthly Pricing",
+    description: "Mavens Advisor operates on a transparent monthly subscription model based on your activity level.",
     points: [
-      "Fermentum odio phasellus non purus",
-      "Imperdiet mollis nullam volutpat",
-      "Ornare sagittis vehicula praesent",
+      "Predictable finance costs",
+      "No hourly billing",
+      "No hidden charges",
     ],
   },
   {
@@ -88,15 +88,15 @@ const FEATURES = [
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" className="w-[30px] h-[30px] fill-current"><path d="M15,6a9,9,0,1,0,9.05,9A9,9,0,0,0,15,6ZM14,13.4a4.75,4.75,0,0,0,1.48.71c.36.13.73.27,1.14.46a2.78,2.78,0,0,1,1.5,1.67,3.13,3.13,0,0,1-.21,2.45,2.94,2.94,0,0,1-2,1.45V21a.91.91,0,1,1-1.81,0v-.87a2.87,2.87,0,0,1-2.37-2.62.91.91,0,1,1,1.81,0c0,.47.7.93,1.43.93a1.22,1.22,0,0,0,1.4-1.61,1,1,0,0,0-.54-.6c-.34-.15-.68-.28-1-.4a6.34,6.34,0,0,1-2-1,2.83,2.83,0,0,1-.75-3.33,2.86,2.86,0,0,1,2-1.58V9a.91.91,0,0,1,1.81,0v.87a2.89,2.89,0,0,1,2.37,2.63.91.91,0,0,1-1.81,0c0-.48-.72-.94-1.44-.94-1,0-1.26.49-1.34.65A1,1,0,0,0,14,13.4Z"></path><path d="M30,27.32a2.69,2.69,0,0,1-5.37,0,2.79,2.79,0,0,1,.25-1.13L22.1,23.4a11.4,11.4,0,0,0,1.3-1.3l2.79,2.78a2.78,2.78,0,0,1,1.12-.25A2.68,2.68,0,0,1,30,27.32Z"></path><path d="M30,2.69a2.69,2.69,0,0,1-2.69,2.69,2.6,2.6,0,0,1-1.12-.26L23.4,7.91A10.72,10.72,0,0,0,22.1,6.6l2.78-2.78a2.87,2.87,0,0,1-.25-1.13,2.69,2.69,0,1,1,5.37,0Z"></path><path d="M7.9,6.6A10.56,10.56,0,0,0,6.61,7.9L3.82,5.12a2.71,2.71,0,0,1-1.13.26A2.69,2.69,0,1,1,5.37,2.69a2.7,2.7,0,0,1-.25,1.13L7.9,6.61Z"></path><path d="M5.12,26.19a2.64,2.64,0,0,1,.25,1.13,2.69,2.69,0,1,1-2.68-2.69,2.87,2.87,0,0,1,1.13.25L6.61,22.1A10.56,10.56,0,0,0,7.9,23.4Z"></path></svg>
     ),
     image: feature5,
-    heading: "Guiding growth With Expert financial Advice",
-    description: "Cursus mi pretium tellus duis convallis tempus leo. Pulvinar vivamus fringilla lacus metus bibendum.",
+    heading: "Guiding Growth with Expert Advice",
+    description: "Our CFO level support ensures financial decisions are aligned with long term business goals.",
     points: [
-      "Fermentum odio phasellus non purus",
-      "Imperdiet mollis nullam volutpat",
-      "Ornare sagittis vehicula praesent",
+      "Business growth planning",
+      "Cost structure optimization",
+      "Profitability improvement",
     ],
   },
-]
+];
 
 
 const fadeUpVariants = {
