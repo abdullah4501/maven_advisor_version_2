@@ -98,14 +98,14 @@ export default function WorkProcess() {
                 >
                     <div className="">
                         <div className="mb-4 flex items-center justify-center gap-4 text-[16px] font-bold tracking-wide">
-                            <h3 className="wdt-heading text-center">Work Process</h3>
+                            <h3 className="wdt-heading text-center">Start Your Virtual CFO Journey in Four Simple Steps</h3>
                         </div>
 
                         <h2 className="text-[36px] md:text-[50px] font-semibold leading-[1.15] text-center">
-                            Get Your Virtual CFO In Four Simple Steps
+                            Getting Started Is Simple and Transparent
                         </h2>
                         <p className="mx-auto mt-4 text-center">
-                            Getting started is simple, transparent, and structured to ensure you receive the right financial support from day one.
+                            Our structured onboarding process ensures that every client receives the right financial support, tailored to their business activity and operational needs.
                         </p>
                     </div>
                 </motion.div>

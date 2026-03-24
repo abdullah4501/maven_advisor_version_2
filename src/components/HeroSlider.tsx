@@ -61,6 +61,16 @@ const slides: Slide[] = [
     cta: "Start Your CFO Journey",
     bg: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/07/home-01-slider-img-01.jpg",
   },
+  {
+    subtitle: "Tax Efficiency",
+    title: "Stop  ",
+    highlight: " Overpaying ",
+    extra: "Tax Start Planning Smartly",
+    description:
+      "As your business scales, your finance team scales with you. No rehiring. No disruption. Just continuous support.",
+    cta: "Start Your CFO Journey",
+    bg: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/07/home-01-slider-img-01.jpg",
+  },
 ];
 
 const HeroSlider = () => {
@@ -124,7 +134,7 @@ const HeroSlider = () => {
                     <h1 className="text-white text-[40px] lg:text-[70px] font-bold leading-tight mb-3">
                       {slide.title}{" "}
                       <span className="text-primary-gradient">
-                        {slide.highlight}<br />
+                        {slide.highlight}
                       </span>
                       <span>{slide.extra}</span>
                     </h1>
