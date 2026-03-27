@@ -31,6 +31,16 @@ const slides: Slide[] = [
     bg: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/07/home-01-slider-img-02.jpg",
   },
   {
+    subtitle: "Tax Efficiency",
+    title: "Stop  ",
+    highlight: " Overpaying ",
+    extra: "Tax Start Planning Smartly",
+    description:
+      "As your business scales, your finance team scales with you. No rehiring. No disruption. Just continuous support.",
+    cta: "Start Your CFO Journey",
+    bg: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/07/home-01-slider-img-01.jpg",
+  },
+  {
     subtitle: "Transparent Pricing",
     title: "One Monthly",
     highlight: " Fee ",
@@ -51,26 +61,17 @@ const slides: Slide[] = [
     bg: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/07/home-01-slider-img-02.jpg",
   },
 
-  {
-    subtitle: "Built for Growth",
-    title: "A Finance",
-    highlight: " Team ",
-    extra: "That Grows With You",
-    description:
-      "As your business scales, your finance team scales with you. No rehiring. No disruption. Just continuous support.",
-    cta: "Start Your CFO Journey",
-    bg: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/07/home-01-slider-img-01.jpg",
-  },
-  {
-    subtitle: "Tax Efficiency",
-    title: "Stop  ",
-    highlight: " Overpaying ",
-    extra: "Tax Start Planning Smartly",
-    description:
-      "As your business scales, your finance team scales with you. No rehiring. No disruption. Just continuous support.",
-    cta: "Start Your CFO Journey",
-    bg: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/07/home-01-slider-img-01.jpg",
-  },
+  // {
+  //   subtitle: "Built for Growth",
+  //   title: "A Finance",
+  //   highlight: " Team ",
+  //   extra: "That Grows With You",
+  //   description:
+  //     "As your business scales, your finance team scales with you. No rehiring. No disruption. Just continuous support.",
+  //   cta: "Start Your CFO Journey",
+  //   bg: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/07/home-01-slider-img-01.jpg",
+  // },
+
 ];
 
 const HeroSlider = () => {
