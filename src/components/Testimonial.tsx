@@ -15,38 +15,38 @@ import footerImg from "@/assets/footer.png"
 
 const testimonials = [
     {
-        text: "Fermentum odio phasellus non purus est efficitur laoreet. Blandit quis suspendisse.",
-        name: "Nicole Saskia",
-        role: "Founder",
-        image: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/06/h1-testimonial-img1.jpg",
+        text: "Mavens Advisor has supported our e-commerce brands for nearly two years and has been a huge asset. Their bookkeeping is accurate, reliable, and always completed on time. They work independently, take full ownership, and give us confidence that our finances are in good hands.",
+        name: "Fabian Petrina",
+        role: "Rapid Physique, LLC",
     },
     {
-        text: "Fermentum odio phasellus non purus est efficitur laoreet. Blandit quis suspendisse.",
-        name: "Angela Ursel",
-        role: "Managing Director",
-        image: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/06/h1-testimonial-img2.jpg",
+        text: "Since working with Mavens Advisor, we have gained much clearer visibility into our company’s financial health. Their daily and weekly updates, particularly the profit and loss and balance sheet reports, are timely, accurate, and extremely valuable for decision making.",
+        name: "Jason Lopes",
+        role: "Exact Exteriors LLC",
     },
     {
-        text: "Fermentum odio phasellus non purus est efficitur laoreet. Blandit quis suspendisse.",
-        name: "Mario Pascal",
-        role: "Project Manager",
-        image: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/06/h1-testimonial-img3.jpg",
+        text: "Mavens Advisor has been instrumental in structuring our bookkeeping systems. Their reports are always accurate, delivered on time, and easy to understand. Their professionalism, attention to detail, and willingness to go the extra mile have made them a trusted financial partner.",
+        name: "Matthew B",
+        role: "Gibraltar",
     },
     {
-        text: "Fermentum odio phasellus non purus est efficitur laoreet. Blandit quis suspendisse.",
-        name: "Mario Pascal",
-        role: "Project Manager",
-        image: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/06/h1-testimonial-img3.jpg",
+        text: "Mavens Advisor has supported us for over three years, managing payroll, taxes, contracts, audits, and client follow-ups with professionalism and reliability. Their availability during U.S. business hours makes communication easy, and we are extremely satisfied with their service.",
+        name: "Marwa",
+        role: "Mojo Solutions and Services Mss LLC",
     },
     {
-        text: "Fermentum odio phasellus non purus est efficitur laoreet. Blandit quis suspendisse.",
-        name: "Mario Pascal",
-        role: "Project Manager",
-        image: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/06/h1-testimonial-img3.jpg",
+        text: "Partnering with Mavens Advisor has been a game changer for our business. Their responsiveness, consistent support, and strong financial expertise have helped us stay on top of our books and maintain a healthy financial position.",
+        name: "Seth Cooper",
+        role: "Closets by Design",
     },
 ]
 
-const items = [...testimonials, ...testimonials];
+const midpoint = Math.ceil(testimonials.length / 2)
+const leftTestimonials = testimonials.slice(0, midpoint)
+const rightTestimonials = testimonials.slice(midpoint)
+
+const leftItems = [...leftTestimonials, ...leftTestimonials]
+const rightItems = [...rightTestimonials, ...rightTestimonials]
 
 
 function Card({
@@ -61,22 +61,22 @@ function Card({
     image: string
 }) {
     return (
-        <div className="bg-[#f6f7f7] rounded-2xl p-[30px] shadow-sm border border-[#d0d0d066]">
+        <div className="bg-[#f6f7f7] rounded-2xl p-[15px] shadow-sm border border-[#d0d0d066]">
             <span>
                 <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 100 100" className="w-[30px] h-[30px]"><g>	<path d="M75.3,86.8c12.3,0,22.2-10,22.2-22.3s-9.9-22.3-22.2-22.3c-2.6,0-5,0.4-7.3,1.2L57.3,13.2h-4.2v51.3  C53.1,76.8,63.1,86.8,75.3,86.8z"></path>	<path d="M24.7,86.8c12.3,0,22.2-10,22.2-22.3s-9.9-22.3-22.2-22.3c-2.6,0-5,0.4-7.3,1.2L6.7,13.2H2.5v51.3  C2.5,76.8,12.4,86.8,24.7,86.8z"></path></g></svg>
             </span>
 
-            <p className="text-gray-600 my-[20px] text-[18px]">{text}</p>
+            <p className="text-gray-600 my-[20px] text-[16px]">{text}</p>
 
             <div className="flex items-center gap-4">
-                <img
+                {/* <img
                     src={image}
                     alt={name}
                     className="w-12 h-12 rounded-full object-cover"
-                />
+                /> */}
                 <div>
                     <p className="font-medium text-[18px]">{name}</p>
-                    <p className="text-[16px] font-semibold text-gray-400">{role}</p>
+                    <p className="text-[14px] font-semibold text-gray-400">{role}</p>
                 </div>
             </div>
         </div>
@@ -157,7 +157,7 @@ export default function Testimonial() {
                                     {/* LEFT */}
                                     <div className="marquee-container min-h-full">
                                         <div className=" marquee-down flex flex-col gap-[24px]">
-                                            {items.map((item, i) => (
+                                            {leftItems.map((item, i) => (
                                                 <Card key={`left-${i}`} {...item} />
                                             ))}
                                         </div>
@@ -166,7 +166,7 @@ export default function Testimonial() {
                                     {/* RIGHT (desktop only) */}
                                     <div className="marquee-container min-h-full hidden lg:block">
                                         <div className=" marquee-up flex flex-col gap-[24px]">
-                                            {items.map((item, i) => (
+                                            {rightItems.map((item, i) => (
                                                 <Card key={`right-${i}`} {...item} />
                                             ))}
                                         </div>
@@ -196,7 +196,7 @@ export default function Testimonial() {
                                 <img src={youtube} alt="" className="w-[35px] h-[35px]" />
                             </div>
                         </div>
-                        <div className="w-full testimonial-right-down flex flex-col gap-y-[100px] rounded-[20px] md:p-[35px] p-[30px]">
+                        <div className="w-full testimonial-right-down flex flex-col gap-y-[100px] rounded-[20px] md:p-[35px] p-[15px]">
                             <div className="max-w-[70%]">
                                 <h4 className="md:text-[30px] text-[24px] font-semibold leading-[1.15] text-white">
                                     Group Cooperation
