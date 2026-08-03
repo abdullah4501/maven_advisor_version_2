@@ -1,253 +1,104 @@
-import { useState, useRef } from 'react';
-import { motion, AnimatePresence, Variants } from 'framer-motion';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { Link } from "react-router-dom";
-import { ArrowRight, ChevronRight } from 'lucide-react';
-import image from '@/assets/team-banner.jpg';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import FeaturesTabs from '@/components/FeaturesTabs';
-import ServiceSlider2 from '@/components/ServiceSlider2';
-import image1 from '@/assets/service-1.jpg';
-import image2 from '@/assets/service-2.jpg';
-import image3 from '@/assets/service-3.jpg';
-import image4 from '@/assets/service-4.jpg';
-import image5 from '@/assets/service-5.jpg';
-import image6 from '@/assets/service-6.jpg';
-import check from "@/assets/check.svg";
+import { ArrowRight, Check } from "lucide-react"
+import { motion } from "framer-motion"
+import { Link } from "react-router-dom"
+import FeaturesTabs from "@/components/FeaturesTabs"
+import Footer from "@/components/Footer"
+import Header from "@/components/Header"
+import ServicesSlider from "@/components/ServicesSlider"
+import { canonicalServices, servicePages } from "@/data/services"
+import { usePageMeta } from "@/hooks/usePageMeta"
+import heroImage from "@/assets/service-flex-banner-img-01.jpg"
 
+const reveal = {
+  initial: { opacity: 0, y: 38 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "0px 0px -70px 0px" },
+  transition: { duration: 0.65 },
+}
 
-const services = [
-    {
-        title: "Core Finance Operations",
-        img: image1,
-        items: [
-            "Monthly Bookkeeping",
-            "Monthly Payroll Management",
-            "Monthly Contractor Payments",
-            "Monthly Invoicing & Billing",
-            "Monthly Accounts Payable & Receivable",
-        ],
-    },
-    {
-        title: "Financial Reporting and Control",
-        img: image2,
-        items: [
-            "Monthly Profit and Loss Reporting",
-            "Monthly Budgeting",
-            "Monthly Cash Flow Forecasting",
-            "Monthly Financial Performance Analysis",
-            "Actionable insights for decision making",
-        ],
-    },
-    {
-        title: "Compliance and Regulatory Support",
-        img: image3,
-        items: [
-            "VAT Filing",
-            "HMRC and Companies House Joint Filing",
-            "Chart of Accounts Setup for new businesses",
-            "Regulatory compliance management",
-            "Proper financial record maintenance",
-        ],
-    },
-    {
-        title: "Company Tax Services",
-        img: image4,
-        items: [
-            "Corporate Tax Advisory & Planning",
-            "Preparation and Filing of Company Tax Returns",
-            "Tax efficiency planning for businesses",
-            "Identifying legitimate tax savings",
-            "Compliance with corporate tax laws",
-        ],
-    },
-    {
-        title: "Personal and Self Tax Services",
-        img: image5,
-        items: [
-            "Self Assessment Tax Returns",
-            "Personal Tax Planning",
-            "Income Tax Compliance",
-            "Advisory on tax optimization",
-            "Legitimate tax savings identification",
-        ],
-    },
-    {
-        title: "Strategic Financial Leadership",
-        img: image6,
-        items: [
-            "Business growth planning",
-            "Financial decision support",
-            "Cost structure optimization",
-            "Profitability improvement",
-            "Cash discipline and capital planning",
-        ],
-    },
-];
+function serviceHighlights(path: string) {
+  const page = Object.values(servicePages).find((item) => item.path === path)
+  if (!page) return []
+  return page.sections.flatMap((section) => section.bullets ?? []).slice(0, 5)
+}
 
-const Services = ({ breadcrumb }) => {
-    const imageVariants: Variants = {
-        initial: {
-            filter: "blur(0px)",
-        },
-        hover: {
-            filter: ["blur(0px)", "blur(8px)", "blur(3px)", "blur(0px)"],
-            transition: {
-                duration: 0.65, // slightly faster than 0.9
-                ease: [0.4, 0, 0.2, 1], // proper easeInOut
-                times: [0, 0.3, 0.65, 1],
-            },
-        },
-    };
-    const blurFlashVariants: Variants = {
-        initial: { opacity: 0 },
-        hover: {
-            opacity: [0, 0.75, 0],
-            transition: {
-                duration: 0.65,
-                ease: [0.4, 0, 0.2, 1],
-                times: [0, 0.5, 1],
-            },
-        },
-    };
+export default function Services() {
+  usePageMeta(
+    "Finance Services & Virtual CFO Support | Mavens Advisor",
+    "Explore eight specialist Mavens Advisor services for finance setup, operations, reporting, tax, advisory, Virtual CFO and controlled automation.",
+  )
 
-    return (
-        <>
-            <Header />
+  return (
+    <>
+      <Header />
+      <section className="relative min-h-[760px] overflow-hidden bg-[#050505] text-white lg:min-h-[820px]">
+        <div className="absolute inset-y-0 right-0 w-full lg:w-[54%]">
+          <img src={heroImage} alt="" className="h-full w-full object-cover opacity-60 lg:opacity-95" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/40 to-transparent lg:from-[#050505] lg:via-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/75 via-transparent to-black/10" />
+        </div>
+        <div className="absolute -left-[8vw] top-[18%] h-[540px] w-[540px] rounded-full bg-[#0C7FFE]/15 blur-[130px]" />
+        <div className="absolute bottom-[-12%] left-[38%] select-none text-[clamp(12rem,29vw,31rem)] font-bold leading-none text-white/[0.025]">08</div>
 
-            <section className="relative min-h-[550px] overflow-hidden flex flex-col justify-end items-center">
-                {/* Background Images with Fade */}
-                <div
-                    className="absolute inset-0 transition-opacity duration-700 ease-in-out"
-                >
-                    <img
-                        src={image}
-                        className="w-full h-full object-cover"
-                    />
-                </div>
+        <div className="container relative z-10 flex min-h-[760px] flex-col justify-end pb-[75px] pt-[180px] lg:min-h-[820px] lg:pb-[90px]">
+          <motion.div initial={{ opacity: 0, y: 36 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.75 }} className="max-w-[1040px]">
+            <p className="wdt-heading mb-6 text-[#78b5ff]">Eight Specialist Services</p>
+            <h1 className="text-[48px] font-semibold leading-[0.99] tracking-[-0.05em] md:text-[72px] lg:text-[92px]">Finance support,<br /><span className="text-white">clearly defined.</span></h1>
+          </motion.div>
+          <div className="mt-14 grid grid-cols-1 items-end gap-9 border-t border-white/20 pt-8 lg:grid-cols-12">
+            <p className="max-w-[720px] text-[17px] leading-[1.75] text-white/75 lg:col-span-7 lg:text-[18px]">Engage a specialist finance service, combine the capabilities you need through Virtual CFO, or separately assess a suitable accounting, tax or compliance workflow for controlled automation.</p>
+            <div className="lg:col-span-5 lg:text-right">
+              <Link to="/get-a-quote" className="inline-flex items-center gap-3 rounded-[12px] bg-primary-gradient px-7 py-[18px] text-[15px] font-semibold text-black transition-transform hover:-translate-y-1">Get My Tailored Quote<ArrowRight size={18} /></Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                {/* Content Container */}
-                <div className='container pt-[150px] pb-[120px] flex items-end'>
-                    <div className='grid grid-cols-12 relative items-center'>
-                        <div className="relative col-span-12 lg:col-span-7">
-                            <div className="">
-                                {/* Main Heading with fade animation */}
-                                <AnimatePresence mode="wait">
-                                    <motion.div
-                                        initial={{ clipPath: 'polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)' }}
-                                        animate={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' }}
-                                        exit={{ clipPath: 'polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)' }}
-                                        transition={{ duration: 1, ease: [0.5, 0.5, 0, 1] }}
-                                        className="overflow-hidden"
-                                    >
-                                        <div
-                                            className="mb-5 flex text-white text-[16px] items-center leading-[30px] font-[500]"
-                                        >
-                                            <span>
-                                                <Link to={'/'}>Home</Link>
-                                            </span>
-                                            <span>
-                                                <ChevronRight size={20} className='mx-1' />
-                                            </span>
-                                            <span>
-                                                {breadcrumb}
-                                            </span>
-                                        </div>
-                                        <h1 className="text-[45px] md:text-[55px] lg:text-[70px] font-bold text-white leading-tight lg:mb-12 mb-6">
-                                            {breadcrumb}
-                                        </h1>
-                                    </motion.div>
-                                </AnimatePresence>
-                            </div>
-                        </div>
+      <main className="text-black">
+        <FeaturesTabs />
+        <ServicesSlider />
 
-                        {/* Description */}
-                        <div className='col-span-12 lg:col-span-5'>
-                            <div className='lg:mt-[30px] lg:ml-[125px] mb-[25px]'>
-                                <motion.p
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.4, delay: 0.2 }}
-                                    className="text-white text-[16px] lg:text-[18px] lg:leading-[30px] font-[500] z-10 self-end"
-                                >
-                                   Mavens Advisor is a Virtual CFO firm delivering complete finance departments with CFO-level leadership, AI-powered analytics, and evergreen support for every stage of growth.
-                                </motion.p>
-                            </div>
-                        </div>
+        <section className="bg-[#f6f7f4] py-[90px] md:py-[145px]">
+          <div className="container">
+            <div className="mb-[65px] grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
+              <motion.div {...reveal} className="lg:col-span-8">
+                <p className="wdt-heading mb-5">Complete Service Directory</p>
+                <h2 className="text-[40px] font-semibold leading-[1.06] tracking-[-0.035em] md:text-[60px]">Explore every service<br /><span className="text-[#777]">in more detail.</span></h2>
+              </motion.div>
+              <motion.p {...reveal} transition={{ duration: 0.65, delay: 0.1 }} className="max-w-[520px] text-[17px] leading-[1.75] text-[#666] lg:col-span-4">Choose a defined specialist service or combine the required finance capabilities through one accountable Virtual CFO team.</motion.p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-7 md:grid-cols-2 xl:grid-cols-3">
+              {canonicalServices.map((service, index) => {
+                const highlights = serviceHighlights(service.path)
+                return (
+                  <motion.article key={service.path} {...reveal} className="group flex h-full flex-col overflow-hidden rounded-[28px] bg-white shadow-[0_18px_55px_rgba(17,24,39,0.06)] transition duration-500 hover:-translate-y-2 hover:shadow-[0_24px_70px_rgba(17,24,39,0.12)]">
+                    <Link to={service.path} className="relative block h-[245px] overflow-hidden">
+                      <img src={service.image} alt="" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+                      <span className="absolute bottom-5 left-6 text-[13px] font-semibold tracking-[0.14em] text-white/80">SERVICE {String(index + 1).padStart(2, "0")}</span>
+                      <span className="absolute bottom-5 right-5 flex h-11 w-11 items-center justify-center rounded-full bg-white text-black transition-transform duration-300 group-hover:-rotate-45"><ArrowRight size={18} /></span>
+                    </Link>
+                    <div className="flex flex-1 flex-col p-[30px] md:p-[38px]">
+                      <Link to={service.path}><h3 className="text-[27px] font-semibold leading-[1.15] tracking-[-0.02em] transition-colors group-hover:text-[#0C7FFE]">{service.title}</h3></Link>
+                      <p className="mt-4 text-[16px] leading-[1.7] text-[#686868]">{service.value}</p>
+                      {highlights.length > 0 && (
+                        <ul className="mt-7 border-t border-black/10">
+                          {highlights.map((item) => (
+                            <li key={item} className="flex gap-3 border-b border-black/10 py-3.5 text-[14px] leading-[1.5] text-[#666]"><Check size={16} className="mt-0.5 shrink-0 text-[#0C7FFE]" />{item}</li>
+                          ))}
+                        </ul>
+                      )}
+                      <Link to={service.path} className="mt-8 inline-flex items-center gap-3 self-start text-[14px] font-semibold uppercase tracking-[0.1em]">View Service<span className="h-px w-10 bg-black transition-all group-hover:w-16 group-hover:bg-[#0C7FFE]" /></Link>
                     </div>
-                </div>
-
-            </section>
-            <FeaturesTabs />
-            <ServiceSlider2 />
-            <section className='bg-[#f6f7f4] py-[120px]'>
-                <div className='container '>
-                    <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 justify-center gap-5 gap-y-16'>
-                        {services.map((service, index) => (
-                            <motion.div
-                                key={index}
-                                className="service-card-new relative bg-white rounded-[20px] flex flex-col h-full w-full group"
-                                initial="initial"
-                                whileHover="hover"
-                            >
-                                {/* Image wrapper */}
-                                <div className="mb-8 relative overflow-hidden rounded-t-[20px]">
-                                    <motion.img
-                                        src={service.img}
-                                        alt={service.title}
-                                        className="rounded-t-[20px] w-full"
-                                        variants={imageVariants}
-                                    />
-
-
-                                    {/* Strong blur + sharpness flash */}
-                                    <motion.div
-                                        className="absolute inset-0 backdrop-blur-[10px]"
-                                        variants={blurFlashVariants}
-                                    />
-                                </div>
-
-                                <div className="md:px-[50px] md:pt-[25px] md:pb-[50px] p-[25px]">
-                                    {/* Title */}
-                                    <h3 className="text-[24px] service-title font-bold text-navy mb-6">
-                                        <Link to="" className="transition">
-                                            {service.title}
-                                        </Link>
-                                    </h3>
-
-                                    {/* List */}
-                                    <ul className="space-y-4 mb-10">
-                                        {service.items.map((item, i) => (
-                                            <li
-                                                key={i}
-                                                className="flex items-center gap-3 text-[18px] font-medium text-gray-600"
-                                            >
-                                                <span className="text-green-500">
-                                                    <img src={check} alt="" />
-                                                </span>
-                                                {item}
-                                            </li>
-                                        ))}
-                                    </ul>
-
-                                    {/* CTA */}
-                                    <div className="mt-auto flex">
-                                        <button className=" inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
-                                            Get Quotation
-                                            <ArrowRight />
-                                        </button>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-            <Footer />
-        </>
-    );
-};
-
-export default Services;
+                  </motion.article>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  )
+}

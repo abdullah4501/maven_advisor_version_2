@@ -1,100 +1,70 @@
-import { useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { Link } from "react-router-dom";
-import { ChevronRight } from 'lucide-react';
-import image from '@/assets/team-banner.jpg';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import FeaturesTabs from '@/components/FeaturesTabs';
-import ServicesSlider from '@/components/ServicesSlider';
-import Faqs from '@/components/Faqs';
-import Testimonial from '@/components/Testimonial';
-import Counter from '@/components/Counter';
-import ServiceSlider2 from '@/components/ServiceSlider2';
-import TrustedPartners from '@/components/TrustedPartners';
-import FAQSection2 from '@/components/Faqs2';
-import TestimonialsSection2 from '@/components/TestimonialSection2';
-import MissionAndGoals from '@/components/MissionAndGoals';
-import OurMission from '@/components/OurMission';
-import OurHistory from '@/components/OurHistory';
+import { ArrowRight, Check } from "lucide-react"
+import { Link } from "react-router-dom"
+import Footer from "@/components/Footer"
+import Header from "@/components/Header"
+import PageHero from "@/components/PageHero"
+import { usePageMeta } from "@/hooks/usePageMeta"
+import heroImage from "@/assets/features_main.jpg"
 
-const About = ({ breadcrumb }) => {
-    return (
-        <>
-            <Header />
+const principles = [
+  ["Ownership", "Responsibilities are defined and actively managed."],
+  ["Clarity", "Clients should understand what is complete, what is pending and what requires a decision."],
+  ["Timeliness", "Financial information loses value when it arrives too late."],
+  ["Professional judgement", "Advice and review remain grounded in facts, records and business context."],
+  ["Consistency", "Reliable outcomes come from repeatable processes, not last-minute effort."],
+  ["Controlled innovation", "Automation should strengthen accountability rather than obscure it."],
+]
 
-            <section className="relative min-h-[550px] overflow-hidden flex flex-col justify-end items-center">
-                {/* Background Images with Fade */}
-                <div
-                    className="absolute inset-0 transition-opacity duration-700 ease-in-out"
-                >
-                    <img
-                        src={image}
-                        className="w-full h-full object-cover"
-                    />
+export default function AboutUs() {
+  usePageMeta("About Mavens Advisor | Virtual CFO & Automation Specialists", "Meet the team helping UK and US businesses protect profit, control cash and make better decisions.")
+  return (
+    <>
+      <Header />
+      <PageHero
+        eyebrow="About Mavens Advisor"
+        image={heroImage}
+        title="A Finance Partner Focused on What the Numbers Should Do for Your Business"
+        description="Mavens Advisor was built on a straightforward belief: business owners deserve more than completed books. They need a finance team that protects value, explains what the numbers mean and takes ownership of the work."
+        primaryLabel="Meet the Team"
+        primaryTo="/team"
+      />
+      <main className="bg-[#f6f7f4] py-[80px] md:py-[120px]">
+        <div className="container space-y-8">
+          <section className="grid grid-cols-1 gap-10 rounded-[30px] bg-white p-[35px] md:p-[60px] lg:grid-cols-2">
+            <div>
+              <p className="wdt-heading mb-4">Our Purpose</p>
+              <h2 className="text-[36px] font-semibold leading-[1.15] md:text-[48px]">Protect Value, Explain the Numbers, Take Ownership</h2>
+            </div>
+            <p className="text-[18px] leading-[1.8] text-[#6b6b6b]">We help UK and US businesses keep more of what they earn, understand cash movement, meet tax and compliance responsibilities and make better decisions. Our role is to connect accurate execution with commercial interpretation, communicate clearly and give decision-makers information they can use.</p>
+          </section>
+
+          <section className="rounded-[30px] bg-black p-[35px] text-white md:p-[60px]">
+            <p className="wdt-heading mb-4 text-white">How We Work</p>
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {principles.map(([title, copy]) => (
+                <div key={title} className="rounded-[22px] bg-white/10 p-[28px]">
+                  <h3 className="text-[22px] font-semibold">{title}</h3>
+                  <p className="mt-3 leading-[1.65] text-white/70">{copy}</p>
                 </div>
+              ))}
+            </div>
+          </section>
 
-                {/* Content Container */}
-                <div className='container pt-[150px] pb-[120px] flex items-end'>
-                    <div className='grid grid-cols-12 relative items-center'>
-                        <div className="relative col-span-12 lg:col-span-7">
-                            <div className="">
-                                {/* Main Heading with fade animation */}
-                                <AnimatePresence mode="wait">
-                                    <motion.div
-                                        initial={{ clipPath: 'polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)' }}
-                                        animate={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' }}
-                                        exit={{ clipPath: 'polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)' }}
-                                        transition={{ duration: 1, ease: [0.5, 0.5, 0, 1] }}
-                                        className="overflow-hidden"
-                                    >
-                                        <div
-                                            className="mb-5 flex text-white text-[16px] items-center leading-[30px] font-[500]"
-                                        >
-                                            <span>
-                                                <Link to={'/'}>Home</Link>
-                                            </span>
-                                            <span>
-                                                <ChevronRight size={20} className='mx-1' />
-                                            </span>
-                                            <span>
-                                                {breadcrumb}
-                                            </span>
-                                        </div>
-                                        <h1 className="text-[45px] md:text-[55px] lg:text-[70px] font-bold text-white leading-tight lg:mb-12 mb-6">
-                                            {breadcrumb}
-                                        </h1>
-                                    </motion.div>
-                                </AnimatePresence>
-                            </div>
-                        </div>
-
-                        {/* Description */}
-                        <div className='col-span-12 lg:col-span-5'>
-                            <div className='lg:mt-[30px] lg:ml-[125px] mb-[25px]'>
-                                <motion.p
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.4, delay: 0.2 }}
-                                    className="text-white text-[16px] lg:text-[18px] lg:leading-[30px] font-[500] z-10 self-end"
-                                >
-                                    Mavens Advisor is a Virtual CFO firm delivering complete finance departments with CFO-level leadership, AI-powered analytics, and evergreen support for every stage of growth.
-                                </motion.p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </section>
-            <OurMission />
-            <OurHistory />
-            <MissionAndGoals />
-            <TestimonialsSection2 />
-            <Footer />
-        </>
-    );
-};
-
-export default About;
+          <section className="grid grid-cols-1 gap-8 lg:grid-cols-2">
+            <div className="rounded-[30px] bg-white p-[35px] md:p-[50px]">
+              <h2 className="text-[32px] font-semibold">Two Specialist Service Lines</h2>
+              <p className="mt-5 text-[17px] leading-[1.75] text-[#6b6b6b]">Our finance practice provides six specialist finance services that can be engaged individually or combined within a Virtual CFO engagement. Our separate Agentic AI Automation practice improves suitable accounting, tax and compliance workflows through controlled technology implementation.</p>
+              <Link to="/services" className="mt-7 inline-flex items-center gap-2 font-semibold text-[#0C7FFE]">Explore All Services <ArrowRight size={18} /></Link>
+            </div>
+            <div className="rounded-[30px] bg-white p-[35px] md:p-[50px]">
+              <h2 className="text-[32px] font-semibold">Our Market Focus</h2>
+              <p className="mt-5 text-[17px] leading-[1.75] text-[#6b6b6b]">Mavens Advisor focuses on clients based in the United Kingdom and United States. This allows our team to develop practical experience around the systems, reporting expectations and compliance environments relevant to those markets.</p>
+              <Link to="/team" className="mt-7 inline-flex items-center gap-2 font-semibold text-[#0C7FFE]">Meet the Leadership Team <ArrowRight size={18} /></Link>
+            </div>
+          </section>
+        </div>
+      </main>
+      <Footer />
+    </>
+  )
+}

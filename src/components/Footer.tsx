@@ -1,310 +1,71 @@
-import { useState, useRef, useEffect } from "react";
-import { ArrowRight, ArrowUp, Send } from "lucide-react";
-import logo from "@/assets/logo-white.png";
-import { Link } from "react-router-dom";
-import { motion, useInView } from "framer-motion";
+import { useEffect, useState } from "react"
+import { ArrowUp, Mail, Phone } from "lucide-react"
+import { Link } from "react-router-dom"
+import logo from "@/assets/logo-white.png"
 import footerBg from "@/assets/footer.png"
+import { canonicalServices } from "@/data/services"
 
-const fadeUpVariants = {
-    hidden: { opacity: 0, y: 60 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.6 },
-    },
-}
-const AboutLinks = [
-  { label: "Our Story", url: "/" },
-  { label: "Our Team", url: "/our-team" },
-  { label: "Portfolio", url: "/" },
-  { label: "Career", url: "/" },
-  { label: "Client Testimonials", url: "/" },
-  { label: "Security Promise", url: "/" }
-];
-const QuickLinks = [
-  { label: "FAQ", url: "/faq" },
-  { label: "Pricing Plan", url: "/" },
-  { label: "Contact", url: "/contact" },
-  { label: "Market Overview", url: "/" },
-  { label: "Blog", url: "/blog" },
-  { label: "Account Login", url: "/" }
+const companyLinks = [
+  { label: "Who We Help", to: "/who-we-help" },
+  { label: "About", to: "/about" },
+  { label: "Leadership Team", to: "/team" },
+  { label: "Client Reviews", to: "/client-reviews" },
+  { label: "Insights", to: "/insights" },
+  { label: "Frequently Asked Questions", to: "/faq" },
 ]
 
 export default function Footer() {
-    const [email, setEmail] = useState("");
-    const [agreed, setAgreed] = useState(false);
-    const [openSection, setOpenSection] = useState<string | null>(null)
-    const [showScrollTop, setShowScrollTop] = useState(false)
+  const [showScrollTop, setShowScrollTop] = useState(false)
 
-    const sectionRef = useRef<HTMLDivElement>(null)
-    const sectionInView = useInView(sectionRef, { once: true, margin: "0px 0px -80px 0px" })
+  useEffect(() => {
+    const handleScroll = () => setShowScrollTop(window.scrollY > 200)
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
-    // Show button only when user has scrolled away from the top
-    useEffect(() => {
-        const handleScroll = () => {
-            setShowScrollTop(window.scrollY > 0)
-        }
-        window.addEventListener("scroll", handleScroll, { passive: true })
-        // Run once on mount in case page loaded mid-scroll
-        handleScroll()
-        return () => window.removeEventListener("scroll", handleScroll)
-    }, [])
+  return (
+    <footer className="w-full bg-[#f6f7f4]">
+      <div className="relative w-full bg-cover bg-center md:rounded-t-[60px]" style={{ backgroundImage: `url(${footerBg})` }}>
+        <div className="absolute inset-0 bg-[#161616d9] md:rounded-t-[60px]" />
+        <div className="container relative py-[70px] md:py-[110px]">
+          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.1fr_1fr_1fr]">
+            <div>
+              <Link to="/"><img src={logo} alt="Mavens Advisor" className="w-[240px]" /></Link>
+              <p className="mt-7 max-w-[430px] text-[17px] leading-[1.7] text-white/75">Helping UK and US business owners keep more of what they earn, protect cash flow and make better decisions through an accountable finance team.</p>
+              <div className="mt-7 space-y-3 text-white/80">
+                <a href="tel:+447441441789" className="flex items-center gap-3"><Phone size={18} className="text-[#0C7FFE]" />+44 7441 441789</a>
+                <a href="mailto:adeelshaikh@mavensadvisor.com" className="flex items-center gap-3 break-all"><Mail size={18} className="text-[#0C7FFE]" />adeelshaikh@mavensadvisor.com</a>
+              </div>
+            </div>
 
-    const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    };
+            <div>
+              <h2 className="text-[22px] font-semibold text-white">Services</h2>
+              <ul className="mt-6 grid gap-3">
+                {canonicalServices.map((service) => <li key={service.path}><Link to={service.path} className="text-[15px] text-white/70 hover:text-[#0C7FFE]">{service.title}</Link></li>)}
+              </ul>
+            </div>
 
-    return (
-        <section className="bg-[#f6f7f4] w-full">
-            <motion.div
-                ref={sectionRef}
-                variants={fadeUpVariants}
-                initial="hidden"
-                animate={sectionInView ? "visible" : "hidden"}
-                className="relative w-full md:rounded-t-[60px] bg-cover bg-center"
-                style={{ backgroundImage: `url(${footerBg})` }}
-            >
-                <div className="absolute inset-0 md:rounded-t-[60px] bg-[#161616ba]" />
-                <div className="container relative md:pt-[150px] md:pb-[30px] py-[40px] relative md:-mt-[80px]">
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-[30px] pb-[50px]">
-                        <div className="w-full col-span-2 lg:col-span-1 flex flex-col gap-8 lg:pr-[60px]">
-                            <div className="w-full">
-                                <div className="mb-6">
-                                    <Link to={"/"}>
-                                        <img src={logo} alt="Bullish" className="w-[300px] md:w-[250px] h-auto" />
-                                    </Link>
-                                </div>
-                                <p className="text-white text-[16px] md:text-[18px] font-medium leading-[1.5]">
-                                    Sed quaerat cupiditate ut aspernatur pariatur quo facere dolores
-                                    et natus quisqua.
-                                </p>
-                            </div>
-                            <div className="w-full">
-                                <h3 className="text-white text-[22px] font-bold mb-7">
-                                    Stay Tuned
-                                </h3>
-                                <div className="flex items-center gap-4">
-                                    {[
-                                        {
-                                            label: "Twitter",
-                                            icon: (
-                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                                                </svg>
-                                            ),
-                                        },
-                                        {
-                                            label: "YouTube",
-                                            icon: (
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                                                </svg>
-                                            ),
-                                        },
-                                        {
-                                            label: "Instagram",
-                                            icon: (
-                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
-                                                </svg>
-                                            ),
-                                        },
-                                        {
-                                            label: "Website",
-                                            icon: (
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                                    <circle cx="12" cy="12" r="10" />
-                                                    <path d="M2 12h20" />
-                                                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                                                </svg>
-                                            ),
-                                        },
-                                    ].map((social) => (
-                                        <Link
-                                            key={social.label}
-                                            to="/"
-                                            className="w-[35px] h-[35px] md:w-[50px] md:h-[50px] rounded-full border flex items-center justify-center text-[#0C7FFE] hover:bg-primary hover:text-[#fff] transition-all"
-                                            aria-label={social.label}
-                                        >
-                                            {social.icon}
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                        <div className="w-full col-span-2">
-                            <div className="flex flex-col md:flex-row gap-[30px]">
-                                <h2 className="w-full md:w-1/2 text-white text-[24px] md:text-[32px] font-bold leading-tight">
-                                    Register For Tax Updates!
-                                </h2>
-                                <div className="sm:w-[65%] w-full">
-                                    <div className="relative flex items-center bg-white rounded-[10px] overflow-hidden h-[56px]">
-                                        <input
-                                            type="email"
-                                            value={email}
-                                            onChange={(e) => setEmail(e.target.value)}
-                                            placeholder="Enter your email address"
-                                            className="flex-1 bg-transparent text-black/90 placeholder:text-black/40 text-[16px] px-7 h-full outline-none"
-                                        />
-                                        <button className="flex items-center justify-center bg-primary-gradient transition-colors rounded-[10px] w-[60px] h-full shrink-0">
-                                            <Send className="w-5 h-5 text-[#fff] font-bold rotate-[40deg]" />
-                                        </button>
-                                    </div>
+            <div>
+              <h2 className="text-[22px] font-semibold text-white">Company</h2>
+              <ul className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1">
+                {companyLinks.map((item) => <li key={item.to}><Link to={item.to} className="text-[15px] text-white/70 hover:text-[#0C7FFE]">{item.label}</Link></li>)}
+              </ul>
+              <h2 className="mt-9 text-[22px] font-semibold text-white">Take the Next Step</h2>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <Link to="/get-a-quote" className="rounded-[12px] bg-primary-gradient px-5 py-3 text-sm font-semibold text-black">Get My Tailored Quote</Link>
+                <Link to="/automation-assessment" className="rounded-[12px] border border-white/35 px-5 py-3 text-sm font-semibold text-white">Assess My Workflow</Link>
+              </div>
+            </div>
+          </div>
 
-                                    <label className="flex items-center gap-3 mt-4 cursor-pointer">
-                                        <div
-                                            onClick={() => setAgreed(!agreed)}
-                                            className={`w-[16px] h-[16px] rounded-[3px] border-2 flex items-center justify-center transition-colors ${agreed
-                                                ? "bg-primary-gradient  border-primary"
-                                                : "border-[#ffffff4d] bg-transparent"
-                                                }`}
-                                        >
-                                            {agreed && (
-                                                <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                                                    <path d="M1 4L3.5 6.5L9 1" stroke="#161616" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                                                </svg>
-                                            )}
-                                        </div>
-                                        <span className="text-white text-[16px]">
-                                            I acknowledge all the Terms & Conditions
-                                        </span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div className="w-full h-px bg-white/20 md:my-14 my-10" />
-
-                            {/* Mobile Accordion */}
-                            <div className="flex lg:hidden flex-col items-center gap-6">
-                                <div className="w-full">
-                                    <button
-                                        onClick={() => setOpenSection(openSection === "support" ? null : "support")}
-                                        className={`lg:hidden w-full bg-primary-gradient flex items-center justify-between py-[18px] px-[20px] ${openSection === "support" ? "rounded-t-[20px]" : "rounded-[20px]"}`}
-                                    >
-                                        <span className="text-[22px] font-bold text-white">Support Pages</span>
-                                        <svg className={`w-8 h-8 transition-transform ${openSection === "support" ? "" : "rotate-180"}`} viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M7 14l5-5 5 5" />
-                                        </svg>
-                                    </button>
-                                    <div className={`lg:block transition-all duration-500 ease-in-out origin-top ${openSection === "support" ? "max-h-[500px] opacity-100 scale-y-100" : "max-h-0 opacity-0 scale-y-0 pointer-events-none"} rounded-b-[20px] -mt-1 bg-[#2a2a2a] lg:bg-transparent overflow-hidden`}>
-                                        <h3 className="hidden lg:block text-white text-[22px] font-bold mb-7">Support Pages</h3>
-                                        <ul className="flex flex-col gap-[12px] p-6 lg:p-0">
-                                            {["About", "Live Chat", "Trading Guide", "Terms & Conditions", "Privacy Policy", "Risk Disclosure"].map((item) => (
-                                                <li key={item}>
-                                                    <Link to="/" className="text-white font-medium text-[15px] hover:text-primary transition-colors">{item}</Link>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div className="w-full">
-                                    <button
-                                        onClick={() => setOpenSection(openSection === "about" ? null : "about")}
-                                        className={`lg:hidden w-full bg-primary-gradient flex items-center justify-between py-[18px] px-[20px] ${openSection === "about" ? "rounded-t-[20px]" : "rounded-[20px]"}`}
-                                    >
-                                        <span className="text-[22px] font-bold text-white">About</span>
-                                        <svg className={`w-8 h-8 transition-transform ${openSection === "about" ? "" : "rotate-180"}`} viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M7 14l5-5 5 5" />
-                                        </svg>
-                                    </button>
-                                    <div className={`lg:block transition-all duration-500 ease-in-out origin-top ${openSection === "about" ? "max-h-[500px] opacity-100 scale-y-100" : "max-h-0 opacity-0 scale-y-0 pointer-events-none"} rounded-b-[20px] -mt-1 bg-[#2a2a2a] lg:bg-transparent overflow-hidden`}>
-                                        <h3 className="hidden lg:block text-white text-[22px] font-bold mb-7">About</h3>
-                                        <ul className="flex flex-col gap-[12px] p-6 lg:p-0">
-                                            {AboutLinks.map((item) => (
-                                                <li key={item.label}>
-                                                    <Link to={item.url} className="text-white font-medium text-[15px] hover:text-[#a5f94e] transition-colors">{item.label}</Link>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div className="w-full">
-                                    <button
-                                        onClick={() => setOpenSection(openSection === "quick" ? null : "quick")}
-                                        className={`lg:hidden w-full ${openSection === "quick" ? "rounded-t-[20px]" : "rounded-[20px]"} bg-primary-gradient flex items-center justify-between py-[18px] px-[20px]`}
-                                    >
-                                        <span className="text-[22px] font-bold text-white">Quick Links</span>
-                                        <svg className={`w-8 h-8 transition-transform ${openSection === "quick" ? "" : "rotate-180"}`} viewBox="0 0 24 24" fill="currentColor">
-                                            <path d="M7 14l5-5 5 5" />
-                                        </svg>
-                                    </button>
-                                    <div className={`lg:block transition-all duration-500 ease-in-out origin-top ${openSection === "quick" ? "max-h-[500px] opacity-100 scale-y-100" : "max-h-0 opacity-0 scale-y-0 pointer-events-none"} rounded-b-[20px] bg-[#2a2a2a] lg:bg-transparent overflow-hidden`}>
-                                        <h3 className="hidden lg:block text-white text-[22px] font-bold mb-7">Quick Links</h3>
-                                        <ul className="flex flex-col gap-[12px] p-6 lg:p-0">
-                                            {QuickLinks.map((item) => (
-                                                <li key={item.label}>
-                                                    <Link to={item.url} className="text-white font-medium text-[15px] hover:text-[#a5f94e] transition-colors">{item.label}</Link>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Desktop Links */}
-                            <div className="hidden lg:flex flex-wrap flex-col lg:flex-row items-center gap-y-12 gap-0">
-                                <div className="lg:w-[33.33%] w-[50%]">
-                                    <h3 className="text-white text-[22px] font-bold mb-7">Support Pages</h3>
-                                    <ul className="flex flex-col gap-[14px]">
-                                        {["About", "Live Chat", "Trading Guide", "Terms & Conditions", "Privacy Policy", "Risk Disclosure"].map((item) => (
-                                            <li key={item}>
-                                                <Link to="/" className="text-white text-[15px] hover:text-primary transition-colors">{item}</Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                                <div className="lg:w-[33.33%] w-[50%]">
-                                    <h3 className="text-white text-[22px] font-bold mb-7">About</h3>
-                                    <ul className="flex flex-col gap-[14px]">
-                                        {AboutLinks.map((item) => (
-                                            <li key={item.label}>
-                                                <Link to={item.url} className="text-white text-[15px] hover:text-primary transition-colors">{item.label}</Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                                <div className="lg:w-[33.33%] w-[50%]">
-                                    <h3 className="text-white text-[22px] font-bold mb-7">Quick Links</h3>
-                                    <ul className="flex flex-col gap-[14px]">
-                                        {QuickLinks.map((item) => (
-                                            <li key={item.label}>
-                                                <Link to={item.url} className="text-white text-[15px] hover:text-primary transition-colors">{item.label}</Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="w-full h-px bg-white/20 mt-8 mb-8" />
-
-                    {/* Copyright Bar */}
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-                        <p className="text-white text-[14px]">
-                            &copy; 2025 Wedesigntech. All Rights Reserved
-                        </p>
-                        <div className="flex items-center gap-6">
-                            <Link to="/" className="text-white text-[14px] hover:text-primary transition-colors">
-                                Privacy Policy
-                            </Link>
-                            <span className="text-[#ffffff33]">|</span>
-                            <Link to="/" className="text-white text-[14px] hover:text-primary transition-colors">
-                                Terms & Condition
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </motion.div>
-
-            {/* Scroll-to-top button — fixed, only visible when scrolled away from top */}
-            <button
-                onClick={scrollToTop}
-                aria-label="Scroll to top"
-                className={`w-[44px] h-[44px] rounded-[10px] bg-primary-gradient fixed z-[99] bottom-8 right-5 flex items-center justify-center transition-all duration-300 ${showScrollTop ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 translate-y-4 pointer-events-none"
-                    }`}
-            >
-                <ArrowUp className="w-5 h-5 text-[#fff]" />
-            </button>
-        </section>
-    );
+          <div className="mt-14 flex flex-col gap-4 border-t border-white/15 pt-7 text-[14px] text-white/60 md:flex-row md:items-center md:justify-between">
+            <p>© 2026 Mavens Advisor. All rights reserved.</p>
+            <p>Virtual CFO Services and separately scoped Agentic AI Automation.</p>
+          </div>
+        </div>
+      </div>
+      <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Scroll to top" className={`fixed bottom-8 right-5 z-[99] flex h-[44px] w-[44px] items-center justify-center rounded-[10px] bg-primary-gradient transition-all ${showScrollTop ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-4 opacity-0"}`}><ArrowUp className="text-white" size={20} /></button>
+    </footer>
+  )
 }

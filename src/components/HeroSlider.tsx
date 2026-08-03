@@ -51,27 +51,16 @@ const slides: Slide[] = [
     bg: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/06/h1-hero-banner-img.jpg",
   },
   {
-    subtitle: "Smart Financial Insights",
-    title: "Your CFO",
-    highlight: " Portal  ",
-    extra: "With AI CFO",
+    subtitle: "Controlled Automation With Human Review",
+    title: "Agentic",
+    highlight: " AI  ",
+    extra: "Automation",
     description:
-      "Understand your business numbers instantly, identify opportunities, and make better decisions with AI driven financial insights.",
+      "A separate consulting and implementation service that identifies suitable accounting, tax, and compliance workflows, builds controlled automations, and keeps people responsible for approvals and exceptions.",
     cta: "See How It Works",
     bg: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/07/home-01-slider-img-02.jpg",
   },
-
-  // {
-  //   subtitle: "Built for Growth",
-  //   title: "A Finance",
-  //   highlight: " Team ",
-  //   extra: "That Grows With You",
-  //   description:
-  //     "As your business scales, your finance team scales with you. No rehiring. No disruption. Just continuous support.",
-  //   cta: "Start Your CFO Journey",
-  //   bg: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/07/home-01-slider-img-01.jpg",
-  // },
-
+  
 ];
 
 const HeroSlider = () => {
@@ -112,8 +101,15 @@ const HeroSlider = () => {
                 backgroundPosition: "center center",
               }}
             >
-              {/* Overlay + Union graphic */}
-              <div className="absolute inset-0 bg-black/50">
+              {/* Service-page-inspired half-width dark gradient + Union graphic */}
+              <div className="absolute inset-0">
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, #050505 0%, rgba(5,5,5,0.96) 32%, rgba(5,5,5,0.76) 50%, rgba(5,5,5,0.2) 76%, rgba(5,5,5,0.08) 100%)",
+                  }}
+                />
                 <div
                   className="absolute inset-0 bg-no-repeat bg-left opacity-[0.1] animate-bg-drift"
                   style={{
@@ -134,7 +130,7 @@ const HeroSlider = () => {
 
                     <h1 className="text-white text-[40px] lg:text-[70px] font-bold leading-tight mb-3">
                       {slide.title}{" "}
-                      <span className="text-primary-gradient">
+                      <span className="text-white">
                         {slide.highlight}
                       </span>
                       <span>{slide.extra}</span>

@@ -1,228 +1,41 @@
-import { useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { Link } from "react-router-dom";
-import { ChevronRight, Mail } from 'lucide-react';
-import image from '@/assets/team-banner.jpg';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import team1 from '@/assets/team-img1.jpg';
-import team2 from '@/assets/team-img2.jpg';
-import team3 from '@/assets/team-img3.jpg';
-import team4 from '@/assets/team-img4.jpg';
-import team5 from '@/assets/team-5.jpg';
-import team6 from '@/assets/team-6.jpg';
+import Footer from "@/components/Footer"
+import Header from "@/components/Header"
+import PageHero from "@/components/PageHero"
+import { usePageMeta } from "@/hooks/usePageMeta"
+import team1 from "@/assets/adeel-shaikh.jpg"
+import team2 from "@/assets/nabeel-shaikh.jpg"
+import team3 from "@/assets/zaryab-ul-hasan.jpg"
+import team4 from "@/assets/rehan-kazmi.jpg"
+import heroImage from "@/assets/team-banner.jpg"
 
-const teamMembers = [
-    {
-        name: "Rosemary Turk",
-        role: "Founder & CEO",
-        img: team1,
-        expertise: ["Audit Defense", "Corporate Tax", "Strategic Planning"],
-        email: "rosemary@limpa.com",
-    },
-    {
-        name: "Richard McMille",
-        role: "Chief Financial Officer",
-        img: team2,
-        expertise: ["Cost Optimization", "Financial Modeling", "Risk Management"],
-        email: "richard@limpa.com",
-    },
-    {
-        name: "Marilynn Church",
-        role: "Tax Director",
-        img: team3,
-        expertise: ["Estate Planning", "IRS Negotiation", "R&D Credits"],
-        email: "marilynn@limpa.com",
-    },
-    {
-        name: "Marilynn Church",
-        role: "Tax Director",
-        img: team4,
-        expertise: ["Estate Planning", "IRS Negotiation", "R&D Credits"],
-        email: "marilynn@limpa.com",
-    },
-    {
-        name: "Marilynn Church",
-        role: "Tax Director",
-        img: team4,
-        expertise: ["Estate Planning", "IRS Negotiation", "R&D Credits"],
-        email: "marilynn@limpa.com",
-    },
-    {
-        name: "Marilynn Church",
-        role: "Tax Director",
-        img: team5,
-        expertise: ["Estate Planning", "IRS Negotiation", "R&D Credits"],
-        email: "marilynn@limpa.com",
-    },
-    {
-        name: "Marilynn Church",
-        role: "Tax Director",
-        img: team6,
-        expertise: ["Estate Planning", "IRS Negotiation", "R&D Credits"],
-        email: "marilynn@limpa.com",
-    },
-];
+const leaders = [
+  { name: "Adeel Shaikh", title: "CEO and Founder", image: team1, bio: "Adeel is an ACCA-qualified finance professional with a BSc in Accounting and Finance and more than 10 years of experience across audit, financial management, consulting and Virtual CFO services. His background includes Grant Thornton UK and senior finance roles supporting businesses with reporting, compliance, forecasting and strategic financial decisions." },
+  { name: "Nabeel Shaikh", title: "Strategic Director", image: team2, bio: "Nabeel contributes senior strategic finance, investment and entrepreneurial perspective to Mavens Advisor. His role focuses on long-term direction, commercial development, strategic relationships and the evolution of services around changing client needs." },
+  { name: "Zaryab ul Hasan Khan", title: "Director of Operations", image: team3, bio: "Zaryab leads operational coordination and service delivery across the team. His focus is to turn client commitments into organised workflows, maintain communication, monitor responsibilities and support a consistent standard of execution." },
+  { name: "Syed Rehan Kazim Kazmi", title: "Non-Executive Director", image: team4, bio: "Rehan is a Fellow Chartered Accountant of ICAP and an Associate Chartered Accountant of ICAEW. He brings senior finance leadership, governance, transformation and strategic oversight to the board, helping strengthen professional standards and long-term decision-making." },
+]
 
-const Team = ({ breadcrumb }) => {
-    return (
-        <>
-            <Header />
-
-            <section className="relative min-h-[550px] overflow-hidden flex flex-col justify-end items-center">
-                {/* Background Images with Fade */}
-                <div
-                    className="absolute inset-0 transition-opacity duration-700 ease-in-out"
-                >
-                    <img
-                        src={image}
-                        className="w-full h-full object-cover"
-                    />
-                </div>
-
-                {/* Content Container */}
-                <div className='container pt-[150px] pb-[120px] flex items-end'>
-                    <div className='grid grid-cols-12 relative items-center'>
-                        <div className="relative col-span-12 lg:col-span-7">
-                            <div className="">
-                                {/* Main Heading with fade animation */}
-                                <AnimatePresence mode="wait">
-                                    <motion.div
-                                        initial={{ clipPath: 'polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)' }}
-                                        animate={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' }}
-                                        exit={{ clipPath: 'polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)' }}
-                                        transition={{ duration: 1, ease: [0.5, 0.5, 0, 1] }}
-                                        className="overflow-hidden"
-                                    >
-                                        <div
-                                            className="mb-5 flex text-white text-[16px] items-center leading-[30px] font-[500]"
-                                        >
-                                            <span>
-                                                <Link to={'/'}>Home</Link>
-                                            </span>
-                                            <span>
-                                                <ChevronRight size={20} className='mx-1' />
-                                            </span>
-                                            <span>
-                                                {breadcrumb}
-                                            </span>
-                                        </div>
-                                        <h1 className="text-[45px] md:text-[55px] lg:text-[70px] font-bold text-white leading-tight lg:mb-12 mb-6">
-                                            {breadcrumb}
-                                        </h1>
-                                    </motion.div>
-                                </AnimatePresence>
-                            </div>
-                        </div>
-
-                        {/* Description */}
-                        <div className='col-span-12 lg:col-span-5'>
-                            <div className='lg:mt-[30px] lg:ml-[125px] mb-[25px]'>
-                                <motion.p
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{ duration: 0.4, delay: 0.2 }}
-                                    className="text-white text-[16px] lg:text-[18px] lg:leading-[30px] font-[500] z-10 self-end"
-                                >
-                                    Mavens Advisor is a Virtual CFO firm delivering complete finance departments with CFO-level leadership, AI-powered analytics, and evergreen support for every stage of growth.
-                                </motion.p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </section>
-            <section className="md:rounded-t-[60px] bg-[#f6f7f4] py-[80px] md:py-[120px] md:pb-[180px] relative">
-                <div className="container">
-                    {/* Header */}
-                    <div className="flex items-center mb-5 mb:mb-20">
-                        <div className="m-auto flex flex-col items-center">
-                            <div className="mb-4 flex items-center gap-4 text-[16px] font-bold tracking-wide">
-                                <h3 className="wdt-heading text-center">Our Teams</h3>
-                            </div>
-
-                            <h2 className="text-[36px] md:text-[50px] font-semibold leading-[1.15] text-center">
-                                Expert Guidance Team
-                            </h2>
-                            <p className="mt-5 text-[16px] md:text-[18px] leading-[1.7] text-[#6b6b6b]">
-                                Sem placerat in id cursus mi pretium tellus. Sed diam urna tempor pulvinar vivamus.
-                            </p>
-
-                        </div>
-
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-8 gap-y-10">
-                        {teamMembers.map((member, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: index * 0.1 }}
-                                viewport={{ once: true }}
-                                className="flex flex-col"
-                            >
-                                {/* Image Card */}
-                                <div className="team-img relative rounded-[20px] overflow-hidden group cursor-pointer">
-                                    {/* Team Member Image */}
-                                    <div className="sm:aspect-[3/4] w-full">
-                                        <img
-                                            src={member.img}
-                                            alt={member.name}
-                                            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                                        />
-                                    </div>
-
-                                    {/* Gradient Overlay */}
-                                    <div className="absolute inset-0 bg-gradient-to-t from-[#1a3a4a]/90 via-[#1a3a4a]/30 to-transparent" />
-
-                                    {/* Bottom Content */}
-                                    <div className="absolute bottom-0 left-0 right-0 p-6 flex items-end justify-between">
-                                        {/* Name & Role */}
-                                        <div>
-                                            <h3 className="text-white text-[20px] font-bold mb-1">
-                                                {member.name}
-                                            </h3>
-                                            <p className="text-white/80 text-[18px]">
-                                                {member.role}
-                                            </p>
-                                        </div>
-
-                                        {/* Email Button */}
-                                        <a
-                                            href={`mailto:${member.email}`}
-                                            className="w-[50px] h-[50px] rounded-full bg-white flex items-center justify-center hover:bg-gold transition-colors shrink-0 group/mail"
-                                        >
-                                            <Mail size={24} className="text-navy group-hover/mail:text-white " />
-                                        </a>
-                                    </div>
-                                </div>
-
-                                {/* Areas of Expertise */}
-                                <div className="mt-8">
-                                    <h6 className="text-muted-foreground text-[18px] font-medium mb-4">
-                                        AREAS OF EXPERTISE
-                                    </h6>
-                                    <div className="flex flex-wrap gap-x-4 gap-y-3">
-                                        {member.expertise.map((skill, skillIndex) => (
-                                            <span
-                                                key={skillIndex}
-                                                className="px-[20px] py-[5px] rounded-full text-[18px] text-muted-foreground bg-white inline-block transition-colors"
-                                            >
-                                                {skill}
-                                            </span>
-                                        ))}
-                                    </div>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-            <Footer />
-        </>
-    );
-};
-
-export default Team;
+export default function Team() {
+  usePageMeta("Leadership Team | Mavens Advisor", "Meet the leadership team guiding Mavens Advisor’s Virtual CFO and Agentic AI Automation services.")
+  return (
+    <>
+      <Header />
+      <PageHero image={heroImage} eyebrow="Leadership Team" title="Leadership That Connects Strategy With Delivery" description="Our leadership team combines finance, operational management, strategic direction and governance to keep client service accountable and commercially relevant." primaryLabel="Connect With Mavens Advisor" primaryTo="/contact" />
+      <main className="bg-[#f6f7f4] py-[80px] md:py-[120px]">
+        <div className="container grid grid-cols-1 gap-7 md:grid-cols-2">
+          {leaders.map((leader) => (
+            <article key={leader.name} className="overflow-hidden rounded-[28px] bg-white lg:grid lg:grid-cols-[220px_1fr]">
+              <img src={leader.image} alt={leader.name} className="h-[250px] w-full object-cover object-top lg:h-full" />
+              <div className="p-[30px] md:p-[40px]">
+                <p className="wdt-heading mb-3">{leader.title}</p>
+                <h2 className="text-[30px] font-semibold">{leader.name}</h2>
+                <p className="mt-5 text-[16px] leading-[1.75] text-[#6b6b6b]">{leader.bio}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </main>
+      <Footer />
+    </>
+  )
+}

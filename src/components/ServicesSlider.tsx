@@ -13,6 +13,7 @@ import serviceImg6 from "@/assets/service6.jpg"
 import "swiper/css"
 import "swiper/css/navigation"
 import { motion, useInView } from "framer-motion"
+import { Link } from "react-router-dom"
 
 // Generic icon component — renders any SVG inner HTML at a fixed size.
 function ServiceIcon({ iconPaths, iconViewBox }: { iconPaths: string; iconViewBox: string }) {
@@ -60,13 +61,15 @@ const ICON_PATHS = {
 }
 
 const SERVICES = [
-  { title: "Core Finance Operations", desc: "Monthly Bookkeeping, Payroll, Invoicing, and Billing to keep your operations organized and efficient.", img: serviceImg1, icon: ICON_PATHS.icon1 },
-  { title: "Financial Reporting", desc: "Turning data into meaningful P&L reports, budgets, and cash flow forecasts to plan your growth.", img: serviceImg2, icon: ICON_PATHS.icon2 },
-  { title: "Compliance Support", desc: "Full management of VAT filings, HMRC, and Companies House requirements for London-based businesses.", img: serviceImg3, icon: ICON_PATHS.icon3 },
-  { title: "Tax Advisory", desc: "Strategic tax planning and filing for both companies and individuals to optimize efficiency.", img: serviceImg4, icon: ICON_PATHS.icon4 },
-  { title: "AI CFO Portal", desc: "Proprietary access to real-time financial insights and AI-powered intelligence for decision support.", img: serviceImg5, icon: ICON_PATHS.icon1 },
-  { title: "Strategic Leadership", desc: "Beyond reporting, we act as your partner for growth planning, cost optimization, and capital strategy.", img: serviceImg6, icon: ICON_PATHS.icon6 },
-]
+  { title: "Finance System Setup", path: "/virtual-cfo-services/finance-system-setup", img: serviceImg1, icon: ICON_PATHS.icon1 },
+  { title: "Finance Operations", path: "/virtual-cfo-services/finance-operations", img: serviceImg2, icon: ICON_PATHS.icon2 },
+  { title: "Financial Reporting and Forecasting", path: "/virtual-cfo-services/reporting-and-forecasting", img: serviceImg3, icon: ICON_PATHS.icon3 },
+  { title: "HMRC and Companies House Compliance", path: "/virtual-cfo-services/uk-tax-and-compliance", img: serviceImg4, icon: ICON_PATHS.icon4 },
+  { title: "IRS and State Compliance", path: "/virtual-cfo-services/us-tax-and-compliance", img: serviceImg5, icon: ICON_PATHS.icon1 },
+  { title: "Strategic Financial Advisory", path: "/virtual-cfo-services/strategic-financial-advisory", img: serviceImg6, icon: ICON_PATHS.icon6 },
+  { title: "Virtual CFO", path: "/virtual-cfo-services", img: serviceImg1, icon: ICON_PATHS.icon2 },
+  { title: "Agentic AI Automation", path: "/agentic-ai-automation", img: serviceImg2, icon: ICON_PATHS.icon3 },
+];
 
 const fadeUpVariants = {
   hidden: { opacity: 0, y: 60 },
@@ -96,13 +99,13 @@ export default function ServicesType3() {
             <div className="container mx-auto px-[20px] md:px-[40px]">
               <div className="mb-[65px] text-center">
                 <h3 className="mb-3 flex items-center justify-center gap-3 text-white wdt-heading">
-                  Consulting Services
+                  Eight Canonical Services
                 </h3>
                 <h2 className="text-[38px] md:text-5xl font-semibold text-white leading-[38px]">
                   Trusted <span className="text-[#0C7FFE]">Guidance</span> Built For You
                 </h2>
                 <p className="mx-auto mt-4 max-w-xl text-white">
-                  Euismod quam justo lectus commodo augue arcu dignissim.
+                  Combine finance support through Virtual CFO.
                 </p>
               </div>
             </div>
@@ -148,9 +151,9 @@ export default function ServicesType3() {
                           {/* MEDIA GROUP */}
                           <div className="wdt-service2-media-group">
                             <div className="wdt-service2-image w-full">
-                              <a href="#">
+                              <Link to={s.path}>
                                 <img src={s.img} alt={s.title} />
-                              </a>
+                              </Link>
                             </div>
                           </div>
 
@@ -164,17 +167,12 @@ export default function ServicesType3() {
 
                             {/* Title */}
                             <div className="wdt-service2-title">
-                              <h5><a href="#">{s.title}</a></h5>
-                            </div>
-
-                            {/* Description */}
-                            <div className="wdt-service2-description">
-                              {s.desc}
+                              <h5><Link to={s.path}>{s.title}</Link></h5>
                             </div>
 
                             {/* Button */}
                             <div className="wdt-service2-button">
-                              <a href="#">Learn More</a>
+                              <Link to={s.path}>Learn More</Link>
                             </div>
 
                           </div>

@@ -63,28 +63,28 @@ export default function Counter() {
                                 1280: { slidesPerView: 4 },
                             }}
                         >
-                            <SwiperSlide key='experience'>
+                            <SwiperSlide key='coverage'>
                                 <div className=" w-full flex flex-col md:border-r border-[#fff3] items-center relative ">
-                                    <h4 className="text-[40px] md:text-[4rem] lg:text-[4.5em] font-medium text-white ">27+</h4>
-                                    <p className="text-white font-medium text-[18px] md:text-[20px]">Depth Of Experience</p>
+                                    <h4 className="text-[36px] md:text-[3rem] lg:text-[3.4em] font-medium text-white ">UK &amp; US</h4>
+                                    <p className="text-white font-medium text-[18px] md:text-[20px]">Business Coverage</p>
                                 </div>
                             </SwiperSlide>
-                            <SwiperSlide key='clients'>
+                            <SwiperSlide key='pricing'>
                                 <div className=" w-full flex flex-col md:border-r border-[#fff3] items-center relative ">
-                                    <h4 className="text-[40px] md:text-[4rem] lg:text-[4.5em] font-medium text-white ">150+</h4>
-                                    <p className="text-white font-medium text-[18px]tmd:ext-[02px]">Happy Clients</p>
+                                    <h4 className="text-[36px] md:text-[3rem] lg:text-[3.4em] font-medium text-white ">Fixed Monthly</h4>
+                                    <p className="text-white font-medium text-[18px] md:text-[20px]">Virtual CFO Pricing</p>
                                 </div>
                             </SwiperSlide>
-                            <SwiperSlide key='growth'>
+                            <SwiperSlide key='oversight'>
                                 <div className=" w-full flex flex-col md:border-r border-[#fff3] items-center relative ">
-                                    <h4 className="text-[40px] md:text-[4rem] lg:text-[4.5em] font-medium text-white ">$600</h4>
-                                    <p className="text-white font-medium text-[18px] md:text-[20px]">Profit Growth</p>
+                                    <h4 className="text-[36px] md:text-[3rem] lg:text-[3.4em] font-medium text-white ">Tax-Efficient</h4>
+                                    <p className="text-white font-medium text-[18px] md:text-[20px]">Financial Management</p>
                                 </div>
                             </SwiperSlide>
-                            <SwiperSlide key='success'>
+                            <SwiperSlide key='service'>
                                 <div className=" w-full flex flex-col items-center relative ">
-                                    <h4 className="text-[40px] md:text-[4rem] lg:text-[4.5em] font-medium text-white ">97%</h4>
-                                    <p className="text-white font-medium text-[18px] md:text-[20px]">Customer Success Rate</p>
+                                    <h4 className="text-[36px] md:text-[3rem] lg:text-[3.4em] font-medium text-white ">CFO-Level</h4>
+                                    <p className="text-white font-medium text-[18px] md:text-[20px]">Oversight</p>
                                 </div>
                             </SwiperSlide>
                         </Swiper>

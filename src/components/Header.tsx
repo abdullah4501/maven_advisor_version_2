@@ -1,165 +1,99 @@
-import { useState, useRef, useEffect } from "react"
+import { useEffect, useState } from "react"
+import { ArrowRight, ChevronDown, ChevronRight, X } from "lucide-react"
+import { Link, NavLink, useLocation } from "react-router-dom"
 import logo from "@/assets/logo.png"
 import logoW from "@/assets/logo-white.png"
-import { Search, X, ChevronRight, ArrowRight } from "lucide-react"
-import { Link, NavLink } from "react-router-dom"
+import { canonicalServices } from "@/data/services"
 
-const Header = () => {
+const navLinks = [
+  { label: "Home", to: "/" },
+  { label: "Who We Help", to: "/who-we-help" },
+  { label: "Client Reviews", to: "/client-reviews" },
+  { label: "About", to: "/about" },
+  { label: "Contact", to: "/contact" },
+]
+
+function DesktopNav({ light = false }: { light?: boolean }) {
+  const { pathname } = useLocation()
+  const base = light ? "text-gray-700 hover:text-primary" : "text-white hover:text-primary"
+  const servicesActive = pathname === "/services" || pathname.startsWith("/virtual-cfo-services") || pathname.startsWith("/agentic-ai-automation")
+  return (
+    <nav className="hidden items-center lg:flex 2xl:gap-1">
+      <NavLink to="/" end className={({ isActive }) => `navItem relative px-[6px] py-4 text-[13px] font-medium duration-300 xl:px-[9px] xl:text-[14px] 2xl:px-[12px] 2xl:text-[15px] ${isActive ? "active text-primary" : base}`}>Home</NavLink>
+      <div className="group relative">
+        <NavLink to="/services" aria-current={servicesActive ? "page" : undefined} className={`navItem relative flex items-center px-[6px] py-4 text-[13px] font-medium duration-300 xl:px-[9px] xl:text-[14px] 2xl:px-[12px] 2xl:text-[15px] ${servicesActive ? "active text-primary" : base}`}>
+          Services <ChevronDown size={15} />
+        </NavLink>
+        <div className="invisible absolute left-1/2 top-full z-[90] w-[760px] -translate-x-1/2 translate-y-3 rounded-[20px] bg-white p-5 opacity-0 shadow-2xl transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100">
+          <div className="mb-3 flex items-center justify-between border-b border-black/10 px-3 pb-4">
+            <div><p className="text-sm font-semibold uppercase tracking-widest text-[#0C7FFE]">Eight Services</p><p className="mt-1 text-sm text-gray-500">Choose the exact support your business needs.</p></div>
+            <Link to="/services" className="font-semibold text-black hover:text-[#0C7FFE]">View All Services</Link>
+          </div>
+          <div className="grid grid-cols-2 gap-1">
+            {canonicalServices.map((service) => (
+              <Link key={service.path} to={service.path} className="rounded-[12px] px-3 py-3 text-[14px] font-medium text-gray-700 hover:bg-[#f3f5f4] hover:text-[#0C7FFE]">
+                {service.title}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
+      {navLinks.slice(1).map((item) => (
+        <NavLink key={item.to} to={item.to} className={({ isActive }) => `navItem relative px-[6px] py-4 text-[13px] font-medium duration-300 xl:px-[9px] xl:text-[14px] 2xl:px-[12px] 2xl:text-[15px] ${isActive ? "active text-primary" : base}`}>{item.label}</NavLink>
+      ))}
+    </nav>
+  )
+}
+
+export default function Header() {
   const [open, setOpen] = useState(false)
+  const [servicesOpen, setServicesOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 80)
-    }
+    const handleScroll = () => setScrolled(window.scrollY > 80)
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  useEffect(() => {
-    return () => {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current)
-    }
-  }, [])
-
-  const navLinks = [
-    { label: "Home", to: "/" },
-    { label: "About", to: "/about-us" },
-    { label: "Services", to: "/services" },
-    { label: "Contact Us", to: "/contact" },
-  ]
-
   return (
     <>
-      {/* ===== ORIGINAL HEADER (absolute, transparent) ===== */}
-      <header className="absolute top-[30px] left-0 w-full z-50">
-        <div className="container">
-          <div className="relative flex items-center justify-between rounded-[10px] px-6 py-[20px] backdrop-blur-md bg-black/25">
-            <Link to={"/"}>
-              <img src={logoW} alt="Bullish" className="md:max-w-[220px] max-w-[180px] h-auto" />
-            </Link>
-            <nav className="hidden lg:flex items-center gap-0 text-white">
-              {navLinks.map((item) => (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  end={item.to === "/"}
-                  className={({ isActive }) =>
-                    `text-[18px] hover:text-primary duration-300 navItem relative px-[25px]${isActive ? ' active' : ''}`
-                  }
-                >
-                  {item.label}
-                </NavLink>
-              ))}
-            </nav>
+      <header className="absolute left-0 top-0 z-50 w-full">
 
-            <div className="flex items-center gap-4">
-              <div className="hidden lg:flex items-center gap-4">
-                <Link to={"/calculator"} className=" inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
-                  Get Quote Now
-                  <ArrowRight />
-                </Link>
-              </div>
-              <button
-                onClick={() => setOpen(true)}
-                className="tab-icon lg:hidden"
-                aria-label="Open menu"
-              >
-                <div className="icon w-[18px] h-[3px] bg-[#0C7FFE] rounded-[5px] relative"></div>
-              </button>
+        <div className="container pt-[18px]">
+          <div className="flex items-center justify-between rounded-[10px] bg-black/25 px-5 py-[16px] backdrop-blur-md">
+            <Link to="/"><img src={logoW} alt="Mavens Advisor" className="h-auto max-w-[135px] xl:max-w-[165px] 2xl:max-w-[200px]" /></Link>
+            <DesktopNav />
+            <div className="flex items-center gap-3">
+              <Link to="/get-a-quote" className="hidden items-center gap-2 whitespace-nowrap rounded-[12px] bg-primary-gradient px-3 py-3 text-[12px] font-semibold lg:inline-flex xl:px-4 xl:py-4 xl:text-[13px] 2xl:px-5 2xl:text-[14px]">Get My Tailored Quote <ArrowRight size={17} /></Link>
+              <button onClick={() => setOpen(true)} className="tab-icon lg:hidden" aria-label="Open menu"><div className="icon relative h-[3px] w-[18px] rounded-[5px] bg-[#0C7FFE]" /></button>
             </div>
           </div>
         </div>
       </header>
 
-      {/* ===== STICKY WHITE HEADER (slides + fades in from top on scroll) ===== */}
-      <header
-        className="fixed top-0 left-0 w-full z-[60] bg-white shadow-[0_2px_24px_rgba(0,0,0,0.08)]"
-        style={{
-          transform: scrolled ? "translateY(0)" : "translateY(-100%)",
-          opacity: scrolled ? 1 : 0,
-          transition: "transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease",
-          pointerEvents: scrolled ? "auto" : "none",
-        }}
-      >
-        <div className="container">
-          <div className="flex items-center justify-between px-6 py-[16px]">
-            <Link to={"/"}>
-              <img src={logo} alt="Bullish" className="md:max-w-[220px] max-w-[180px] h-auto" />
-            </Link>
-            <nav className="hidden lg:flex items-center gap-0">
-              {navLinks.map((item) => (
-                <NavLink
-                  key={item.to}
-                  to={item.to}
-                  end={item.to === "/"}
-                  className={({ isActive }) =>
-                    `text-[17px] font-medium duration-300 navItem relative px-[22px] ${isActive ? "text-primary active" : "text-gray-700 hover:text-primary"
-                    }`
-                  }
-                >
-                  {item.label}
-                </NavLink>
-              ))}
-            </nav>
-
-            <div className="flex items-center gap-4">
-              <div className="hidden lg:flex items-center gap-3">
-                <Link to={"/calculator"} className=" inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
-                  Get Quote Now
-                  <ArrowRight />
-                </Link>
-              </div>
-              {/* MOBILE TAB BUTTON — ONLY THIS */}
-              <button
-                onClick={() => setOpen(true)}
-                className="tab-icon lg:hidden "
-                aria-label="Open menu"
-              >
-                <div className="icon-sticky w-[18px] h-[3px] transition-colors duration-[10ms] delay-300 ease-in-out bg-[#0C7FFE] rounded-[5px] relative"></div>
-              </button>
-            </div>
+      <header className="fixed left-0 top-0 z-[60] w-full bg-white shadow-[0_2px_24px_rgba(0,0,0,0.08)]" style={{ transform: scrolled ? "translateY(0)" : "translateY(-100%)", opacity: scrolled ? 1 : 0, transition: "transform .45s cubic-bezier(.16,1,.3,1), opacity .35s ease", pointerEvents: scrolled ? "auto" : "none" }}>
+        <div className="container flex items-center justify-between px-5 py-[14px]">
+          <Link to="/"><img src={logo} alt="Mavens Advisor" className="h-auto max-w-[135px] xl:max-w-[165px] 2xl:max-w-[200px]" /></Link>
+          <DesktopNav light />
+          <div className="flex items-center gap-3">
+            <Link to="/get-a-quote" className="hidden items-center gap-2 whitespace-nowrap rounded-[12px] bg-primary-gradient px-3 py-3 text-[12px] font-semibold lg:inline-flex xl:px-4 xl:py-4 xl:text-[13px] 2xl:px-5 2xl:text-[14px]">Get My Tailored Quote <ArrowRight size={17} /></Link>
+            <button onClick={() => setOpen(true)} className="tab-icon lg:hidden" aria-label="Open menu"><div className="icon-sticky relative h-[3px] w-[18px] rounded-[5px] bg-[#0C7FFE]" /></button>
           </div>
         </div>
       </header>
 
-      {/* ===== MOBILE SIDEBAR ===== */}
-      <aside
-        className={`fixed top-0 right-0 h-screen w-[70%] max-w-[360px] bg-black z-[100] transform transition-transform duration-300 ${open ? "translate-x-0" : "translate-x-full"
-          }`}
-      >
-        <div className="flex justify-end px-6 py-3">
-          <button onClick={() => setOpen(false)} className="text-white">
-            <X size={26} />
-          </button>
-        </div>
-        <nav>
-          {navLinks.map((item, i) => (
-            <NavLink
-              key={i}
-              to={item.to}
-              end={item.to === "/"}
-              onClick={() => setOpen(false)}
-              className={({ isActive }) =>
-                `flex items-center justify-between px-4 py-2 mb-2 cursor-pointer border-b border-white/20 last:border-0 ${isActive ? "bg-primary text-white" : "text-white"
-                }`
-              }
-            >
-              <span className="text-[16px] font-medium">{item.label}</span>
-              <ChevronRight size={18} />
-            </NavLink>
-          ))}
+      <aside className={`fixed right-0 top-0 z-[100] h-screen w-[86%] max-w-[390px] overflow-y-auto bg-black transition-transform duration-300 ${open ? "translate-x-0" : "translate-x-full"}`}>
+        <div className="flex justify-end px-6 py-4"><button onClick={() => setOpen(false)} className="text-white" aria-label="Close menu"><X size={26} /></button></div>
+        <nav className="pb-8">
+          <NavLink to="/" end onClick={() => setOpen(false)} className="flex items-center justify-between border-b border-white/20 px-5 py-3 text-white">Home <ChevronRight size={18} /></NavLink>
+          <button onClick={() => setServicesOpen((value) => !value)} className="flex w-full items-center justify-between border-b border-white/20 px-5 py-3 text-white">Services <ChevronDown size={18} className={servicesOpen ? "rotate-180" : ""} /></button>
+          {servicesOpen && <div className="bg-white/5 py-2"><Link to="/services" onClick={() => setOpen(false)} className="block px-7 py-2 text-[14px] font-semibold text-[#0C7FFE]">View All Services</Link>{canonicalServices.map((service) => <Link key={service.path} to={service.path} onClick={() => setOpen(false)} className="block px-7 py-2 text-[14px] leading-snug text-white/75">{service.title}</Link>)}</div>}
+          {navLinks.slice(1).map((item) => <NavLink key={item.to} to={item.to} onClick={() => setOpen(false)} className="flex items-center justify-between border-b border-white/20 px-5 py-3 text-white">{item.label}<ChevronRight size={18} /></NavLink>)}
+          <Link to="/get-a-quote" onClick={() => setOpen(false)} className="mx-5 mt-6 flex items-center justify-center gap-2 rounded-[14px] bg-primary-gradient px-5 py-4 font-semibold">Get My Tailored Quote <ArrowRight size={17} /></Link>
         </nav>
       </aside>
-
-      <div
-        onClick={() => setOpen(false)}
-        className={`fixed inset-0 bg-black/60 z-[99] transition-opacity ${open ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}
-      />
+      <div onClick={() => setOpen(false)} className={`fixed inset-0 z-[99] bg-black/60 transition-opacity ${open ? "visible opacity-100" : "invisible opacity-0"}`} />
     </>
   )
 }
-
-export default Header

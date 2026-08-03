@@ -4,29 +4,17 @@ import InteractiveShowcase from "@/components/InteractiveShowcase";
 import ServicesSlider from "@/components/ServicesSlider";
 import FeaturesTabs from "@/components/FeaturesTabs";
 import Testimonial from "@/components/Testimonial";
-import Faqs from "@/components/Faqs";
-import TeamSection from "@/components/TeamSection";
 import WorkProcess from "@/components/WorkProcess";
-import ContactSection from "@/components/ContactSection";
-import Blog from "@/components/Blog";
 import Footer from "@/components/Footer";
 import Counter from "@/components/Counter";
-import NewsletterPopup from "@/components/NewsletterPopup";
-import { useEffect, useState } from "react";
-import ServiceSlider2 from "@/components/ServiceSlider2";
-import TrustedPartners from "@/components/TrustedPartners";
+import HomepageClosing from "@/components/HomepageClosing";
+import { usePageMeta } from "@/hooks/usePageMeta";
 
 
 const Home = () => {
-  const [popupOpen, setPopupOpen] = useState(false)
-
-  useEffect(() => {
-    const timer = setTimeout(() => setPopupOpen(true), 800)
-    return () => clearTimeout(timer)
-  }, [])
+  usePageMeta("Virtual CFO Services for UK & US Businesses | Mavens Advisor", "Keep more of what you earn, protect cash flow and make better decisions with a complete Virtual CFO finance function for one fixed monthly fee.")
   return (
     <>
-      {/* <NewsletterPopup isOpen={popupOpen} onClose={() => setPopupOpen(false)} /> */}
       <Header />
       <HeroSlider />
       <InteractiveShowcase />
@@ -34,17 +22,8 @@ const Home = () => {
       <ServicesSlider />
       <FeaturesTabs />
       <Testimonial />
-      <div className="bg-[#f6f7f4] py-0 !pt-0 md:py-[100px] md:-mt-[50px] relative">
-        <Counter />
-      </div>
-      {/* <Faqs /> */}
-      {/* <TeamSection /> */}
-      <div className="pb-20">
-        <TrustedPartners />
-      </div>
+      <HomepageClosing />
       
-      {/* <ContactSection /> */}
-      {/* <Blog />  */}
       <Footer />
     </>
   );
