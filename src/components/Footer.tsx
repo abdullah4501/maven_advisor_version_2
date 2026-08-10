@@ -28,7 +28,7 @@ export default function Footer() {
     <footer className="w-full bg-[#f6f7f4]">
       <div className="relative w-full bg-cover bg-center md:rounded-t-[60px]" style={{ backgroundImage: `url(${footerBg})` }}>
         <div className="absolute inset-0 bg-[#161616d9] md:rounded-t-[60px]" />
-        <div className="container relative py-[70px] md:py-[110px]">
+        <div className="container relative py-[70px] pb-[35px]">
           <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1.1fr_1fr_1fr]">
             <div>
               <Link to="/"><img src={logo} alt="Mavens Advisor" className="w-[240px]" /></Link>
@@ -61,7 +61,6 @@ export default function Footer() {
 
           <div className="mt-14 flex flex-col gap-4 border-t border-white/15 pt-7 text-[14px] text-white/60 md:flex-row md:items-center md:justify-between">
             <p>© 2026 Mavens Advisor. All rights reserved.</p>
-            <p>Virtual CFO Services and separately scoped Agentic AI Automation.</p>
           </div>
         </div>
       </div>

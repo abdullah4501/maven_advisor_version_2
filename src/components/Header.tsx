@@ -62,7 +62,7 @@ export default function Header() {
 
         <div className="container pt-[18px]">
           <div className="flex items-center justify-between rounded-[10px] bg-black/25 px-5 py-[16px] backdrop-blur-md">
-            <Link to="/"><img src={logoW} alt="Mavens Advisor" className="h-auto max-w-[135px] xl:max-w-[165px] 2xl:max-w-[200px]" /></Link>
+            <Link to="/"><img src={logoW} alt="Mavens Advisor" className="h-auto max-w-[200px]" /></Link>
             <DesktopNav />
             <div className="flex items-center gap-3">
               <Link to="/get-a-quote" className="hidden items-center gap-2 whitespace-nowrap rounded-[12px] bg-primary-gradient px-3 py-3 text-[12px] font-semibold lg:inline-flex xl:px-4 xl:py-4 xl:text-[13px] 2xl:px-5 2xl:text-[14px]">Get My Tailored Quote <ArrowRight size={17} /></Link>
@@ -74,7 +74,7 @@ export default function Header() {
 
       <header className="fixed left-0 top-0 z-[60] w-full bg-white shadow-[0_2px_24px_rgba(0,0,0,0.08)]" style={{ transform: scrolled ? "translateY(0)" : "translateY(-100%)", opacity: scrolled ? 1 : 0, transition: "transform .45s cubic-bezier(.16,1,.3,1), opacity .35s ease", pointerEvents: scrolled ? "auto" : "none" }}>
         <div className="container flex items-center justify-between px-5 py-[14px]">
-          <Link to="/"><img src={logo} alt="Mavens Advisor" className="h-auto max-w-[135px] xl:max-w-[165px] 2xl:max-w-[200px]" /></Link>
+          <Link to="/"><img src={logo} alt="Mavens Advisor" className="h-auto max-w-[200px] " /></Link>
           <DesktopNav light />
           <div className="flex items-center gap-3">
             <Link to="/get-a-quote" className="hidden items-center gap-2 whitespace-nowrap rounded-[12px] bg-primary-gradient px-3 py-3 text-[12px] font-semibold lg:inline-flex xl:px-4 xl:py-4 xl:text-[13px] 2xl:px-5 2xl:text-[14px]">Get My Tailored Quote <ArrowRight size={17} /></Link>

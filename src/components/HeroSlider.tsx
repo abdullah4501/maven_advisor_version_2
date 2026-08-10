@@ -14,6 +14,10 @@ type Slide = {
   extra: string;
   description: string;
   cta: string;
+  ctaTo?: string;
+  secondaryCta?: string;
+  secondaryCtaTo?: string;
+  compactHeading?: boolean;
   bg: string;
 };
 
@@ -51,13 +55,15 @@ const slides: Slide[] = [
     bg: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/06/h1-hero-banner-img.jpg",
   },
   {
-    subtitle: "Controlled Automation With Human Review",
-    title: "Agentic",
-    highlight: " AI  ",
-    extra: "Automation",
+    subtitle: "Controlled Agentic AI Automation",
+    title: "Reduce Repetitive Work.",
+    highlight: " ",
+    extra: "Keep Human Control.",
     description:
-      "A separate consulting and implementation service that identifies suitable accounting, tax, and compliance workflows, builds controlled automations, and keeps people responsible for approvals and exceptions.",
-    cta: "See How It Works",
+      "Potentially lower suitable accounting, tax and compliance function costs by up to 30% through controlled workflows with human oversight.",
+    cta: "Assess My Workflow",
+    ctaTo: "/automation-assessment",
+    compactHeading: true,
     bg: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/07/home-01-slider-img-02.jpg",
   },
   
@@ -128,7 +134,7 @@ const HeroSlider = () => {
                       {slide.subtitle}
                     </span>
 
-                    <h1 className="text-white text-[40px] lg:text-[70px] font-bold leading-tight mb-3">
+                    <h1 className={`text-white font-bold leading-tight mb-3 ${slide.compactHeading ? "text-[38px] lg:text-[58px]" : "text-[40px] lg:text-[70px]"}`}>
                       {slide.title}{" "}
                       <span className="text-white">
                         {slide.highlight}
@@ -140,19 +146,29 @@ const HeroSlider = () => {
                       {slide.description}
                     </p>
 
-                    <Link
-                      to={'/calculator'}
-                      className="relative z-[2] inline-flex items-center mt-3 gap-3 bg-primary-gradient text-black text-[16px] p-[clamp(1.125rem,1.0971rem+0.1274vw,1.25rem)_clamp(1.5rem,1.2771rem+1.0191vw,2.5rem)] rounded-[10px] font-medium transition "
-                    >
-                      {slide.cta}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 27.7 18"
-                        className="w-5 h-5 fill-current"
+                    <div className="relative z-[2] mt-3 flex flex-wrap items-center gap-4">
+                      <Link
+                        to={slide.ctaTo ?? "/calculator"}
+                        className="inline-flex items-center gap-3 bg-primary-gradient text-black text-[16px] p-[clamp(1.125rem,1.0971rem+0.1274vw,1.25rem)_clamp(1.5rem,1.2771rem+1.0191vw,2.5rem)] rounded-[10px] font-medium transition"
                       >
-                        <path d="M12.1,18V10.6H0V7.4H12.1V0L27.7,9Z" />
-                      </svg>
-                    </Link>
+                        {slide.cta}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 27.7 18"
+                          className="w-5 h-5 fill-current"
+                        >
+                          <path d="M12.1,18V10.6H0V7.4H12.1V0L27.7,9Z" />
+                        </svg>
+                      </Link>
+                      {slide.secondaryCta && slide.secondaryCtaTo && (
+                        <Link
+                          to={slide.secondaryCtaTo}
+                          className="inline-flex items-center gap-3 rounded-[10px] border border-white/60 px-6 py-5 text-[16px] font-medium text-white transition hover:bg-white hover:text-black"
+                        >
+                          {slide.secondaryCta}
+                        </Link>
+                      )}
+                    </div>
                     <div className="relative">
                       <div className="absolute -top-[300px] -left-[20%] w-[600px] h-[600px] bg-[radial-gradient(circle,#75b1f359_0%,transparent_70%)]" />
                     </div>

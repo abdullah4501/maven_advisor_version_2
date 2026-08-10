@@ -235,8 +235,8 @@ export default function FeaturesTabs() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.25 }}
-                className="bg-[#fff] rounded-[30px] flex overflow-hidden max-lg:flex-col">
-                <div className="w-1/2 max-lg:w-full">
+                className="bg-[#fff] rounded-[30px] flex overflow-hidden max-lg:flex-col lg:h-[620px]">
+                <div className="h-[420px] w-1/2 max-lg:w-full md:h-[520px] lg:h-full">
                   <img
                     src={current.image}
                     alt={current.heading}
@@ -244,7 +244,7 @@ export default function FeaturesTabs() {
                   />
                 </div>
 
-                <div className="w-1/2 max-lg:w-full py-[50px] px-[25px] lg:px-[40px] flex flex-col justify-center gap-10">
+                <div className="w-1/2 max-lg:w-full py-[50px] px-[25px] md:min-h-[520px] lg:min-h-0 lg:px-[40px] flex flex-col justify-center gap-10">
                   <div>
                     <h4 className="text-[26px] md:text-[30px] font-semibold leading-[1.15]">
                       {current.heading}

@@ -27,9 +27,15 @@ export type ServicePageData = {
   primaryTo: string
   secondaryLabel?: string
   secondaryTo?: string
+  heroPoints?: string[]
+  heroNote?: string
   sections: ServiceSection[]
+  faqs?: { question: string; answer: string }[]
   finalHeading: string
   finalCopy?: string
+  finalSecondaryLabel?: string
+  finalSecondaryTo?: string
+  finalMicrocopy?: string
 }
 
 export const canonicalServices = [
@@ -40,7 +46,7 @@ export const canonicalServices = [
   { title: "US Tax, IRS and State Compliance", path: "/virtual-cfo-services/us-tax-and-compliance", value: "Coordinate federal and state filings using current records and professional review.", image: image5 },
   { title: "Strategic Financial Advisory", path: "/virtual-cfo-services/strategic-financial-advisory", value: "Use CFO-level analysis to improve cash, profitability and major decisions.", image: image6 },
   { title: "Virtual CFO", path: "/virtual-cfo-services", value: "Combine the finance capabilities required through one accountable team and predictable monthly fee.", image: image7 },
-  { title: "Agentic AI Automation", path: "/agentic-ai-automation", value: "Reduce repetitive accounting, tax and compliance administration with controlled automation.", image: image8 },
+  { title: "Agentic AI Automation", path: "/agentic-ai-automation", value: "Potentially reduce suitable accounting, tax and compliance function costs by up to 30% through controlled automation with human oversight.", image: image8 },
 ]
 
 export const servicePages: Record<string, ServicePageData> = {
@@ -185,28 +191,47 @@ export const servicePages: Record<string, ServicePageData> = {
     finalCopy: "Build a finance function that helps you retain more, see problems earlier and make better decisions.",
   },
   "agentic-ai-automation": {
-    title: "Scale Finance Workflows Without Scaling Repetitive Administration",
+    title: "Scale Your Operations Without Scaling Repetitive Administration",
     shortTitle: "Agentic AI Automation",
-    eyebrow: "A Separate Mavens Advisor Service Line",
+    eyebrow: "Agentic AI Automation for Accounting, Tax and Compliance",
     path: "/agentic-ai-automation",
-    summary: "Reduce manual handoffs, improve turnaround, surface exceptions and create stronger process evidence while keeping qualified people responsible for approvals and professional judgement.",
-    value: canonicalServices[7].value,
+    summary: "Mavens Advisor designs and implements controlled agentic AI workflows that reduce manual work, accelerate processing and could lower the operating cost of suitable accounting, tax and compliance functions by up to 30%. Your people remain responsible for approvals, exceptions, professional judgement and final decisions.",
+    value: "Put your people in control of exceptions, not repetitive tasks.",
     image: image8,
-    metaTitle: "Agentic AI Automation for Accounting, Tax & Compliance | Mavens Advisor",
-    metaDescription: "Reduce repetitive finance administration through controlled automation with human review and exception handling.",
+    metaTitle: "Agentic AI Automation for Accounting, Tax and Compliance | Mavens Advisor",
+    metaDescription: "Potentially reduce suitable accounting, tax and compliance function costs by up to 30% through controlled agentic AI automation with human oversight.",
     primaryLabel: "Assess My Workflow",
     primaryTo: "/automation-assessment",
     secondaryLabel: "Discuss an Automation",
     secondaryTo: "/contact",
+    heroPoints: ["Potentially reduce suitable function costs by up to 30%", "Reduce repetitive administrative work", "Improve processing speed and consistency", "Maintain human review and accountability"],
+    heroNote: "Potential outcomes vary by workflow. Any cost-reduction estimate is confirmed only after assessing the current operating-cost baseline, systems, volume, controls and achievable level of automation.",
     sections: [
-      { heading: "The Outcome Matters More Than the Technology", body: ["The value of agentic AI is measured by less repetitive administration, faster processing, clearer accountability, stronger audit trails and more time for professional review. Mavens Advisor begins with the accounting, tax or compliance process itself, including its inputs, controls, approvals and exceptions."] },
-      { heading: "What Controlled Automation Should Give You", bullets: ["Lower administrative workload", "Faster and more consistent processing", "Fewer avoidable manual errors and missed handoffs", "Clearer status and deadline visibility", "Earlier identification and escalation of exceptions", "Stronger audit trails and process evidence", "Greater capacity without proportionately increasing headcount"] },
-      { heading: "Where We Focus", bullets: ["Accounting workflow automation", "Tax-process automation", "Compliance workflow automation", "Document and data collection", "Task routing and deadline management", "Review and approval workflows", "Exception identification and escalation", "System-to-system workflow coordination", "Audit trails and process evidence"] },
-      { heading: "How an Engagement Works", bullets: ["Discover the current workflow, people, systems, controls and pain points", "Identify which steps are suitable for automation and which require professional judgement", "Design the future workflow, including approvals, exception routes and evidence requirements", "Build and integrate the automation within the agreed technical environment", "Test standard scenarios, edge cases, permissions and failure handling", "Release through controlled implementation and agreed user training", "Monitor performance and improve the workflow as requirements change"] },
-      { heading: "Our Control Principles", bullets: ["Human approval remains where judgement or legal responsibility is involved", "Exceptions must be surfaced, not hidden", "Users should understand what the automation did and why a task was escalated", "Access is limited according to role and business need", "Sensitive financial and tax information is handled through approved systems", "Automations are tested before production use", "The process owner remains accountable for final decisions"] },
-      { heading: "Who This Is For", bullets: ["Businesses with repetitive finance processes", "Accounting and tax teams with high document volumes", "Compliance functions managing recurring obligations", "Teams using several disconnected systems", "Leaders who want automation but require clear controls and review"] },
+      { heading: "Put Your People in Control of Exceptions, Not Repetitive Tasks", body: ["Accounting, tax and compliance teams often spend valuable time collecting documents, entering information, checking statuses, sending reminders, routing work and following up on missing data.", "Agentic AI automation can complete suitable multi-step tasks across approved systems, follow defined rules, request human approval and escalate exceptions when professional attention is required.", "The result is a more efficient function with clearer accountability, faster turnaround and more time for work that requires human expertise."] },
+      { heading: "What Controlled Automation Could Deliver", bullets: ["Lower administrative workload", "Faster and more consistent processing", "Fewer manual handoffs and duplicate entries", "Reduced risk of avoidable errors and missed tasks", "Earlier identification of exceptions", "Improved deadline and workflow visibility", "Stronger audit trails and process evidence", "Greater capacity without proportionately increasing headcount", "More time for analysis, review and professional judgement"] },
+      { heading: "Where the Potential 30% Cost Reduction Comes From", body: ["We believe suitable accounting, tax and compliance functions could reduce their operating costs by up to 30% through carefully designed agentic AI automation.", "This potential saving comes from improving specific workflows, not from applying a percentage to the cost of the entire business.", "The achievable result depends on the function’s current cost, workflow volume, systems, process consistency, control requirements and the proportion of work that can be automated safely."], bullets: ["Reducing time spent on repetitive data collection and preparation", "Eliminating unnecessary manual handoffs", "Reducing duplicate data entry across systems", "Automating routine reminders and task allocation", "Identifying missing or inconsistent information earlier", "Reducing rework caused by incomplete processing", "Directing exceptions to the correct reviewer", "Increasing workflow capacity without matching increases in headcount"] },
+      { heading: "Accounting Workflow Automation", body: ["We identify repetitive accounting activities that can be automated while maintaining appropriate review and control."], bullets: ["Invoice and receipt collection", "Document classification and data extraction", "Accounts payable workflow coordination", "Accounts receivable follow-ups", "Transaction review preparation", "Reconciliation preparation and exception flagging", "Payroll information collection", "Month-end checklist management", "Missing-information requests", "Management-reporting workflow coordination", "Task routing, reminders and approvals"] },
+      { heading: "Tax Workflow Automation", body: ["We help streamline the administrative processes surrounding UK and US tax compliance while keeping qualified professionals responsible for tax positions, reviews and filing approvals.", "Agentic AI supports the tax process. It does not replace professional tax judgement or the required review and authorisation of filings."], bullets: ["Tax-document request lists", "Client information collection", "Document completeness checks", "Data extraction and preparation", "Deadline monitoring", "Automated reminders and follow-ups", "Workpaper workflow coordination", "Review-queue management", "Approval routing", "HMRC, IRS and state filing status tracking", "Supporting-evidence management", "Exception escalation"] },
+      { heading: "Compliance Workflow Automation", body: ["Recurring compliance obligations can involve numerous deadlines, documents, approvals and follow-ups. Agentic AI can coordinate suitable parts of these processes and provide clearer visibility over what is complete, outstanding or at risk."], bullets: ["Compliance calendars", "Recurring obligation tracking", "Companies House workflow coordination", "HMRC compliance workflows", "IRS and state compliance workflows", "Document and evidence collection", "Deadline reminders", "Approval and review routing", "Missing-information follow-ups", "Exception identification", "Audit-trail creation", "Status reporting"] },
+      { heading: "Our Approach", bullets: ["1. Assess the Current Workflow — Review the people, systems, tasks, volumes, costs, controls, approvals, delays and recurring problems.", "2. Identify Suitable Opportunities — Determine what is repetitive and rules-based, what requires professional judgement and where automation could create measurable value.", "3. Design the Controlled Workflow — Define system handoffs, approvals, exception handling and evidence-retention requirements.", "4. Build and Test — Implement the workflow and test standard scenarios, edge cases, permissions, integrations, failure handling and escalation routes.", "5. Launch and Improve — Release through controlled implementation, train relevant users and monitor the workflow for further improvements."] },
+      { heading: "Human Oversight Is Built In", body: ["Agentic AI should strengthen financial control, not weaken it."], bullets: ["Human approval remains where judgement or legal responsibility is involved", "Exceptions are surfaced for review rather than hidden", "Access is limited according to role and business need", "Sensitive information is handled through approved systems", "Actions and approvals are recorded through appropriate audit trails", "Automations are tested before production use", "Failure and escalation routes are defined in advance", "The process owner remains accountable for final decisions"] },
+      { heading: "Who This Service Is For", body: ["Not every process should be automated. We focus on workflows where automation can be introduced safely, responsibly and with a measurable business case."], bullets: ["Businesses with repetitive finance processes", "Accounting teams handling high transaction volumes", "Tax teams managing extensive document requests", "Compliance teams monitoring recurring obligations", "Organisations using several disconnected systems", "Growing businesses that need more capacity", "Teams experiencing frequent manual handoffs", "Leaders seeking efficiency without losing visibility or control"] },
+      { heading: "Scope and Pricing", body: ["Every engagement begins with an assessment of the selected workflow, its current operating-cost baseline, systems, controls, approvals and exceptions.", "The final scope, implementation plan, expected benefits and pricing are confirmed after this assessment."] },
     ],
-    finalHeading: "Assess My Workflow",
+    faqs: [
+      { question: "What is agentic AI automation?", answer: "Agentic AI automation uses software agents to complete defined multi-step tasks, coordinate actions across approved systems, follow established rules, request approvals and escalate exceptions. It is designed to support controlled business processes, not make unsupervised financial, tax or compliance decisions." },
+      { question: "Is the 30% cost reduction guaranteed?", answer: "No. Up to 30% is a potential function-level cost reduction for suitable workflows, not a guaranteed result. Any estimate depends on the current operating-cost baseline, workflow volume, systems, controls, process consistency and the amount of work that can be automated safely." },
+      { question: "Will agentic AI replace our employees?", answer: "The objective is to reduce repetitive administration and increase operational capacity. Employees remain essential for professional judgement, approvals, relationship management, exception handling and final accountability." },
+      { question: "Can agentic AI submit tax filings automatically?", answer: "Automation may support document collection, data preparation, deadline tracking, review routing and filing-status management. Tax positions and filings requiring professional judgement or authorisation remain subject to appropriate human review and approval." },
+      { question: "Do we need to replace our existing software?", answer: "Not necessarily. We begin by assessing your current systems and identifying whether suitable workflows can be improved within your existing technical environment." },
+      { question: "How is sensitive information protected?", answer: "Access, permissions, approved systems, audit trails and human approvals are considered during workflow design. The specific security and data-handling requirements are agreed before implementation." },
+      { question: "How long does implementation take?", answer: "The timeline depends on the workflow’s complexity, existing systems, integration requirements, control environment and testing needs. The proposed timeline is confirmed after the initial assessment." },
+    ],
+    finalHeading: "Reduce Repetitive Work, Process Friction and Avoidable Operating Cost",
+    finalCopy: "Show us the accounting, tax or compliance workflow that is consuming too much time. We will assess its current cost, systems, controls, approvals and exceptions, then identify what could be automated safely and where measurable improvement may be achievable.",
+    finalSecondaryLabel: "Speak to an Automation Advisor",
+    finalSecondaryTo: "/contact",
+    finalMicrocopy: "Begin with one workflow. No commitment to implementation is required.",
   },
   "automation-accounting": {
     title: "Reduce Repetitive Accounting Work Without Losing Control",

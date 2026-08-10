@@ -149,6 +149,17 @@ export default function ServicePageTemplate({ pageKey }: Props) {
             </motion.div>
             <motion.div {...reveal} transition={{ duration: 0.65, delay: 0.1 }} className="lg:col-span-8">
               <h2 className="text-[38px] font-semibold leading-[1.08] tracking-[-0.035em] md:text-[56px] lg:text-[66px]">{page.value}</h2>
+              {page.heroPoints && (
+                <ul className="mt-10 grid grid-cols-1 border-t border-black/15 md:grid-cols-2">
+                  {page.heroPoints.map((point, index) => (
+                    <li key={point} className={`flex gap-4 border-b border-black/15 py-5 text-[16px] leading-[1.55] text-[#505050] md:pr-7 ${index % 2 === 1 ? "md:border-l md:pl-7" : ""}`}>
+                      <Check size={18} className="mt-1 shrink-0 text-[#0C7FFE]" strokeWidth={2.5} />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {page.heroNote && <p className="mt-6 max-w-[850px] text-[13px] leading-[1.7] text-[#777]">{page.heroNote}</p>}
             </motion.div>
           </div>
         </section>
@@ -156,7 +167,7 @@ export default function ServicePageTemplate({ pageKey }: Props) {
         <section className="container border-t border-black/15 pb-[100px] pt-[70px] md:pb-[150px] md:pt-[100px]">
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:gap-8">
             <aside className="hidden lg:col-span-3 lg:block">
-              <div className="sticky top-[140px]">
+              <div className="sticky top-[140px] max-h-[calc(100vh-175px)] overflow-y-auto pr-3">
                 <p className="mb-6 text-[12px] font-semibold uppercase tracking-[0.2em] text-[#8a8a8a]">On this page</p>
                 <nav className="relative border-l border-black/15">
                   <span
@@ -215,6 +226,28 @@ export default function ServicePageTemplate({ pageKey }: Props) {
           </div>
         </section>
 
+        {page.faqs && page.faqs.length > 0 && (
+          <section className="bg-white py-[90px] md:py-[140px]">
+            <div className="container grid grid-cols-1 gap-14 lg:grid-cols-12">
+              <motion.div {...reveal} className="lg:col-span-4">
+                <p className="wdt-heading mb-5">Frequently Asked Questions</p>
+                <h2 className="text-[38px] font-semibold leading-[1.08] tracking-[-0.03em] md:text-[54px]">Clear answers before you automate.</h2>
+              </motion.div>
+              <motion.div {...reveal} transition={{ duration: 0.65, delay: 0.1 }} className="border-t border-black/15 lg:col-span-8">
+                {page.faqs.map((faq) => (
+                  <details key={faq.question} className="group border-b border-black/15">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-7 text-[19px] font-semibold marker:content-none md:text-[22px]">
+                      <span>{faq.question}</span>
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-black/15 text-[22px] font-normal transition group-open:rotate-45 group-open:border-[#0C7FFE] group-open:bg-[#0C7FFE] group-open:text-white">+</span>
+                    </summary>
+                    <p className="max-w-[760px] pb-7 pr-12 text-[16px] leading-[1.8] text-[#666]">{faq.answer}</p>
+                  </details>
+                ))}
+              </motion.div>
+            </div>
+          </section>
+        )}
+
         {related.length > 0 && (
           <section className="bg-[#080808] py-[90px] text-white md:py-[140px]">
             <div className="container">
@@ -239,18 +272,26 @@ export default function ServicePageTemplate({ pageKey }: Props) {
           </section>
         )}
 
-        <section className="relative min-h-[620px] overflow-hidden text-white">
+        <section className="relative min-h-[620px] overflow-hidden text-white -mb-[60px]">
           <img src={page.image} alt="" className="absolute inset-0 h-full w-full object-cover" />
           <div className="absolute inset-0 bg-black/70" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_40%,rgba(12,127,254,0.38),transparent_42%)]" />
-          <div className="container relative z-10 flex min-h-[620px] items-center py-[90px]">
+          <div className="container relative z-10 flex min-h-[620px] items-center pt-[90px] pb-[110px]">
             <motion.div {...reveal} className="max-w-[930px]">
               <p className="wdt-heading mb-6 text-[#8fc4ff]">Your Next Step</p>
               <h2 className="text-[43px] font-semibold leading-[1.04] tracking-[-0.04em] md:text-[66px] lg:text-[76px]">{page.finalHeading}</h2>
               {page.finalCopy && <p className="mt-6 max-w-[700px] text-[18px] leading-[1.75] text-white/70">{page.finalCopy}</p>}
-              <Link to={page.primaryTo} className="mt-9 inline-flex items-center gap-3 rounded-[12px] bg-primary-gradient px-8 py-[18px] text-[15px] font-semibold text-black transition-transform hover:-translate-y-1">
-                {page.primaryLabel}<ArrowRight size={18} />
-              </Link>
+              <div className="mt-9 flex flex-wrap gap-3">
+                <Link to={page.primaryTo} className="inline-flex items-center gap-3 rounded-[12px] bg-primary-gradient px-8 py-[18px] text-[15px] font-semibold text-black transition-transform hover:-translate-y-1">
+                  {page.primaryLabel}<ArrowRight size={18} />
+                </Link>
+                {page.finalSecondaryLabel && page.finalSecondaryTo && (
+                  <Link to={page.finalSecondaryTo} className="inline-flex items-center gap-3 rounded-[12px] border border-white/35 px-8 py-[18px] text-[15px] font-semibold text-white transition hover:bg-white hover:text-black">
+                    {page.finalSecondaryLabel}<ArrowRight size={18} />
+                  </Link>
+                )}
+              </div>
+              {page.finalMicrocopy && <p className="mt-5 text-[13px] leading-[1.6] text-white/55">{page.finalMicrocopy}</p>}
             </motion.div>
           </div>
         </section>
