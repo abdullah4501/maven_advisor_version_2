@@ -37,7 +37,7 @@ export default function WhoWeHelp() {
   return (
     <>
       <Header />
-      <PageHero image={heroImage} eyebrow="UK and US Businesses" title="Built for Owners Who Need Better Financial Control Without Building a Finance Department" description="Mavens Advisor supports founders and leadership teams that want to retain more profit, understand cash, reduce financial administration and make important decisions with CFO-level guidance." primaryLabel="Tell Us What You Need" primaryTo="/contact" />
+      <PageHero image={heroImage} eyebrow="UK and US Businesses" title="Better Financial Control, Without the Finance Department" description="Mavens Advisor supports founders and leadership teams that want to retain more profit, understand cash, reduce financial administration and make important decisions with CFO-level guidance." primaryLabel="Tell Us What You Need" primaryTo="/contact" />
       <main data-scroll-reveal-managed className="bg-[#f6f7f4] py-[80px] md:py-[120px]">
         <div className="container">
           <motion.div variants={staggerContainer} initial="hidden" whileInView="visible" viewport={revealViewport} className="grid grid-cols-1 gap-7 md:grid-cols-2">

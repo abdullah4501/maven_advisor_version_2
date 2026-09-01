@@ -19,7 +19,7 @@ export default function GetQuote() {
   return (
     <>
       <Header />
-      <PageHero image={heroImage} eyebrow="Get My Tailored Quote" title="See What a Complete Finance Function Would Cost Your Business" description="Tell us what your business is managing today and what you want the finance function to improve. We will assess the activity, review the requirements and prepare a tailored fixed monthly quotation." />
+      <PageHero image={heroImage} eyebrow="Get My Tailored Quote" title="See What Your Finance Function Could Cost" description="Tell us what your business is managing today and what you want the finance function to improve. We will assess the activity, review the requirements and prepare a tailored fixed monthly quotation." />
       <main className="bg-[#f6f7f4] py-[80px] md:py-[120px]">
         <div className="container max-w-[1100px]">
           {submitted ? (

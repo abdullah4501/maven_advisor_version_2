@@ -51,7 +51,7 @@ export const canonicalServices = [
 
 export const servicePages: Record<string, ServicePageData> = {
   "finance-system-setup": {
-    title: "Build the Finance System Correctly Before the Numbers Become a Problem",
+    title: "Build Your Finance System Right From the Start",
     shortTitle: "Finance System Setup",
     eyebrow: "Finance System Setup",
     path: "/virtual-cfo-services/finance-system-setup",
@@ -70,7 +70,7 @@ export const servicePages: Record<string, ServicePageData> = {
     finalHeading: "Build My Finance Foundation",
   },
   "finance-operations": {
-    title: "Stop Chasing the Finance Work. Give It Clear Ownership.",
+    title: "Give Your Finance Work Clear Ownership",
     shortTitle: "Finance Operations",
     eyebrow: "Finance Operations",
     path: "/virtual-cfo-services/finance-operations",
@@ -92,7 +92,7 @@ export const servicePages: Record<string, ServicePageData> = {
     finalHeading: "Take Control of My Finance Operations",
   },
   "reporting-and-forecasting": {
-    title: "Turn Up-to-Date Numbers Into Better Business Decisions",
+    title: "Turn Your Numbers Into Better Decisions",
     shortTitle: "Financial Reporting and Forecasting",
     eyebrow: "Financial Reporting and Forecasting",
     path: "/virtual-cfo-services/reporting-and-forecasting",
@@ -113,7 +113,7 @@ export const servicePages: Record<string, ServicePageData> = {
     finalHeading: "Improve My Financial Reporting",
   },
   "uk-tax-and-compliance": {
-    title: "Stay Compliant and Avoid Paying More Tax Than Legally Required",
+    title: "Stay Compliant. Pay No More Tax Than Required.",
     shortTitle: "UK Tax, HMRC and Companies House Compliance",
     eyebrow: "UK Tax and Compliance",
     path: "/virtual-cfo-services/uk-tax-and-compliance",
@@ -132,7 +132,7 @@ export const servicePages: Record<string, ServicePageData> = {
     finalHeading: "Review My UK Tax and Finance Setup",
   },
   "us-tax-and-compliance": {
-    title: "Keep Your Books Tax-Ready and Avoid Paying More Than Legally Required",
+    title: "Stay Tax-Ready. Pay No More Than Required.",
     shortTitle: "US Tax, IRS and State Compliance",
     eyebrow: "US Tax and Compliance",
     path: "/virtual-cfo-services/us-tax-and-compliance",
@@ -151,7 +151,7 @@ export const servicePages: Record<string, ServicePageData> = {
     finalHeading: "Review My US Tax and Finance Setup",
   },
   "strategic-financial-advisory": {
-    title: "Know Which Decisions Will Protect Cash and Improve Profit",
+    title: "Protect Cash. Improve Profit. Make Better Decisions.",
     shortTitle: "Strategic Financial Advisory",
     eyebrow: "Strategic Financial Advisory",
     path: "/virtual-cfo-services/strategic-financial-advisory",
@@ -168,7 +168,7 @@ export const servicePages: Record<string, ServicePageData> = {
     finalHeading: "Speak With a Virtual CFO",
   },
   "virtual-cfo": {
-    title: "More Than Bookkeeping. A Complete Finance Function Built to Protect Your Profit.",
+    title: "More Than Bookkeeping. A Complete Finance Function.",
     shortTitle: "Virtual CFO",
     eyebrow: "Expert-led Virtual CFO Services",
     path: "/virtual-cfo-services",
@@ -191,7 +191,7 @@ export const servicePages: Record<string, ServicePageData> = {
     finalCopy: "Build a finance function that helps you retain more, see problems earlier and make better decisions.",
   },
   "agentic-ai-automation": {
-    title: "Scale Your Operations Without Scaling Repetitive Administration",
+    title: "Scale Operations, Not Administration",
     shortTitle: "Agentic AI Automation",
     eyebrow: "Agentic AI Automation for Accounting, Tax and Compliance",
     path: "/agentic-ai-automation",

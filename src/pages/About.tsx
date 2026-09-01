@@ -23,7 +23,7 @@ export default function AboutUs() {
       <PageHero
         eyebrow="About Mavens Advisor"
         image={heroImage}
-        title="A Finance Partner Focused on What the Numbers Should Do for Your Business"
+        title="Finance That Works for Your Business"
         description="Mavens Advisor was built on a straightforward belief: business owners deserve more than completed books. They need a finance team that protects value, explains what the numbers mean and takes ownership of the work."
         primaryLabel="Meet the Team"
         primaryTo="/team"
