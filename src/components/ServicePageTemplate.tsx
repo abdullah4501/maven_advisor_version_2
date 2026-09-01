@@ -1,6 +1,6 @@
 import { ArrowDown, ArrowRight, Check } from "lucide-react"
 import { motion } from "framer-motion"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import Footer from "@/components/Footer"
 import Header from "@/components/Header"
@@ -30,7 +30,8 @@ export default function ServicePageTemplate({ pageKey }: Props) {
   const page = servicePages[pageKey]
   usePageMeta(page.metaTitle, page.metaDescription)
   const [activeSection, setActiveSection] = useState(0)
-  const [sectionProgress, setSectionProgress] = useState(0)
+  const [indicatorTop, setIndicatorTop] = useState(0)
+  const sectionNavRef = useRef<HTMLElement>(null)
 
   const canonicalIndex = canonicalServices.findIndex((service) => service.path === page.path)
   const serviceNumber = canonicalIndex >= 0 ? canonicalIndex + 1 : 8
@@ -47,23 +48,32 @@ export default function ServicePageTemplate({ pageKey }: Props) {
       const sections = page.sections
         .map((section) => document.getElementById(sectionId(section.heading)))
         .filter((section): section is HTMLElement => Boolean(section))
+      const navItems = Array.from(sectionNavRef.current?.querySelectorAll<HTMLElement>("[data-section-nav-item]") ?? [])
 
-      if (!sections.length) return
+      if (!sections.length || navItems.length !== sections.length) return
 
       const readingLine = window.scrollY + Math.min(window.innerHeight * 0.38, 360)
+      const sectionStarts = sections.map((section) => section.getBoundingClientRect().top + window.scrollY)
+      const markerCenters = navItems.map((item) => item.offsetTop + item.offsetHeight / 2)
       let current = 0
 
-      sections.forEach((section, index) => {
-        if (section.offsetTop <= readingLine) current = index
+      sectionStarts.forEach((start, index) => {
+        if (start <= readingLine) current = index
       })
 
-      const start = sections[0].offsetTop
-      const lastSection = sections[sections.length - 1]
-      const end = lastSection.offsetTop + lastSection.offsetHeight
-      const progress = Math.min(1, Math.max(0, (readingLine - start) / Math.max(end - start, 1)))
+      let nextIndicatorTop = markerCenters[0]
+
+      if (readingLine >= sectionStarts[sectionStarts.length - 1]) {
+        nextIndicatorTop = markerCenters[markerCenters.length - 1]
+      } else if (readingLine > sectionStarts[0]) {
+        const next = Math.min(current + 1, sectionStarts.length - 1)
+        const interval = Math.max(sectionStarts[next] - sectionStarts[current], 1)
+        const intervalProgress = Math.min(1, Math.max(0, (readingLine - sectionStarts[current]) / interval))
+        nextIndicatorTop = markerCenters[current] + (markerCenters[next] - markerCenters[current]) * intervalProgress
+      }
 
       setActiveSection(current)
-      setSectionProgress(progress)
+      setIndicatorTop(nextIndicatorTop)
     }
 
     const handleScroll = () => {
@@ -74,21 +84,26 @@ export default function ServicePageTemplate({ pageKey }: Props) {
     updateNavigation()
     window.addEventListener("scroll", handleScroll, { passive: true })
     window.addEventListener("resize", handleScroll)
+    window.addEventListener("load", handleScroll)
+
+    const resizeObserver = new ResizeObserver(handleScroll)
+    if (sectionNavRef.current) resizeObserver.observe(sectionNavRef.current)
 
     return () => {
       cancelAnimationFrame(frame)
+      resizeObserver.disconnect()
       window.removeEventListener("scroll", handleScroll)
       window.removeEventListener("resize", handleScroll)
+      window.removeEventListener("load", handleScroll)
     }
   }, [page.sections])
 
-  const scrollToSection = (event: React.MouseEvent<HTMLAnchorElement>, heading: string, index: number) => {
+  const scrollToSection = (event: React.MouseEvent<HTMLAnchorElement>, heading: string) => {
     event.preventDefault()
     const id = sectionId(heading)
     const target = document.getElementById(id)
     if (!target) return
 
-    setActiveSection(index)
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     target.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" })
     window.history.replaceState(null, "", `#${id}`)
@@ -139,7 +154,7 @@ export default function ServicePageTemplate({ pageKey }: Props) {
         </a>
       </section>
 
-      <main id="service-content" className="overflow-x-clip bg-[#f6f7f4] text-black">
+      <main id="service-content" data-scroll-reveal-managed className="overflow-x-clip bg-[#f6f7f4] text-black">
         <section className="relative py-[90px] md:py-[145px]">
           <div className="container grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-center">
             <motion.div {...reveal} className="lg:col-span-4">
@@ -167,24 +182,25 @@ export default function ServicePageTemplate({ pageKey }: Props) {
         <section className="container border-t border-black/15 pb-[100px] pt-[70px] md:pb-[150px] md:pt-[100px]">
           <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:gap-8">
             <aside className="hidden lg:col-span-3 lg:block">
-              <div className="sticky top-[140px] max-h-[calc(100vh-175px)] overflow-y-auto pr-3">
+              <div className="sticky top-[140px] max-h-[calc(100vh-175px)] pr-3">
                 <p className="mb-6 text-[12px] font-semibold uppercase tracking-[0.2em] text-[#8a8a8a]">On this page</p>
-                <nav className="relative border-l border-black/15">
+                <nav ref={sectionNavRef} className="relative border-l border-black/15">
                   <span
                     aria-hidden="true"
-                    className="absolute -left-px top-0 w-[2px] bg-[#0C7FFE] transition-[height] duration-300 ease-out"
-                    style={{ height: `${sectionProgress * 100}%` }}
+                    className="absolute -left-px top-0 w-[2px] bg-[#0C7FFE]"
+                    style={{ height: `${indicatorTop}px` }}
                   />
                   <span
                     aria-hidden="true"
-                    className="absolute -left-[5px] z-10 h-[9px] w-[9px] rounded-full bg-[#0C7FFE] shadow-[0_0_0_5px_rgba(12,127,254,0.12)] transition-[top] duration-300 ease-out"
-                    style={{ top: `calc(${sectionProgress * 100}% - 4px)` }}
+                    className="absolute -left-[5px] z-10 h-[9px] w-[9px] -translate-y-1/2 rounded-full bg-[#0C7FFE] shadow-[0_0_0_5px_rgba(12,127,254,0.12)] will-change-[top]"
+                    style={{ top: `${indicatorTop}px` }}
                   />
                   {page.sections.map((section, index) => (
                     <a
                       key={section.heading}
                       href={`#${sectionId(section.heading)}`}
-                      onClick={(event) => scrollToSection(event, section.heading, index)}
+                      onClick={(event) => scrollToSection(event, section.heading)}
+                      data-section-nav-item
                       aria-current={activeSection === index ? "location" : undefined}
                       className={`group flex items-center gap-4 py-3 pl-5 text-[14px] transition-all duration-300 ${activeSection === index ? "translate-x-1 font-medium text-black" : "text-[#777] hover:translate-x-1 hover:text-black"}`}
                     >

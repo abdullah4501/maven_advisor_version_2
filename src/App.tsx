@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Navigate, Routes, Route, useLocation } from "react-router-dom";
 import Lenis from "@studio-freight/lenis";
 import Index from "@/pages/Index"
 import AboutUs from "@/pages/About"
@@ -9,13 +9,15 @@ import Contact from './pages/Contact';
 import { SettingsProvider } from "./context/SettingsContext";
 import Team from './pages/Team';
 import FAQ from './pages/FAQ';
-import Blog from './pages/Blog';
 import WhoWeHelp from './pages/WhoWeHelp';
 import ClientReviews from './pages/ClientReviews';
 import AutomationAssessment from './pages/AutomationAssessment';
 import GetQuote from './pages/GetQuote';
 import ServicePageTemplate from './components/ServicePageTemplate';
 import CampaignLanding from './pages/CampaignLanding';
+import NotFound from './pages/NotFound';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import ScrollRevealController from './components/ScrollRevealController';
 
 const queryClient = new QueryClient();
 
@@ -49,10 +51,12 @@ const RouterWrapper = () => {
   }, [location.pathname]);
 
   return (
-    <Routes>
+    <>
+      <ScrollRevealController />
+      <Routes>
       <Route path="/" element={<Index />} />
       <Route path="/about" element={<AboutUs />} />
-      <Route path="/about-us" element={<AboutUs />} />
+      <Route path="/about-us" element={<Navigate to="/about" replace />} />
       <Route path="/services" element={<Services />} />
       <Route path="/virtual-cfo-services" element={<ServicePageTemplate pageKey="virtual-cfo" />} />
       <Route path="/virtual-cfo-services/finance-system-setup" element={<ServicePageTemplate pageKey="finance-system-setup" />} />
@@ -69,16 +73,18 @@ const RouterWrapper = () => {
       <Route path="/client-reviews" element={<ClientReviews />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/team" element={<Team />} />
-      <Route path="/our-team" element={<Team />} />
+      <Route path="/our-team" element={<Navigate to="/team" replace />} />
       <Route path="/faq" element={<FAQ />} />
-      <Route path="/blog" element={<Blog />} />
       <Route path="/get-a-quote" element={<GetQuote />} />
-      <Route path="/calculator" element={<GetQuote />} />
+      <Route path="/calculator" element={<Navigate to="/get-a-quote" replace />} />
       <Route path="/automation-assessment" element={<AutomationAssessment />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       <Route path="/lp/uk-virtual-cfo" element={<CampaignLanding variant="uk-virtual-cfo" />} />
       <Route path="/lp/us-bookkeeping-tax" element={<CampaignLanding variant="us-bookkeeping-tax" />} />
       <Route path="/lp/accounting-automation" element={<CampaignLanding variant="accounting-automation" />} />
-    </Routes>
+      <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   );
 };
 

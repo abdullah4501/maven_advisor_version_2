@@ -17,7 +17,6 @@ type Slide = {
   ctaTo?: string;
   secondaryCta?: string;
   secondaryCtaTo?: string;
-  compactHeading?: boolean;
   bg: string;
 };
 
@@ -31,7 +30,7 @@ const slides: Slide[] = [
     extra: "At the Cost of a Bookkeeper",
     description:
       "Get a dedicated CFO, a complete finance team, and full financial control without hiring in house.",
-    cta: "Calculate Your Monthly Fee",
+    cta: "Get My Tailored Quote",
     bg: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/07/home-01-slider-img-02.jpg",
   },
   {
@@ -51,7 +50,7 @@ const slides: Slide[] = [
     extra: "No Surprises",
     description:
       "Know exactly what you pay. No hourly billing. No hidden costs. Just a predictable finance solution built around your business activity.",
-    cta: "Get Your Instant Quote",
+    cta: "Get My Tailored Quote",
     bg: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/06/h1-hero-banner-img.jpg",
   },
   {
@@ -63,7 +62,6 @@ const slides: Slide[] = [
       "Potentially lower suitable accounting, tax and compliance function costs by up to 30% through controlled workflows with human oversight.",
     cta: "Assess My Workflow",
     ctaTo: "/automation-assessment",
-    compactHeading: true,
     bg: "https://wdtbullish.wpengine.com/wp-content/uploads/2025/07/home-01-slider-img-02.jpg",
   },
   
@@ -134,7 +132,7 @@ const HeroSlider = () => {
                       {slide.subtitle}
                     </span>
 
-                    <h1 className={`text-white font-bold leading-tight mb-3 ${slide.compactHeading ? "text-[38px] lg:text-[58px]" : "text-[40px] lg:text-[70px]"}`}>
+                    <h1 className="text-white font-bold leading-tight mb-3  text-[38px] lg:text-[58px]">
                       {slide.title}{" "}
                       <span className="text-white">
                         {slide.highlight}

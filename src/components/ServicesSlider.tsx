@@ -9,6 +9,7 @@ import serviceImg3 from "@/assets/service3.jpg"
 import serviceImg4 from "@/assets/service4.jpg"
 import serviceImg5 from "@/assets/service5.jpg"
 import serviceImg6 from "@/assets/service6.jpg"
+import automationImg from "@/assets/Blog-img-12.jpg"
 
 import "swiper/css"
 import "swiper/css/navigation"
@@ -68,7 +69,7 @@ const SERVICES = [
   { title: "IRS and State Compliance", path: "/virtual-cfo-services/us-tax-and-compliance", img: serviceImg5, icon: ICON_PATHS.icon1 },
   { title: "Strategic Financial Advisory", path: "/virtual-cfo-services/strategic-financial-advisory", img: serviceImg6, icon: ICON_PATHS.icon6 },
   { title: "Virtual CFO", path: "/virtual-cfo-services", img: serviceImg1, icon: ICON_PATHS.icon2 },
-  { title: "Agentic AI Automation", path: "/agentic-ai-automation", img: serviceImg2, icon: ICON_PATHS.icon3 },
+  { title: "Agentic AI Automation", path: "/agentic-ai-automation", img: automationImg, icon: ICON_PATHS.icon3 },
 ];
 
 const fadeUpVariants = {

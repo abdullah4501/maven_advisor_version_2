@@ -1,9 +1,9 @@
 import { ArrowRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
-import active1 from "@/assets/active-work-process.jpg"
+import active1 from "@/assets/Filler-With-tab-img-01.jpg"
 import active2 from "@/assets/active-work-process.jpg"
-import active3 from "@/assets/active-work-process.jpg"
-import active4 from "@/assets/active-work-process.jpg"
+import active3 from "@/assets/h2-filler-tab-img1.jpg"
+import active4 from "@/assets/h2-filler-tab-img2.jpg"
 import { Autoplay } from "swiper/modules"
 import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"

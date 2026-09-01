@@ -38,7 +38,7 @@ export default function AboutUs() {
             <p className="text-[18px] leading-[1.8] text-[#6b6b6b]">We help UK and US businesses keep more of what they earn, understand cash movement, meet tax and compliance responsibilities and make better decisions. Our role is to connect accurate execution with commercial interpretation, communicate clearly and give decision-makers information they can use.</p>
           </section>
 
-          <section className="rounded-[30px] bg-black p-[35px] text-white md:p-[60px]">
+          <section className="rounded-[30px] bg-gradient-to-l from-[#0C7FFB] to-black p-[35px] text-white md:p-[60px]">
             <p className="wdt-heading mb-4 text-white">How We Work</p>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
               {principles.map(([title, copy]) => (

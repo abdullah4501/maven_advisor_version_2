@@ -1,0 +1,30 @@
+/about-us                                      /about               301!
+/our-team                                      /team                301!
+/calculator                                    /get-a-quote         301!
+
+/about                                         /index.html          200
+/services                                      /index.html          200
+/virtual-cfo-services                          /index.html          200
+/virtual-cfo-services/finance-system-setup     /index.html          200
+/virtual-cfo-services/finance-operations       /index.html          200
+/virtual-cfo-services/reporting-and-forecasting /index.html         200
+/virtual-cfo-services/uk-tax-and-compliance    /index.html          200
+/virtual-cfo-services/us-tax-and-compliance    /index.html          200
+/virtual-cfo-services/strategic-financial-advisory /index.html      200
+/agentic-ai-automation                         /index.html          200
+/agentic-ai-automation/accounting              /index.html          200
+/agentic-ai-automation/tax                     /index.html          200
+/agentic-ai-automation/compliance              /index.html          200
+/who-we-help                                   /index.html          200
+/client-reviews                                /index.html          200
+/contact                                       /index.html          200
+/team                                          /index.html          200
+/faq                                           /index.html          200
+/get-a-quote                                   /index.html          200
+/automation-assessment                         /index.html          200
+/privacy-policy                                /index.html          200
+/lp/uk-virtual-cfo                             /index.html          200
+/lp/us-bookkeeping-tax                         /index.html          200
+/lp/accounting-automation                      /index.html          200
+
+/*                                             /404.html            404

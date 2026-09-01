@@ -54,7 +54,7 @@ export default function Services() {
         </div>
       </section>
 
-      <main className="text-black">
+      <main data-scroll-reveal-managed className="text-black">
         <FeaturesTabs />
         <ServicesSlider />
 

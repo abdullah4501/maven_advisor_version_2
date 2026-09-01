@@ -10,7 +10,6 @@ const companyLinks = [
   { label: "About", to: "/about" },
   { label: "Leadership Team", to: "/team" },
   { label: "Client Reviews", to: "/client-reviews" },
-  { label: "Insights", to: "/insights" },
   { label: "Frequently Asked Questions", to: "/faq" },
 ]
 
@@ -61,6 +60,7 @@ export default function Footer() {
 
           <div className="mt-14 flex flex-col gap-4 border-t border-white/15 pt-7 text-[14px] text-white/60 md:flex-row md:items-center md:justify-between">
             <p>© 2026 Mavens Advisor. All rights reserved.</p>
+            <Link to="/privacy-policy" className="transition hover:text-white">Privacy Policy</Link>
           </div>
         </div>
       </div>

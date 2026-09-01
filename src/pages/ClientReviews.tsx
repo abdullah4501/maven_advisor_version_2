@@ -26,7 +26,7 @@ export default function ClientReviews() {
 
             <section className="bg-[#f6f7f4] py-[60px] md:py-[100px]">
                 <div className="container">
-                    <div className="mx-auto mb-10 max-w-[800px] text-center md:mb-[55px]">
+                    <div data-scroll-reveal className="mx-auto mb-10 max-w-[800px] text-center md:mb-[55px]">
                         <h2 className="text-[34px] font-semibold leading-[1.15] md:text-[48px]">
                             Trusted by Businesses That Value Accuracy and
                             Reliability
@@ -39,53 +39,57 @@ export default function ClientReviews() {
                     </div>
 
                     <div className="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6">
-                        {clientReviews.map((review, index) => {
+                        {clientReviews.map((review) => {
 
                             return (
                                 <article
                                     key={review.name}
-                                    className={`rounded-[24px] p-[28px] md:rounded-[28px] md:p-[45px] bg-black text-white`}
+                                    data-scroll-reveal
+                                    className="group relative overflow-hidden rounded-[24px] bg-white p-[28px] hover:text-white md:rounded-[28px] md:p-[45px]"
                                 >
-                                    <div
-                                        className={`flex items-start justify-between`}
-                                    >
-                                        <Quote
-                                            size={40}
-                                            className="text-white"
-                                        />
-                                    </div>
-
-                                    <p
-                                        className={`mt-5 text-[16px] leading-[1.8] md:mt-6 md:text-[17px] text-white/80`}
-                                    >
-                                        {review.text}
-                                    </p>
-
-                                    <div className="mt-7 flex items-center gap-4 md:mt-8">
+                                    <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#0C7FFB] to-black opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100" />
+                                    <div className="relative z-10">
                                         <div
-                                            className={`h-[58px] w-[58px] shrink-0 overflow-hidden rounded-full md:h-[64px] md:w-[64px] ring-2 ring-white/20
-                                                `}
+                                            className={`flex items-start justify-between`}
                                         >
-                                            <img
-                                                src={review.image}
-                                                alt={review.name}
-                                                loading="lazy"
-                                                className="h-full w-full object-cover"
+                                            <Quote
+                                                size={40}
+                                                className="group-hover:text-white text-[#6b6b6b]"
                                             />
                                         </div>
 
-                                        <div className="min-w-0">
-                                            <h3
-                                                className={`text-[17px] font-semibold leading-tight md:text-[18px] text-white`}
-                                            >
-                                                {review.name}
-                                            </h3>
+                                        <p
+                                            className={`mt-5 text-[16px] leading-[1.8] md:mt-6 md:text-[17px] group-hover:text-white/80 text-[#6b6b6b]`}
+                                        >
+                                            {review.text}
+                                        </p>
 
-                                            <p
-                                                className={`mt-1 text-[14px] leading-[1.45] text-white/55`}
+                                        <div className="mt-7 flex items-center gap-4 md:mt-8">
+                                            <div
+                                                className={`h-[58px] w-[58px] shrink-0 overflow-hidden rounded-full md:h-[64px] md:w-[64px] ring-2 ring-white/20
+                                                    `}
                                             >
-                                                {review.company}
-                                            </p>
+                                                <img
+                                                    src={review.image}
+                                                    alt={review.name}
+                                                    loading="lazy"
+                                                    className="h-full w-full object-cover"
+                                                />
+                                            </div>
+
+                                            <div className="min-w-0">
+                                                <h3
+                                                    className={`text-[17px] font-semibold leading-tight md:text-[18px] group-hover:text-white`}
+                                                >
+                                                    {review.name}
+                                                </h3>
+
+                                                <p
+                                                    className={`mt-1 text-[14px] leading-[1.45] group-hover:text-white/55 text-[#6b6b6b]`}
+                                                >
+                                                    {review.company}
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
                                 </article>
