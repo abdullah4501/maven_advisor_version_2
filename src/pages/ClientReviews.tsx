@@ -22,6 +22,7 @@ export default function ClientReviews() {
             <PageHero
                 title="Client Reviews"
                 image={heroImage}
+                description="See what our clients say about working with Mavens Advisor."
             />
 
             <section className="bg-[#f6f7f4] py-[60px] md:py-[100px]">
@@ -47,7 +48,7 @@ export default function ClientReviews() {
                                     data-scroll-reveal
                                     className="group relative overflow-hidden rounded-[24px] bg-white p-[28px] hover:text-white md:rounded-[28px] md:p-[45px]"
                                 >
-                                    <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-[#0C7FFB] to-black opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100" />
+                                    <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-l from-[#0C7FFB] to-black opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100" />
                                     <div className="relative z-10">
                                         <div
                                             className={`flex items-start justify-between`}

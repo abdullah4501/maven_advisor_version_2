@@ -167,7 +167,7 @@ export default function ServicePageTemplate({ pageKey }: Props) {
               {page.heroPoints && (
                 <ul className="mt-10 grid grid-cols-1 border-t border-black/15 md:grid-cols-2">
                   {page.heroPoints.map((point, index) => (
-                    <li key={point} className={`flex gap-4 border-b border-black/15 py-5 text-[16px] leading-[1.55] text-[#505050] md:pr-7 ${index % 2 === 1 ? "md:border-l md:pl-7" : ""}`}>
+                    <li key={point} className={`flex gap-4 border-b border-black/15 py-5 text-[16px] leading-[1.55] text-[#505050] ${index % 2 === 0 ? "md:border-r md:pr-7" : "md:pl-7"}`}>
                       <Check size={18} className="mt-1 shrink-0 text-[#0C7FFE]" strokeWidth={2.5} />
                       <span>{point}</span>
                     </li>
@@ -227,7 +227,7 @@ export default function ServicePageTemplate({ pageKey }: Props) {
                       {section.bullets && (
                         <ul className="mt-10 grid grid-cols-1 border-t border-black/15 md:grid-cols-2">
                           {section.bullets.map((item, itemIndex) => (
-                            <li key={item} className={`flex gap-4 border-b border-black/15 py-5 text-[16px] leading-[1.55] text-[#4f4f4f] md:pr-8 ${itemIndex % 2 === 1 ? "md:border-l md:pl-8" : ""}`}>
+                            <li key={item} className={`flex gap-4 border-b border-black/15 py-5 text-[16px] leading-[1.55] text-[#4f4f4f] ${itemIndex % 2 === 0 ? "md:border-r md:pr-8" : "md:pl-8"}`}>
                               <Check size={18} className="mt-1 shrink-0 text-[#0C7FFE]" strokeWidth={2.5} />
                               <span>{item}</span>
                             </li>
