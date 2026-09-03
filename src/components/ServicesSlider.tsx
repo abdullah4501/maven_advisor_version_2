@@ -100,7 +100,7 @@ export default function ServicesType3() {
             <div className="container mx-auto px-[20px] md:px-[40px]">
               <div className="mb-[65px] text-center">
                 <h3 className="mb-3 flex items-center justify-center gap-3 text-white wdt-heading">
-                  Eight Canonical Services
+                  Our Core Services
                 </h3>
                 <h2 className="text-[38px] md:text-5xl font-semibold text-white leading-[38px]">
                   Trusted <span className="text-[#0C7FFE]">Guidance</span> Built For You

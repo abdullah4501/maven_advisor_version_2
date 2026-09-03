@@ -27,7 +27,7 @@ const slides: Slide[] = [
     subtitle: "Expert Virtual CFO",
     title: "Your Personal",
     highlight: " CFO ",
-    extra: "At the Cost of a Bookkeeper",
+    extra: "at the Cost of a Bookkeeper",
     description:
       "Get a dedicated CFO, a complete finance team, and full financial control without hiring in house.",
     cta: "Get My Tailored Quote",

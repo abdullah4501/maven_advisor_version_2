@@ -7,6 +7,7 @@ import feature4 from "@/assets/interactive-Section-img-03.jpg";
 import feature5 from "@/assets/interactive-Section-img-04.jpg";
 import { ArrowRight } from "lucide-react";
 import { motion, AnimatePresence, useInView } from "framer-motion"
+import { Link } from "react-router-dom";
 
 
 const FEATURES = [
@@ -145,10 +146,10 @@ export default function FeaturesTabs() {
             </h2>
           </div>
 
-          <button className="mt-10 inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
-            View All Feastures
+          <Link to="/services" className="mt-10 inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-8 py-4 text-[15px] font-semibold">
+            View All Features
             <ArrowRight />
-          </button>
+          </Link>
         </motion.div>
 
         {/* Tabs Layout */}

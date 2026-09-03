@@ -1,4 +1,4 @@
-import { ArrowRight, Check } from "lucide-react"
+import { ArrowRight, Check, MoveRight } from "lucide-react"
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
 import FeaturesTabs from "@/components/FeaturesTabs"
@@ -62,8 +62,8 @@ export default function Services() {
           <div className="container">
             <div className="mb-[65px] grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
               <motion.div {...reveal} className="lg:col-span-8">
-                <p className="wdt-heading mb-5">Complete Service Directory</p>
-                <h2 className="text-[40px] font-semibold leading-[1.06] tracking-[-0.035em] md:text-[60px]">Explore every service<br /><span className="text-[#777]">in more detail.</span></h2>
+                <p className="wdt-heading mb-5">Our Services</p>
+                <h2 className="text-[40px] font-semibold leading-[1.06] tracking-[-0.035em] md:text-[60px]">Explore Our Services<br /><span className="text-[#777]">in Detail.</span></h2>
               </motion.div>
               <motion.p {...reveal} transition={{ duration: 0.65, delay: 0.1 }} className="max-w-[520px] text-[17px] leading-[1.75] text-[#666] lg:col-span-4">Choose a defined specialist service or combine the required finance capabilities through one accountable Virtual CFO team.</motion.p>
             </div>
@@ -89,7 +89,7 @@ export default function Services() {
                           ))}
                         </ul>
                       )}
-                      <Link to={service.path} className="mt-8 inline-flex items-center gap-3 self-start text-[14px] font-semibold uppercase tracking-[0.1em]">View Service<span className="h-px w-10 bg-black transition-all group-hover:w-16 group-hover:bg-[#0C7FFE]" /></Link>
+                      <Link to={service.path} className="mt-8 inline-flex items-center gap-3 self-start text-[14px] font-semibold uppercase tracking-[0.1em]">View Service<MoveRight size={18} className=" transition-all group-hover:w-10 group-hover:text-[#0C7FFE]" /></Link>
                     </div>
                   </motion.article>
                 )
