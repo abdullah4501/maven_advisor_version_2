@@ -11,10 +11,13 @@ import danielImage from "@/assets/clients/Dan.png"
 import peterImage from "@/assets/clients/Peter.png"
 import tobyImage from "@/assets/clients/Toby.png"
 import turgayImage from "@/assets/clients/Turgay.png"
-import alexImage from "@/assets/clients/Alex.png"
+import izzyImage from "@/assets/clients/IZZY.jpg"
+import marcelaImage from "@/assets/clients/Marcelaa.jpg"
+import altamashImage from "@/assets/clients/Altamash.png"
+import steveImage from "@/assets/clients/Steve.jpg"
+import marwaImage from "@/assets/clients/Marwa.png"
+import credoImage from "@/assets/clients/Credo.png"
 
-import boyUserImage from "@/assets/clients/boyUser.png"
-import girlUserImage from "@/assets/clients/girlUser.png"
 
 export type ClientReview = {
     name: string
@@ -45,7 +48,7 @@ export const clientReviews: ClientReview[] = [
     {
         name: "Marwa",
         company: "COO of Mojo Solutions and Services MSS LLC",
-        image: girlUserImage,
+        image: marwaImage,
         text: "The Mavens Advisor team has supported us for over three years, and their service has been excellent. They manage payroll, taxes, contracts, audits and client follow-ups with professionalism and reliability. Their availability during US business hours makes communication easy and efficient. We are 100% satisfied and highly recommend them.",
     },
     {
@@ -55,11 +58,10 @@ export const clientReviews: ClientReview[] = [
         text: "Partnering with Mavens Advisor has been a game-changer for our business. Their consistent support, quick responsiveness and deep financial knowledge have been instrumental in helping us stay on top of our books and maintain excellent financial health. We highly recommend their services.",
     },
 
-    // Additional client reviews
     {
         name: "Alex Gerasimov",
         company: "CEO of Credo Construction",
-        image: alexImage,
+        image: credoImage,
         text: "Clear communication, fast response time, and strong attention to detail. They handled year-end bookkeeping efficiently.",
     },
     {
@@ -95,7 +97,7 @@ export const clientReviews: ClientReview[] = [
     {
         name: "Steve Cohn",
         company: "",
-        image: boyUserImage,
+        image: steveImage,
         text: "They are hard workers and know standard accounting practices like the back of their hand. They were willing to put in the extra time to make sure we met the goals of my project.",
     },
     {
@@ -107,7 +109,19 @@ export const clientReviews: ClientReview[] = [
     {
         name: "Alltamash Siddiqui",
         company: "",
-        image: boyUserImage,
+        image: altamashImage,
         text: "The Mavens team is knowledgeable, reliable, and highly professional. They streamlined our financial processes, resolved long-standing issues, and improved our reporting. Their communication was clear, responsive, and thoughtful throughout. We highly recommend the Mavens team and look forward to working with them again.",
+    },
+    {
+        name: "Izzy Traub",
+        company: "Owner of VFX Los Angeles",
+        image: izzyImage,
+        text: "They were great! They solved my problem very quickly. I highly recommend them!",
+    },
+    {
+        name: "Marcela Potsch",
+        company: "Strategic Partner at Marshall Goldsmith Stakeholder Centered Coaching",
+        image: marcelaImage,
+        text: "Since we started working with the Mavens team, we have had complete peace of mind with our bookkeeping. The team is organized, reliable, and always stays on top of deadlines, updates, and requirements. We no longer have to worry about missing anything or dealing with unexpected issues. Their support has made our financial processes much smoother and easier to manage.",
     },
 ]

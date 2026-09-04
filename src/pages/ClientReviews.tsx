@@ -49,7 +49,7 @@ export default function ClientReviews() {
                                     className="group relative overflow-hidden rounded-[24px] bg-white p-[28px] hover:text-white md:rounded-[28px] md:p-[45px]"
                                 >
                                     <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-l from-[#0C7FFB] to-black opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100" />
-                                    <div className="relative z-10">
+                                    <div className="relative z-10 h-full flex flex-col gap-4">
                                         <div
                                             className={`flex items-start justify-between`}
                                         >
@@ -65,7 +65,7 @@ export default function ClientReviews() {
                                             {review.text}
                                         </p>
 
-                                        <div className="mt-7 flex items-center gap-4 md:mt-8">
+                                        <div className="mt-auto flex items-center gap-4">
                                             <div
                                                 className={`h-[58px] w-[58px] shrink-0 overflow-hidden rounded-full md:h-[64px] md:w-[64px] ring-2 ring-white/20
                                                     `}

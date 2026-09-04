@@ -15,17 +15,17 @@ export default function Contact() {
       <main className="bg-[#f6f7f4] py-[80px] md:py-[120px]">
         <div className="container">
           <div className="grid grid-cols-1 gap-7 lg:grid-cols-2">
-            <section className="rounded-[30px] bg-white p-[35px] md:p-[50px] flex flex-col ">
+            <section className="flex h-full flex-col rounded-[30px] bg-white p-[35px] md:p-[50px]">
               <p className="wdt-heading mb-4">Finance Services and Virtual CFO</p>
-              <h2 className="text-[32px] font-semibold">Build the Finance Support Your Business Needs</h2>
-              <p className="my-5 text-[17px] leading-[1.75] text-[#6b6b6b]">For business owners who need Finance System Setup, Finance Operations, Financial Reporting and Forecasting, UK or US Tax and Compliance, Strategic Financial Advisory, or a broader Virtual CFO engagement.</p>
-              <Link to="/get-a-quote" className="lg:mt-auto mt-8 self-start inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-7 py-4 font-semibold">Get My Tailored Quote <ArrowRight size={18} /></Link>
+              <h2 className="text-[32px] font-semibold">Build the Finance Support</h2>
+              <p className="mb-8 mt-5 flex-1 text-[17px] leading-[1.75] text-[#6b6b6b]">For business owners who need Finance System Setup, Finance Operations, Financial Reporting and Forecasting, UK or US Tax and Compliance, Strategic Financial Advisory, or a broader Virtual CFO engagement.</p>
+              <Link to="/get-a-quote" className="inline-flex items-center gap-3 self-start rounded-[14px] bg-primary-gradient px-7 py-4 font-semibold">Get My Tailored Quote <ArrowRight size={18} /></Link>
             </section>
-            <section className="rounded-[30px] bg-black p-[35px] text-white md:p-[50px] flex flex-col">
+            <section className="flex h-full flex-col rounded-[30px] bg-black p-[35px] text-white md:p-[50px]">
               <p className="wdt-heading mb-4 text-white">Agentic AI Automation</p>
               <h2 className="text-[32px] font-semibold">Assess a Repetitive Workflow</h2>
-              <p className="my-5 text-[17px] leading-[1.75] text-white/70">For teams that want to reduce repetitive accounting, tax or compliance administration while retaining human review and control.</p>
-              <Link to="/automation-assessment" className="lg:mt-auto mt-8 self-start inline-flex items-center gap-3 rounded-[14px] bg-primary-gradient px-7 py-4 font-semibold text-black">Assess My Workflow <ArrowRight size={18} /></Link>
+              <p className="mb-8 mt-5 flex-1 text-[17px] leading-[1.75] text-white/70">For teams that want to reduce repetitive accounting, tax or compliance administration while retaining human review and control.</p>
+              <Link to="/automation-assessment" className="inline-flex items-center gap-3 self-start rounded-[14px] bg-primary-gradient px-7 py-4 font-semibold text-black">Assess My Workflow <ArrowRight size={18} /></Link>
             </section>
           </div>
 
