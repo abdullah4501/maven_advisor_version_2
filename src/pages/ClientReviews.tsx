@@ -20,9 +20,12 @@ export default function ClientReviews() {
             <Header />
 
             <PageHero
+                eyebrow="Social Proof"
                 title="Client Reviews"
                 image={heroImage}
-                description="See what our clients say about working with Mavens Advisor."
+                description="Hear directly from clients about the experience, responsiveness and financial support they receive from Mavens Advisor."
+                primaryLabel="Get My Tailored Quote"
+                primaryTo="/get-a-quote"
             />
 
             <section className="bg-[#f6f7f4] py-[60px] md:py-[100px]">
@@ -60,7 +63,7 @@ export default function ClientReviews() {
                                         </div>
 
                                         <p
-                                            className={`mt-5 text-[16px] leading-[1.8] md:mt-6 md:text-[17px] group-hover:text-white/80 text-[#6b6b6b]`}
+                                            className={`mt-5 text-[16px] whitespace-pre-line leading-[1.8] md:mt-6 md:text-[17px] group-hover:text-white/80 text-[#6b6b6b]`}
                                         >
                                             {review.text}
                                         </p>

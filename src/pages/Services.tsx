@@ -40,7 +40,7 @@ export default function Services() {
         <div className="absolute -left-[8vw] top-[18%] h-[540px] w-[540px] rounded-full bg-[#0C7FFE]/15 blur-[130px]" />
         <div className="absolute bottom-[-12%] left-[38%] select-none text-[clamp(12rem,29vw,31rem)] font-bold leading-none text-white/[0.025]">08</div>
 
-        <div className="container relative z-10 flex min-h-[760px] flex-col justify-end pb-[75px] pt-[180px] lg:min-h-[820px] lg:pb-[90px]">
+        <div className="container relative z-10 flex min-h-[760px] flex-col justify-end pb-[125px] pt-[180px] lg:min-h-[820px] lg:pb-[170px]">
           <motion.div initial={{ opacity: 0, y: 36 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.75 }} className="max-w-[1040px]">
             <p className="wdt-heading mb-6 text-[#78b5ff]">Eight Specialist Services</p>
             <h1 className="text-[48px] font-semibold leading-[0.99] tracking-[-0.05em] md:text-[72px] lg:text-[92px]">Finance support,<br /><span className="text-white">clearly defined.</span></h1>
@@ -55,7 +55,7 @@ export default function Services() {
       </section>
 
       <main data-scroll-reveal-managed className="text-black">
-        <FeaturesTabs />
+        <FeaturesTabs showBenefitsButton={false} />
         <ServicesSlider />
 
         <section className="bg-[#f6f7f4] py-[90px] md:py-[145px]">

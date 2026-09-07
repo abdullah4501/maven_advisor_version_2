@@ -17,6 +17,7 @@ import altamashImage from "@/assets/clients/Altamash.png"
 import steveImage from "@/assets/clients/Steve.jpg"
 import marwaImage from "@/assets/clients/Marwa.png"
 import credoImage from "@/assets/clients/Credo.png"
+import sarahImage from "@/assets/clients/Sarah-gzr.png"
 
 
 export type ClientReview = {
@@ -123,5 +124,11 @@ export const clientReviews: ClientReview[] = [
         company: "Strategic Partner at Marshall Goldsmith Stakeholder Centered Coaching",
         image: marcelaImage,
         text: "Since we started working with the Mavens team, we have had complete peace of mind with our bookkeeping. The team is organized, reliable, and always stays on top of deadlines, updates, and requirements. We no longer have to worry about missing anything or dealing with unexpected issues. Their support has made our financial processes much smoother and easier to manage.",
+    },
+    {
+        name: "Sarah Turner",
+        company: "CEO of CeraThrive",
+        image: sarahImage,
+        text: "I am very happy to recommend the Mavens team, who work with CeraThrive as our Fractional CFO and finance partner.\n\nThe Mavens team is consistently responsive, efficient, and dependable. They make time whenever their input is needed and have a strong ability to take complex financial matters and explain them in clear, straightforward terms, making them easy to understand even for those without a financial background.\n\nOne of their greatest strengths is their proactive approach. They take ownership of their responsibilities, identify what needs attention, anticipate requirements, and follow matters through without needing to be prompted.\n\nThe team combines strong financial expertise with a practical, commercially minded approach. They are organised, engaged, and easy to work with, and have become a valued and trusted part of the CeraThrive team.\n\nI would have no hesitation in recommending Mavens to any business looking for an experienced, proactive, and highly capable finance partner.",
     },
 ]

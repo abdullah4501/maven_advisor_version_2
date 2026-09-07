@@ -113,7 +113,7 @@ export default function ServicePageTemplate({ pageKey }: Props) {
     <>
       <Header />
 
-      <section className="relative min-h-[760px] overflow-hidden bg-[#050505] text-white lg:min-h-[860px]">
+      <section className="relative min-h-[700px] overflow-hidden bg-[#050505] text-white lg:min-h-[760px]">
         <div className="absolute inset-y-0 right-0 w-full lg:w-[47%]">
           <img src={page.image} alt="" className="h-full w-full object-cover opacity-55 lg:opacity-90" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/35 to-transparent lg:from-[#050505] lg:via-transparent" />
@@ -124,10 +124,10 @@ export default function ServicePageTemplate({ pageKey }: Props) {
           {String(serviceNumber).padStart(2, "0")}
         </div>
 
-        <div className="container relative z-10 flex min-h-[760px] flex-col justify-between pb-[62px] pt-[175px] lg:min-h-[860px] lg:pb-[78px] lg:pt-[210px]">
+        <div className="container relative z-10 flex min-h-[700px] flex-col justify-end pb-[75px] pt-[175px] lg:min-h-[760px] lg:pb-[90px]">
           <motion.div initial={{ opacity: 0, y: 34 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.75 }} className="max-w-[860px]">
             <p className="wdt-heading mb-6 text-[#63aaff]">{page.eyebrow}</p>
-            <h1 className="max-w-[940px] text-[44px] font-semibold leading-[1.02] tracking-[-0.045em] sm:text-[56px] lg:text-[78px] xl:text-[88px]">
+            <h1 className="max-w-[1020px] text-[44px] font-semibold leading-[1.03] tracking-[-0.04em] sm:text-[56px] lg:text-[76px] xl:text-[82px]">
               {page.title}
             </h1>
           </motion.div>

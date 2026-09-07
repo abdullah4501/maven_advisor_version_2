@@ -27,7 +27,7 @@ function Card({
                 className="text-[#0C7FFE]"
             />
 
-            <p className="mt-4 text-[15px] md:text-[16px] leading-[1.7] text-[#606060]">
+            <p className="mt-4 whitespace-pre-line text-[15px] md:text-[16px] leading-[1.7] text-[#606060]">
                 {text}
             </p>
 
