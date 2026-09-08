@@ -81,7 +81,9 @@ const ADVISORY_SCOPES = [
 ]
 
 const inputClass = "w-full rounded-[14px] border border-transparent bg-[#f3f5f4] px-5 py-4 text-[15px] text-black outline-none transition duration-300 placeholder:text-[#8a8a8a] focus:border-[#0C7FFB]/35 focus:bg-white focus:ring-4 focus:ring-[#0C7FFB]/10"
-const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "")
+const formsApiBaseUrl = (
+  (import.meta as ImportMeta & { env?: { VITE_FORMS_API_BASE_URL?: string } }).env?.VITE_FORMS_API_BASE_URL
+).replace(/\/$/, "")
 
 type QuoteTab = "calculate" | "cfo"
 type ServiceKey = (typeof SERVICE_OPTIONS)[number]["key"]
@@ -179,7 +181,7 @@ export default function GetQuote() {
     setIsSubmitting(true)
 
     try {
-      const response = await fetch(`${apiBaseUrl}/api/quote`, {
+      const response = await fetch(`${formsApiBaseUrl}/api/quote`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(submission),
@@ -210,7 +212,7 @@ export default function GetQuote() {
     setIsBookingSubmitting(true)
 
     try {
-      const response = await fetch(`${apiBaseUrl}/api/cfo-booking`, {
+      const response = await fetch(`${formsApiBaseUrl}/api/cfo-booking`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(submission),

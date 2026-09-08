@@ -6,7 +6,6 @@ import Index from "@/pages/Index"
 import AboutUs from "@/pages/About"
 import Services from './pages/Services';
 import Contact from './pages/Contact';
-import { SettingsProvider } from "./context/SettingsContext";
 import Team from './pages/Team';
 import FAQ from './pages/FAQ';
 import WhoWeHelp from './pages/WhoWeHelp';
@@ -91,11 +90,9 @@ const RouterWrapper = () => {
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <SettingsProvider>
-        <BrowserRouter>
-          <RouterWrapper />
-        </BrowserRouter>
-      </SettingsProvider>
+      <BrowserRouter>
+        <RouterWrapper />
+      </BrowserRouter>
     </QueryClientProvider>
   );
 };
