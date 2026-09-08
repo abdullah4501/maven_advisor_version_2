@@ -33,7 +33,7 @@ export default function Contact() {
             <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
               <a href="https://wa.me/447441441789" className="flex items-center gap-4"><span className="rounded-[14px] bg-primary-gradient p-4"><MessageCircle /></span><span><strong className="block">WhatsApp</strong>+44 7441 441789</span></a>
               <a href="tel:+447441441789" className="flex items-center gap-4"><span className="rounded-[14px] bg-primary-gradient p-4"><Phone /></span><span><strong className="block">Telephone</strong>+44 7441 441789</span></a>
-              <a href="mailto:adeelshaikh@mavensadvisor.com" className="flex items-center gap-4"><span className="rounded-[14px] bg-primary-gradient p-4"><Mail /></span><span className="break-all"><strong className="block">Email</strong>adeelshaikh@mavensadvisor.com</span></a>
+              <a href="mailto:info@mavensadvisor.com" className="flex items-center gap-4"><span className="rounded-[14px] bg-primary-gradient p-4"><Mail /></span><span className="break-all"><strong className="block">Email</strong>info@mavensadvisor.com</span></a>
             </div>
             <p className="mt-9 border-t border-black/10 pt-7 text-[17px] leading-[1.7] text-[#6b6b6b]">You do not need to prepare a detailed brief before contacting us. Start with the business problem, current process and outcome you need. Our team will help identify the information required for the next step.</p>
           </section>

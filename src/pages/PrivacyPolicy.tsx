@@ -176,7 +176,7 @@ export default function PrivacyPolicy() {
             <section className="rounded-[26px] bg-black p-[32px] text-white md:p-[48px]">
               <p className="wdt-heading text-[#78b5ff]">Privacy Questions</p>
               <h2 className="mt-4 text-[30px] font-semibold md:text-[38px]">Contact Mavens Advisor</h2>
-              <p className="mt-4 max-w-[680px] text-[17px] leading-[1.75] text-white/70">For questions, privacy requests or concerns about how your information is handled, email us at <a href="mailto:adeelshaikh@mavensadvisor.com" className="font-semibold text-white underline decoration-[#0C7FFE] underline-offset-4">adeelshaikh@mavensadvisor.com</a>.</p>
+              <p className="mt-4 max-w-[680px] text-[17px] leading-[1.75] text-white/70">For questions, privacy requests or concerns about how your information is handled, email us at <a href="mailto:info@mavensadvisor.com" className="font-semibold text-white underline decoration-[#0C7FFE] underline-offset-4">info@mavensadvisor.com</a>.</p>
               <p className="mt-4 max-w-[680px] text-[15px] leading-[1.75] text-white/60">If you are in the United Kingdom, you may also raise a concern with the <a href="https://ico.org.uk/make-a-complaint/" target="_blank" rel="noreferrer" className="font-semibold text-white underline decoration-[#0C7FFE] underline-offset-4">Information Commissioner’s Office</a>. People in other locations may contact their local privacy or data-protection authority.</p>
             </section>
           </div>

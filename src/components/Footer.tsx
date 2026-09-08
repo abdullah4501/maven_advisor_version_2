@@ -34,7 +34,7 @@ export default function Footer() {
               <p className="mt-7 max-w-[430px] text-[17px] leading-[1.7] text-white/75">Helping UK and US business owners keep more of what they earn, protect cash flow and make better decisions through an accountable finance team.</p>
               <div className="mt-7 space-y-3 text-white/80">
                 <a href="tel:+447441441789" className="flex items-center gap-3"><Phone size={18} className="text-[#0C7FFE]" />+44 7441 441789</a>
-                <a href="mailto:adeelshaikh@mavensadvisor.com" className="flex items-center gap-3 break-all"><Mail size={18} className="text-[#0C7FFE]" />adeelshaikh@mavensadvisor.com</a>
+                <a href="mailto:info@mavensadvisor.com" className="flex items-center gap-3 break-all"><Mail size={18} className="text-[#0C7FFE]" />info@mavensadvisor.com</a>
               </div>
             </div>
 
