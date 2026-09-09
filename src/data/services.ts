@@ -92,7 +92,7 @@ export const servicePages: Record<string, ServicePageData> = {
     finalHeading: "Take Control of My Finance Operations",
   },
   "reporting-and-forecasting": {
-    title: "Turn Your Numbers Into Better Decisions",
+    title: "Turn Your Numbers\nInto Better Decisions",
     shortTitle: "Financial Reporting and Forecasting",
     eyebrow: "Financial Reporting and Forecasting",
     path: "/virtual-cfo-services/reporting-and-forecasting",
@@ -113,7 +113,7 @@ export const servicePages: Record<string, ServicePageData> = {
     finalHeading: "Improve My Financial Reporting",
   },
   "uk-tax-and-compliance": {
-    title: "Stay Compliant. Pay No More Tax Than Required.",
+    title: "Stay Compliant.\nPay No More Tax Than Required.",
     shortTitle: "UK Tax, HMRC and Companies House Compliance",
     eyebrow: "UK Tax and Compliance",
     path: "/virtual-cfo-services/uk-tax-and-compliance",
@@ -122,17 +122,17 @@ export const servicePages: Record<string, ServicePageData> = {
     image: image4,
     metaTitle: "UK Tax, HMRC & Companies House Compliance | Mavens Advisor",
     metaDescription: "Keep records tax-ready, identify legitimate tax-saving opportunities and coordinate UK filing requirements through one finance team.",
-    primaryLabel: "Review My UK Tax and Finance Setup",
+    primaryLabel: "Review My UK Tax & Finance Setup",
     primaryTo: "/get-a-quote",
     sections: [
       { heading: "Tax Efficiency Starts Before the Filing Deadline", body: ["A tax return can only reflect the information available when it is prepared. Mavens Advisor keeps the underlying books organised throughout the year so eligible costs and relevant transactions are less likely to be overlooked and potential issues can be identified before the deadline.", "The objective is to help the business pay what it legally owes, claim what it is legitimately entitled to and reduce avoidable penalties or tax leakage. Any tax-saving opportunity remains subject to eligibility, jurisdiction and professional review."] },
       { heading: "Service Coverage", bullets: ["VAT filing support", "HMRC filing support for companies within the agreed scope", "Companies House filing support", "Review of records for legitimate deductions, reliefs, credits or planning opportunities where applicable", "Preparation and coordination of supporting accounting records", "Deadline monitoring and information requests", "Alignment between bookkeeping records and filing requirements", "Support in resolving missing information before submission"] },
       { heading: "Why Businesses Use One Coordinated Team", bullets: ["Tax records remain current rather than being reconstructed at the deadline", "Eligible items and possible tax-planning questions can be raised earlier", "The bookkeeping and filing process use the same underlying records", "Responsibility is easier to understand and information requests are coordinated", "The finance team can identify issues before they become urgent or expensive"] },
     ],
-    finalHeading: "Review My UK Tax and Finance Setup",
+    finalHeading: "Review My UK Tax & Finance Setup",
   },
   "us-tax-and-compliance": {
-    title: "Stay Tax-Ready. Pay No More Than Required.",
+    title: "Stay Tax-Ready.\nPay No More Than Required.",
     shortTitle: "US Tax, IRS and State Compliance",
     eyebrow: "US Tax and Compliance",
     path: "/virtual-cfo-services/us-tax-and-compliance",
@@ -151,7 +151,7 @@ export const servicePages: Record<string, ServicePageData> = {
     finalHeading: "Review My US Tax and Finance Setup",
   },
   "strategic-financial-advisory": {
-    title: "Protect Cash. Improve Profit. Make Better Decisions.",
+    title: "Protect Cash.\nImprove Profit.\nMake Better Decisions.",
     shortTitle: "Strategic Financial Advisory",
     eyebrow: "Strategic Financial Advisory",
     path: "/virtual-cfo-services/strategic-financial-advisory",
@@ -168,7 +168,7 @@ export const servicePages: Record<string, ServicePageData> = {
     finalHeading: "Speak With a Virtual CFO",
   },
   "virtual-cfo": {
-    title: "More Than Bookkeeping. A Complete Finance Function.",
+    title: "More Than Bookkeeping.\nA Complete Finance Function.",
     shortTitle: "Virtual CFO",
     eyebrow: "Expert-led Virtual CFO Services",
     path: "/virtual-cfo-services",
@@ -191,7 +191,7 @@ export const servicePages: Record<string, ServicePageData> = {
     finalCopy: "Build a finance function that helps you retain more, see problems earlier and make better decisions.",
   },
   "agentic-ai-automation": {
-    title: "Scale Operations, Not Administration",
+    title: "Scale Operations,\nNot Administration",
     shortTitle: "Agentic AI Automation",
     eyebrow: "Agentic AI Automation for Accounting, Tax and Compliance",
     path: "/agentic-ai-automation",

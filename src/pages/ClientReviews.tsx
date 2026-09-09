@@ -27,9 +27,9 @@ export default function ClientReviews() {
 
             <PageHero
                 eyebrow="Social Proof"
-                title="Client Reviews"
+                title="Why Clients Choose Mavens Advisor"
                 image={heroImage}
-                description="Hear directly from clients about the experience, responsiveness and financial support they receive from Mavens Advisor."
+                description="Hear directly from clients about the responsiveness, clarity and financial support that shape their experience with Mavens Advisor."
                 primaryLabel="Get My Tailored Quote"
                 primaryTo="/get-a-quote"
             />

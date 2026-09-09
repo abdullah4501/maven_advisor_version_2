@@ -119,15 +119,12 @@ export default function ServicePageTemplate({ pageKey }: Props) {
           <div className="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/35 to-transparent lg:from-[#050505] lg:via-transparent" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-black/10" />
         </div>
-        <div className="absolute -left-[7vw] top-[16%] h-[520px] w-[520px] rounded-full bg-[#0C7FFE]/15 blur-[120px]" />
-        <div className="absolute right-[4vw] top-[14%] select-none text-[clamp(10rem,25vw,28rem)] font-bold leading-none text-white/[0.045]">
-          {String(serviceNumber).padStart(2, "0")}
-        </div>
+        
 
         <div className="container relative z-10 flex min-h-[700px] flex-col justify-end pb-[75px] pt-[175px] lg:min-h-[760px] lg:pb-[90px]">
           <motion.div initial={{ opacity: 0, y: 34 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.75 }} className="max-w-[860px]">
             <p className="wdt-heading mb-6 text-[#63aaff]">{page.eyebrow}</p>
-            <h1 className="max-w-[1020px] text-[44px] font-semibold leading-[1.03] tracking-[-0.04em] sm:text-[56px] lg:text-[76px] xl:text-[82px]">
+            <h1 className="whitespace-pre-line max-w-[1020px] text-[44px] font-semibold leading-[1.03] tracking-[-0.04em] sm:text-[56px] lg:text-[76px] xl:text-[82px]">
               {page.title}
             </h1>
           </motion.div>
