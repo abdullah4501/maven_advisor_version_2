@@ -29,13 +29,15 @@ export default function Contact() {
             </section>
           </div>
 
-          <section className="mt-8 rounded-[30px] bg-white p-[35px] md:p-[50px]">
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
-              <a href="https://wa.me/447441441789" className="flex items-center gap-4"><span className="rounded-[14px] bg-primary-gradient p-4"><MessageCircle /></span><span><strong className="block">WhatsApp</strong>+44 7441 441789</span></a>
+          <section className="mt-8 rounded-[30px] bg-white p-[35px] md:p-[50px] grid grid-cols-1 md:grid-cols-3">
+            <div className="flex flex-col gap-5 col-span-1">
+              
               <a href="tel:+447441441789" className="flex items-center gap-4"><span className="rounded-[14px] bg-primary-gradient p-4"><Phone /></span><span><strong className="block">Telephone</strong>+44 7441 441789</span></a>
               <a href="mailto:info@mavensadvisor.com" className="flex items-center gap-4"><span className="rounded-[14px] bg-primary-gradient p-4"><Mail /></span><span className="break-all"><strong className="block">Email</strong>info@mavensadvisor.com</span></a>
             </div>
-            <p className="mt-9 border-t border-black/10 pt-7 text-[17px] leading-[1.7] text-[#6b6b6b]">You do not need to prepare a detailed brief before contacting us. Start with the business problem, current process and outcome you need. Our team will help identify the information required for the next step.</p>
+            <div className="col-span-1 md:col-span-2 md:border-l border-black/10 md:pl-7">
+              <p className="md:ml-9  mt-5 text-[17px] leading-[1.7] text-[#6b6b6b]">You do not need to prepare a detailed brief before contacting us. Start with the business problem, current process and outcome you need. Our team will help identify the information required for the next step.</p>
+            </div>
           </section>
         </div>
       </main>

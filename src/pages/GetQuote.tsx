@@ -48,8 +48,8 @@ const ACCOUNTING_SOFTWARE = [
 ]
 
 const SERVICE_OPTIONS = [
-  { key: "financeOperations", title: "Finance Operations", description: "Bookkeeping, payroll, billing, payables, receivables and recurring finance administration." },
-  { key: "reporting", title: "Reporting & Forecasting", description: "Management reporting, budgets, cash flow forecasts and performance analysis." },
+  { key: "financeOperations", title: "Finance Operations", description: "Bookkeeping, payroll, billing, payables and receivables, whether ongoing or project-based." },
+  { key: "reporting", title: "Reporting & Forecasting", description: "Monthly financial reporting, management reporting, budgets, cash flow forecasts and performance analysis." },
   { key: "ukTax", title: "UK Tax & Compliance", description: "VAT, HMRC and Companies House support." },
   { key: "usTax", title: "US Tax & Compliance", description: "Federal and state tax and compliance support." },
   { key: "advisory", title: "Financial Advisory", description: "Specific financial advice or ongoing CFO-level guidance and oversight." },
@@ -65,7 +65,77 @@ const FINANCE_RESPONSIBILITIES = [
   { key: "receivables", label: "Accounts Receivable" },
 ] as const
 
-const ADVISORY_SCOPES = [
+const ONE_OFF_FINANCE_OPERATIONS = [
+  "Catch-up / Backlog Bookkeeping",
+  "Bookkeeping Cleanup",
+  "Payroll Review / Cleanup",
+  "Contractor Payment Review / Cleanup",
+  "Customer Invoicing / Billing Cleanup",
+  "Accounts Payable Cleanup",
+  "Accounts Receivable Cleanup",
+  "Other Finance Operations Project",
+] as const
+
+const ONGOING_REPORTING_SCOPES = [
+  "Monthly Financial Reporting",
+  "Management Reporting / KPI Pack",
+  "Budgeting & Forecasting",
+  "Cash Flow Forecasting",
+  "Financial Performance Analysis",
+  "Other Reporting Support",
+] as const
+
+const ONE_OFF_REPORTING_SCOPES = [
+  "Financial Reporting",
+  "Management Reporting / KPI Pack",
+  "Budget / Forecast",
+  "Cash Flow Forecast",
+  "Financial Performance Analysis",
+  "Other Reporting Project",
+] as const
+
+const UK_TAX_INTERESTS = [
+  "Annual Accounts - Companies House",
+  "Corporation Tax Return - HMRC",
+  "Confirmation Statement - Companies House",
+  "VAT Returns",
+  "Personal Tax Return / Self Assessment",
+  "Not Sure / Need Guidance",
+  "Other UK Tax & Compliance",
+] as const
+
+const US_TAX_INTERESTS = [
+  "Federal Business Tax Return",
+  "State Tax & Compliance",
+  "Sales Tax / Indirect Tax",
+  "Personal Tax Return",
+  "Not Sure / Need Guidance",
+  "Other US Tax & Compliance",
+] as const
+
+const ONE_OFF_ADVISORY_SCOPES = [
+  "Financial Modelling",
+  "Business Planning",
+  "Business Valuation",
+  "Profitability / Margin Review",
+  "Pricing / Commercial Analysis",
+  "Funding / Investment Analysis",
+  "Strategic Decision Support",
+  "Other One-Off Financial Advisory",
+] as const
+
+const ONGOING_ADVISORY_SCOPES = [
+  "Cash Flow Management & Analysis",
+  "Budgeting & Forecasting",
+  "Management Reporting",
+  "Finance Function Oversight",
+  "Ongoing Commercial Analysis",
+  "Strategic Decision Support",
+  "Funding / Investment Decisions",
+  "Other Ongoing Financial Advisory",
+] as const
+
+const UNSURE_ADVISORY_SCOPES = [
   "Financial Modelling",
   "Business Planning",
   "Business Valuation",
@@ -73,12 +143,9 @@ const ADVISORY_SCOPES = [
   "Cash Flow Management & Analysis",
   "Budgeting & Forecasting",
   "Management Reporting",
-  "Pricing / Commercial Analysis",
   "Strategic Decision Support",
-  "Finance Function Oversight",
-  "Investment / Funding Decisions",
-  "Other",
-]
+  "Other Financial Advisory",
+] as const
 
 const inputClass = "w-full rounded-[14px] border border-transparent bg-[#f3f5f4] px-5 py-4 text-[15px] text-black outline-none transition duration-300 placeholder:text-[#8a8a8a] focus:border-[#0C7FFB]/35 focus:bg-white focus:ring-4 focus:ring-[#0C7FFB]/10"
 const formsApiBaseUrl = (
@@ -86,8 +153,20 @@ const formsApiBaseUrl = (
 ).replace(/\/$/, "")
 
 type QuoteTab = "calculate" | "cfo"
+type Engagement = "Ongoing / Recurring" | "One-Off Project" | "Exploring Options" | ""
 type ServiceKey = (typeof SERVICE_OPTIONS)[number]["key"]
 type FinanceResponsibility = (typeof FINANCE_RESPONSIBILITIES)[number]["key"]
+
+function toggleSetValue(current: Set<string>, value: string, checked: boolean) {
+  const next = new Set(current)
+  if (checked) next.add(value)
+  else next.delete(value)
+  return next
+}
+
+function hasAdditionalEntities(value: string) {
+  return ["2", "3–5", "6+"].includes(value)
+}
 
 function collectFormValues(form: HTMLFormElement) {
   const submission: Record<string, string | string[]> = {}
@@ -116,10 +195,29 @@ export default function GetQuote() {
   const [country, setCountry] = useState("")
   const [accountingSoftware, setAccountingSoftware] = useState("")
   const [entityType, setEntityType] = useState("")
+  const [engagement, setEngagement] = useState<Engagement>("")
+  const [oneOffPeriod, setOneOffPeriod] = useState("")
+  const [oneOffCurrentPosition, setOneOffCurrentPosition] = useState("")
+  const [oneOffDeadlineStatus, setOneOffDeadlineStatus] = useState("")
   const [selectedServices, setSelectedServices] = useState<Set<ServiceKey>>(new Set())
   const [financeResponsibilities, setFinanceResponsibilities] = useState<Set<FinanceResponsibility>>(new Set())
+  const [oneOffFinanceScopes, setOneOffFinanceScopes] = useState<Set<string>>(new Set())
+  const [payrollFrequency, setPayrollFrequency] = useState("")
+  const [contractorFrequency, setContractorFrequency] = useState("")
+  const [oneOffPayrollFrequency, setOneOffPayrollFrequency] = useState("")
+  const [oneOffContractorFrequency, setOneOffContractorFrequency] = useState("")
+  const [oneOffBookkeepingEntities, setOneOffBookkeepingEntities] = useState("")
+  const [ongoingReportingScopes, setOngoingReportingScopes] = useState<Set<string>>(new Set())
+  const [oneOffReportingScopes, setOneOffReportingScopes] = useState<Set<string>>(new Set())
+  const [reportingEntities, setReportingEntities] = useState("")
+  const [oneOffReportingEntities, setOneOffReportingEntities] = useState("")
+  const [ukTaxInterests, setUkTaxInterests] = useState<Set<string>>(new Set())
+  const [ukEntities, setUkEntities] = useState("")
+  const [usTaxInterests, setUsTaxInterests] = useState<Set<string>>(new Set())
   const [usTaxClassification, setUsTaxClassification] = useState("")
+  const [usEntities, setUsEntities] = useState("")
   const [advisoryScopes, setAdvisoryScopes] = useState<Set<string>>(new Set())
+  const [setupStatus, setSetupStatus] = useState("")
   const [formError, setFormError] = useState("")
 
   const entityOptions = country === "United States" ? US_ENTITY_OPTIONS : country === "United Kingdom" ? UK_ENTITY_OPTIONS : []
@@ -127,6 +225,32 @@ export default function GetQuote() {
   const handleCountryChange = (value: string) => {
     setCountry(value)
     setEntityType("")
+  }
+
+  const handleEngagementChange = (value: string) => {
+    const nextEngagement = value as Engagement
+    setEngagement(nextEngagement)
+    setAdvisoryScopes(new Set())
+
+    if (nextEngagement !== "One-Off Project") {
+      setOneOffPeriod("")
+      setOneOffCurrentPosition("")
+      setOneOffDeadlineStatus("")
+      setOneOffFinanceScopes(new Set())
+      setOneOffReportingScopes(new Set())
+      setOneOffPayrollFrequency("")
+      setOneOffContractorFrequency("")
+      setOneOffBookkeepingEntities("")
+      setOneOffReportingEntities("")
+    }
+
+    if (nextEngagement === "One-Off Project") {
+      setFinanceResponsibilities(new Set())
+      setOngoingReportingScopes(new Set())
+      setPayrollFrequency("")
+      setContractorFrequency("")
+      setReportingEntities("")
+    }
   }
 
   const toggleService = (key: ServiceKey, checked: boolean) => {
@@ -137,9 +261,32 @@ export default function GetQuote() {
       return next
     })
 
-    if (!checked && key === "financeOperations") setFinanceResponsibilities(new Set())
-    if (!checked && key === "usTax") setUsTaxClassification("")
+    if (!checked && key === "financeOperations") {
+      setFinanceResponsibilities(new Set())
+      setOneOffFinanceScopes(new Set())
+      setPayrollFrequency("")
+      setContractorFrequency("")
+      setOneOffPayrollFrequency("")
+      setOneOffContractorFrequency("")
+      setOneOffBookkeepingEntities("")
+    }
+    if (!checked && key === "reporting") {
+      setOngoingReportingScopes(new Set())
+      setOneOffReportingScopes(new Set())
+      setReportingEntities("")
+      setOneOffReportingEntities("")
+    }
+    if (!checked && key === "ukTax") {
+      setUkTaxInterests(new Set())
+      setUkEntities("")
+    }
+    if (!checked && key === "usTax") {
+      setUsTaxInterests(new Set())
+      setUsTaxClassification("")
+      setUsEntities("")
+    }
     if (!checked && key === "advisory") setAdvisoryScopes(new Set())
+    if (!checked && key === "setup") setSetupStatus("")
     if (checked) setFormError("")
   }
 
@@ -153,13 +300,23 @@ export default function GetQuote() {
   }
 
   const toggleAdvisoryScope = (scope: string, checked: boolean) => {
-    setAdvisoryScopes((current) => {
-      const next = new Set(current)
-      if (checked) next.add(scope)
-      else next.delete(scope)
-      return next
-    })
+    setAdvisoryScopes((current) => toggleSetValue(current, scope, checked))
   }
+
+  const currentAdvisoryScopes = engagement === "One-Off Project"
+    ? ONE_OFF_ADVISORY_SCOPES
+    : engagement === "Ongoing / Recurring"
+      ? ONGOING_ADVISORY_SCOPES
+      : engagement === "Exploring Options"
+        ? UNSURE_ADVISORY_SCOPES
+        : []
+  const otherAdvisorySelected = Array.from(advisoryScopes).some((scope) => scope.startsWith("Other"))
+  const oneOffBookkeepingSelected = oneOffFinanceScopes.has("Catch-up / Backlog Bookkeeping") || oneOffFinanceScopes.has("Bookkeeping Cleanup")
+  const oneOffPayrollSelected = oneOffFinanceScopes.has("Payroll Review / Cleanup")
+  const oneOffContractorSelected = oneOffFinanceScopes.has("Contractor Payment Review / Cleanup")
+  const oneOffInvoicingSelected = oneOffFinanceScopes.has("Customer Invoicing / Billing Cleanup")
+  const oneOffPayablesSelected = oneOffFinanceScopes.has("Accounts Payable Cleanup")
+  const oneOffReceivablesSelected = oneOffFinanceScopes.has("Accounts Receivable Cleanup")
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -172,7 +329,7 @@ export default function GetQuote() {
 
     if (selectedServices.size === 0) {
       setFormError("Please select at least one service so we can understand what support you need.")
-      requestAnimationFrame(() => document.getElementById("quote-form-error")?.scrollIntoView({ behavior: "smooth", block: "center" }))
+      requestAnimationFrame(() => document.getElementById("service-selection")?.scrollIntoView({ behavior: "smooth", block: "center" }))
       return
     }
 
@@ -347,11 +504,44 @@ export default function GetQuote() {
                   </FormSection>
 
                   <FormSection number="02" title="Engagement" description="Tell us whether you are looking for ongoing support or help with a specific project.">
-                    <ChoicePills name="engagement" options={["Ongoing / Recurring", "One-Off Project", "Not Sure Yet"]} required />
+                    <ChoicePills name="engagement" options={["Ongoing / Recurring", "One-Off Project", "Exploring Options"]} value={engagement} onChange={handleEngagementChange} required />
+                    <p className="mt-3 text-[12px] leading-[1.55] text-[#929292]">If you are still comparing options and want to understand what working with Mavens could look like, choose <strong className="font-semibold text-[#666]">Exploring Options</strong>.</p>
                   </FormSection>
 
-                  <FormSection number="03" title="What Support Are You Looking For?" description="Select all that apply. We will only show the questions relevant to your selections.">
-                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+                  <AnimatePresence initial={false}>
+                    {engagement === "One-Off Project" && (
+                      <ConditionalFormSection title="Tell Us About the One-Off Project" description="Tell us a little about the project and the current state of your books. You will select the services you need in the next section.">
+                        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                          <SelectField name="oneOffPeriod" label="What Period Does the Project Cover?" value={oneOffPeriod} onChange={setOneOffPeriod} options={["Current month / period", "1–3 months", "4–6 months", "7–12 months", "More than 12 months", "Not Sure", "Other"]} />
+                          <SelectField name="oneOffCurrentPosition" label="What Is the Current State of Your Books?" value={oneOffCurrentPosition} onChange={setOneOffCurrentPosition} options={["Books are up to date", "Some bookkeeping has already been completed", "Books need cleanup", "Books are behind", "Books have not been set up yet", "Not Sure", "Other"]} />
+                          {oneOffPeriod === "Other" && (
+                            <ConditionalField>
+                              <TextField name="otherOneOffPeriod" label="Please Specify the Period" placeholder="Briefly explain the project period" required />
+                            </ConditionalField>
+                          )}
+                          {oneOffCurrentPosition === "Other" && (
+                            <ConditionalField>
+                              <TextField name="otherOneOffCurrentPosition" label="Please Describe the Current State of Your Books" placeholder="Briefly tell us what is going on with your books" required />
+                            </ConditionalField>
+                          )}
+                          <SelectField name="oneOffDeadlineStatus" label="Is There a Specific Deadline?" value={oneOffDeadlineStatus} onChange={setOneOffDeadlineStatus} options={["Yes", "No", "Not Sure"]} />
+                          {oneOffDeadlineStatus === "Yes" && (
+                            <ConditionalField>
+                              <TextField name="oneOffDeadlineDate" label="Target Deadline" type="date" required />
+                            </ConditionalField>
+                          )}
+                          <TextAreaField name="oneOffProjectDescription" label="Briefly Describe What You Would Like Us to Achieve" placeholder="For example: bring six months of books up to date, prepare a valuation for a potential sale, or build a 12-month cash flow forecast." helper="Optional, but helpful if there is anything specific you want us to understand before reviewing the scope." className="md:col-span-2" />
+                        </div>
+                      </ConditionalFormSection>
+                    )}
+                  </AnimatePresence>
+
+                  <FormSection
+                    number="03"
+                    title={<>What Support Are You Looking For?</>}
+                    description={<><strong className="font-semibold text-black">Select at least one service.</strong> You can select more than one if your requirements involve multiple areas of support. We will only show the questions relevant to your selections.</>}
+                  >
+                    <div id="service-selection" role="group" aria-required="true" aria-invalid={selectedServices.size === 0 && Boolean(formError)} aria-describedby="service-selection-help" className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
                       {SERVICE_OPTIONS.map((service) => {
                         const selected = selectedServices.has(service.key)
                         return (
@@ -365,132 +555,184 @@ export default function GetQuote() {
                         )
                       })}
                     </div>
+                    <span id="service-selection-help" className="sr-only">At least one service must be selected.</span>
 
                     {formError && <p id="quote-form-error" role="alert" className="mt-5 rounded-[14px] border border-red-200 bg-red-50 px-5 py-4 text-[14px] text-red-700">{formError}</p>}
 
                     <div className="space-y-4">
                       <AnimatePresence initial={false}>
                         {selectedServices.has("financeOperations") && (
-                          <ConditionalPanel key="finance-operations" title="Finance Operations" description="Select the responsibilities you would like us to handle.">
-                            <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-                              {FINANCE_RESPONSIBILITIES.map((item) => (
-                                <CheckOption key={item.key} name="financeResponsibilities" value={item.label} label={item.label} checked={financeResponsibilities.has(item.key)} onChange={(checked) => toggleFinanceResponsibility(item.key, checked)} />
-                              ))}
-                            </div>
-
-                            <div className="mt-4 space-y-4">
-                              <AnimatePresence initial={false}>
-                                {financeResponsibilities.has("bookkeeping") && (
-                                  <QuestionGroup key="bookkeeping-questions">
-                                    <SelectField name="monthlyTransactions" label="Average Monthly Transactions" placeholder="Select approximate range" options={["Under 50", "50–100", "101–250", "251–500", "501–1,000", "1,000+", "Not Sure"]} />
-                                    <SelectField name="bankAccounts" label="Bank & Credit Card Accounts" options={["1–2", "3–5", "6–10", "10+", "Not Sure"]} />
-                                    <SelectField name="bookkeepingStatus" label="How Up to Date Are Your Books?" options={["Fully up to date", "1–3 months behind", "4–6 months behind", "7–12 months behind", "More than 12 months behind", "Books have not been set up yet"]} />
-                                  </QuestionGroup>
-                                )}
-                              </AnimatePresence>
-
-                              <AnimatePresence initial={false}>
-                                {financeResponsibilities.has("payroll") && (
-                                  <QuestionGroup key="payroll-questions">
-                                    <SelectField name="payrollEmployees" label="Employees on Payroll" options={["1–5", "6–10", "11–25", "26–50", "51–100", "100+"]} />
-                                    <SelectField name="payrollFrequency" label="Payroll Frequency" options={["Weekly", "Bi-weekly", "Monthly", "Other"]} />
-                                  </QuestionGroup>
-                                )}
-                              </AnimatePresence>
-
-                              <AnimatePresence initial={false}>
-                                {financeResponsibilities.has("contractors") && (
-                                  <QuestionGroup key="contractor-questions">
-                                    <SelectField name="contractors" label="Regular Contractors" options={["1–5", "6–10", "11–25", "26–50", "50+"]} />
-                                    <SelectField name="contractorFrequency" label="Payment Frequency" options={["Weekly", "Bi-weekly", "Monthly", "Other"]} />
-                                  </QuestionGroup>
-                                )}
-                              </AnimatePresence>
-
-                              <AnimatePresence initial={false}>
-                                {financeResponsibilities.has("invoicing") && (
-                                  <QuestionGroup key="invoice-questions">
-                                    <SelectField name="customerInvoices" label="Average Customer Invoices Per Month" options={["Under 25", "25–50", "51–100", "101–250", "250+"]} />
-                                  </QuestionGroup>
-                                )}
-                              </AnimatePresence>
-
-                              <AnimatePresence initial={false}>
-                                {financeResponsibilities.has("payables") && (
-                                  <QuestionGroup key="payables-questions">
-                                    <SelectField name="supplierBills" label="Average Supplier Bills Per Month" options={["Under 25", "25–50", "51–100", "101–250", "250+"]} />
-                                  </QuestionGroup>
-                                )}
-                              </AnimatePresence>
-
-                              <AnimatePresence initial={false}>
-                                {financeResponsibilities.has("receivables") && (
-                                  <QuestionGroup key="receivables-questions">
-                                    <SelectField name="receivablesVolume" label="Average Outstanding Customer Accounts Each Month" options={["Under 25", "25–50", "51–100", "101–250", "250+", "Not Sure"]} />
-                                  </QuestionGroup>
-                                )}
-                              </AnimatePresence>
-                            </div>
+                          <ConditionalPanel key="finance-operations" title="Finance Operations" description="Select the responsibilities you would like us to handle. We will ask for approximate activity levels only where they help us estimate the scope.">
+                            {!engagement ? (
+                              <EngagementPrompt />
+                            ) : engagement === "One-Off Project" ? (
+                              <>
+                                <CheckOptions options={ONE_OFF_FINANCE_OPERATIONS} name="oneOffFinanceOpsScope" selected={oneOffFinanceScopes} onChange={(value, checked) => setOneOffFinanceScopes((current) => toggleSetValue(current, value, checked))} />
+                                {oneOffFinanceScopes.has("Other Finance Operations Project") && <div className="mt-4"><TextField name="otherOneOffFinanceOps" label="Please Specify the Finance Operations Project" placeholder="Briefly describe the finance operations support you need" required /></div>}
+                                <div className="mt-4 space-y-4">
+                                  <AnimatePresence initial={false}>
+                                    {oneOffBookkeepingSelected && (
+                                      <QuestionGroup key="one-off-bookkeeping-questions">
+                                        <QuestionGroupHeading title="Estimated Bookkeeping Activity" description="Approximate figures are enough at this stage." />
+                                        <SelectField name="oneOffTransactions" label="Approximate Transactions Across the Project Period" placeholder="Select approximate range" options={["Under 100", "100–250", "251–500", "501–1,000", "1,001–2,500", "2,500+", "Not Sure"]} />
+                                        <SelectField name="oneOffBankAccounts" label="Bank & Credit Card Accounts Involved" options={["1–2", "3–5", "6–10", "10+", "Not Sure"]} />
+                                        <SelectField name="oneOffBookkeepingEntities" label="Business Entities Involved" value={oneOffBookkeepingEntities} onChange={setOneOffBookkeepingEntities} options={["1", "2", "3–5", "6+", "Not Sure"]} />
+                                        {hasAdditionalEntities(oneOffBookkeepingEntities) && (
+                                          <ConditionalField className="md:col-span-2">
+                                            <TextAreaField name="oneOffBookkeepingEntityDetails" label="Additional Entity Information" placeholder="Please list each additional entity: Entity Name — Country/Jurisdiction — Entity Type" helper="Only additional entities are needed here; the primary company is already captured above." />
+                                          </ConditionalField>
+                                        )}
+                                      </QuestionGroup>
+                                    )}
+                                  </AnimatePresence>
+                                  <AnimatePresence initial={false}>
+                                    {oneOffPayrollSelected && (
+                                      <QuestionGroup key="one-off-payroll-questions">
+                                        <SelectField name="oneOffPayrollEmployees" label="Employees / Payroll Records Involved" options={["1–5", "6–10", "11–25", "26–50", "51–100", "100+", "Not Sure"]} />
+                                        <SelectField name="oneOffPayrollPeriods" label="Payroll Periods Involved" options={["1", "2–3", "4–6", "7–12", "12+", "Not Sure"]} />
+                                        <SelectField name="oneOffPayrollFrequency" label="Current Payroll Frequency" value={oneOffPayrollFrequency} onChange={setOneOffPayrollFrequency} options={["Weekly", "Bi-weekly", "Monthly", "Other", "Not Sure"]} />
+                                        {oneOffPayrollFrequency === "Other" && <ConditionalField><TextField name="otherOneOffPayrollFrequency" label="Please Specify the Payroll Frequency" placeholder="Briefly specify the payroll frequency" required /></ConditionalField>}
+                                      </QuestionGroup>
+                                    )}
+                                  </AnimatePresence>
+                                  <AnimatePresence initial={false}>
+                                    {oneOffContractorSelected && (
+                                      <QuestionGroup key="one-off-contractor-questions">
+                                        <SelectField name="oneOffContractors" label="Contractors Involved" options={["1–5", "6–10", "11–25", "26–50", "50+", "Not Sure"]} />
+                                        <SelectField name="oneOffContractorFrequency" label="Current Payment Frequency" value={oneOffContractorFrequency} onChange={setOneOffContractorFrequency} options={["Weekly", "Bi-weekly", "Monthly", "Other", "Not Sure"]} />
+                                        {oneOffContractorFrequency === "Other" && <ConditionalField><TextField name="otherOneOffContractorFrequency" label="Please Specify the Payment Frequency" placeholder="Briefly specify the payment frequency" required /></ConditionalField>}
+                                      </QuestionGroup>
+                                    )}
+                                  </AnimatePresence>
+                                  <AnimatePresence initial={false}>{oneOffInvoicingSelected && <QuestionGroup key="one-off-invoice-questions"><SelectField name="oneOffCustomerInvoices" label="Approximate Customer Invoices Across the Project Period" options={["Under 25", "25–50", "51–100", "101–250", "251–500", "500+", "Not Sure"]} /></QuestionGroup>}</AnimatePresence>
+                                  <AnimatePresence initial={false}>{oneOffPayablesSelected && <QuestionGroup key="one-off-payables-questions"><SelectField name="oneOffSupplierBills" label="Approximate Supplier Bills Across the Project Period" options={["Under 25", "25–50", "51–100", "101–250", "251–500", "500+", "Not Sure"]} /></QuestionGroup>}</AnimatePresence>
+                                  <AnimatePresence initial={false}>{oneOffReceivablesSelected && <QuestionGroup key="one-off-receivables-questions"><SelectField name="oneOffReceivablesVolume" label="Approximate Outstanding Customer Accounts Involved" options={["Under 25", "25–50", "51–100", "101–250", "251–500", "500+", "Not Sure"]} /></QuestionGroup>}</AnimatePresence>
+                                </div>
+                              </>
+                            ) : (
+                              <>
+                                <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                                  {FINANCE_RESPONSIBILITIES.map((item) => (
+                                    <CheckOption key={item.key} name="financeResponsibilities" value={item.label} label={item.label} checked={financeResponsibilities.has(item.key)} onChange={(checked) => toggleFinanceResponsibility(item.key, checked)} />
+                                  ))}
+                                </div>
+                                <div className="mt-4 space-y-4">
+                                  <AnimatePresence initial={false}>
+                                    {financeResponsibilities.has("bookkeeping") && <QuestionGroup key="bookkeeping-questions"><SelectField name="monthlyTransactions" label="Average Monthly Transactions" placeholder="Select approximate range" options={["Under 50", "50–100", "101–250", "251–500", "501–1,000", "1,000+", "Not Sure"]} /><SelectField name="bankAccounts" label="Bank & Credit Card Accounts" options={["1–2", "3–5", "6–10", "10+", "Not Sure"]} /><SelectField name="bookkeepingStatus" label="How Up to Date Are Your Books?" options={["Fully up to date", "1–3 months behind", "4–6 months behind", "7–12 months behind", "More than 12 months behind", "Books have not been set up yet", "Not Sure"]} /></QuestionGroup>}
+                                  </AnimatePresence>
+                                  <AnimatePresence initial={false}>
+                                    {financeResponsibilities.has("payroll") && <QuestionGroup key="payroll-questions"><SelectField name="payrollEmployees" label="Employees on Payroll" options={["1–5", "6–10", "11–25", "26–50", "51–100", "100+", "Not Sure"]} /><SelectField name="payrollFrequency" label="Payroll Frequency" value={payrollFrequency} onChange={setPayrollFrequency} options={["Weekly", "Bi-weekly", "Monthly", "Other"]} />{payrollFrequency === "Other" && <ConditionalField><TextField name="otherPayrollFrequency" label="Please Specify the Payroll Frequency" placeholder="Briefly specify the payroll frequency" required /></ConditionalField>}</QuestionGroup>}
+                                  </AnimatePresence>
+                                  <AnimatePresence initial={false}>
+                                    {financeResponsibilities.has("contractors") && <QuestionGroup key="contractor-questions"><SelectField name="contractors" label="Regular Contractors" options={["1–5", "6–10", "11–25", "26–50", "50+", "Not Sure"]} /><SelectField name="contractorFrequency" label="Payment Frequency" value={contractorFrequency} onChange={setContractorFrequency} options={["Weekly", "Bi-weekly", "Monthly", "Other"]} />{contractorFrequency === "Other" && <ConditionalField><TextField name="otherContractorFrequency" label="Please Specify the Payment Frequency" placeholder="Briefly specify the payment frequency" required /></ConditionalField>}</QuestionGroup>}
+                                  </AnimatePresence>
+                                  <AnimatePresence initial={false}>{financeResponsibilities.has("invoicing") && <QuestionGroup key="invoice-questions"><SelectField name="customerInvoices" label="Average Customer Invoices Per Month" options={["Under 25", "25–50", "51–100", "101–250", "250+", "Not Sure"]} /></QuestionGroup>}</AnimatePresence>
+                                  <AnimatePresence initial={false}>{financeResponsibilities.has("payables") && <QuestionGroup key="payables-questions"><SelectField name="supplierBills" label="Average Supplier Bills Per Month" options={["Under 25", "25–50", "51–100", "101–250", "250+", "Not Sure"]} /></QuestionGroup>}</AnimatePresence>
+                                  <AnimatePresence initial={false}>{financeResponsibilities.has("receivables") && <QuestionGroup key="receivables-questions"><SelectField name="receivablesVolume" label="Average Outstanding Customer Accounts Each Month" options={["Under 25", "25–50", "51–100", "101–250", "250+", "Not Sure"]} /></QuestionGroup>}</AnimatePresence>
+                                </div>
+                              </>
+                            )}
                           </ConditionalPanel>
                         )}
                       </AnimatePresence>
 
                       <AnimatePresence initial={false}>
                         {selectedServices.has("reporting") && (
-                          <ConditionalPanel key="reporting" title="Reporting & Forecasting" description="A few details help us understand the reporting complexity.">
-                            <QuestionGrid>
-                              <SelectField name="reportingFrequency" label="Preferred Reporting Frequency" options={["Monthly", "Quarterly", "Other"]} />
-                              <SelectField name="reportingEntities" label="Number of Business Entities" options={["1", "2", "3–5", "6+"]} />
-                              <SelectField name="existingForecast" label="Do You Currently Have a Budget or Forecast?" options={["Yes", "No", "Not Sure"]} />
-                            </QuestionGrid>
+                          <ConditionalPanel key="reporting" title="Reporting & Forecasting" description="Select the reporting and forward-looking support you are interested in.">
+                            {!engagement ? <EngagementPrompt /> : engagement === "One-Off Project" ? (
+                              <>
+                                <p className="mb-3 text-[14px] font-semibold">What Would You Like the Project to Deliver?</p>
+                                <CheckOptions options={ONE_OFF_REPORTING_SCOPES} name="oneOffReportingScope" selected={oneOffReportingScopes} onChange={(value, checked) => setOneOffReportingScopes((current) => toggleSetValue(current, value, checked))} />
+                                {oneOffReportingScopes.has("Other Reporting Project") && <div className="mt-4"><TextField name="otherOneOffReporting" label="Please Specify the Reporting Project" placeholder="Briefly describe what you need" required /></div>}
+                                <div className="mt-5">
+                                  <QuestionGroup>
+                                    <QuestionGroupHeading title="Estimated Activity for the Project" description="Approximate figures are enough. Select Not Sure if you cannot reasonably estimate a figure." />
+                                    <SelectField name="oneOffReportingTransactions" label="Approximate Transactions Across the Project Period" placeholder="Select approximate range" options={["Under 100", "100–250", "251–500", "501–1,000", "1,001–2,500", "2,500+", "Not Sure"]} />
+                                    <SelectField name="oneOffReportingBankAccounts" label="Bank & Credit Card Accounts Involved" options={["1–2", "3–5", "6–10", "10+", "Not Sure"]} />
+                                    <SelectField name="oneOffReportingEntities" label="Business Entities Involved" value={oneOffReportingEntities} onChange={setOneOffReportingEntities} options={["1", "2", "3–5", "6+", "Not Sure"]} />
+                                    {hasAdditionalEntities(oneOffReportingEntities) && (
+                                      <ConditionalField className="md:col-span-2">
+                                        <TextAreaField name="oneOffReportingEntityDetails" label="Additional Entity Information" placeholder="Please list each additional entity: Entity Name — Country/Jurisdiction — Entity Type" helper="Only additional entities are needed here; the primary company is already captured above." />
+                                      </ConditionalField>
+                                    )}
+                                  </QuestionGroup>
+                                </div>
+                              </>
+                            ) : (
+                              <>
+                                <p className="mb-3 text-[14px] font-semibold">What Reporting Support Are You Interested In?</p>
+                                <CheckOptions options={ONGOING_REPORTING_SCOPES} name="ongoingReportingScope" selected={ongoingReportingScopes} onChange={(value, checked) => setOngoingReportingScopes((current) => toggleSetValue(current, value, checked))} />
+                                {ongoingReportingScopes.has("Other Reporting Support") && <div className="mt-4"><TextField name="otherOngoingReporting" label="Please Specify the Reporting Support" placeholder="Briefly describe the reporting support you need" required /></div>}
+                                <div className="mt-5">
+                                  <QuestionGroup>
+                                    <QuestionGroupHeading title="Estimated Business Activity" description="These approximate figures help us understand the size and complexity of the reporting scope." />
+                                    <SelectField name="reportingMonthlyTransactions" label="Average Monthly Transactions" placeholder="Select approximate range" options={["Under 50", "50–100", "101–250", "251–500", "501–1,000", "1,000+", "Not Sure"]} />
+                                    <SelectField name="reportingBankAccounts" label="Bank & Credit Card Accounts" options={["1–2", "3–5", "6–10", "10+", "Not Sure"]} />
+                                    <SelectField name="reportingEntities" label="Number of Business Entities" value={reportingEntities} onChange={setReportingEntities} options={["1", "2", "3–5", "6+", "Not Sure"]} />
+                                    <SelectField name="existingBudgetForecast" label="Do You Currently Have a Budget or Forecast?" options={["Yes", "No", "Not Sure"]} />
+                                    {hasAdditionalEntities(reportingEntities) && (
+                                      <ConditionalField className="md:col-span-2">
+                                        <TextAreaField name="reportingEntityDetails" label="Additional Entity Information" placeholder="Please list each additional entity: Entity Name — Country/Jurisdiction — Entity Type" helper="Only additional entities are needed here; the primary company is already captured above." />
+                                      </ConditionalField>
+                                    )}
+                                  </QuestionGroup>
+                                </div>
+                              </>
+                            )}
                           </ConditionalPanel>
                         )}
                       </AnimatePresence>
 
                       <AnimatePresence initial={false}>
                         {selectedServices.has("ukTax") && (
-                          <ConditionalPanel key="uk-tax" title="UK Tax & Compliance" description="These details help us understand the filing and compliance scope.">
-                            <QuestionGrid>
-                              <SelectField name="vatRegistered" label="Is the Business VAT Registered?" options={["Yes", "No", "Registration in progress"]} />
-                              <SelectField name="vatFrequency" label="VAT Filing Frequency" options={["Monthly", "Quarterly", "Annual", "Not Sure"]} />
-                              <SelectField name="ukEntities" label="UK Companies Requiring Support" options={["1", "2", "3–5", "6+"]} />
-                            </QuestionGrid>
+                          <ConditionalPanel key="uk-tax" title="UK Tax & Compliance" description="Select the areas you are interested in. We can confirm the exact filing requirements and scope during our review or follow-up call.">
+                            <CheckOptions options={UK_TAX_INTERESTS} name="ukTaxInterest" selected={ukTaxInterests} onChange={(value, checked) => setUkTaxInterests((current) => toggleSetValue(current, value, checked))} />
+                            {ukTaxInterests.has("Other UK Tax & Compliance") && <div className="mt-4"><TextField name="otherUkTaxInterest" label="Please Specify the UK Tax or Compliance Support" placeholder="Briefly describe the support you need" required /></div>}
+                            <div className="mt-5">
+                              <QuestionGrid>
+                                <SelectField name="ukVatRegistered" label="Is the Business VAT Registered?" options={["Yes", "No", "Registration in progress", "Not Sure"]} />
+                                <SelectField name="ukVatFrequency" label="VAT Filing Frequency" options={["Monthly", "Quarterly", "Annual", "Not Sure"]} />
+                                <SelectField name="ukEntities" label="UK Companies Requiring Support" value={ukEntities} onChange={setUkEntities} options={["1", "2", "3–5", "6+", "Not Sure"]} />
+                                {hasAdditionalEntities(ukEntities) && (
+                                  <ConditionalField className="md:col-span-2">
+                                    <TextAreaField name="ukEntityDetails" label="Additional UK Company Information" placeholder="Please list each additional company: Company Name — Entity Type" helper="Only additional companies are needed here; the primary company is already captured above." />
+                                  </ConditionalField>
+                                )}
+                              </QuestionGrid>
+                            </div>
+                            <AnimatePresence initial={false}>{ukTaxInterests.has("Personal Tax Return / Self Assessment") && <QuestionGroup key="uk-personal-tax"><div className="md:col-span-2"><h4 className="text-[19px] font-semibold">Personal Tax Return</h4><p className="mt-1 text-[13px] leading-[1.55] text-[#6b6b6b]">Only a couple of high-level details are needed now. The exact income sources can be reviewed later.</p></div><SelectField name="ukPersonalTaxIndividuals" label="How Many Individuals Require a Personal Tax Return?" options={["1", "2", "3+", "Not Sure"]} /><SelectField name="ukPersonalTaxIncomeSources" label="Does Each Individual Have One Source of Income?" helper="Where additional income sources are involved, the final fee may vary after review." options={["Yes, one source each", "No, one or more have multiple income sources", "Not Sure"]} /></QuestionGroup>}</AnimatePresence>
+                            <p className="mt-5 text-[12px] leading-[1.55] text-[#929292]">Any applicable software or e-filing charges are considered separately when the final quotation is prepared.</p>
                           </ConditionalPanel>
                         )}
                       </AnimatePresence>
 
                       <AnimatePresence initial={false}>
                         {selectedServices.has("usTax") && (
-                          <ConditionalPanel key="us-tax" title="US Tax & Compliance" description="These details help us understand the tax filing structure and compliance scope.">
-                            <QuestionGrid>
-                              <SelectField name="usTaxClassification" label="US Tax Classification" value={usTaxClassification} onChange={setUsTaxClassification} options={["Sole Proprietor", "Single-Member LLC / Disregarded Entity", "Multi-Member LLC / Partnership", "S Corporation", "C Corporation", "Partnership", "Nonprofit", "Not Sure", "Other"]} />
-                              <SelectField name="usEntities" label="US Entities Requiring Support" options={["1", "2", "3–5", "6+"]} />
-                              <SelectField name="stateCompliance" label="State Compliance" options={["One state", "2–5 states", "6+ states", "Not Sure"]} />
-                              {usTaxClassification === "Other" && (
-                                <ConditionalField>
-                                  <TextField name="otherUsTax" label="Please Specify the US Tax Classification" placeholder="Enter tax classification" required />
-                                </ConditionalField>
-                              )}
-                            </QuestionGrid>
+                          <ConditionalPanel key="us-tax" title="US Tax & Compliance" description="Select the areas you are interested in. We can confirm the exact filing structure and state requirements during our review or follow-up call.">
+                            <CheckOptions options={US_TAX_INTERESTS} name="usTaxInterest" selected={usTaxInterests} onChange={(value, checked) => setUsTaxInterests((current) => toggleSetValue(current, value, checked))} />
+                            {usTaxInterests.has("Other US Tax & Compliance") && <div className="mt-4"><TextField name="otherUsTaxInterest" label="Please Specify the US Tax or Compliance Support" placeholder="Briefly describe the support you need" required /></div>}
+                            <div className="mt-5">
+                              <QuestionGrid>
+                                <SelectField name="usTaxClassification" label="US Tax Classification" value={usTaxClassification} onChange={setUsTaxClassification} options={["Sole Proprietor", "Single-Member LLC / Disregarded Entity", "Multi-Member LLC / Partnership", "S Corporation", "C Corporation", "Partnership", "Nonprofit", "Not Sure", "Other"]} />
+                                {usTaxClassification === "Other" && <ConditionalField><TextField name="otherUsTaxClassification" label="Please Specify the US Tax Classification" placeholder="Enter tax classification" required /></ConditionalField>}
+                                <SelectField name="usEntities" label="US Entities Requiring Support" value={usEntities} onChange={setUsEntities} options={["1", "2", "3–5", "6+", "Not Sure"]} />
+                                <SelectField name="usStateCompliance" label="State Compliance" options={["One state", "2–5 states", "6+ states", "Not Sure"]} />
+                                {hasAdditionalEntities(usEntities) && (
+                                  <ConditionalField className="md:col-span-2">
+                                    <TextAreaField name="usEntityDetails" label="Additional US Entity Information (Optional)" placeholder="Please list each additional entity: Entity Name — State of Registration — Entity / Tax Type" helper="Only additional entities are needed here; the primary company is already captured above." />
+                                  </ConditionalField>
+                                )}
+                              </QuestionGrid>
+                            </div>
+                            <p className="mt-5 text-[12px] leading-[1.55] text-[#929292]">Any applicable software or e-filing charges are considered separately when the final quotation is prepared.</p>
                           </ConditionalPanel>
                         )}
                       </AnimatePresence>
 
                       <AnimatePresence initial={false}>
                         {selectedServices.has("advisory") && (
-                          <ConditionalPanel key="advisory" title="Financial Advisory" description="Tell us whether you need support with a specific decision or ongoing CFO-level guidance.">
-                            <p className="mb-3 text-[14px] font-semibold">Type of Advisory Support</p>
-                            <ChoicePills name="advisoryType" options={["Specific / One-Off Advisory", "Ongoing CFO Support", "Not Sure Yet"]} />
-                            <div className="mt-5 grid grid-cols-1 gap-3 md:grid-cols-2">
-                              {ADVISORY_SCOPES.map((scope) => (
-                                <CheckOption key={scope} name="advisoryScope" value={scope} label={scope === "Other" ? "Other Financial Advisory" : scope} checked={advisoryScopes.has(scope)} onChange={(checked) => toggleAdvisoryScope(scope, checked)} />
-                              ))}
-                            </div>
-                            {advisoryScopes.has("Other") && (
-                              <motion.div className="mt-4" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
-                                <TextField name="otherAdvisory" label="Please Tell Us What You Need Help With" placeholder="Briefly describe the advisory support you need" required />
-                              </motion.div>
-                            )}
+                          <ConditionalPanel key="advisory" title="Financial Advisory" description={engagement === "One-Off Project" ? "Select the specific advisory project or decision you would like support with." : engagement === "Ongoing / Recurring" ? "Select the areas where you would like ongoing CFO-level guidance and oversight." : engagement === "Exploring Options" ? "Select the areas you are interested in so we can give you an indicative view of what working with Mavens could involve." : "Select the areas where you would like financial guidance or support."}>
+                            {!engagement ? <EngagementPrompt /> : <><p className="mb-3 text-[14px] font-semibold">{engagement === "One-Off Project" ? "One-Off Advisory Areas" : engagement === "Ongoing / Recurring" ? "Ongoing CFO Support Areas" : "Areas You Are Exploring"}</p><CheckOptions options={currentAdvisoryScopes} name="advisoryScope" selected={advisoryScopes} onChange={toggleAdvisoryScope} />{otherAdvisorySelected && <div className="mt-4"><TextField name="otherAdvisory" label="Please Tell Us What You Need Help With" placeholder="Briefly describe the advisory support you need" required /></div>}</>}
                           </ConditionalPanel>
                         )}
                       </AnimatePresence>
@@ -498,7 +740,8 @@ export default function GetQuote() {
                       <AnimatePresence initial={false}>
                         {selectedServices.has("setup") && (
                           <ConditionalPanel key="setup" title="Finance System Setup" description="Tell us what stage your current finance setup is at.">
-                            <SelectField name="setupStatus" label="What Best Describes Your Current Setup?" options={["Starting from scratch", "Accounting software exists but needs configuration", "Existing system needs restructuring", "Moving from another accounting system", "Not Sure"]} />
+                            <SelectField name="setupStatus" label="What Best Describes Your Current Setup?" value={setupStatus} onChange={setSetupStatus} options={["Starting from scratch", "Accounting software exists but needs configuration", "Existing system needs restructuring", "Moving from another accounting system", "Not Sure", "Other"]} />
+                            {setupStatus === "Other" && <div className="mt-4"><TextField name="otherSetupStatus" label="Please Describe Your Current Setup" placeholder="Briefly describe your current setup" required /></div>}
                           </ConditionalPanel>
                         )}
                       </AnimatePresence>
@@ -525,7 +768,7 @@ export default function GetQuote() {
               <AnimatePresence mode="wait" initial={false}>
                 {!bookingSubmitted ? (
                   <motion.div key="booking-form" initial={{ opacity: 0, y: -18 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -14 }} transition={{ duration: 0.35 }} className="p-[28px] md:p-[45px]">
-                    <p className="wdt-heading mb-3">Speak Directly with Our CFO</p>
+                    <p className="wdt-heading mb-3">Discuss Your Finance Needs</p>
                     <h2 className="text-[30px] font-semibold leading-[1.2] md:text-[38px]">Speak with a CFO</h2>
                     <p className="mt-4 max-w-[780px] text-[16px] leading-[1.7] text-[#6b6b6b]">Share a few details first, then choose a convenient time from the booking calendar.</p>
 
@@ -596,7 +839,7 @@ function QuoteTabButton({ active, children, controls, icon, id, onClick, onKeyDo
   )
 }
 
-function FormSection({ number, title, description, children }: { number: string; title: string; description?: string; children: ReactNode }) {
+function FormSection({ number, title, description, children }: { number: string; title: ReactNode; description?: ReactNode; children: ReactNode }) {
   return (
     <section className="rounded-[28px] bg-white p-[30px] md:p-[45px]">
       <div className="mb-7 flex items-start gap-4">
@@ -621,7 +864,7 @@ function TextField({ name, label, type = "text", placeholder, helper, required, 
   )
 }
 
-function SelectField({ name, label, options, placeholder = "Select", groupLabel, value, onChange, required, className = "" }: { name: string; label: string; options: readonly string[]; placeholder?: string; groupLabel?: string; value?: string; onChange?: (value: string) => void; required?: boolean; className?: string }) {
+function SelectField({ name, label, options, placeholder = "Select", groupLabel, value, onChange, helper, required, className = "" }: { name: string; label: string; options: readonly string[]; placeholder?: string; groupLabel?: string; value?: string; onChange?: (value: string) => void; helper?: string; required?: boolean; className?: string }) {
   const controlledProps = value !== undefined ? { value, onChange: (event: React.ChangeEvent<HTMLSelectElement>) => onChange?.(event.target.value) } : {}
   return (
     <label className={`block ${className}`}>
@@ -634,6 +877,7 @@ function SelectField({ name, label, options, placeholder = "Select", groupLabel,
           </optgroup>
         ) : options.map((option) => <option key={option} value={option}>{option}</option>)}
       </select>
+      {helper && <span className="mt-2 block text-[12px] leading-[1.5] text-[#929292]">{helper}</span>}
     </label>
   )
 }
@@ -648,8 +892,14 @@ function TextAreaField({ name, label, placeholder, helper, required, className =
   )
 }
 
-function ChoicePills({ name, options, required }: { name: string; options: readonly string[]; required?: boolean }) {
-  const [selectedOption, setSelectedOption] = useState("")
+function ChoicePills({ name, options, value, onChange, required }: { name: string; options: readonly string[]; value?: string; onChange?: (value: string) => void; required?: boolean }) {
+  const [internalValue, setInternalValue] = useState("")
+  const selectedOption = value ?? internalValue
+
+  const selectOption = (option: string) => {
+    if (value === undefined) setInternalValue(option)
+    onChange?.(option)
+  }
 
   return (
     <div className="flex flex-wrap gap-3">
@@ -668,7 +918,7 @@ function ChoicePills({ name, options, required }: { name: string; options: reado
             name={name}
             value={option}
             checked={selectedOption === option}
-            onChange={() => setSelectedOption(option)}
+            onChange={() => selectOption(option)}
             required={required && index === 0}
           />
           <span className="pointer-events-none">{option}</span>
@@ -676,6 +926,40 @@ function ChoicePills({ name, options, required }: { name: string; options: reado
       ))}
     </div>
   )
+}
+
+function ConditionalFormSection({ title, description, children }: { title: string; description: string; children: ReactNode }) {
+  return (
+    <motion.section
+      initial={{ opacity: 0, y: -18, height: 0 }}
+      animate={{ opacity: 1, y: 0, height: "auto" }}
+      exit={{ opacity: 0, y: -12, height: 0 }}
+      transition={{ duration: 0.34, ease: [0.22, 1, 0.36, 1] }}
+      className="overflow-hidden rounded-[28px] bg-white"
+    >
+      <div className="p-[30px] md:p-[45px]">
+        <div className="mb-7">
+          <h2 className="text-[28px] font-semibold leading-[1.2]">{title}</h2>
+          <p className="mt-2 text-[14px] leading-[1.6] text-[#6b6b6b]">{description}</p>
+        </div>
+        {children}
+      </div>
+    </motion.section>
+  )
+}
+
+function CheckOptions({ options, name, selected, onChange }: { options: readonly string[]; name: string; selected: Set<string>; onChange: (value: string, checked: boolean) => void }) {
+  return (
+    <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+      {options.map((option) => (
+        <CheckOption key={option} name={name} value={option} label={option.replace(/^Other (One-Off |Ongoing )?/, "Other ")} checked={selected.has(option)} onChange={(checked) => onChange(option, checked)} />
+      ))}
+    </div>
+  )
+}
+
+function EngagementPrompt() {
+  return <p className="rounded-[14px] border border-[#0C7FFB]/15 bg-blue-50 px-4 py-3 text-[14px] leading-[1.55] text-[#4f5965]">Choose an engagement type above to see the relevant questions.</p>
 }
 
 function CheckOption({ name, value, label, checked, onChange }: { name: string; value: string; label: string; checked: boolean; onChange: (checked: boolean) => void }) {
@@ -687,8 +971,8 @@ function CheckOption({ name, value, label, checked, onChange }: { name: string; 
   )
 }
 
-function ConditionalField({ children }: { children: ReactNode }) {
-  return <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25 }}>{children}</motion.div>
+function ConditionalField({ children, className = "" }: { children: ReactNode; className?: string }) {
+  return <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} transition={{ duration: 0.25 }} className={className}>{children}</motion.div>
 }
 
 function ConditionalPanel({ title, description, children }: { title: string; description: string; children: ReactNode }) {
@@ -705,6 +989,15 @@ function ConditionalPanel({ title, description, children }: { title: string; des
 
 function QuestionGrid({ children }: { children: ReactNode }) {
   return <div className="grid grid-cols-1 gap-4 md:grid-cols-2">{children}</div>
+}
+
+function QuestionGroupHeading({ title, description }: { title: string; description: string }) {
+  return (
+    <div className="md:col-span-2">
+      <h4 className="text-[19px] font-semibold">{title}</h4>
+      <p className="mt-1 text-[13px] leading-[1.55] text-[#6b6b6b]">{description}</p>
+    </div>
+  )
 }
 
 function QuestionGroup({ children }: { children: ReactNode }) {

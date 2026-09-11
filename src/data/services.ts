@@ -132,7 +132,7 @@ export const servicePages: Record<string, ServicePageData> = {
     finalHeading: "Review My UK Tax & Finance Setup",
   },
   "us-tax-and-compliance": {
-    title: "Stay Tax-Ready.\nPay No More Than Required.",
+    title: "Stay tax-ready.\nPay No More Than Required.",
     shortTitle: "US Tax, IRS and State Compliance",
     eyebrow: "US Tax and Compliance",
     path: "/virtual-cfo-services/us-tax-and-compliance",
