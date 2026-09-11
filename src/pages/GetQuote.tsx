@@ -68,11 +68,11 @@ const FINANCE_RESPONSIBILITIES = [
 const ONE_OFF_FINANCE_OPERATIONS = [
   "Catch-up / Backlog Bookkeeping",
   "Bookkeeping Cleanup",
-  "Payroll Review / Cleanup",
-  "Contractor Payment Review / Cleanup",
-  "Customer Invoicing / Billing Cleanup",
-  "Accounts Payable Cleanup",
-  "Accounts Receivable Cleanup",
+  "Payroll Review",
+  "Contractor Payment Review",
+  "Customer Invoicing / Billing Review",
+  "Accounts Payable Review",
+  "Accounts Receivable Review",
   "Other Finance Operations Project",
 ] as const
 
@@ -312,11 +312,11 @@ export default function GetQuote() {
         : []
   const otherAdvisorySelected = Array.from(advisoryScopes).some((scope) => scope.startsWith("Other"))
   const oneOffBookkeepingSelected = oneOffFinanceScopes.has("Catch-up / Backlog Bookkeeping") || oneOffFinanceScopes.has("Bookkeeping Cleanup")
-  const oneOffPayrollSelected = oneOffFinanceScopes.has("Payroll Review / Cleanup")
-  const oneOffContractorSelected = oneOffFinanceScopes.has("Contractor Payment Review / Cleanup")
-  const oneOffInvoicingSelected = oneOffFinanceScopes.has("Customer Invoicing / Billing Cleanup")
-  const oneOffPayablesSelected = oneOffFinanceScopes.has("Accounts Payable Cleanup")
-  const oneOffReceivablesSelected = oneOffFinanceScopes.has("Accounts Receivable Cleanup")
+  const oneOffPayrollSelected = oneOffFinanceScopes.has("Payroll Review")
+  const oneOffContractorSelected = oneOffFinanceScopes.has("Contractor Payment Review")
+  const oneOffInvoicingSelected = oneOffFinanceScopes.has("Customer Invoicing / Billing Review")
+  const oneOffPayablesSelected = oneOffFinanceScopes.has("Accounts Payable Review")
+  const oneOffReceivablesSelected = oneOffFinanceScopes.has("Accounts Receivable Review")
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()

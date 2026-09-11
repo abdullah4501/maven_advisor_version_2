@@ -51,15 +51,15 @@ export default function AboutUs() {
           </section>
 
           <section className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-            <div className="rounded-[30px] bg-white p-[35px] md:p-[50px]">
+            <div className="rounded-[30px] bg-white p-[35px] md:p-[50px] flex flex-col gap-10">
               <h2 className="text-[32px] font-semibold">Two Specialist Service Lines</h2>
-              <p className="mt-5 text-[17px] leading-[1.75] text-[#6b6b6b]">Our finance practice provides six specialist finance services that can be engaged individually or combined within a Virtual CFO engagement. Our separate Agentic AI Automation practice improves suitable accounting, tax and compliance workflows through controlled technology implementation.</p>
-              <Link to="/services" className="mt-7 inline-flex items-center gap-2 font-semibold text-[#0C7FFE]">Explore All Services <ArrowRight size={18} /></Link>
+              <p className="mb-5 text-[17px] leading-[1.75] text-[#6b6b6b]">Our finance practice provides six specialist finance services that can be engaged individually or combined within a Virtual CFO engagement. Our separate Agentic AI Automation practice improves suitable accounting, tax and compliance workflows through controlled technology implementation.</p>
+              <Link to="/services" className="mt-auto inline-flex items-center gap-2 font-semibold text-[#0C7FFE]">Explore All Services <ArrowRight size={18} /></Link>
             </div>
-            <div className="rounded-[30px] bg-white p-[35px] md:p-[50px]">
+            <div className="rounded-[30px] bg-white p-[35px] md:p-[50px] flex flex-col gap-10">
               <h2 className="text-[32px] font-semibold">Our Market Focus</h2>
-              <p className="mt-5 text-[17px] leading-[1.75] text-[#6b6b6b]">Mavens Advisor focuses on clients based in the United Kingdom and United States. This allows our team to develop practical experience around the systems, reporting expectations and compliance environments relevant to those markets.</p>
-              <Link to="/team" className="mt-7 inline-flex items-center gap-2 font-semibold text-[#0C7FFE]">Meet the Leadership Team <ArrowRight size={18} /></Link>
+              <p className="mb-5 text-[17px] leading-[1.75] text-[#6b6b6b]">Mavens Advisor focuses on clients based in the United Kingdom and United States. This allows our team to develop practical experience around the systems, reporting expectations and compliance environments relevant to those markets.</p>
+              <Link to="/team" className="mt-auto inline-flex items-center gap-2 font-semibold text-[#0C7FFE]">Meet the Leadership Team <ArrowRight size={18} /></Link>
             </div>
           </section>
         </div>
